@@ -121,46 +121,90 @@
             </div>
         </section>
 
-        <!-- Ausbildung -->
+        <!-- Ausbildung & Erfahrung -->
         <section class="mb-16">
             <h2 class="text-3xl mb-8 flex items-center gap-3 text-white/90">
                 <i data-lucide="graduation-cap" class="w-6 h-6 text-blue-400"></i>
-                Ausbildung
+                Ausbildung & Erfahrung
             </h2>
             <div class="space-y-6">
-                <!-- Item 1: Mit Logo-Platzhalter -->
-                <div class="glass-card rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start">
-                    
-                    <!-- HIER IST DAS LOGO -->
+                
+                <!-- Station 1: BLS AG -->
+                <div class="glass-card rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start border-l-4 border-l-blue-500/50">
                     <div class="bg-white/5 p-2 rounded-lg w-20 h-20 flex-shrink-0 flex items-center justify-center border border-white/10 overflow-hidden">
-                        <!-- Tausche 'logo_bbc.png' mit deinem echten Bildpfad -->
-                        <img src="bls.png" 
-                             alt="Firmenlogo" 
-                             class="w-full h-full object-contain opacity-80"
-                             onerror="this.parentElement.innerHTML='<i data-lucide=\'building-2\' class=\'text-white/50 w-8 h-8\'></i>'"> <!-- Fallback, falls Bild fehlt -->
+                        <img src="bls.png" alt="BLS" class="w-full h-full object-contain opacity-80" onerror="this.parentElement.innerHTML='<i data-lucide=\'train-front\' class=\'text-white/50 w-8 h-8\'></i>'">
                     </div>
-
                     <div class="flex-grow">
                         <div class="flex justify-between items-start mb-2 flex-wrap gap-2">
-                            <h3 class="text-xl font-medium text-white">ICT-Fachmann EFZ</h3>
-                            <span class="text-sm px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">202X - Heute</span>
+                            <h3 class="text-xl font-medium text-white">ICT-Fachmann (Praxis)</h3>
+                            <span class="text-sm px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Aug 2023 - Heute</span>
                         </div>
-                        <p class="text-white/50 mb-4">Berufsbildungscenter (BBC) / Lehrbetrieb</p>
-                        <ul class="text-white/70 space-y-2 font-light list-disc list-inside marker:text-blue-500">
-                            <li>Schwerpunkt Systemtechnik und Support</li>
-                            <li>Arbeit mit modernen Client-Server Infrastrukturen</li>
-                            <li>Basisausbildung erfolgreich absolviert</li>
-                        </ul>
+                        <p class="text-white/50 mb-4 font-medium">BLS AG (via login Berufsbildung)</p>
+                        
+                        <!-- Details BLS -->
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-white/80 text-sm font-semibold mb-2 flex items-center gap-2">
+                                    <i data-lucide="monitor-check" class="w-4 h-4 text-blue-400"></i> IT-Support
+                                </h4>
+                                <ul class="text-white/60 text-sm space-y-1 font-light list-disc list-inside ml-1">
+                                    <li>Fehleranalyse und Problemlösung im 1st-Level-Support</li>
+                                    <li>Verwaltung von Benutzerrechten (AD, Azure AAD, Omada IAM)</li>
+                                    <li>Bearbeitung von Störungsmeldungen & Hardware-Support</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white/80 text-sm font-semibold mb-2 flex items-center gap-2">
+                                    <i data-lucide="workflow" class="w-4 h-4 text-blue-400"></i> ServiceNow Development
+                                </h4>
+                                <ul class="text-white/60 text-sm space-y-1 font-light list-disc list-inside ml-1">
+                                    <li>Erstellung und Pflege von Catalog Items & Prozess-Engine</li>
+                                    <li>Konfiguration von Workflows und Genehmigungsprozessen</li>
+                                    <li>Mithilfe bei Migration von TopDesk auf ServiceNow</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Station 2: login -->
+                <div class="glass-card rounded-xl p-6 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="bg-white/5 p-2 rounded-lg w-16 h-16 flex-shrink-0 flex items-center justify-center border border-white/10 overflow-hidden">
+                        <img src="login.png" alt="login" class="w-full h-full object-contain opacity-80" onerror="this.parentElement.innerHTML='<i data-lucide=\'briefcase\' class=\'text-white/50 w-6 h-6\'></i>'">
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-center mb-1 flex-wrap gap-2">
+                            <h3 class="text-lg font-medium text-white">ICT-Fachmann EFZ</h3>
+                            <span class="text-xs text-white/40">Aug 2023 - Juli 2026</span>
+                        </div>
+                        <p class="text-white/50 text-sm">login Berufsbildung AG</p>
+                        <p class="text-white/60 text-sm font-light mt-2">Partner für die berufliche Grundbildung.</p>
+                    </div>
+                </div>
+
+                <!-- Station 3: BBC -->
+                <div class="glass-card rounded-xl p-6 flex flex-col md:flex-row gap-6 items-center opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="bg-white/5 p-2 rounded-lg w-16 h-16 flex-shrink-0 flex items-center justify-center border border-white/10 overflow-hidden">
+                        <img src="bbc.jpeg" alt="BBC" class="w-full h-full object-contain opacity-80" onerror="this.parentElement.innerHTML='<i data-lucide=\'school\' class=\'text-white/50 w-6 h-6\'></i>'">
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-center mb-1 flex-wrap gap-2">
+                            <h3 class="text-lg font-medium text-white">Basislehrjahr ICT</h3>
+                            <span class="text-xs text-white/40">Aug 2023 - Juli 2024</span>
+                        </div>
+                        <p class="text-white/50 text-sm">ICT Berufsbildungscenter AG</p>
+                        <p class="text-white/60 text-sm font-light mt-2">Erfolgreich absolviertes Basisjahr mit Fokus auf Systemtechnik, Netzwerkgrundlagen und Informatik-Basics.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Berufserfahrung / Jobs -->
+        <!-- Berufserfahrung / Jobs (Bereinigt, da BLS oben integriert ist) -->
         <section class="mb-16">
             <h2 class="text-3xl mb-8 flex items-center gap-3 text-white/90">
                 <i data-lucide="briefcase" class="w-6 h-6 text-blue-400"></i>
-                Praxis & Jobs
+                Weitere Tätigkeiten
             </h2>
             <div class="space-y-6">
                 <!-- Job 1 -->
@@ -169,32 +213,12 @@
                         <h3 class="text-xl font-medium text-white">Ambassador</h3>
                         <span class="text-sm text-white/40">202X - 202X</span>
                     </div>
-                    <p class="text-blue-400 text-sm mb-4">Login Berufsbildung</p>
+                    <p class="text-blue-400 text-sm mb-4">login Berufsbildung</p>
                     <p class="text-white/70 font-light mb-6">
                         Repräsentation des Berufsstandes und Kommunikation mit Interessenten. 
                         Verantwortlich für Events und Informationsveranstaltungen.
                     </p>
                     
-                    <!-- DER KNOPF ZUM ZERTIFIKAT -->
-                    <button onclick="openOverlay('cert-overlay')" 
-                            class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm text-white/80 transition-all hover:text-white group">
-                        <i data-lucide="file-check" class="w-4 h-4 text-blue-400 group-hover:text-blue-300"></i>
-                        Zertifikate / Nachweise ansehen
-                    </button>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="glass-card rounded-xl p-6">
-                    <div class="flex justify-between items-start mb-1">
-                        <h3 class="text-xl font-medium text-white">Weitere Erfahrung</h3>
-                        <span class="text-sm text-white/40">Zeitraum</span>
-                    </div>
-                    <p class="text-blue-400 text-sm mb-4">Firma / Ort</p>
-                    <p class="text-white/70 font-light mb-6">
-                        Beschreibung der Tätigkeit...
-                    </p>
-
-                    <!-- Auch hier der Knopf -->
                     <button onclick="openOverlay('cert-overlay')" 
                             class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm text-white/80 transition-all hover:text-white group">
                         <i data-lucide="file-check" class="w-4 h-4 text-blue-400 group-hover:text-blue-300"></i>
@@ -218,7 +242,7 @@
                     </div>
                     <div>
                         <h4 class="font-medium text-white">Skifahren</h4>
-                        <p class="text-sm text-white/60 font-light">Wintersport & Berge</p>
+                        <p class="text-sm text-white/60 font-light">Wintersport & Familie</p>
                     </div>
                 </div>
 
@@ -251,7 +275,7 @@
                     </div>
                     <div>
                         <h4 class="font-medium text-white">Ferien</h4>
-                        <p class="text-sm text-white/60 font-light">Reisen & Erholung</p>
+                        <p class="text-sm text-white/60 font-light">Reisen & Erfahrungen</p>
                     </div>
                 </div>
             </div>
