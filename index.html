@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fynnhofmann.com</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons für saubere Vektorgrafiken -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #050505;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: white;
+        }
+
+        .glow-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45vh; 
+            height: 45vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .dynamic-ball {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #3b82f6, transparent 70%);
+            will-change: transform, filter;
+            animation: 
+                breathe 8s ease-in-out infinite alternate,
+                smoothColorCycle 30s linear infinite;
+        }
+
+        @keyframes breathe {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        @keyframes smoothColorCycle {
+            0% { filter: blur(90px) hue-rotate(0deg); }
+            100% { filter: blur(90px) hue-rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex flex-col items-center justify-center relative">
+
+    <div class="glow-container">
+        <div class="dynamic-ball"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="z-10 text-center px-4 mix-blend-screen">
+        <h1 class="text-4xl md:text-7xl font-extralight tracking-tight text-white select-none">
+            fynnhofmann.com
+        </h1>
+    </main>
+
+    <!-- Icons unten rechts -->
+    <div class="fixed bottom-8 right-8 z-20 flex gap-6">
+        <!-- LinkedIn: Ersetze # mit deinem Profillink -->
+        <a href="www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" rel="noopener noreferrer" 
+           class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
+            <i data-lucide="linkedin" class="w-6 h-6"></i>
+        </a>
+        
+        <!-- Mail: Ersetze deine@mail.com -->
+        <a href="mail@fynnhofmann.com" 
+           class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
+            <i data-lucide="mail" class="w-6 h-6"></i>
+        </a>
+    </div>
+
+    <!-- Icons initialisieren -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
