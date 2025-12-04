@@ -12,6 +12,10 @@
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: white;
+            /* Verhindert das Markieren von Text */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .glow-container {
@@ -71,19 +75,28 @@
         }
     </style>
 </head>
-<body class="h-screen w-full flex flex-col items-center justify-center relative">
+<!-- oncontextmenu="return false" verhindert den Rechtsklick im Body -->
+<body class="h-screen w-full flex flex-col items-center justify-center relative" oncontextmenu="return false;">
 
     <div class="glow-container">
         <div class="dynamic-ball"></div>
     </div>
 
     <main class="z-10 text-center px-4 mix-blend-screen">
-        <h1 class="text-4xl md:text-7xl font-extralight tracking-tight text-white select-none">
+        <h1 class="text-4xl md:text-7xl font-extralight tracking-tight text-white select-none cursor-default">
             fynnhofmann.com
         </h1>
     </main>
 
+    <!-- Hauptnavigation -->
     <div class="fixed bottom-8 right-8 z-20 flex gap-6 items-center">
+        <!-- Impressum Button (neu) -->
+        <button onclick="openOverlay('impressum-overlay')" 
+           class="text-white/40 hover:text-white transition-all duration-300 hover:scale-110 outline-none mr-4"
+           title="Impressum">
+            <i data-lucide="info" class="w-5 h-5"></i>
+        </button>
+
         <button onclick="openOverlay('linkedin-overlay')" 
            class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
             <i data-lucide="linkedin" class="w-6 h-6"></i>
@@ -105,6 +118,7 @@
         </button>
     </div>
 
+    <!-- Threema Overlay -->
     <div id="threema-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
@@ -119,7 +133,7 @@
             <div class="bg-white p-4 rounded-xl inline-block shadow-[0_0_30px_rgba(255,255,255,0.1)]">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=000000&bgcolor=ffffff&data=https://threema.id/S2MJ8VFN" 
                      alt="Threema QR Code" 
-                     class="w-64 h-64 md:w-80 md:h-80 object-contain">
+                     class="w-64 h-64 md:w-80 md:h-80 object-contain pointer-events-none">
             </div>
 
             <div class="mt-6">
@@ -131,6 +145,7 @@
         </div>
     </div>
 
+    <!-- Mail Overlay -->
     <div id="mail-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
@@ -147,7 +162,7 @@
             
             <p class="text-white/70 mb-8 font-light leading-relaxed">
                 Du erreichst mich klassisch per E-Mail unter:<br>
-                <a href="mailto:mail@fynnhofmann.com" class="text-white font-normal hover:underline mt-2 inline-block">mail@fynnhofmann.com</a>
+                <a href="mailto:mail@fynnhofmann.com" class="text-white font-normal hover:underline mt-2 inline-block select-text">mail@fynnhofmann.com</a>
             </p>
 
             <div class="w-full h-px bg-white/10 mb-8"></div>
@@ -167,6 +182,7 @@
         </div>
     </div>
 
+    <!-- LinkedIn Overlay -->
     <div id="linkedin-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
@@ -177,7 +193,7 @@
                 <img src="bls_welle7.jpeg" 
                      onerror="this.style.display='none'"
                      alt="Banner" 
-                     class="w-full h-full object-cover">
+                     class="w-full h-full object-cover pointer-events-none">
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-slate-900 -z-10"></div>
                 <div class="absolute inset-0 bg-black/20"></div>
             </div>
@@ -187,7 +203,7 @@
                     <div class="w-24 h-24 rounded-full border-4 border-[#1b1f23] overflow-hidden bg-zinc-800 flex items-center justify-center">
                         <img src="fynn.jpeg" 
                              alt="Fynn Hofmann" 
-                             class="w-full h-full object-cover">
+                             class="w-full h-full object-cover pointer-events-none">
                     </div>
                 </div>
 
@@ -207,6 +223,7 @@
         </div>
     </div>
 
+    <!-- Zertifikate Overlay -->
     <div id="cert-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
@@ -219,7 +236,7 @@
             <div class="w-full mb-12 flex flex-col items-center animate-fade-in" style="animation-delay: 0.1s;">
                 <h3 class="text-xl font-light text-white mb-4">Basisausbildung im BBC</h3>
                 <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
-                    <img src="bbc.png" onerror="this.style.display='none'" alt="Zertifikat 1" class="w-full h-full object-contain">
+                    <img src="bbc.png" onerror="this.style.display='none'" alt="Zertifikat 1" class="w-full h-full object-contain pointer-events-none">
                     <span class="text-white/20 text-sm absolute">Bild Platzhalter 1</span>
                 </div>
             </div>
@@ -227,7 +244,7 @@
             <div class="w-full mb-12 flex flex-col items-center animate-fade-in" style="animation-delay: 0.2s;">
                 <h3 class="text-xl font-light text-white mb-4">Memory Forensik Kurs</h3>
                 <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
-                    <img src="memory.png" onerror="this.style.display='none'" alt="Zertifikat 2" class="w-full h-full object-contain">
+                    <img src="memory.png" onerror="this.style.display='none'" alt="Zertifikat 2" class="w-full h-full object-contain pointer-events-none">
                     <span class="text-white/20 text-sm absolute">Bild Platzhalter 2</span>
                 </div>
             </div>
@@ -235,7 +252,7 @@
             <div class="w-full mb-4 flex flex-col items-center animate-fade-in" style="animation-delay: 0.3s;">
                 <h3 class="text-xl font-light text-white mb-4">Ambasssador für login</h3>
                 <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
-                    <img src="ambassador.png" onerror="this.style.display='none'" alt="Zertifikat 3" class="w-full h-full object-contain">
+                    <img src="ambassador.png" onerror="this.style.display='none'" alt="Zertifikat 3" class="w-full h-full object-contain pointer-events-none">
                     <span class="text-white/20 text-sm absolute">Bild Platzhalter 3</span>
                 </div>
             </div>
@@ -243,35 +260,101 @@
         </div>
     </div>
 
+    <!-- NEU: Impressum Overlay -->
+    <div id="impressum-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
+        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+
+        <div class="w-full max-w-lg h-full max-h-[80vh] overflow-y-auto no-scrollbar pt-8 px-4 text-center">
+            <h2 class="text-2xl font-light mb-8 text-white">Impressum</h2>
+            
+            <div class="space-y-6 text-white/70 font-light text-sm leading-relaxed select-text">
+                <div>
+                    <h3 class="text-white font-normal mb-1">Angaben gemäß Informationspflicht:</h3>
+                    <p>Fynn Hofmann<br>
+                    Musterstrasse 1<br>
+                    3000 Bern<br>
+                    Schweiz</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-normal mb-1">Kontakt:</h3>
+                    <p>E-Mail: mail@fynnhofmann.com<br>
+                    Webseite: www.fynnhofmann.com</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-normal mb-1">Haftungsausschluss:</h3>
+                    <p>Der Autor übernimmt keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Haftungsansprüche gegen den Autor wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstanden sind, werden ausgeschlossen.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-normal mb-1">Urheberrechte:</h3>
+                    <p>Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschließlich <strong>Fynn Hofmann</strong> oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträger im Voraus einzuholen.</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-xs text-white/30">
+                &copy; 2024 Fynn Hofmann. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </div>
+
     <script>
         // Icons initialisieren
         lucide.createIcons();
 
-        // Alle Overlay IDs (aktualisiert mit 'cert-overlay')
-        const overlays = ['threema-overlay', 'mail-overlay', 'linkedin-overlay', 'cert-overlay'];
+        // Alle Overlay IDs inkl. Impressum
+        const overlays = ['threema-overlay', 'mail-overlay', 'linkedin-overlay', 'cert-overlay', 'impressum-overlay'];
 
-        // Funktion um ein spezifisches Overlay zu öffnen (und andere zu schließen)
         function openOverlay(targetId) {
-            // Erst alle schließen
             overlays.forEach(id => {
                 const el = document.getElementById(id);
                 el.classList.remove('visible-overlay');
                 el.classList.add('hidden-overlay');
             });
 
-            // Dann das gewünschte öffnen
             const target = document.getElementById(targetId);
             target.classList.remove('hidden-overlay');
             target.classList.add('visible-overlay');
         }
 
-        // Funktion um alle zu schließen
         function closeAllOverlays() {
             overlays.forEach(id => {
                 const el = document.getElementById(id);
                 el.classList.remove('visible-overlay');
                 el.classList.add('hidden-overlay');
             });
+        }
+
+        // --- CODE SCHUTZ SCRIPT ---
+        
+        // 1. Rechtsklick unterbinden (auch wenn im Body Tag schon drin, sicher ist sicher)
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Tastenkürzel für DevTools unterbinden
+        document.onkeydown = function(e) {
+            // F12
+            if(e.keyCode == 123) {
+                return false;
+            }
+            // Ctrl+Shift+I (DevTools)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+Shift+J (Console)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+U (Quelltext anzeigen)
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+S (Speichern)
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) {
+                return false;
+            }
         }
     </script>
 </body>
