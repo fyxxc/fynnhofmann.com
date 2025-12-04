@@ -1,40 +1,41 @@
-# fynnhofmann.com
+WAS DIE SEITE KANN
 
-Was die Seite kann
+Design: Dunkel, entspannt, mit einer animierten Kugel in der Mitte.
 
-Design: Dunkel, entspannt, mit dieser animierten Kugel in der Mitte.
+Overlays: Wenn man auf Icons klickt, geht kein neuer Tab auf, sondern ein Overlay legt sich drüber. Das sorgt für ein flüssigeres Gefühl.
 
-Overlays: Wenn man auf Icons klickt, geht kein neuer Tab auf, sondern ein Overlay legt sich drüber. Fühlt sich einfach flüssiger an.
+Responsive: Die Seite läuft auf dem Handy genauso gut wie auf dem Desktop.
 
-Responsive: Läuft auf dem Handy genauso gut wie auf dem Desktop.
+Anti-Copy: Es sind ein paar Hürden eingebaut (Rechtsklick-Sperre etc.), damit der Code nicht sofort kopiert werden kann.
 
-Anti-Copy: Ich hab ein paar Hürden eingebaut (Rechtsklick-Sperre etc.), damit man den Code nicht sofort klauen kann.
+Impressum: Ist bereits integriert und verlinkt.
 
-Impressum: Ist auch schon drin und verlinkt.
 
-Die Technik dahinter
+DIE TECHNIK DAHINTER
 
-Ich habe bewusst auf komplexe Frameworks oder Build-Tools verzichtet. Das Ding soll einfach laufen.
+Ich habe bewusst auf komplexe Frameworks oder Build-Tools verzichtet. Das Projekt soll einfach laufen ("Keep it simple").
 
-HTML5 & Vanilla JS: Kein React, kein Vue, einfach Standard-Webtechnologie.
+HTML5 & Vanilla JS: Kein React, kein Vue – reine Standard-Webtechnologie.
 
-Tailwind CSS: Nutze ich via CDN für das Styling.
+Tailwind CSS: Wird für das Styling genutzt (via CDN eingebunden).
 
-Icons: Kommen von Lucide (ebenfalls via CDN).
+Icons: Stammen von Lucide (ebenfalls via CDN).
 
-Wie du das Ding startest
 
-Du brauchst kein npm install oder irgendwelche Server.
+WIE DU DAS DING STARTEST
 
-Lad dir die Dateien runter.
+Du brauchst kein npm install und keinen lokalen Server.
 
-Pack deine Bilder in denselben Ordner (siehe unten).
+Lade dir die Dateien herunter.
 
-Doppelklick auf die index.html – fertig.
+Packe deine Bilder in denselben Ordner (siehe Liste unten).
 
-Bilder, die du brauchst
+Mache einen Doppelklick auf die index.html – fertig.
 
-Damit die Seite nicht kaputt aussieht, müssen diese Bilder im Ordner liegen (oder du änderst die Namen im Code):
+
+BILDER, DIE DU BRAUCHST
+
+Damit die Seite korrekt angezeigt wird, müssen folgende Bilder im Ordner liegen (oder du passt die Namen im Code an):
 
 fynn.jpeg (Dein Profilbild)
 
@@ -46,18 +47,18 @@ memory.png (Zertifikat 2)
 
 ambassador.png (Zertifikat 3)
 
-Info zum "Kopierschutz"
 
-Seien wir ehrlich: Da wir im Web sind und der Browser den Code lesen muss, gibt es keinen 100%igen Schutz. Jeder, der sich mit DevTools auskennt (so wie wir), kommt da ran.
+INFO ZUM "KOPIERSCHUTZ"
 
-Aber: Ich habe Rechtsklick, Textauswahl und die gängigen Shortcuts (F12, Ctrl+U etc.) blockiert. Das hält zumindest die meisten "Gelegenheits-Diebe" ab.
+Seien wir ehrlich: Da wir im Web sind und der Browser den Code interpretieren muss, gibt es keinen 100%igen Schutz. Jeder, der sich mit DevTools auskennt (so wie wir), kommt an den Source-Code.
 
-Anpassungen
+Aber: Ich habe Rechtsklick, Textauswahl und gängige Shortcuts (F12, Ctrl+U etc.) blockiert. Das hält zumindest die meisten "Gelegenheits-Diebe" ab.
 
-Willst du die Links ändern?
 
-Suche im Code einfach nach mailto:, threema.id oder linkedin.com und trag deine Sachen ein.
+ANPASSUNGEN
 
-Impressum: Das findest du ganz unten im Code im div mit der ID impressum-overlay. Einfach den Text austauschen.
+Links ändern: Suche im Code einfach nach mailto:, threema.id oder linkedin.com und trage deine eigenen Daten ein.
 
-Stand: 2024 | Fynn Hofmann
+Impressum: Den Text findest du ganz unten im Code im div mit der ID impressum-overlay. Einfach den Inhalt austauschen.
+
+Stand: 2025 | Fynn Hofmann
