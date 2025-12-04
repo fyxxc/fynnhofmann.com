@@ -46,6 +46,21 @@
             0% { filter: blur(90px) hue-rotate(0deg); }
             100% { filter: blur(90px) hue-rotate(360deg); }
         }
+
+        /* Transition für das Overlay */
+        #threema-overlay {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .hidden-overlay {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .visible-overlay {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="h-screen w-full flex flex-col items-center justify-center relative">
@@ -62,23 +77,72 @@
     </main>
 
     <!-- Icons unten rechts -->
-    <div class="fixed bottom-8 right-8 z-20 flex gap-6">
-        <!-- LinkedIn: Ersetze # mit deinem Profillink -->
+    <div class="fixed bottom-8 right-8 z-20 flex gap-6 items-center">
+        <!-- LinkedIn -->
         <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" rel="noopener noreferrer" 
            class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
             <i data-lucide="linkedin" class="w-6 h-6"></i>
         </a>
         
-        <!-- Mail: Ersetze deine@mail.com -->
+        <!-- Mail -->
         <a href="mailto:mail@fynnhofmann.com" 
            class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110">
             <i data-lucide="mail" class="w-6 h-6"></i>
         </a>
+
+        <!-- Threema / Messenger Button -->
+        <button onclick="toggleOverlay()" 
+                class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+        </button>
     </div>
 
-    <!-- Icons initialisieren -->
+    <!-- Threema Overlay (Wirkt wie eine neue Seite) -->
+    <div id="threema-overlay" class="fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
+        <!-- Close Button -->
+        <button onclick="toggleOverlay()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+
+        <div class="text-center max-w-md animate-fade-in">
+            <h2 class="text-2xl font-light mb-6 text-white">Threema Kontakt</h2>
+            <p class="text-white/80 mb-8 font-light leading-relaxed">
+                Scanne diesen QR-Code, um mit mir über Threema zu kommunizieren.
+            </p>
+            
+            <div class="bg-white p-4 rounded-xl inline-block shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                <!-- 
+                     WICHTIG FÜR FYNN:
+                     Ersetze unten bei 'data=' den Text 'DEINE_THREEMA_ID' durch deine echte ID oder den Link.
+                     Beispiel: data=3MA12345
+                -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=000000&bgcolor=ffffff&data=S2MJ8VFN" 
+                     alt="Threema QR Code" 
+                     class="w-64 h-64 md:w-80 md:h-80 object-contain">
+            </div>
+            
+            <p class="mt-8 text-sm text-white/40">
+                Klicke auf das X oben rechts, um zurückzukehren.
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripting -->
     <script>
+        // Icons initialisieren
         lucide.createIcons();
+
+        // Overlay Logik
+        function toggleOverlay() {
+            const overlay = document.getElementById('threema-overlay');
+            if (overlay.classList.contains('hidden-overlay')) {
+                overlay.classList.remove('hidden-overlay');
+                overlay.classList.add('visible-overlay');
+            } else {
+                overlay.classList.remove('visible-overlay');
+                overlay.classList.add('hidden-overlay');
+            }
+        }
     </script>
 </body>
 </html>
