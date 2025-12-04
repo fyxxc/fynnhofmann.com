@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fynnhofmann.com</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons für saubere Vektorgrafiken -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
@@ -61,6 +60,15 @@
             visibility: visible;
             pointer-events: auto;
         }
+
+        /* Scrollbar für das Zertifikate-Overlay verstecken oder stylen */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 <body class="h-screen w-full flex flex-col items-center justify-center relative">
@@ -69,39 +77,36 @@
         <div class="dynamic-ball"></div>
     </div>
 
-    <!-- Main Content -->
     <main class="z-10 text-center px-4 mix-blend-screen">
         <h1 class="text-4xl md:text-7xl font-extralight tracking-tight text-white select-none">
             fynnhofmann.com
         </h1>
     </main>
 
-    <!-- Icons unten rechts -->
     <div class="fixed bottom-8 right-8 z-20 flex gap-6 items-center">
-        <!-- LinkedIn Button -->
         <button onclick="openOverlay('linkedin-overlay')" 
            class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
             <i data-lucide="linkedin" class="w-6 h-6"></i>
         </button>
         
-        <!-- Mail Button -->
         <button onclick="openOverlay('mail-overlay')" 
            class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
             <i data-lucide="mail" class="w-6 h-6"></i>
         </button>
 
-        <!-- Threema / Messenger Button -->
         <button onclick="openOverlay('threema-overlay')" 
                 class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
             <i data-lucide="message-circle" class="w-6 h-6"></i>
         </button>
+
+        <button onclick="openOverlay('cert-overlay')" 
+                class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
+            <i data-lucide="award" class="w-6 h-6"></i>
+        </button>
     </div>
 
-    <!-- ========================================== -->
-    <!-- THREEMA OVERLAY -->
-    <!-- ========================================== -->
     <div id="threema-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
-        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300">
+        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
 
@@ -123,15 +128,11 @@
                     https://threema.id/S2MJ8VFN
                 </a>
             </div>
-            
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- MAIL OVERLAY -->
-    <!-- ========================================== -->
     <div id="mail-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
-        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300">
+        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
 
@@ -166,38 +167,22 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- LINKEDIN OVERLAY -->
-    <!-- ========================================== -->
     <div id="linkedin-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
-        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300">
+        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
 
         <div class="w-full max-w-sm bg-[#1b1f23] border border-white/10 rounded-xl overflow-hidden shadow-2xl transform transition-all hover:scale-[1.01]">
-            
-            <!-- 
-                1. BANNER BILD 
-                Benenne deine Hintergrundbild-Datei um in: "banner.jpg" 
-                (oder .png, passe dann den Namen unten an)
-            -->
             <div class="h-24 w-full relative overflow-hidden bg-slate-800">
                 <img src="bls_welle7.jpeg" 
                      onerror="this.style.display='none'"
                      alt="Banner" 
                      class="w-full h-full object-cover">
-                <!-- Fallback Gradient falls Bild nicht gefunden wird: -->
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-slate-900 -z-10"></div>
                 <div class="absolute inset-0 bg-black/20"></div>
             </div>
 
             <div class="px-6 pb-6 relative">
-                
-                <!-- 
-                    2. PROFIL BILD
-                    Benenne deine Profilbild-Datei um in: "profil.jpg"
-                    (oder .png, passe dann den Namen unten an)
-                -->
                 <div class="relative -mt-12 mb-4">
                     <div class="w-24 h-24 rounded-full border-4 border-[#1b1f23] overflow-hidden bg-zinc-800 flex items-center justify-center">
                         <img src="fynn.jpeg" 
@@ -220,16 +205,50 @@
                 </a>
             </div>
         </div>
-        
     </div>
 
-    <!-- Scripting -->
+    <div id="cert-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
+        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+
+        <div class="w-full max-w-2xl h-full max-h-[90vh] overflow-y-auto no-scrollbar pt-12 pb-8 px-4 flex flex-col items-center">
+            
+            <h2 class="text-3xl font-light mb-10 text-white sticky top-0">Meine Zertifikate</h2>
+
+            <div class="w-full mb-12 flex flex-col items-center animate-fade-in" style="animation-delay: 0.1s;">
+                <h3 class="text-xl font-light text-white mb-4">Titel Zertifikat 1</h3>
+                <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
+                    <img src="zertifikat1.jpg" onerror="this.style.display='none'" alt="Zertifikat 1" class="w-full h-full object-contain">
+                    <span class="text-white/20 text-sm absolute">Bild Platzhalter 1</span>
+                </div>
+            </div>
+
+            <div class="w-full mb-12 flex flex-col items-center animate-fade-in" style="animation-delay: 0.2s;">
+                <h3 class="text-xl font-light text-white mb-4">Titel Zertifikat 2</h3>
+                <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
+                    <img src="zertifikat2.jpg" onerror="this.style.display='none'" alt="Zertifikat 2" class="w-full h-full object-contain">
+                    <span class="text-white/20 text-sm absolute">Bild Platzhalter 2</span>
+                </div>
+            </div>
+
+            <div class="w-full mb-4 flex flex-col items-center animate-fade-in" style="animation-delay: 0.3s;">
+                <h3 class="text-xl font-light text-white mb-4">Titel Zertifikat 3</h3>
+                <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
+                    <img src="zertifikat3.jpg" onerror="this.style.display='none'" alt="Zertifikat 3" class="w-full h-full object-contain">
+                    <span class="text-white/20 text-sm absolute">Bild Platzhalter 3</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <script>
         // Icons initialisieren
         lucide.createIcons();
 
-        // Alle Overlay IDs
-        const overlays = ['threema-overlay', 'mail-overlay', 'linkedin-overlay'];
+        // Alle Overlay IDs (aktualisiert mit 'cert-overlay')
+        const overlays = ['threema-overlay', 'mail-overlay', 'linkedin-overlay', 'cert-overlay'];
 
         // Funktion um ein spezifisches Overlay zu öffnen (und andere zu schließen)
         function openOverlay(targetId) {
