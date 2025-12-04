@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
-// Auth-Importe entfernt, da wir sie aktuell nicht nutzen
-import { getFirestore, collection, doc, onSnapshot, updateDoc, addDoc, query } from "firebase/firestore";
+import { getFirestore, collection, doc, onSnapshot, updateDoc, addDoc, query, deleteDoc } from "firebase/firestore";
 import { 
   LayoutDashboard, 
   Bus, 
@@ -26,7 +25,6 @@ import {
 } from 'lucide-react';
 
 // --- Konfiguration ---
-// HIER DEINE ECHTEN DATEN EINFÜGEN, WENN DU SOWEIT BIST:
 const firebaseConfig = {
   apiKey: "DEMO_KEY",
   authDomain: "demo.firebaseapp.com",
@@ -36,16 +34,13 @@ const firebaseConfig = {
   appId: "1:00000000:web:abcdef"
 };
 
-// Wir definieren globale Variablen mit 'any', um TS-Fehler bei fehlender Init zu vermeiden
 let app: any;
-// auth Variable entfernt
 let db: any;
 let isDemoMode = true;
 
 try {
     if (firebaseConfig.apiKey !== "DEMO_KEY") {
         app = initializeApp(firebaseConfig);
-        // auth Init entfernt
         db = getFirestore(app);
         isDemoMode = false;
     }
@@ -55,7 +50,7 @@ try {
 
 const appId = 'tfl-production-app'; 
 
-// --- Datenstrukturen & Mock-Daten ---
+// --- Datenstrukturen ---
 
 const OPERATIONAL_UNITS = {
   Tube: ['Neasden Depot (Jubilee/Met)', 'Ruislip Depot (Central)', 'Cockfosters Depot (Picc)', 'Northumberland Park (Victoria)', 'Stratford Market Depot'],
@@ -99,17 +94,6 @@ interface AppUser {
   hub: string;
 }
 
-const MOCK_FLEET: Vehicle[] = [
-    { id: 'T-1992-04', type: 'Tube', model: '1992 Stock', status: 'In Service', location: 'Central Line Loop' },
-    { id: 'T-2009-12', type: 'Tube', model: '2009 Stock', status: 'Depot', location: 'Northumberland Park' },
-    { id: 'T-S7-88', type: 'Tube', model: 'S7 Stock', status: 'Maintenance', location: 'Neasden Depot' },
-    { id: 'B-LT-402', type: 'Bus', model: 'New Routemaster', status: 'In Service', location: 'Route 159' },
-    { id: 'B-E-102', type: 'Bus', model: 'BYD Electric', status: 'Defect', location: 'Walworth Garage', battery: 12 },
-    { id: 'EL-345-01', type: 'Train', model: 'Class 345', status: 'In Service', location: 'Paddington - Abbey Wood' },
-    { id: 'C-8842', type: 'Bike', model: 'Pashley Cycle', status: 'In Service', location: 'Dock: Soho Square' },
-    { id: 'C-9912', type: 'Bike', model: 'Pashley Cycle', status: 'Depot', location: 'Pentonville Workshop' },
-];
-
 const SERVICE_STATUS = [
   { line: 'Bakerloo', status: 'Good Service', color: 'bg-[#B36305]' },
   { line: 'Central', status: 'Severe Delays', color: 'bg-[#E32017]' },
@@ -120,9 +104,62 @@ const SERVICE_STATUS = [
   { line: 'Victoria', status: 'Good Service', color: 'bg-[#0098D4]' },
 ];
 
+// --- Mock Data Generator (Für große Flotten) ---
+const generateMockFleet = (): Vehicle[] => {
+    const fleet: Vehicle[] = [];
+    const statuses: Vehicle['status'][] = ['In Service', 'In Service', 'In Service', 'Depot', 'Maintenance'];
+    
+    // 1. Tube (30 Stück)
+    for (let i = 1; i <= 30; i++) {
+        fleet.push({
+            id: `T-1992-${String(i).padStart(3, '0')}`,
+            type: 'Tube',
+            model: i < 15 ? '1992 Stock' : '2009 Stock',
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+            location: i < 15 ? 'Central Line Loop' : 'Victoria Line Southbound'
+        });
+    }
+    // 2. Busse (40 Stück)
+    for (let i = 1; i <= 40; i++) {
+        fleet.push({
+            id: `B-LT-${String(i + 100).padStart(3, '0')}`,
+            type: 'Bus',
+            model: i < 20 ? 'New Routemaster' : 'BYD Electric',
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+            location: `Route ${Math.floor(Math.random() * 50) + 1} - Central`,
+            battery: i >= 20 ? Math.floor(Math.random() * 100) : undefined
+        });
+    }
+    // 3. Bikes (50 Stück)
+    for (let i = 1; i <= 50; i++) {
+        fleet.push({
+            id: `C-${String(i + 8000)}`,
+            type: 'Bike',
+            model: 'Pashley Cycle',
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+            location: `Docking Stn: Zone ${Math.floor(Math.random() * 2) + 1}`
+        });
+    }
+    // 4. Elizabeth Line (30 Stück) - Erhöht auf 30
+    for (let i = 1; i <= 30; i++) {
+        fleet.push({
+            id: `EL-345-${String(i).padStart(2, '0')}`,
+            type: 'Train',
+            model: 'Class 345',
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+            location: i % 2 === 0 ? 'Paddington - Abbey Wood' : 'Shenfield - Liverpool St'
+        });
+    }
+    return fleet;
+};
+
+// Initial Data Setup
+const INITIAL_INCIDENTS: Incident[] = [
+    { id: '1', refId: 'INC-2025-88', title: 'Signal Failure Baker St', description: 'Signal failure on southbound line.', priority: 'Critical', status: 'Open', system: 'Tube', assignedTeam: 'Neasden Depot', reportedBy: 'System', timestamp: new Date().toISOString() }
+];
+
 // --- Komponenten ---
 
-// Fix: Diese Komponente hatte gefehlt
 const TfLRoundel = ({ className = "w-10 h-10" }: { className?: string }) => (
   <div className={`${className} relative flex items-center justify-center`}>
     <div className="absolute inset-0 rounded-full border-[6px] border-[#E32017] bg-white/10"></div>
@@ -161,12 +198,24 @@ export default function TfLControl() {
   const [selectedIncident, setSelectedIncident] = useState<Incident | null>(null);
   const [newLogMessage, setNewLogMessage] = useState('');
 
-  // Data State (Simulierte Datenbank)
-  const [usersList, setUsersList] = useState<AppUser[]>([]);
-  const [incidents, setIncidents] = useState<Incident[]>([
-      { id: '1', refId: 'INC-2025-88', title: 'Signal Failure Baker St', description: 'Signal failure on southbound line.', priority: 'Critical', status: 'Open', system: 'Tube', assignedTeam: 'Neasden Depot', reportedBy: 'System', timestamp: new Date().toISOString() }
-  ]);
-  const [fleet] = useState<Vehicle[]>(MOCK_FLEET);
+  // Data State (LocalStorage Persistence)
+  // Wir laden erst beim Start, falls vorhanden
+  const [usersList, setUsersList] = useState<AppUser[]>(() => {
+      const saved = localStorage.getItem('tfl_users');
+      return saved ? JSON.parse(saved) : [];
+  });
+  const [incidents, setIncidents] = useState<Incident[]>(() => {
+      const saved = localStorage.getItem('tfl_incidents');
+      return saved ? JSON.parse(saved) : INITIAL_INCIDENTS;
+  });
+  
+  // FIX: Wir entfernen das 'setFleet' aus dem Destructuring, da wir es nicht benutzen.
+  // Das behebt den "declared but never read" Fehler.
+  const [fleet] = useState<Vehicle[]>(() => {
+      const saved = localStorage.getItem('tfl_fleet');
+      return saved ? JSON.parse(saved) : generateMockFleet();
+  });
+  
   const [editingUser, setEditingUser] = useState<Partial<AppUser>>({});
 
   // Clock Effect
@@ -174,6 +223,20 @@ export default function TfLControl() {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  // --- Persistence Effects ---
+  useEffect(() => {
+      if (isDemoMode) localStorage.setItem('tfl_users', JSON.stringify(usersList));
+  }, [usersList]);
+
+  useEffect(() => {
+      if (isDemoMode) localStorage.setItem('tfl_incidents', JSON.stringify(incidents));
+  }, [incidents]);
+
+  useEffect(() => {
+      if (isDemoMode) localStorage.setItem('tfl_fleet', JSON.stringify(fleet));
+  }, [fleet]);
+
 
   // Firebase Listener
   useEffect(() => {
@@ -200,10 +263,8 @@ export default function TfLControl() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // 1. Check lokale Demo-User
     const demoUser = usersList.find(u => u.username === loginUsername && u.password === loginPassword);
     
-    // 2. Notfall Admin (Immer verfügbar)
     if (loginUsername === 'admin' && loginPassword === 'admin123') {
         setAppUser(demoUser || {
             id: 'admin', username: 'admin', name: 'System Administrator', email: 'admin@tfl.gov.uk', 
@@ -301,6 +362,17 @@ export default function TfLControl() {
           setIncidents(prev => prev.map(i => i.id === updated.id ? updated : i));
       }
       setSelectedIncident(updated);
+  };
+
+  const deleteUser = async (id: string) => {
+    if (confirm('Delete user?')) {
+        if (db) {
+            try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'app_users', id)); }
+            catch(e) { alert("DB Error"); }
+        } else {
+            setUsersList(prev => prev.filter(x => x.id !== id));
+        }
+    }
   };
 
   // --- Sub-Renderers ---
@@ -503,35 +575,37 @@ export default function TfLControl() {
                         <button className="text-xs bg-white border border-slate-300 px-3 py-1 rounded hover:bg-slate-50 font-medium">Export CSV</button>
                     </div>
                 </div>
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-white text-slate-500 border-b border-slate-200 uppercase text-xs font-bold">
-                    <tr>
-                      <th className="p-4">Vehicle ID</th>
-                      <th className="p-4">Model</th>
-                      <th className="p-4">Current Location</th>
-                      <th className="p-4">Status</th>
-                      <th className="p-4 text-right">Manage</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {filteredFleet.map(v => (
-                      <tr key={v.id} className="hover:bg-slate-50">
-                        <td className="p-4 font-mono font-bold text-slate-700">{v.id}</td>
-                        <td className="p-4 text-slate-600">{v.model}</td>
-                        <td className="p-4 flex items-center gap-2">
-                            <MapPin className="w-3 h-3 text-slate-400" /> {v.location}
-                        </td>
-                        <td className="p-4"><StatusBadge status={v.status} /></td>
-                        <td className="p-4 text-right">
-                           <button className="text-slate-400 hover:text-[#113B92]"><Wrench className="w-4 h-4" /></button>
-                        </td>
-                      </tr>
-                    ))}
-                    {filteredFleet.length === 0 && (
-                        <tr><td colSpan={5} className="p-8 text-center text-slate-400">No fleet data available for this sector in demo mode.</td></tr>
-                    )}
-                  </tbody>
-                </table>
+                <div className="max-h-96 overflow-y-auto">
+                    <table className="w-full text-left text-sm">
+                    <thead className="bg-white text-slate-500 border-b border-slate-200 uppercase text-xs font-bold sticky top-0 z-10">
+                        <tr>
+                        <th className="p-4 bg-white">Vehicle ID</th>
+                        <th className="p-4 bg-white">Model</th>
+                        <th className="p-4 bg-white">Current Location</th>
+                        <th className="p-4 bg-white">Status</th>
+                        <th className="p-4 bg-white text-right">Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                        {filteredFleet.map(v => (
+                        <tr key={v.id} className="hover:bg-slate-50">
+                            <td className="p-4 font-mono font-bold text-slate-700">{v.id}</td>
+                            <td className="p-4 text-slate-600">{v.model}</td>
+                            <td className="p-4 flex items-center gap-2">
+                                <MapPin className="w-3 h-3 text-slate-400" /> {v.location}
+                            </td>
+                            <td className="p-4"><StatusBadge status={v.status} /></td>
+                            <td className="p-4 text-right">
+                            <button className="text-slate-400 hover:text-[#113B92]"><Wrench className="w-4 h-4" /></button>
+                            </td>
+                        </tr>
+                        ))}
+                        {filteredFleet.length === 0 && (
+                            <tr><td colSpan={5} className="p-8 text-center text-slate-400">No fleet data available for this sector in demo mode.</td></tr>
+                        )}
+                    </tbody>
+                    </table>
+                </div>
              </div>
          )}
       </div>
@@ -730,7 +804,7 @@ export default function TfLControl() {
                                   <td className="p-3">{u.department}</td>
                                   <td className="p-3 text-right">
                                       <button onClick={() => {
-                                          if(confirm('Delete user?')) setUsersList(prev => prev.filter(x => x.id !== u.id));
+                                          if(confirm('Delete user?')) deleteUser(u.id);
                                       }} className="text-red-500 hover:bg-red-50 p-1 rounded"><Trash2 className="w-4 h-4" /></button>
                                   </td>
                               </tr>
