@@ -3,56 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fynn Hofmann</title>
+    <title>fynnhofmann.com</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
             background-color: #050505;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
             overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: white;
-            /* Verhindert das Markieren von Text */
-            -webkit-user-select: none;
-            -ms-user-select: none;
             user-select: none;
         }
 
-        .glow-container {
+        /* --- Der Ball (Ambient Background) --- */
+        .ambient-light {
             position: absolute;
+            width: 60vh;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 70%);
+            border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 45vh; 
-            height: 45vh;
             z-index: 0;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: moveAndColor 20s infinite alternate ease-in-out;
             pointer-events: none;
         }
 
-        .dynamic-ball {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle, #3b82f6, transparent 70%);
-            will-change: transform, filter;
-            animation: 
-                breathe 8s ease-in-out infinite alternate,
-                smoothColorCycle 30s linear infinite;
+        @keyframes moveAndColor {
+            0% {
+                transform: translate(-70%, -30%) scale(1);
+                filter: blur(80px) hue-rotate(0deg);
+            }
+            33% {
+                transform: translate(-20%, -60%) scale(1.1);
+            }
+            66% {
+                transform: translate(-40%, -40%) scale(0.9);
+            }
+            100% {
+                transform: translate(-30%, -70%) scale(1.05);
+                filter: blur(80px) hue-rotate(90deg);
+            }
         }
 
-        @keyframes breathe {
-            0% { transform: scale(0.9); opacity: 0.5; }
-            100% { transform: scale(1.3); opacity: 0.7; }
+        /* --- Text Styling --- */
+        .hero-text {
+            /* Font family entfernt, damit es Inter (Body) erbt */
+            z-index: 10;
+            mix-blend-mode: overlay;
         }
 
-        @keyframes smoothColorCycle {
-            0% { filter: blur(90px) hue-rotate(0deg); }
-            100% { filter: blur(90px) hue-rotate(360deg); }
+        /* --- Icons --- */
+        .icon-btn {
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        .icon-btn:hover {
+            color: white;
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* Transition für die Overlays */
+        /* --- Original Overlay Styles --- */
         .overlay-container {
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            background-color: #050505; /* Vollbild Schwarz wie gewünscht */
         }
         .hidden-overlay {
             opacity: 0;
@@ -65,61 +86,64 @@
             pointer-events: auto;
         }
 
-        /* Scrollbar für das Zertifikate-Overlay verstecken oder stylen */
+        /* Scrollbar ausblenden wie im Original */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
         .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<!-- oncontextmenu="return false" verhindert den Rechtsklick im Body -->
-<body class="h-screen w-full flex flex-col items-center justify-center relative" oncontextmenu="return false;">
+<body class="h-screen w-full flex flex-col items-center justify-center relative" oncontextmenu="return false">
 
-    <div class="glow-container">
-        <div class="dynamic-ball"></div>
-    </div>
+    <!-- Der Ball im Hintergrund -->
+    <div class="ambient-light"></div>
 
-    <main class="z-10 text-center px-4 mix-blend-screen">
-        <h1 class="text-4xl md:text-7xl font-extralight tracking-tight text-white select-none cursor-default">
-            fynnhofmann.com
-        </h1>
+    <!-- Hauptinhalt -->
+    <main class="z-10 flex flex-col items-center justify-center space-y-12">
+        
+        <!-- Nur "Hallo, Du." - jetzt mit gleicher Schriftart wie Popups (Inter) -->
+        <div class="text-center">
+            <h1 class="hero-text text-4xl md:text-6xl font-light tracking-tight text-white/90">
+                Hallo, Du.
+            </h1>
+        </div>
+
+        <!-- Icons -->
+        <div class="flex items-center gap-8 md:gap-12">
+            <button onclick="openOverlay('impressum-overlay')" class="icon-btn" title="Impressum">
+                <i data-lucide="info" class="w-6 h-6"></i>
+            </button>
+            
+            <button onclick="openOverlay('linkedin-overlay')" class="icon-btn" title="LinkedIn">
+                <i data-lucide="linkedin" class="w-6 h-6"></i>
+            </button>
+
+            <button onclick="openOverlay('mail-overlay')" class="icon-btn" title="Mail">
+                <i data-lucide="mail" class="w-6 h-6"></i>
+            </button>
+
+            <button onclick="openOverlay('threema-overlay')" class="icon-btn" title="Threema">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+            </button>
+        </div>
+
     </main>
 
-    <!-- Hauptnavigation -->
-    <div class="fixed bottom-8 right-8 z-20 flex gap-6 items-center">
-        <!-- Impressum Button (neu) -->
-        <button onclick="openOverlay('impressum-overlay')" 
-           class="text-white/40 hover:text-white transition-all duration-300 hover:scale-110 outline-none mr-4"
-           title="Impressum">
-            <i data-lucide="info" class="w-5 h-5"></i>
-        </button>
-
-        <button onclick="openOverlay('linkedin-overlay')" 
-           class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
-            <i data-lucide="linkedin" class="w-6 h-6"></i>
-        </button>
-        
-        <button onclick="openOverlay('mail-overlay')" 
-           class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
-            <i data-lucide="mail" class="w-6 h-6"></i>
-        </button>
-
-        <button onclick="openOverlay('threema-overlay')" 
-                class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
-            <i data-lucide="message-circle" class="w-6 h-6"></i>
-        </button>
-
-        <button onclick="openOverlay('cert-overlay')" 
-                class="text-white/60 hover:text-white transition-all duration-300 hover:scale-110 outline-none">
-            <i data-lucide="award" class="w-6 h-6"></i>
-        </button>
-    </div>
+    <!-- ================= ORIGINAL OVERLAYS ================= -->
 
     <!-- Threema Overlay -->
-    <div id="threema-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
+    <div id="threema-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
@@ -146,7 +170,7 @@
     </div>
 
     <!-- Mail Overlay -->
-    <div id="mail-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
+    <div id="mail-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
@@ -183,12 +207,12 @@
     </div>
 
     <!-- LinkedIn Overlay -->
-    <div id="linkedin-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
+    <div id="linkedin-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
 
-        <div class="w-full max-w-sm bg-[#1b1f23] border border-white/10 rounded-xl overflow-hidden shadow-2xl transform transition-all hover:scale-[1.01]">
+        <div class="w-full max-w-sm bg-[#1b1f23] border border-white/10 rounded-xl overflow-hidden shadow-2xl transform transition-all">
             <div class="h-24 w-full relative overflow-hidden bg-slate-800">
                 <img src="bls_welle7.jpeg" 
                      onerror="this.style.display='none'"
@@ -223,45 +247,8 @@
         </div>
     </div>
 
-    <!-- Zertifikate Overlay -->
-    <div id="cert-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
-        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-
-        <div class="w-full max-w-2xl h-full max-h-[90vh] overflow-y-auto no-scrollbar pt-12 pb-8 px-4 flex flex-col items-center">
-            
-            <h2 class="text-3xl font-light mb-10 text-white sticky top-0">Meine Zertifikate</h2>
-
-            <div class="w-full mb-12 flex flex-col items-center animate-fade-in" style="animation-delay: 0.1s;">
-                <h3 class="text-xl font-light text-white mb-4">Basisausbildung im BBC</h3>
-                <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
-                    <img src="bbc.png" onerror="this.style.display='none'" alt="Zertifikat 1" class="w-full h-full object-contain pointer-events-none">
-                    <span class="text-white/20 text-sm absolute">Bild Platzhalter 1</span>
-                </div>
-            </div>
-
-            <div class="w-full mb-12 flex flex-col items-center animate-fade-in" style="animation-delay: 0.2s;">
-                <h3 class="text-xl font-light text-white mb-4">Memory Forensik Kurs</h3>
-                <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
-                    <img src="memory.png" onerror="this.style.display='none'" alt="Zertifikat 2" class="w-full h-full object-contain pointer-events-none">
-                    <span class="text-white/20 text-sm absolute">Bild Platzhalter 2</span>
-                </div>
-            </div>
-
-            <div class="w-full mb-4 flex flex-col items-center animate-fade-in" style="animation-delay: 0.3s;">
-                <h3 class="text-xl font-light text-white mb-4">Ambasssador für login</h3>
-                <div class="w-full max-w-lg aspect-[4/3] bg-white/5 border border-white/10 rounded-lg overflow-hidden flex items-center justify-center hover:border-white/30 transition-all">
-                    <img src="ambassador.png" onerror="this.style.display='none'" alt="Zertifikat 3" class="w-full h-full object-contain pointer-events-none">
-                    <span class="text-white/20 text-sm absolute">Bild Platzhalter 3</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- NEU: Impressum Overlay -->
-    <div id="impressum-overlay" class="overlay-container fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center p-4 hidden-overlay">
+    <!-- Impressum Overlay -->
+    <div id="impressum-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
@@ -303,59 +290,30 @@
     </div>
 
     <script>
-        // Icons initialisieren
         lucide.createIcons();
 
-        // Alle Overlay IDs inkl. Impressum
-        const overlays = ['threema-overlay', 'mail-overlay', 'linkedin-overlay', 'cert-overlay', 'impressum-overlay'];
+        const overlays = ['threema-overlay', 'mail-overlay', 'linkedin-overlay', 'impressum-overlay'];
 
         function openOverlay(targetId) {
-            overlays.forEach(id => {
-                const el = document.getElementById(id);
-                el.classList.remove('visible-overlay');
-                el.classList.add('hidden-overlay');
-            });
-
+            // Erst alle schließen
+            closeAllOverlays();
+            
+            // Ziel öffnen
             const target = document.getElementById(targetId);
-            target.classList.remove('hidden-overlay');
-            target.classList.add('visible-overlay');
+            if(target) {
+                target.classList.remove('hidden-overlay');
+                target.classList.add('visible-overlay');
+            }
         }
 
         function closeAllOverlays() {
             overlays.forEach(id => {
                 const el = document.getElementById(id);
-                el.classList.remove('visible-overlay');
-                el.classList.add('hidden-overlay');
+                if(el) {
+                    el.classList.remove('visible-overlay');
+                    el.classList.add('hidden-overlay');
+                }
             });
-        }
-
-        // --- CODE SCHUTZ SCRIPT ---
-        
-        // 1. Rechtsklick unterbinden (auch wenn im Body Tag schon drin, sicher ist sicher)
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // 2. Tastenkürzel für DevTools unterbinden
-        document.onkeydown = function(e) {
-            // F12
-            if(e.keyCode == 123) {
-                return false;
-            }
-            // Ctrl+Shift+I (DevTools)
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl+Shift+J (Console)
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl+U (Quelltext anzeigen)
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl+S (Speichern)
-            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) {
-                return false;
-            }
         }
     </script>
 </body>
