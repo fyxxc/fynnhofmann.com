@@ -248,49 +248,40 @@
     </div>
 
     <!-- Impressum Overlay -->
-    <div id="impressum-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
-        <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
+<h2 class="text-2xl font-light mb-10 text-white">Impressum</h2>
 
-        <div class="w-full max-w-lg h-full max-h-[80vh] overflow-y-auto no-scrollbar pt-8 px-4 text-center">
-            <h2 class="text-2xl font-light mb-10 text-white">Impressum</h2>
-            
-            <div class="space-y-8 text-white/70 font-light text-sm leading-relaxed select-text">
-                
-                <!-- Kontaktadresse -->
-                <div>
-                    <h3 class="text-white font-normal mb-1">Kontaktadresse</h3>
-                    <p>Fynn Hofmann<br>
-                    BLS AG<br>
-                    Freiburgstrasse 130<br>
-                    3001 Bern<br>
-                    Schweiz</p>
-                    <p class="mt-4">
-                        <a href="mailto:mail@fynnhofmann.com" class="hover:text-white transition-colors">mail@fynnhofmann.com</a>
-                    </p>
-                </div>
+<div class="space-y-8 text-white/70 font-light text-sm leading-relaxed select-text">
 
-                <div class="w-16 h-px bg-white/10 mx-auto"></div>
-
-                <!-- Rechtliches (Minimalistisch für privat) -->
-                <div>
-                    <h3 class="text-white font-normal mb-1">Rechtliches</h3>
-                    <p>
-                        Dies ist eine private Webseite. Trotz sorgfältiger Kontrolle übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschliesslich deren Betreiber verantwortlich.
-                    </p>
-                    <p class="mt-4">
-                        Die Inhalte und Werke auf dieser Website unterliegen dem Urheberrecht.
-                    </p>
-                </div>
-
-            </div>
-            
-            <div class="mt-12 text-xs text-white/20 font-mono">
-                &copy; 2025 Fynn Hofmann
-            </div>
-        </div>
+    <div>
+        <h3 class="text-white font-normal mb-1">Angaben</h3>
+        <p>
+            Fynn Hofmann<br>
+            Schweiz
+        </p>
+        <p class="mt-3">
+            <a href="mailto:mail@fynnhofmann.com" class="hover:text-white transition-colors">
+                mail@fynnhofmann.com
+            </a>
+        </p>
     </div>
+
+    <div class="w-16 h-px bg-white/10 mx-auto"></div>
+
+    <div>
+        <p>
+            Diese Website ist ein privates, nicht kommerzielles Projekt.
+            Für Inhalte externer Links wird keine Verantwortung übernommen.
+        </p>
+        <p class="mt-3">
+            Alle Inhalte dieser Website unterliegen dem Urheberrecht.
+        </p>
+    </div>
+
+</div>
+
+<div class="mt-12 text-xs text-white/20 font-mono">
+    &copy; 2025 Fynn Hofmann
+</div>
 
     <script>
         lucide.createIcons();
