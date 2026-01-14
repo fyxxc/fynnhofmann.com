@@ -18,7 +18,7 @@
             user-select: none;
         }
 
-        /* --- Der Ball (Ambient Background) --- */
+        /* --- Ambient Ball --- */
         .ambient-light {
             position: absolute;
             width: 60vh;
@@ -36,28 +36,14 @@
         }
 
         @keyframes moveAndColor {
-            0% {
-                transform: translate(-70%, -30%) scale(1);
-                filter: blur(80px) hue-rotate(0deg);
-            }
-            33% {
-                transform: translate(-20%, -60%) scale(1.1);
-            }
-            66% {
-                transform: translate(-40%, -40%) scale(0.9);
-            }
-            100% {
-                transform: translate(-30%, -70%) scale(1.05);
-                filter: blur(80px) hue-rotate(90deg);
-            }
+            0% { transform: translate(-70%, -30%) scale(1); filter: blur(80px) hue-rotate(0deg); }
+            33% { transform: translate(-20%, -60%) scale(1.1); }
+            66% { transform: translate(-40%, -40%) scale(0.9); }
+            100% { transform: translate(-30%, -70%) scale(1.05); filter: blur(80px) hue-rotate(90deg); }
         }
 
         /* --- Text Styling --- */
-        .hero-text {
-            /* Font family entfernt, damit es Inter (Body) erbt */
-            z-index: 10;
-            mix-blend-mode: overlay;
-        }
+        .hero-text { z-index: 10; mix-blend-mode: overlay; }
 
         /* --- Icons --- */
         .icon-btn {
@@ -70,49 +56,29 @@
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* --- Original Overlay Styles --- */
+        /* --- Overlay Styles --- */
         .overlay-container {
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-            background-color: #050505; /* Vollbild Schwarz wie gewünscht */
+            background-color: #050505;
         }
-        .hidden-overlay {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        .visible-overlay {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
+        .hidden-overlay { opacity: 0; visibility: hidden; pointer-events: none; }
+        .visible-overlay { opacity: 1; visibility: visible; pointer-events: auto; }
 
-        /* Scrollbar ausblenden wie im Original */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* Scrollbar ausblenden */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="h-screen w-full flex flex-col items-center justify-center relative" oncontextmenu="return false">
 
-    <!-- Der Ball im Hintergrund -->
+    <!-- Ambient Ball -->
     <div class="ambient-light"></div>
 
     <!-- Hauptinhalt -->
     <main class="z-10 flex flex-col items-center justify-center space-y-12">
-        
-        <!-- Nur "Hallo, Du." - jetzt mit gleicher Schriftart wie Popups (Inter) -->
         <div class="text-center">
             <h1 class="hero-text text-4xl md:text-6xl font-light tracking-tight text-white/90">
                 Hallo, Du.
@@ -125,9 +91,9 @@
                 <i data-lucide="info" class="w-6 h-6"></i>
             </button>
             
-            <button onclick="openOverlay('linkedin-overlay')" class="icon-btn" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" rel="noopener noreferrer" class="icon-btn" title="LinkedIn">
                 <i data-lucide="linkedin" class="w-6 h-6"></i>
-            </button>
+            </a>
 
             <button onclick="openOverlay('mail-overlay')" class="icon-btn" title="Mail">
                 <i data-lucide="mail" class="w-6 h-6"></i>
@@ -137,29 +103,23 @@
                 <i data-lucide="message-circle" class="w-6 h-6"></i>
             </button>
         </div>
-
     </main>
-
-    <!-- ================= ORIGINAL OVERLAYS ================= -->
 
     <!-- Threema Overlay -->
     <div id="threema-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-
         <div class="text-center max-w-md animate-fade-in">
             <h2 class="text-2xl font-light mb-6 text-white">Threema Kontakt</h2>
             <p class="text-white/80 mb-8 font-light leading-relaxed">
                 Scanne diesen QR-Code, um mit mir über Threema zu kommunizieren.
             </p>
-            
             <div class="bg-white p-4 rounded-xl inline-block shadow-[0_0_30px_rgba(255,255,255,0.1)]">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&color=000000&bgcolor=ffffff&data=https://threema.id/S2MJ8VFN" 
                      alt="Threema QR Code" 
                      class="w-64 h-64 md:w-80 md:h-80 object-contain pointer-events-none">
             </div>
-
             <div class="mt-6">
                 <a href="https://threema.id/S2MJ8VFN" target="_blank" rel="noopener noreferrer" 
                    class="text-sm text-white/60 hover:text-white transition-colors underline decoration-white/30 hover:decoration-white">
@@ -174,27 +134,21 @@
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-
         <div class="text-center max-w-md animate-fade-in">
             <div class="mb-6 flex justify-center">
                 <div class="p-4 rounded-full bg-white/5">
                     <i data-lucide="mail" class="w-12 h-12 text-white"></i>
                 </div>
             </div>
-            
             <h2 class="text-2xl font-light mb-4 text-white">E-Mail Kontakt</h2>
-            
             <p class="text-white/70 mb-8 font-light leading-relaxed">
                 Du erreichst mich klassisch per E-Mail unter:<br>
                 <a href="mailto:mail@fynnhofmann.com" class="text-white font-normal hover:underline mt-2 inline-block select-text">mail@fynnhofmann.com</a>
             </p>
-
             <div class="w-full h-px bg-white/10 mb-8"></div>
-
             <p class="text-white/90 mb-6 font-light">
                 Am liebsten kommuniziere ich jedoch sicher und verschlüsselt via Threema.
             </p>
-
             <button onclick="openOverlay('threema-overlay')" 
                class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border border-white/20 rounded-full shadow-md group">
                 <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-blue-600 group-hover:translate-x-0 ease">
@@ -206,93 +160,40 @@
         </div>
     </div>
 
-    <!-- LinkedIn Overlay -->
-    <div id="linkedin-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
+    <!-- Impressum Overlay -->
+    <div id="impressum-overlay" class="overlay-container fixed inset-0 z-50 flex flex-col items-center justify-center p-4 hidden-overlay">
         <button onclick="closeAllOverlays()" class="absolute top-8 right-8 text-white/60 hover:text-white transition-all duration-300 z-50">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-
-        <div class="w-full max-w-sm bg-[#1b1f23] border border-white/10 rounded-xl overflow-hidden shadow-2xl transform transition-all">
-            <div class="h-24 w-full relative overflow-hidden bg-slate-800">
-                <img src="bls_welle7.jpeg" 
-                     onerror="this.style.display='none'"
-                     alt="Banner" 
-                     class="w-full h-full object-cover pointer-events-none">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-slate-900 -z-10"></div>
-                <div class="absolute inset-0 bg-black/20"></div>
-            </div>
-
-            <div class="px-6 pb-6 relative">
-                <div class="relative -mt-12 mb-4">
-                    <div class="w-24 h-24 rounded-full border-4 border-[#1b1f23] overflow-hidden bg-zinc-800 flex items-center justify-center">
-                        <img src="fynn.jpeg" 
-                             alt="Fynn Hofmann" 
-                             class="w-full h-full object-cover pointer-events-none">
-                    </div>
+        <div class="w-full max-w-lg animate-fade-in text-center">
+            <h2 class="text-2xl font-light mb-10 text-white">Impressum</h2>
+            <div class="space-y-8 text-white/70 font-light text-sm leading-relaxed select-text">
+                <div>
+                    <h3 class="text-white font-normal mb-1">Angaben</h3>
+                    <p>Fynn Hofmann<br>Schweiz</p>
+                    <p class="mt-3">
+                        <a href="mailto:mail@fynnhofmann.com" class="hover:text-white transition-colors">
+                            mail@fynnhofmann.com
+                        </a>
+                    </p>
                 </div>
-
-                <h3 class="text-xl font-semibold text-white mb-1">Fynn Hofmann</h3>
-                <p class="text-white/60 text-sm mb-4">ICT-Fachmann EFZ in Ausbildung</p>
-                
-                <div class="flex items-center gap-2 text-white/40 text-xs mb-6">
-                    <i data-lucide="map-pin" class="w-3 h-3"></i>
-                    <span>Schweiz</span>
+                <div class="w-16 h-px bg-white/10 mx-auto"></div>
+                <div>
+                    <p>Diese Website ist ein privates, nicht kommerzielles Projekt. Für Inhalte externer Links wird keine Verantwortung übernommen.</p>
+                    <p class="mt-3">Alle Inhalte dieser Website unterliegen dem Urheberrecht.</p>
                 </div>
-
-                <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" rel="noopener noreferrer" 
-                   class="block w-full py-2.5 text-center bg-[#0a66c2] hover:bg-[#004182] text-white rounded-full font-medium transition-colors duration-300">
-                    Profil besuchen
-                </a>
             </div>
+            <div class="mt-12 text-xs text-white/20 font-mono">&copy; 2025 Fynn Hofmann</div>
         </div>
     </div>
-
-    <!-- Impressum Overlay -->
-<h2 class="text-2xl font-light mb-10 text-white">Impressum</h2>
-
-<div class="space-y-8 text-white/70 font-light text-sm leading-relaxed select-text">
-
-    <div>
-        <h3 class="text-white font-normal mb-1">Angaben</h3>
-        <p>
-            Fynn Hofmann<br>
-            Schweiz
-        </p>
-        <p class="mt-3">
-            <a href="mailto:mail@fynnhofmann.com" class="hover:text-white transition-colors">
-                mail@fynnhofmann.com
-            </a>
-        </p>
-    </div>
-
-    <div class="w-16 h-px bg-white/10 mx-auto"></div>
-
-    <div>
-        <p>
-            Diese Website ist ein privates, nicht kommerzielles Projekt.
-            Für Inhalte externer Links wird keine Verantwortung übernommen.
-        </p>
-        <p class="mt-3">
-            Alle Inhalte dieser Website unterliegen dem Urheberrecht.
-        </p>
-    </div>
-
-</div>
-
-<div class="mt-12 text-xs text-white/20 font-mono">
-    &copy; 2025 Fynn Hofmann
-</div>
 
     <script>
         lucide.createIcons();
 
-        const overlays = ['threema-overlay', 'mail-overlay', 'linkedin-overlay', 'impressum-overlay'];
+        const overlays = ['threema-overlay', 'mail-overlay', 'impressum-overlay'];
 
         function openOverlay(targetId) {
-            // Erst alle schließen
             closeAllOverlays();
-            
-            // Ziel öffnen
             const target = document.getElementById(targetId);
             if(target) {
                 target.classList.remove('hidden-overlay');
@@ -310,5 +211,6 @@
             });
         }
     </script>
+
 </body>
 </html>
