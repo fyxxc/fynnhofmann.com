@@ -22,6 +22,6 @@ form.addEventListener("submit", async (event) => {
   if (error) {
     status.textContent = "Login fehlgeschlagen";
   } else {
-    status.textContent = "Login erfolgreich";
+    window.location.href = "/dashboard.html";
   }
 });
