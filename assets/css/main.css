@@ -197,3 +197,27 @@ button#logout:hover {
   border-radius: 999px;
   background: #f3f4f6;
 }
+
+/* ===== LANDING ACTIONS ===== */
+.landing-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Primärer CTA */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #000000;
+}
