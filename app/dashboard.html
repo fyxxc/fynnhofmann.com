@@ -3,13 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard – fynnhofmann.com</title>
+
   <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 
 <body>
-  <!-- ABSICHTLICH LEER -->
-  <div id="app"></div>
 
-  <script type="module" src="../assets/js/dashboard.js"></script>
+<main>
+  <div class="container">
+
+    <div class="site-name">fynnhofmann.com</div>
+
+    <!-- 🔒 STANDARD: NICHT ANGEMELDET -->
+    <h1>Zugriff geschützt</h1>
+    <p>
+      Dieser Bereich ist nur für angemeldete Benutzer zugänglich.<br>
+      Bitte melde dich an, um fortzufahren.
+    </p>
+
+    <a href="/login.html" class="login-link">Zur Anmeldung</a>
+
+  </div>
+</main>
+
+<!-- Dashboard-Logik -->
+<script type="module" src="../assets/js/dashboard.js"></script>
+
 </body>
 </html>
