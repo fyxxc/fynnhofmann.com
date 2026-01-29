@@ -1,0 +1,91 @@
+/* ===== LOGIN RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+.login-bg {
+  min-height: 100vh;
+  background: url("/assets/images/468146EF-BD9D-46D7-A250-6133C291DA74_1_105_c.jpeg") center / cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: 0;
+}
+
+/* ===== LOGIN BOX ===== */
+.login-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* ===== TEXT ===== */
+.login-container .site-name {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.login-container h1 {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.login-container p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+/* ===== FORM ===== */
+.login-container input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: #111827;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #2563eb;
+}
