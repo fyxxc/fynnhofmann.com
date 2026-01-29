@@ -7,24 +7,23 @@
 </head>
 
 <body>
+<main>
+  <div class="container">
+    <div class="site-name">fynnhofmann.com</div>
 
-  <form id="login-form">
-    <input type="email" id="email" placeholder="E-Mail">
-    <input type="password" id="password" placeholder="Passwort">
-    <button type="submit">Anmelden</button>
-  </form>
+    <h1>Sign in</h1>
+    <p>Geschützter Bereich</p>
 
-  <p id="status"></p>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="E-Mail" required>
+      <input type="password" id="password" placeholder="Passwort" required>
+      <button type="submit">Anmelden</button>
+    </form>
 
-  <!-- DAS SCRIPT MUSS GANZ UNTEN STEHEN -->
-  <script type="module" src="assets/js/login.js"></script>
+    <p id="status"></p>
+  </div>
+</main>
 
-</body>
-
-
-<footer>
-  Zugriff beschränkt
-</footer>
-
+<script type="module" src="assets/js/login.js"></script>
 </body>
 </html>
