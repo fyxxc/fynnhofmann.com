@@ -88,3 +88,38 @@ button {
 button:hover {
   opacity: 0.9;
 }
+
+/* ===== DASHBOARD ===== */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.card {
+  border: 1px solid #eee;
+  padding: 20px;
+}
+
+.card h3 {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #111;
+}
+
+button#logout {
+  margin-top: 20px;
+  background: none;
+  color: #111;
+  border: 1px solid #ddd;
+}
