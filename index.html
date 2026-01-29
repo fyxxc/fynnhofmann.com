@@ -1,167 +1,124 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Website in Vorbereitung</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fynnhofmann.com</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg1: #0f2027;
-      --bg2: #203a43;
-      --bg3: #2c5364;
-      --glass: rgba(255, 255, 255, 0.12);
-      --border: rgba(255, 255, 255, 0.25);
-    }
-
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
 
     body {
+      background: #ffffff;
+      color: #111;
       min-height: 100vh;
-      background: linear-gradient(-45deg, var(--bg1), var(--bg2), var(--bg3));
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: flex-end;
+      font-weight: 300;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: #444;
+    }
+
+    main {
+      flex-grow: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: #fff;
     }
 
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .card {
-      backdrop-filter: blur(18px);
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-      width: 90%;
-      max-width: 650px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      animation: fadeIn 1.2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .content {
+      max-width: 500px;
     }
 
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      font-weight: 700;
+      font-weight: 400;
+      font-size: 1.6rem;
+      margin-bottom: 12px;
     }
 
     p {
-      opacity: 0.85;
-      margin-bottom: 30px;
-    }
-
-    .info {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      font-size: 0.95rem;
-    }
-
-    .info div {
-      background: rgba(255,255,255,0.08);
-      padding: 12px 14px;
-      border-radius: 10px;
-    }
-
-    .label {
-      opacity: 0.6;
-      font-size: 0.75rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.6;
     }
 
     footer {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 0.8rem;
-      opacity: 0.6;
+      font-size: 0.75rem;
+      color: #777;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .meta span {
+      display: block;
+      margin-bottom: 4px;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>Website wird vorbereitet 🚧</h1>
-    <p>Diese Plattform ist live, befindet sich aber aktuell noch im Aufbau.<br>
-       Stay tuned – hier entsteht etwas Gutes.</p>
 
-    <div class="info">
-      <div>
-        <div class="label">Browser</div>
-        <div id="browser"></div>
-      </div>
-      <div>
-        <div class="label">Betriebssystem</div>
-        <div id="os"></div>
-      </div>
-      <div>
-        <div class="label">Sprache</div>
-        <div id="lang"></div>
-      </div>
-      <div>
-        <div class="label">Auflösung</div>
-        <div id="res"></div>
-      </div>
-      <div>
-        <div class="label">Uhrzeit</div>
-        <div id="time"></div>
-      </div>
-      <div>
-        <div class="label">Status</div>
-        <div>INITIALIZING…</div>
-      </div>
+  <header>
+    fynnhofmann.com
+  </header>
+
+  <main>
+    <div class="content">
+      <h1>Diese Seite befindet sich im Aufbau.</h1>
+      <p>
+        Der Inhalt folgt in Kürze.<br>
+        Die Plattform ist online, aber noch nicht final bereitgestellt.
+      </p>
     </div>
+  </main>
 
-    <footer>
-      © 2026 – System online, Content folgt
-    </footer>
-  </div>
+  <footer>
+    <div class="meta">
+      <span id="browser"></span>
+      <span id="os"></span>
+      <span id="lang"></span>
+      <span id="res"></span>
+    </div>
+  </footer>
 
   <script>
     const ua = navigator.userAgent;
 
-    document.getElementById("browser").innerText =
-      ua.includes("Firefox") ? "Firefox" :
-      ua.includes("Edg") ? "Microsoft Edge" :
-      ua.includes("Chrome") ? "Chrome" :
-      ua.includes("Safari") ? "Safari" :
-      "Unbekannt";
+    const browser =
+      ua.includes("Firefox") ? "Browser: Firefox" :
+      ua.includes("Edg") ? "Browser: Edge" :
+      ua.includes("Chrome") ? "Browser: Chrome" :
+      ua.includes("Safari") ? "Browser: Safari" :
+      "Browser: Unbekannt";
 
-    document.getElementById("os").innerText =
-      ua.includes("Win") ? "Windows" :
-      ua.includes("Mac") ? "macOS" :
-      ua.includes("Linux") ? "Linux" :
-      "Unbekannt";
+    const os =
+      ua.includes("Win") ? "OS: Windows" :
+      ua.includes("Mac") ? "OS: macOS" :
+      ua.includes("Linux") ? "OS: Linux" :
+      "OS: Unbekannt";
 
-    document.getElementById("lang").innerText = navigator.language;
+    document.getElementById("browser").innerText = browser;
+    document.getElementById("os").innerText = os;
+    document.getElementById("lang").innerText = "Sprache: " + navigator.language;
     document.getElementById("res").innerText =
-      `${window.screen.width} × ${window.screen.height}`;
-
-    function updateTime() {
-      const now = new Date();
-      document.getElementById("time").innerText =
-        now.toLocaleTimeString();
-    }
-
-    setInterval(updateTime, 1000);
-    updateTime();
+      `Auflösung: ${window.screen.width}×${window.screen.height}`;
   </script>
+
 </body>
 </html>
