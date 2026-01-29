@@ -174,3 +174,21 @@ button#logout {
 .login-link:hover {
   border-color: #111;
 }
+
+/* ===== LOGIN BACKGROUND ===== */
+.login-bg {
+  background-image: url("/assets/images/468146EF-BD9D-46D7-A250-6133C291DA74_1_105_c.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* dunkles Overlay für Business-Look */
+.login-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: -1;
+}
