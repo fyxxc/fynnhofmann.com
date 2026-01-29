@@ -25,6 +25,6 @@ form.addEventListener("submit", async (event) => {
     status.textContent = "Login fehlgeschlagen";
   } else {
     // ✅ HIER ist der Fix
-    window.location.href = "/app";
+    window.location.href = "/app/";
   }
 });
