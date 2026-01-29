@@ -2,129 +2,26 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fynn Hofmann</title>
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: #ffffff;
-      color: #111;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 40px;
-    }
-
-    header {
-      display: flex;
-      justify-content: flex-start;
-      font-weight: 300;
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      color: #444;
-    }
-
-    main {
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-    }
-
-    .content {
-      max-width: 500px;
-    }
-
-    h1 {
-      font-weight: 400;
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-    }
-
-    p {
-      font-weight: 300;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    footer {
-      font-size: 0.75rem;
-      color: #777;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .meta span {
-      display: block;
-      margin-bottom: 4px;
-    }
-  </style>
+  <title>fynnhofmann.com</title>
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
-
 <body>
 
-  <header>
-    fynnhofmann.com
-  </header>
-
 <main>
-  <div class="content">
-
+  <div class="container">
     <div class="site-name">fynnhofmann.com</div>
 
-    <h1>Diese Seite befindet sich im Aufbau.</h1>
-
+    <h1>Willkommen.</h1>
     <p>
-      Der Inhalt folgt in Kürze.<br>
-      Die Plattform ist online, aber noch nicht final bereitgestellt.
+      Persönliche Plattform.<br>
+      Mehr Inhalte folgen.
     </p>
-
   </div>
 </main>
 
-
-  <footer>
-    <div class="meta">
-      <span id="browser"></span>
-      <span id="os"></span>
-      <span id="lang"></span>
-      <span id="res"></span>
-    </div>
-  </footer>
-
-  <script>
-    const ua = navigator.userAgent;
-
-    const browser =
-      ua.includes("Firefox") ? "Browser: Firefox" :
-      ua.includes("Edg") ? "Browser: Edge" :
-      ua.includes("Chrome") ? "Browser: Chrome" :
-      ua.includes("Safari") ? "Browser: Safari" :
-      "Browser: Unbekannt";
-
-    const os =
-      ua.includes("Win") ? "OS: Windows" :
-      ua.includes("Mac") ? "OS: macOS" :
-      ua.includes("Linux") ? "OS: Linux" :
-      "OS: Unbekannt";
-
-    document.getElementById("browser").innerText = browser;
-    document.getElementById("os").innerText = os;
-    document.getElementById("lang").innerText = "Sprache: " + navigator.language;
-    document.getElementById("res").innerText =
-      `Auflösung: ${window.screen.width}×${window.screen.height}`;
-  </script>
+<footer>
+  © 2026 fynnhofmann.com
+</footer>
 
 </body>
 </html>
