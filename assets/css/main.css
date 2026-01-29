@@ -171,3 +171,29 @@ button#logout:hover {
   background: rgba(17, 24, 39, 0.45);
   z-index: -1;
 }
+
+/* ===== MAINTENANCE ===== */
+.maintenance .container {
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: #6b7280;
+}
+
+/* kleine technische Infos */
+.meta {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.meta span {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+}
