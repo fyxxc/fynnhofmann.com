@@ -1,59 +1,167 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Fynn Hofmann</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website in Vorbereitung</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg1: #0f2027;
+      --bg2: #203a43;
+      --bg3: #2c5364;
+      --glass: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(-45deg, var(--bg1), var(--bg2), var(--bg3));
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      backdrop-filter: blur(18px);
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      width: 90%;
+      max-width: 650px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    p {
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      font-size: 0.95rem;
+    }
+
+    .info div {
+      background: rgba(255,255,255,0.08);
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+
+    .label {
+      opacity: 0.6;
+      font-size: 0.75rem;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="card">
+    <h1>Website wird vorbereitet 🚧</h1>
+    <p>Diese Plattform ist live, befindet sich aber aktuell noch im Aufbau.<br>
+       Stay tuned – hier entsteht etwas Gutes.</p>
 
-  <h1>Willkommen</h1>
+    <div class="info">
+      <div>
+        <div class="label">Browser</div>
+        <div id="browser"></div>
+      </div>
+      <div>
+        <div class="label">Betriebssystem</div>
+        <div id="os"></div>
+      </div>
+      <div>
+        <div class="label">Sprache</div>
+        <div id="lang"></div>
+      </div>
+      <div>
+        <div class="label">Auflösung</div>
+        <div id="res"></div>
+      </div>
+      <div>
+        <div class="label">Uhrzeit</div>
+        <div id="time"></div>
+      </div>
+      <div>
+        <div class="label">Status</div>
+        <div>INITIALIZING…</div>
+      </div>
+    </div>
 
-  <p>
-    Auf dieser simplen Webseite findest du meine Kontaktinformationen und was ich kann.
-  </p>
+    <footer>
+      © 2026 – System online, Content folgt
+    </footer>
+  </div>
 
-  <hr>
+  <script>
+    const ua = navigator.userAgent;
 
-  <h2>Kontakt</h2>
+    document.getElementById("browser").innerText =
+      ua.includes("Firefox") ? "Firefox" :
+      ua.includes("Edg") ? "Microsoft Edge" :
+      ua.includes("Chrome") ? "Chrome" :
+      ua.includes("Safari") ? "Safari" :
+      "Unbekannt";
 
-  <p>
-    LinkedIn:<br>
-    <a href="www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank">
-      Mein LinkedIn
-    </a>
-  </p>
+    document.getElementById("os").innerText =
+      ua.includes("Win") ? "Windows" :
+      ua.includes("Mac") ? "macOS" :
+      ua.includes("Linux") ? "Linux" :
+      "Unbekannt";
 
-  <p>
-    Threema:<br>
-    <a href="https://threema.id/S2MJ8VFN" target="_blank">
-      Meine Threema-ID: S2MJ8VFN
-    </a>
-  </p>
+    document.getElementById("lang").innerText = navigator.language;
+    document.getElementById("res").innerText =
+      `${window.screen.width} × ${window.screen.height}`;
 
-  <p>
-    E-Mail:<br>
-    <a href="mailto:mail@fynnhofmann.com">
-      mail@fynnhofmann.com
-    </a>
-  </p>
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("time").innerText =
+        now.toLocaleTimeString();
+    }
 
-  <hr>
-
-  <h2>Weitere Inhalte</h2>
-
-  <p>
-    <a href="/Was-ich-kann.html">Was ich kann</a>
-  </p>
-
-  <hr>
-
-<p>
-  Erstellt mit HTML5. Ohne CSS oder JavaScript.
-</p>
-
-<p>
-  Fynn Hofmann, 2026
-</p>
-
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
 </body>
 </html>
