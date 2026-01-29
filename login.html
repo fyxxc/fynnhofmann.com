@@ -5,22 +5,22 @@
   <title>Login – fynnhofmann.com</title>
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
+
 <body>
 
-<main>
-  <div class="container">
-    <div class="site-name">fynnhofmann.com</div>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="E-Mail">
+    <input type="password" id="password" placeholder="Passwort">
+    <button type="submit">Anmelden</button>
+  </form>
 
-    <h1>Anmeldung</h1>
-    <p>Bitte melde dich an.</p>
+  <p id="status"></p>
 
-    <form>
-      <input type="text" placeholder="Benutzername">
-      <input type="password" placeholder="Passwort">
-      <button type="submit">Anmelden</button>
-    </form>
-  </div>
-</main>
+  <!-- DAS SCRIPT MUSS GANZ UNTEN STEHEN -->
+  <script type="module" src="assets/js/login.js"></script>
+
+</body>
+
 
 <footer>
   Zugriff beschränkt
