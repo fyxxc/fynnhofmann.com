@@ -1,11 +1,15 @@
-/* ===== RESET ===== */
+/* ============================= */
+/* RESET                         */
+/* ============================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== BASIS ===== */
+/* ============================= */
+/* BASIS                         */
+/* ============================= */
 html, body {
   height: 100%;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -14,94 +18,96 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===== LAYOUT ===== */
-main {
+/* ============================= */
+/* PAGE SYSTEM                   */
+/* ============================= */
+.page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 24px;
+  padding: 96px 24px;
 }
 
-.container {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 18px;
-  padding: 48px 42px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-  backdrop-filter: blur(10px);
+.page-content {
+  max-width: 760px;
+  text-align: center;
 }
 
-/* ===== BRAND ===== */
-.site-name {
+/* ============================= */
+/* BRAND                         */
+/* ============================= */
+.brand {
+  display: block;
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #9ca3af;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
-/* ===== TYPO ===== */
-h1 {
-  font-size: 34px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
+/* ============================= */
+/* TYPO – LANDING                */
+/* ============================= */
+.page-landing h1 {
+  font-size: 52px;
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  margin-bottom: 20px;
 }
 
-p {
-  font-size: 15px;
-  line-height: 1.7;
+.page-landing p {
+  font-size: 18px;
+  line-height: 1.8;
   color: #6b7280;
+  margin-bottom: 40px;
 }
 
-/* ===== FORM ===== */
-form {
-  margin-top: 32px;
-}
-
-input {
-  width: 100%;
-  padding: 16px 18px;
-  margin-bottom: 14px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  font-size: 15px;
-  background: #fff;
-}
-
-input::placeholder {
-  color: #9ca3af;
-}
-
-input:focus {
-  outline: none;
-  border-color: #111827;
-}
-
-/* ===== BUTTONS ===== */
-button,
+/* ============================= */
+/* BUTTONS                       */
+/* ============================= */
 .btn {
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
-  border: none;
-  font-size: 15px;
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-size: 14px;
   font-weight: 500;
+  text-decoration: none;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
   background: #111827;
   color: #ffffff;
-  transition: all 0.2s ease;
-  margin-top: 8px;
 }
 
-button:hover,
-.btn:hover {
+.btn-primary:hover {
   background: #000000;
 }
 
-/* ===== LOGIN LINK / FOOTER CTA ===== */
+/* ============================= */
+/* SYSTEM META                   */
+/* ============================= */
+.system-meta {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style: none;
+}
+
+.system-meta li {
+  font-size: 12px;
+  color: #9ca3af;
+  padding: 6px 14px;
+  background: #f3f4f6;
+  border-radius: 999px;
+}
+
+/* ============================= */
+/* LOGIN LINK (GLOBAL)           */
+/* ============================= */
 .login-link {
   position: fixed;
   bottom: 28px;
@@ -115,55 +121,16 @@ button:hover,
   color: #111827;
 }
 
-/* ===== DASHBOARD ===== */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-  margin: 36px 0;
-}
-
-.card {
-  background: #f9fafb;
-  border-radius: 14px;
-  padding: 22px;
-}
-
-.card h3 {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 15px;
-  color: #111827;
-}
-
-/* ===== LOGOUT ===== */
-button#logout {
-  margin-top: 32px;
-  background: transparent;
-  color: #111827;
-  border: 1px solid #e5e7eb;
-}
-
-button#logout:hover {
-  background: #f3f4f6;
-}
-
-/* ===== LOGIN BACKGROUND ===== */
+/* ============================= */
+/* LOGIN BACKGROUND              */
+/* ============================= */
 .login-bg {
-  background-image: url("/assets/images/468146EF-BD9D-46D7-A250-6133C291DA74_1_105_c.jpeg");
+  background-image: url("/assets/images/bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* dunkles Overlay */
 .login-bg::before {
   content: "";
   position: fixed;
@@ -172,52 +139,68 @@ button#logout:hover {
   z-index: -1;
 }
 
-/* ===== MAINTENANCE ===== */
-.maintenance .container {
-  text-align: center;
+/* ============================= */
+/* LOGIN CONTAINER               */
+/* ============================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 18px;
+  padding: 48px 42px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
 }
 
-.subtitle {
-  margin-top: 8px;
+.container h1 {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.container p {
+  font-size: 15px;
   color: #6b7280;
 }
 
-/* kleine technische Infos */
-.meta {
+/* ============================= */
+/* FORMS                         */
+/* ============================= */
+form {
   margin-top: 32px;
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  font-size: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+}
+
+input::placeholder {
   color: #9ca3af;
 }
 
-.meta span {
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #f3f4f6;
+input:focus {
+  outline: none;
+  border-color: #111827;
 }
 
-/* ===== LANDING ACTIONS ===== */
-.landing-actions {
-  margin-top: 32px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Primärer CTA */
-.btn-primary {
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: 999px;
-  background: #111827;
-  color: #ffffff;
-  font-size: 14px;
+button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
   font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  background: #111827;
+  color: white;
+  cursor: pointer;
 }
 
-.btn-primary:hover {
+button:hover {
   background: #000000;
 }

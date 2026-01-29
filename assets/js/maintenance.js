@@ -5,14 +5,14 @@ function getBrowser() {
   if (ua.includes("Edg")) return "Edge";
   if (ua.includes("Chrome")) return "Chrome";
   if (ua.includes("Safari")) return "Safari";
-  return "Unbekannter Browser";
+  return "Browser unbekannt";
 }
 
 function getOS() {
   if (ua.includes("Mac")) return "macOS";
   if (ua.includes("Win")) return "Windows";
   if (ua.includes("Linux")) return "Linux";
-  return "Unbekanntes OS";
+  return "OS unbekannt";
 }
 
 document.getElementById("browser").textContent = getBrowser();
