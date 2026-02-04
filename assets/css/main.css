@@ -121,23 +121,6 @@ html, body {
   color: #111827;
 }
 
-/* ============================= */
-/* LOGIN BACKGROUND              */
-/* ============================= */
-.login-bg {
-  background-image: url("/assets/images/bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.login-bg::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(17, 24, 39, 0.45);
-  z-index: -1;
-}
 
 /* ============================= */
 /* LOGIN CONTAINER               */
