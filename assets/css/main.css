@@ -204,3 +204,42 @@ button {
 button:hover {
   background: #000000;
 }
+
+/* ============================= */
+/* MAINTENANCE PAGE              */
+/* ============================= */
+
+.page-maintenance {
+  align-items: center;
+  justify-content: flex-start; /* NICHT mehr zentriert */
+  padding-left: 120px; /* schöner linker Offset */
+}
+
+.page-maintenance .page-content {
+  text-align: left; /* Text links statt Mitte */
+  max-width: 520px;
+}
+
+/* Logo oben */
+.maintenance-logo {
+  width: 42px;
+  height: auto;
+  margin-bottom: 26px;
+  opacity: 0.9;
+}
+
+/* Typo etwas ruhiger für Wartungsseite */
+.page-maintenance h1 {
+  font-size: 46px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.page-maintenance p {
+  max-width: 420px;
+}
+
+/* System Meta links statt Mitte */
+.page-maintenance .system-meta {
+  justify-content: flex-start;
+}
