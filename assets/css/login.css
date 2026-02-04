@@ -12,7 +12,7 @@ html, body {
   color: #111827;
 }
 
-/* ===== LOGIN BACKGROUND – SYSTEM STYLE ===== */
+/* ===== LOGIN BACKGROUND – CLEAN SHAPES ===== */
 body.login-bg {
   min-height: 100vh;
   display: flex;
@@ -20,15 +20,9 @@ body.login-bg {
   justify-content: center;
 
   background:
-    radial-gradient(1200px 600px at 0% 0%, rgba(17,24,39,0.05), transparent 70%),
-    radial-gradient(900px 500px at 100% 100%, rgba(17,24,39,0.04), transparent 70%),
-    repeating-linear-gradient(
-      135deg,
-      rgba(17,24,39,0.12),
-      rgba(17,24,39,0.12) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
+    radial-gradient(900px 500px at -10% 20%, rgba(17,24,39,0.06), transparent 60%),
+    radial-gradient(800px 400px at 110% 80%, rgba(17,24,39,0.05), transparent 65%),
+    radial-gradient(600px 300px at 60% -10%, rgba(17,24,39,0.04), transparent 70%),
     #f6f7f9;
 }
 
