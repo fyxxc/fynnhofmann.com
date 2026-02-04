@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>fynnhofmann.com – Wartung</title>
-  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- WICHTIG: absoluter Pfad für Cloudflare Pages -->
+  <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
 <body>
@@ -11,8 +13,10 @@
 <main class="page page-maintenance">
   <section class="page-content">
 
-    <!-- Logo / Warning Icon -->
-    <img src="/assets/images/maintenance-logo.png" class="maintenance-logo" alt="Maintenance">
+    <!-- Logo -->
+    <img src="/assets/images/maintenance-logo.png"
+         class="maintenance-logo"
+         alt="Maintenance">
 
     <span class="brand">fynnhofmann.com</span>
 
@@ -36,6 +40,7 @@
 
 <a href="/login" class="login-link">Login</a>
 
-<script src="assets/js/maintenance.js"></script>
+<!-- Ebenfalls absoluter Pfad -->
+<script src="/assets/js/maintenance.js"></script>
 </body>
 </html>
