@@ -5,23 +5,36 @@ const supabase = createClient(
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
 );
 
+/* ===== Container holen (neues Layout) ===== */
 const container = document.querySelector(".page-content");
 
-// 1️⃣ Sofort prüfen (für Reloads)
+if (!container) {
+  console.error("page-content nicht gefunden");
+}
+
+/* ===== Session sofort prüfen ===== */
 const { data: { session } } = await supabase.auth.getSession();
 
+/* ❗ Nicht eingeloggt → zurück zum Login */
+if (!session) {
+  window.location.href = "/login";
+}
+
+/* Wenn Session vorhanden → Dashboard rendern */
 if (session) {
   renderDashboard(session);
 }
 
-// 2️⃣ AUF LOGIN-STATE HÖREN (DAS WAR DER FEHLENDE TEIL)
+/* ===== Auf Auth-State hören (Login / Reload) ===== */
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session) {
     renderDashboard(session);
+  } else {
+    window.location.href = "/login";
   }
 });
 
-// 3️⃣ Dashboard rendern
+/* ===== Dashboard rendern ===== */
 function renderDashboard(session) {
   container.innerHTML = `
     <div class="site-name">fynnhofmann.com</div>
@@ -56,11 +69,11 @@ function renderDashboard(session) {
 
   document.getElementById("logout").addEventListener("click", async () => {
     await supabase.auth.signOut();
-    window.location.href = "/login.html";
+    window.location.href = "/login";
   });
 }
 
-// Helfer
+/* ===== Helfer ===== */
 function getBrowser() {
   const ua = navigator.userAgent;
   if (ua.includes("Firefox")) return "Firefox";
