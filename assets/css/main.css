@@ -311,3 +311,22 @@ button:hover {
   font-size: 12px;
   color: #9ca3af;
 }
+
+/* ============================= */
+/* MAINTENANCE SYSTEM META CLEAN */
+/* ============================= */
+
+.page-maintenance .system-meta {
+  margin-top: 36px;
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.9;
+}
+
+.page-maintenance .system-meta div {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
