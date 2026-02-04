@@ -5,7 +5,7 @@ const supabase = createClient(
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
 );
 
-const container = document.querySelector(".container");
+const container = document.querySelector(".page-content");
 
 // 1️⃣ Sofort prüfen (für Reloads)
 const { data: { session } } = await supabase.auth.getSession();
