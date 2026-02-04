@@ -14,15 +14,11 @@ html, body {
 
 /* ===== BACKGROUND (CSS GRAFIK STATT BILD) ===== */
 body.login-bg {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background:
-    radial-gradient(800px 400px at 10% 20%, rgba(17,24,39,0.05), transparent),
-    radial-gradient(600px 300px at 80% 70%, rgba(17,24,39,0.04), transparent),
+    radial-gradient(600px 300px at 20% 20%, rgba(0,0,0,0.2), transparent),
     #f6f7f9;
 }
+
 
 /* ===== LOGIN CONTAINER ===== */
 .login-container {
