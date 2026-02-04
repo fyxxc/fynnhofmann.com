@@ -243,3 +243,71 @@ button:hover {
 .page-maintenance .system-meta {
   justify-content: flex-start;
 }
+
+/* ============================= */
+/* MAINTENANCE – CLEAN STYLE     */
+/* ============================= */
+
+/* Layout LINKS statt Center */
+.page-maintenance {
+  justify-content: flex-start;
+  padding-left: 140px;
+}
+
+.page-maintenance .page-content {
+  text-align: left;
+  max-width: 480px;
+}
+
+/* Logo */
+.maintenance-logo {
+  width: 38px;
+  margin-bottom: 22px;
+  opacity: 0.85;
+}
+
+/* Brand NICHT grau */
+.page-maintenance .brand {
+  color: #111827;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+/* Schmälere Typografie */
+.page-maintenance h1 {
+  font-size: 44px;
+  font-weight: 200; /* dünner */
+}
+
+.page-maintenance p {
+  font-size: 17px;
+  color: #4b5563;
+  max-width: 420px;
+}
+
+/* BUTTON weniger "Landingpage" */
+.page-maintenance .btn-primary {
+  background: transparent;
+  color: #111827;
+  padding: 0;
+}
+
+.page-maintenance .btn-primary:hover {
+  background: transparent;
+  text-decoration: underline;
+}
+
+/* SYSTEM META OHNE KACHELN */
+.page-maintenance .system-meta {
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 36px;
+}
+
+.page-maintenance .system-meta li {
+  background: none;      /* <- killt die Pills */
+  padding: 0;
+  border-radius: 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
