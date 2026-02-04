@@ -24,8 +24,8 @@ body.login-bg {
     radial-gradient(900px 500px at 100% 100%, rgba(17,24,39,0.04), transparent 70%),
     repeating-linear-gradient(
       135deg,
-      rgba(17,24,39,0.015),
-      rgba(17,24,39,0.015) 1px,
+      rgba(17,24,39,0.12),
+      rgba(17,24,39,0.12) 1px,
       transparent 1px,
       transparent 6px
     ),
