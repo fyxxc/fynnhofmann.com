@@ -13,7 +13,7 @@ html, body {
 }
 
 /* ===== BACKGROUND (CSS GRAFIK STATT BILD) ===== */
-.login-bg {
+body.login-bg {
   min-height: 100vh;
   display: flex;
   align-items: center;
