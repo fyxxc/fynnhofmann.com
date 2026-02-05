@@ -6,6 +6,20 @@
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
+<script type="module">
+async function checkMaintenance() {
+  try {
+    const res = await fetch("/config.json?cache=" + Date.now());
+    const cfg = await res.json();
+
+    if (cfg.maintenance === true) {
+      window.location.href = "/maintenance/";
+    }
+  } catch (e) {}
+}
+checkMaintenance();
+</script>
+
 <body>
 
 <main class="page page-landing">

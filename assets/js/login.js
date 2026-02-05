@@ -1,5 +1,26 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+/* ===== Maintenance Check ===== */
+async function checkMaintenance() {
+  try {
+    const res = await fetch("/config.json?cache=" + Date.now());
+    const cfg = await res.json();
+
+    if (cfg.maintenance === true) {
+      window.location.href = "/maintenance/";
+      return true;
+    }
+  } catch (e) {
+    console.warn("Maintenance check failed");
+  }
+  return false;
+}
+
+const maintenanceActive = await checkMaintenance();
+if (maintenanceActive) {
+  throw new Error("Maintenance active");
+}
+
 console.log("login.js geladen");
 
 /* ============================= */
