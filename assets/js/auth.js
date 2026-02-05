@@ -1,36 +1,73 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-/* 🔐 EINMAL HIER EINTRAGEN */
+/* 🔐 SUPABASE CLIENT */
 const supabase = createClient(
   "https://zjpmumucjrltpcykmdti.supabase.co",
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
 );
 
-/* 🔒 BLOCKIERENDER AUTH-CHECK */
+/* ============================= */
+/* 🛠 GLOBALER MAINTENANCE CHECK */
+/* ============================= */
+
+const currentPath = window.location.pathname;
+
+/* Wartungsseite selbst darf NICHT blockiert werden */
+if (!currentPath.startsWith("/maintenance")) {
+
+  try {
+    const { data } = await supabase
+      .from("site_config")
+      .select("maintenance")
+      .eq("id", 1)
+      .single();
+
+    if (data?.maintenance === true) {
+      window.location.replace("/maintenance/");
+    }
+  } catch (e) {
+    console.warn("Maintenance Check fehlgeschlagen");
+  }
+}
+
+/* ============================= */
+/* 🔒 BLOCKIERENDER AUTH-CHECK   */
+/* ============================= */
+
 const { data: { session } } = await supabase.auth.getSession();
 
 if (!session) {
   window.location.replace("/login.html");
 }
 
-/* 👋 Begrüssung */
-document.getElementById("welcome").textContent =
-  "Willkommen im geschützten Bereich.";
+/* ============================= */
+/* 👋 UI DATEN SETZEN            */
+/* ============================= */
 
-/* 👤 User */
-document.getElementById("user-email").textContent =
-  session.user.email;
+const welcome = document.getElementById("welcome");
+if (welcome) {
+  welcome.textContent = "Willkommen im geschützten Bereich.";
+}
 
-/* 🕒 Session */
-document.getElementById("session-status").textContent =
-  "Aktiv";
+const userEmail = document.getElementById("user-email");
+if (userEmail) {
+  userEmail.textContent = session.user.email;
+}
 
-/* 🕒 Letzter Login */
-document.getElementById("last-login").textContent =
-  new Date(session.user.last_sign_in_at).toLocaleString();
+const sessionStatus = document.getElementById("session-status");
+if (sessionStatus) {
+  sessionStatus.textContent = "Aktiv";
+}
+
+const lastLogin = document.getElementById("last-login");
+if (lastLogin) {
+  lastLogin.textContent =
+    new Date(session.user.last_sign_in_at).toLocaleString();
+}
 
 /* 🌍 Umgebung */
 const ua = navigator.userAgent;
+
 const browser =
   ua.includes("Firefox") ? "Firefox" :
   ua.includes("Edg") ? "Edge" :
@@ -44,11 +81,16 @@ const os =
   ua.includes("Linux") ? "Linux" :
   "Unbekannt";
 
-document.getElementById("environment").textContent =
-  `${browser} / ${os}`;
+const environment = document.getElementById("environment");
+if (environment) {
+  environment.textContent = `${browser} / ${os}`;
+}
 
 /* 🚪 Logout */
-document.getElementById("logout").addEventListener("click", async () => {
-  await supabase.auth.signOut();
-  window.location.replace("/login.html");
-});
+const logoutBtn = document.getElementById("logout");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await supabase.auth.signOut();
+    window.location.replace("/login.html");
+  });
+}

@@ -1,26 +1,5 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-/* ===== Maintenance Check ===== */
-async function checkMaintenance() {
-  try {
-    const res = await fetch("/config.json?cache=" + Date.now());
-    const cfg = await res.json();
-
-    if (cfg.maintenance === true) {
-      window.location.href = "/maintenance/";
-      return true;
-    }
-  } catch (e) {
-    console.warn("Maintenance check failed");
-  }
-  return false;
-}
-
-const maintenanceActive = await checkMaintenance();
-if (maintenanceActive) {
-  throw new Error("Maintenance active");
-}
-
 let rendered = false;
 
 const supabase = createClient(
@@ -28,7 +7,7 @@ const supabase = createClient(
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
 );
 
-/* ===== Container holen (neues Layout) ===== */
+/* ===== Container holen ===== */
 const container = document.querySelector(".page-content");
 
 if (!container) {
@@ -38,13 +17,12 @@ if (!container) {
 /* ===== Session sofort prüfen ===== */
 const { data: { session } } = await supabase.auth.getSession();
 
-
 /* Wenn Session vorhanden → Dashboard rendern */
 if (session) {
   renderDashboard(session);
 }
 
-/* ===== Auf Auth-State hören (Login / Reload) ===== */
+/* ===== Auf Auth-State hören ===== */
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session) {
     renderDashboard(session);
@@ -53,8 +31,9 @@ supabase.auth.onAuthStateChange((_event, session) => {
 
 /* ===== Dashboard rendern ===== */
 function renderDashboard(session) {
-    if (rendered) return;
-    rendered = true;
+  if (rendered) return;
+  rendered = true;
+
   container.innerHTML = `
     <div class="site-name">fynnhofmann.com</div>
 
@@ -95,14 +74,37 @@ function renderDashboard(session) {
 
     </div>
 
-
     <button id="logout">Abmelden</button>
   `;
 
+  /* Logout */
   document.getElementById("logout").addEventListener("click", async () => {
     await supabase.auth.signOut();
     window.location.href = "/login";
   });
+
+  /* ✅ HIER war dein fehlender Teil */
+  document.getElementById("toggleMaintenance")
+    ?.addEventListener("click", toggleMaintenance);
+}
+
+/* ===== Maintenance Toggle ===== */
+async function toggleMaintenance() {
+
+  const { data } = await supabase
+    .from("site_config")
+    .select("maintenance")
+    .eq("id", 1)
+    .single();
+
+  const newValue = !data.maintenance;
+
+  await supabase
+    .from("site_config")
+    .update({ maintenance: newValue })
+    .eq("id", 1);
+
+  alert("Maintenance ist jetzt: " + newValue);
 }
 
 /* ===== Helfer ===== */
@@ -120,22 +122,4 @@ function getOS() {
   if (navigator.userAgent.includes("Mac")) return "macOS";
   if (navigator.userAgent.includes("Linux")) return "Linux";
   return "Unbekannt";
-}
-
-async function toggleMaintenance() {
-
-  const { data } = await supabase
-    .from("site_config")
-    .select("maintenance")
-    .eq("id", 1)
-    .single();
-
-  const newValue = !data.maintenance;
-
-  await supabase
-    .from("site_config")
-    .update({ maintenance: newValue })
-    .eq("id", 1);
-
-  alert("Maintenance ist jetzt: " + newValue);
 }
