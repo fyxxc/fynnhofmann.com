@@ -62,9 +62,25 @@ function renderDashboard(session) {
     <p>Angemeldet als <strong>${session.user.email}</strong></p>
 
     <div class="dashboard-grid">
+
       <div class="card">
-        <h3>Status</h3>
-        <p>Angemeldet</p>
+        <h3>Cloudflare</h3>
+        <a href="https://dash.cloudflare.com" target="_blank">Öffnen</a>
+      </div>
+
+      <div class="card">
+        <h3>GitHub</h3>
+        <a href="https://github.com" target="_blank">Öffnen</a>
+      </div>
+
+      <div class="card">
+        <h3>Supabase</h3>
+        <a href="https://supabase.com/dashboard" target="_blank">Console</a>
+      </div>
+
+      <div class="card">
+        <h3>Maintenance Mode</h3>
+        <button id="toggleMaintenance">Toggle Wartung</button>
       </div>
 
       <div class="card">
@@ -77,11 +93,8 @@ function renderDashboard(session) {
         <p>${getBrowser()}</p>
       </div>
 
-      <div class="card">
-        <h3>Betriebssystem</h3>
-        <p>${getOS()}</p>
-      </div>
     </div>
+
 
     <button id="logout">Abmelden</button>
   `;
