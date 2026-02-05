@@ -121,3 +121,21 @@ function getOS() {
   if (navigator.userAgent.includes("Linux")) return "Linux";
   return "Unbekannt";
 }
+
+async function toggleMaintenance() {
+
+  const { data } = await supabase
+    .from("site_config")
+    .select("maintenance")
+    .eq("id", 1)
+    .single();
+
+  const newValue = !data.maintenance;
+
+  await supabase
+    .from("site_config")
+    .update({ maintenance: newValue })
+    .eq("id", 1);
+
+  alert("Maintenance ist jetzt: " + newValue);
+}
