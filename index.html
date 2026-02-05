@@ -11,7 +11,6 @@ async function checkMaintenance() {
   try {
     const res = await fetch("/config.json?cache=" + Date.now());
     const cfg = await res.json();
-
     if (cfg.maintenance === true) {
       window.location.href = "/maintenance/";
     }
@@ -30,40 +29,47 @@ checkMaintenance();
     <h1>Fynn Hofmann</h1>
 
     <p>
-      Kontakt & Netzwerk
+      Kontakt · Netzwerk · Projekte
     </p>
 
-    <!-- Kontakt Actions -->
-    <div style="margin-bottom:40px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href="mailto:mail@fynnhofmann.com" class="btn btn-primary">Mail</a>
-      <a href="https://linkedin.com/in/DEINPROFIL" target="_blank" class="btn btn-primary">LinkedIn</a>
-      <a href="#threema" class="btn btn-primary">Threema</a>
-    </div>
+    <!-- 🔗 Kontaktbereich (clean statt Button-Kacheln) -->
+    <div style="margin-top:36px;">
 
-    <!-- Threema QR -->
-    <div id="threema" style="margin-bottom:40px;">
-      <img 
-        src="assets/img/threema-qr.png"
-        alt="Threema QR Code"
-        style="width:140px; border-radius:12px; opacity:0.9;">
-      <p style="margin-top:12px; font-size:14px; color:#9ca3af;">
-        QR-Code scannen für Threema
+      <!-- Mail + LinkedIn ruhig als Textlinks -->
+      <p style="font-size:18px; line-height:2;">
+        <a href="mailto:mail@fynnhofmann.com" style="text-decoration:none;color:#111827;">Mail</a>
+        &nbsp;·&nbsp;
+        <a href="https://linkedin.com/in/DEINPROFIL" target="_blank" style="text-decoration:none;color:#111827;">LinkedIn</a>
       </p>
+
+      <!-- Threema direkt integriert -->
+      <div style="margin-top:28px;">
+        <img 
+          src="assets/img/threema-qr.png"
+          alt="Threema QR"
+          style="width:150px; border-radius:14px; opacity:0.92;">
+        <p style="margin-top:10px; font-size:14px; color:#9ca3af;">
+          Threema Kontakt
+        </p>
+      </div>
+
     </div>
 
-    <!-- Login -->
-    <a href="/login" class="btn btn-primary">Anmelden</a>
-
-    <ul class="system-meta">
-      <li id="browser"></li>
-      <li id="os"></li>
-      <li id="time"></li>
-    </ul>
+    <!-- Login CTA minimal -->
+    <div style="margin-top:42px;">
+      <a href="/login" class="btn btn-primary">Anmelden</a>
+    </div>
 
   </section>
 </main>
 
-<a href="/login" class="login-link">Login</a>
+<!-- 🔐 Footer links unten -->
+<div style="position:fixed; bottom:28px; left:28px; font-size:13px; color:#9ca3af; line-height:1.6;">
+  <a href="/login" style="color:#9ca3af; text-decoration:none;">Login</a><br>
+  <span id="browser"></span><br>
+  <span id="os"></span><br>
+  <span id="time"></span>
+</div>
 
 <script src="assets/js/maintenance.js"></script>
 </body>
