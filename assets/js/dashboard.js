@@ -1,5 +1,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+let rendered = false;
+
 const supabase = createClient(
   "https://zjpmumucjrltpcykmdti.supabase.co",
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
@@ -15,10 +17,6 @@ if (!container) {
 /* ===== Session sofort prüfen ===== */
 const { data: { session } } = await supabase.auth.getSession();
 
-/* ❗ Nicht eingeloggt → zurück zum Login */
-if (!session) {
-  window.location.href = "/login";
-}
 
 /* Wenn Session vorhanden → Dashboard rendern */
 if (session) {
@@ -29,13 +27,13 @@ if (session) {
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session) {
     renderDashboard(session);
-  } else {
-    window.location.href = "/login";
   }
 });
 
 /* ===== Dashboard rendern ===== */
 function renderDashboard(session) {
+    if (rendered) return;
+    rendered = true;
   container.innerHTML = `
     <div class="site-name">fynnhofmann.com</div>
 
