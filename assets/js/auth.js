@@ -36,8 +36,14 @@ if (!currentPath.startsWith("/maintenance")) {
 
 const { data: { session } } = await supabase.auth.getSession();
 
+/* kleine Verzögerung damit Supabase Session laden kann */
 if (!session) {
-  window.location.replace("/login.html");
+
+  const { data: refreshed } = await supabase.auth.getSession();
+
+  if (!refreshed.session) {
+    window.location.replace("/login.html");
+  }
 }
 
 /* ============================= */
