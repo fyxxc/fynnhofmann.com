@@ -12,7 +12,7 @@ html, body {
   color: #111827;
 }
 
-/* ===== LOGIN BACKGROUND – PURPLE / BLUE GRADIENT ===== */
+/* ===== LOGIN BACKGROUND – SOFT PURPLE / BLUE ===== */
 body.login-bg {
   min-height:100vh;
   display:flex;
@@ -20,10 +20,10 @@ body.login-bg {
   justify-content:center;
 
   background:
-    radial-gradient(900px 600px at 15% 20%, rgba(99,102,241,0.35), transparent 60%),
-    radial-gradient(700px 500px at 85% 80%, rgba(168,85,247,0.35), transparent 60%),
-    radial-gradient(600px 400px at 50% 0%, rgba(59,130,246,0.25), transparent 60%),
-    linear-gradient(180deg,#0f172a 0%, #1e1b4b 40%, #312e81 100%);
+    radial-gradient(1200px 800px at 20% 10%, rgba(99,102,241,0.18), transparent 70%),
+    radial-gradient(1100px 700px at 80% 90%, rgba(168,85,247,0.18), transparent 70%),
+    radial-gradient(900px 600px at 50% 0%, rgba(59,130,246,0.14), transparent 75%),
+    linear-gradient(180deg,#111827 0%, #1e1b4b 45%, #3730a3 100%);
 }
 
 
