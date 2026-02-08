@@ -2,38 +2,35 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Fynns Wünsche</title>
+<title>Wishlist – fynnhofmann.com</title>
 
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!-- Google Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 
 <body>
 
-<div id="app-content" style="display:none;">
+<main class="page page-maintenance">
+  <section class="page-content">
 
-  <h1>
-    <span class="material-symbols-outlined">shopping_cart</span>
-    Kauf-Wünsche
-  </h1>
+    <img src="/assets/images/account_circle_off_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
+         class="maintenance-logo">
 
-  <div class="card">
-    <input id="title" placeholder="Titel">
-    <input id="link" placeholder="Link">
-    <textarea id="description" placeholder="Beschreibung"></textarea>
+    <span class="brand">fynnhofmann.com</span>
 
-    <button id="addWish">
-      <span class="material-symbols-outlined">add</span>
-      Wunsch hinzufügen
-    </button>
-  </div>
+    <h1 id="wishlist-title">Authentifizierung erforderlich.</h1>
 
-  <div id="wishList"></div>
+    <p id="wishlist-text">
+      Dieser Bereich ist geschützt.<br>
+      Bitte melde dich an, um Zugriff zu erhalten.
+    </p>
 
-</div>
+  </section>
+</main>
+
+<a href="/login" class="login-link">Login</a>
 
 <script type="module" src="/assets/js/wishlist.js"></script>
+<script src="/assets/js/maintenance.js"></script>
+
 </body>
 </html>
