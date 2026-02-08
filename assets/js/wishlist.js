@@ -13,22 +13,60 @@ if (!container) {
   console.error("page-content fehlt");
 }
 
-/* ===== Session sofort prüfen ===== */
+/* ===== VIELE ALLGEMEINE KATEGORIEN ===== */
+const categories = [
+  "Fashion",
+  "Schuhe",
+  "Accessoires",
+  "Beauty",
+  "Pflege",
+  "Parfum",
+  "Interior",
+  "Möbel",
+  "Dekoration",
+  "Küche",
+  "Haushalt",
+  "Elektronik",
+  "Smartphone",
+  "Laptop",
+  "Gaming",
+  "Audio",
+  "Smart Home",
+  "Fitness",
+  "Gesundheit",
+  "Bücher",
+  "Weiterbildung",
+  "Reisen",
+  "Hotel",
+  "Erlebnisse",
+  "Food",
+  "Restaurant",
+  "Abos",
+  "Lifestyle",
+  "Luxus",
+  "Geschenke",
+  "Auto",
+  "Motorrad",
+  "Outdoor",
+  "Camping",
+  "Random Dopamin"
+];
+
+/* ===== Session prüfen ===== */
 const { data: { session } } = await supabase.auth.getSession();
 
 if (session) {
   renderWishlist(session);
 }
 
-/* ===== WICHTIG: Auth Listener (DEIN FIX) ===== */
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session) {
     renderWishlist(session);
   }
 });
 
-/* ===== Wishlist rendern ===== */
-function renderWishlist(session) {
+/* ===== Wishlist UI ===== */
+function renderWishlist(session){
 
   if (rendered) return;
   rendered = true;
@@ -36,13 +74,28 @@ function renderWishlist(session) {
   container.innerHTML = `
     <div class="site-name">fynnhofmann.com</div>
 
-    <h1>Wishlist</h1>
+    <h1>
+      <span class="material-symbols-outlined">shopping_cart</span>
+      Wishlist
+    </h1>
 
     <div class="card">
+
+      <span class="material-symbols-outlined">add_shopping_cart</span>
+
       <input id="title" placeholder="Titel">
       <input id="link" placeholder="Link">
       <textarea id="description" placeholder="Beschreibung"></textarea>
-      <button id="addWish">Hinzufügen</button>
+
+      <select id="category">
+        ${categories.map(c => `<option value="${c}">${c}</option>`).join("")}
+      </select>
+
+      <button id="addWish">
+        <span class="material-symbols-outlined">add</span>
+        Wunsch hinzufügen
+      </button>
+
     </div>
 
     <div id="wishList"></div>
@@ -59,6 +112,9 @@ async function addWish(){
   const title = document.getElementById("title").value;
   const link = document.getElementById("link").value;
   const description = document.getElementById("description").value;
+  const category = document.getElementById("category").value;
+
+  if(!title) return alert("Titel fehlt");
 
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -66,6 +122,7 @@ async function addWish(){
     title,
     link,
     description,
+    category,
     user_id: user.id
   });
 
@@ -76,7 +133,7 @@ async function addWish(){
 async function loadWishes(){
 
   const list = document.getElementById("wishList");
-  if (!list) return;
+  if(!list) return;
 
   list.innerHTML = "";
 
@@ -96,10 +153,30 @@ async function loadWishes(){
     div.className = "card";
 
     div.innerHTML = `
-      <h3>${wish.title}</h3>
+      <h3>
+        <span class="material-symbols-outlined">inventory_2</span>
+        ${wish.title}
+      </h3>
+
       <p>${wish.description ?? ""}</p>
-      <a href="${wish.link}" target="_blank">Link öffnen</a>
-      <p>${canBuy ? "✅ Kauf erlaubt" : "⏳ Noch "+(7-diffDays)+" Tage warten"}</p>
+
+      <p>
+        <span class="material-symbols-outlined">folder</span>
+        ${wish.category ?? "Keine Kategorie"}
+      </p>
+
+      <a href="${wish.link}" target="_blank">
+        <span class="material-symbols-outlined">link</span>
+        Link öffnen
+      </a>
+
+      <p>
+        ${
+          canBuy
+          ? '<span class="material-symbols-outlined">check_circle</span> Kauf erlaubt'
+          : '<span class="material-symbols-outlined">schedule</span> Noch '+(7-diffDays)+' Tage warten'
+        }
+      </p>
     `;
 
     list.appendChild(div);
