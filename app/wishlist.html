@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Fynns Wünsche</title>
+
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!-- Google Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="app-content" style="display:none;">
+
+  <h1>
+    <span class="material-symbols-outlined">shopping_cart</span>
+    Kauf-Wünsche
+  </h1>
+
+  <div class="card">
+    <input id="title" placeholder="Titel">
+    <input id="link" placeholder="Link">
+    <textarea id="description" placeholder="Beschreibung"></textarea>
+
+    <button id="addWish">
+      <span class="material-symbols-outlined">add</span>
+      Wunsch hinzufügen
+    </button>
+  </div>
+
+  <div id="wishList"></div>
+
+</div>
+
+<script type="module" src="/assets/js/wishlist.js"></script>
+</body>
+</html>
