@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Recruiter Bereich – fynnhofmann.com</title>
+
+  <!-- Cloudflare Pages: absoluter Pfad -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+<main class="page page-maintenance">
+  <section class="page-content">
+
+    <!-- Logo -->
+    <img src="/assets/images/account_circle_off_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
+         class="maintenance-logo"
+         alt="Recruiter">
+
+    <span class="brand">fynnhofmann.com</span>
+
+    <!-- 🔒 Default Zustand (wird von recruiter-auth.js überschrieben) -->
+    <h1 id="welcome">Authentifizierung erforderlich.</h1>
+
+    <p>
+      Angemeldet als: <span id="user-email">–</span><br>
+      Session Status: <span id="session-status">–</span><br>
+      Letzter Login: <span id="last-login">–</span><br>
+      Umgebung: <span id="environment">–</span>
+    </p>
+
+    <!-- 👉 Hier kannst du später Lebenslauf / Zertifikate einbauen -->
+    <div id="dashboard-content"></div>
+
+    <button id="logout">Abmelden</button>
+
+    <div class="system-meta">
+      <div id="time"></div>
+      <div id="ip"></div>
+      <div id="browser"></div>
+      <div id="os"></div>
+    </div>
+
+  </section>
+</main>
+
+<!-- Recruiter Login Link (falls Session verloren geht) -->
+<a href="/recruiter/login.html" class="login-link">Recruiter Login</a>
+
+<!-- 🔐 Recruiter Auth Schutz -->
+<script type="module" src="/assets/js/recruiter-auth.js"></script>
+
+<!-- Optional Systeminfos -->
+<script src="/assets/js/maintenance.js"></script>
+
+</body>
+</html>
