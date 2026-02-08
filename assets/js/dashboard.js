@@ -7,30 +7,29 @@ const supabase = createClient(
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
 );
 
-/* ===== Container holen ===== */
 const container = document.querySelector(".page-content");
 
 if (!container) {
   console.error("page-content nicht gefunden");
 }
 
-/* ===== Session sofort prüfen ===== */
+/* ===== Session prüfen ===== */
 const { data: { session } } = await supabase.auth.getSession();
 
-/* Wenn Session vorhanden → Dashboard rendern */
 if (session) {
   renderDashboard(session);
 }
 
-/* ===== Auf Auth-State hören ===== */
+/* ===== Auth Listener ===== */
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session) {
     renderDashboard(session);
   }
 });
 
-/* ===== Dashboard rendern ===== */
+/* ===== Dashboard ===== */
 function renderDashboard(session) {
+
   if (rendered) return;
   rendered = true;
 
@@ -41,6 +40,11 @@ function renderDashboard(session) {
     <p>Angemeldet als <strong>${session.user.email}</strong></p>
 
     <div class="dashboard-grid">
+
+      <div class="card">
+        <h3>Wishlist</h3>
+        <a href="/app/wishlist">Öffnen</a>
+      </div>
 
       <div class="card">
         <h3>Cloudflare</h3>
@@ -77,18 +81,17 @@ function renderDashboard(session) {
     <button id="logout">Abmelden</button>
   `;
 
-  /* Logout */
   document.getElementById("logout").addEventListener("click", async () => {
     await supabase.auth.signOut();
     window.location.href = "/login";
   });
 
-  /* ✅ HIER war dein fehlender Teil */
-  document.getElementById("toggleMaintenance")
+  document
+    .getElementById("toggleMaintenance")
     ?.addEventListener("click", toggleMaintenance);
 }
 
-/* ===== Maintenance Toggle ===== */
+/* ===== Maintenance ===== */
 async function toggleMaintenance() {
 
   const { data } = await supabase
@@ -107,19 +110,12 @@ async function toggleMaintenance() {
   alert("Maintenance ist jetzt: " + newValue);
 }
 
-/* ===== Helfer ===== */
+/* ===== Helper ===== */
 function getBrowser() {
   const ua = navigator.userAgent;
   if (ua.includes("Firefox")) return "Firefox";
   if (ua.includes("Edg")) return "Edge";
   if (ua.includes("Chrome")) return "Chrome";
   if (ua.includes("Safari")) return "Safari";
-  return "Unbekannt";
-}
-
-function getOS() {
-  if (navigator.userAgent.includes("Win")) return "Windows";
-  if (navigator.userAgent.includes("Mac")) return "macOS";
-  if (navigator.userAgent.includes("Linux")) return "Linux";
   return "Unbekannt";
 }
