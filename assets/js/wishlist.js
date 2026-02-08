@@ -1,72 +1,36 @@
-import { requireAuth, supabase } from "./auth.js";
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Wishlist – fynnhofmann.com</title>
 
-const app = document.getElementById("app-content");
-const list = document.getElementById("wishList");
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
 
-await requireAuth(); // gleiches Login-Gate wie Dashboard
-app.style.display = "block";
+<body>
 
-const addBtn = document.getElementById("addWish");
+<main class="page page-maintenance">
+  <section class="page-content">
 
-addBtn.addEventListener("click", async () => {
-  const title = document.getElementById("title").value;
-  const link = document.getElementById("link").value;
-  const description = document.getElementById("description").value;
+    <img src="/assets/images/account_circle_off_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
+         class="maintenance-logo">
 
-  if(!title) return alert("Titel fehlt bro 😄");
+    <span class="brand">fynnhofmann.com</span>
 
-  const { data: userData } = await supabase.auth.getUser();
+    <h1 id="wishlist-title">Authentifizierung erforderlich.</h1>
 
-  await supabase.from("wishes").insert({
-    title,
-    link,
-    description,
-    user_id: userData.user.id
-  });
+    <p id="wishlist-text">
+      Dieser Bereich ist geschützt.<br>
+      Bitte melde dich an, um Zugriff zu erhalten.
+    </p>
 
-  loadWishes();
-});
+  </section>
+</main>
 
-async function loadWishes(){
+<a href="/login" class="login-link">Login</a>
 
-  list.innerHTML = "";
+<script type="module" src="/assets/js/wishlist.js"></script>
+<script src="/assets/js/maintenance.js"></script>
 
-  const { data } = await supabase
-    .from("wishes")
-    .select("*")
-    .order("created_at", { ascending:false });
-
-  data.forEach(wish => {
-
-    const created = new Date(wish.created_at);
-    const now = new Date();
-
-    const diffDays = Math.floor((now - created) / (1000*60*60*24));
-    const canBuy = diffDays >= 7;
-
-    const div = document.createElement("div");
-    div.className = "card";
-
-    div.innerHTML = `
-      <h3>${wish.title}</h3>
-      <p>${wish.description ?? ""}</p>
-
-      <a href="${wish.link}" target="_blank">
-        <span class="material-symbols-outlined">link</span>
-        Link öffnen
-      </a>
-
-      <div>
-        ${
-          canBuy
-          ? `<span class="material-symbols-outlined">check_circle</span> Kauf erlaubt`
-          : `<span class="material-symbols-outlined">schedule</span> Noch ${7-diffDays} Tage warten`
-        }
-      </div>
-    `;
-
-    list.appendChild(div);
-  });
-}
-
-loadWishes();
+</body>
+</html>
