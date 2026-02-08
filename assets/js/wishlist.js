@@ -1,5 +1,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+let rendered = false;
+
 const supabase = createClient(
   "https://zjpmumucjrltpcykmdti.supabase.co",
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
@@ -11,19 +13,25 @@ if (!container) {
   console.error("page-content fehlt");
 }
 
-/* ===== Session prüfen ===== */
+/* ===== Session sofort prüfen ===== */
 const { data: { session } } = await supabase.auth.getSession();
 
-/* ===== NICHT eingeloggt → Auth Screen bleibt sichtbar ===== */
-if (!session) {
-  console.log("Kein Login – Auth Screen bleibt");
-  return;
+if (session) {
+  renderWishlist(session);
 }
 
-/* ===== Eingeloggt → Wishlist rendern ===== */
-renderWishlist();
+/* ===== WICHTIG: Auth Listener (DEIN FIX) ===== */
+supabase.auth.onAuthStateChange((_event, session) => {
+  if (session) {
+    renderWishlist(session);
+  }
+});
 
-function renderWishlist() {
+/* ===== Wishlist rendern ===== */
+function renderWishlist(session) {
+
+  if (rendered) return;
+  rendered = true;
 
   container.innerHTML = `
     <div class="site-name">fynnhofmann.com</div>
@@ -68,6 +76,8 @@ async function addWish(){
 async function loadWishes(){
 
   const list = document.getElementById("wishList");
+  if (!list) return;
+
   list.innerHTML = "";
 
   const { data } = await supabase
