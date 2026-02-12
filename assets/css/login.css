@@ -73,6 +73,14 @@ body.login-bg {
   margin-top: 8px;
 }
 
+}
+
+#login-form label {
+  font-size: 13px;
+  color: #6e6e73;
+  margin-top: 8px;
+}
+
 #login-form input {
   width: 100%;
   padding: 13px 14px;

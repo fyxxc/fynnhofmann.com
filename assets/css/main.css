@@ -143,16 +143,26 @@ body {
   margin-top: 48px;
   display: flex;
   justify-content: center;
-  gap: 16px;
-  list-style: none;
 }
 
-.system-meta li {
-  font-size: 12px;
-  color: #9ca3af;
-  padding: 6px 14px;
-  background: #f3f4f6;
-  border-radius: 999px;
+.intro-text {
+  max-width: 680px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.info-card {
+  background: #fff;
+  border: 1px solid #e6e6e8;
+  border-radius: 16px;
+  padding: 20px;
 }
 
 .login-link {
@@ -228,6 +238,10 @@ body {
 
 .resume-header h1 {
   font-size: clamp(2rem, 5vw, 3rem);
+.info-card h2 {
+  font-size: 0.95rem;
+  color: #6e6e73;
+  font-weight: 600;
   margin-bottom: 10px;
   letter-spacing: -0.02em;
 }
@@ -357,6 +371,100 @@ body {
   border: 1px solid #e5e5e7;
   border-radius: 14px;
   padding: 16px;
+.info-card p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.contact-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.contact-list a {
+  color: #1d1d1f;
+  text-decoration: none;
+  font-size: 0.98rem;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+.threema-block {
+  margin-top: 26px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #e6e6e8;
+  background: #fff;
+}
+
+.threema-block img {
+  width: 132px;
+  height: auto;
+}
+
+.threema-block p {
+  font-size: 0.85rem;
+  color: #6e6e73;
+}
+
+.site-footer-meta {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.site-footer-meta a,
+.site-footer-meta span {
+  color: #8a8a8e;
+  text-decoration: none;
+}
+
+.site-footer-meta a:hover {
+  color: #1d1d1f;
+}
+
+.system-meta {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style: none;
+}
+
+.system-meta li {
+  font-size: 12px;
+  color: #9ca3af;
+  padding: 6px 14px;
+  background: #f3f4f6;
+  border-radius: 999px;
+}
+
+.login-link {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  font-size: 13px;
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: #111827;
+}
+
+.page-maintenance {
+  justify-content: flex-start;
+  padding-left: 140px;
 }
 
 .notice-panel h2 {
@@ -432,4 +540,28 @@ body {
 
 .app-card-full {
   grid-column: 1 / -1;
+.maintenance-logo {
+  width: 64px;
+  margin-bottom: 22px;
+  opacity: 0.85;
+}
+
+.page-maintenance .brand {
+  color: #111827;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+.page-maintenance h1 {
+  font-size: 46px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.page-maintenance p {
+  max-width: 420px;
+}
+
+.page-maintenance .system-meta {
+  justify-content: flex-start;
 }
