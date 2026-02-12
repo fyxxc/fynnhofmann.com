@@ -75,6 +75,61 @@ body.login-bg {
 
 }
 
+.login-shell {
+  width: min(920px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #e5e5e7;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+}
+
+.login-side-note {
+  padding: 44px;
+  background: linear-gradient(180deg, #fafafa 0%, #f3f4f6 100%);
+  border-right: 1px solid #e5e7eb;
+}
+
+.site-name {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6e6e73;
+  margin-bottom: 24px;
+}
+
+.login-side-note h1 {
+  font-size: 34px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.login-side-note p {
+  color: #515154;
+  line-height: 1.65;
+}
+
+.login-container {
+  padding: 44px;
+}
+
+#login-form {
+  display: grid;
+  gap: 10px;
+}
+
+#login-form label {
+  font-size: 13px;
+  color: #6e6e73;
+  margin-top: 8px;
+}
+
+}
+
 #login-form label {
   font-size: 13px;
   color: #6e6e73;

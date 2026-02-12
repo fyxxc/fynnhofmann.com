@@ -12,6 +12,7 @@ const content = document.getElementById("dashboard-content");
 const title = document.getElementById("dashboard-title");
 const text = document.getElementById("dashboard-text");
 const notice = document.getElementById("admin-notice");
+const authGate = document.getElementById("auth-gate");
 
 if (!content) {
   console.error("dashboard-content nicht gefunden");
@@ -50,6 +51,7 @@ function renderDashboard(activeSession) {
     text.textContent = "Verwaltung für Wartung, Recruiter-Zugang und Systemlinks.";
   }
   if (notice) notice.hidden = true;
+  if (authGate) authGate.hidden = true;
 
   const recruiterEnabled = isRecruiterEnabled();
 
