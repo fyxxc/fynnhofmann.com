@@ -768,7 +768,7 @@ body {
 
 .app-card-full {
   grid-column: 1 / -1;
-.maintenance-logo {
+.maintenance-logo
   width: 64px;
   margin-bottom: 22px;
   opacity: 0.85;
