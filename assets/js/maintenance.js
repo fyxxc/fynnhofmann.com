@@ -1,101 +1,56 @@
-/* ============================= */
-/* TIME + TIMEZONE               */
-/* ============================= */
+const timeEl = document.getElementById("time");
+const browserEl = document.getElementById("browser");
+const osEl = document.getElementById("os");
+const ipEl = document.getElementById("ip");
 
 const now = new Date();
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
 const timeString = now.toLocaleTimeString("de-CH", {
   hour: "2-digit",
   minute: "2-digit",
   second: "2-digit"
 });
 
-document.getElementById("time").textContent =
-  `Uhrzeit (${timezone}): ${timeString}`;
+if (timeEl) {
+  timeEl.textContent = `Uhrzeit (${timezone}): ${timeString}`;
+}
 
+if (browserEl) {
+  browserEl.textContent = `Browser: ${getBrowser()}`;
+}
 
-/* ============================= */
-/* BROWSER + VERSION             */
-/* ============================= */
+if (osEl) {
+  osEl.textContent = `Betriebssystem: ${getOS()}`;
+}
+
+if (ipEl) {
+  fetch("https://api.ipify.org?format=json")
+    .then((res) => res.json())
+    .then((data) => {
+      ipEl.textContent = `ipv4 Adresse: ${data.ip}`;
+    })
+    .catch(() => {
+      ipEl.textContent = "ipv4 Adresse: nicht verfügbar";
+    });
+}
 
 function getBrowser() {
   const ua = navigator.userAgent;
-
-  if (ua.includes("Firefox/")) {
-    return "Firefox " + ua.match(/Firefox\/([\d.]+)/)[1];
-  }
-
-  if (ua.includes("Edg/")) {
-    return "Edge " + ua.match(/Edg\/([\d.]+)/)[1];
-  }
-
-  if (ua.includes("Chrome/") && !ua.includes("Edg/")) {
-    return "Chrome " + ua.match(/Chrome\/([\d.]+)/)[1];
-  }
-
-  if (ua.includes("Safari/") && ua.includes("Version/")) {
-    return "Safari " + ua.match(/Version\/([\d.]+)/)[1];
-  }
-
-  return navigator.userAgent;
+  if (ua.includes("Firefox/")) return `Firefox ${ua.match(/Firefox\/([\d.]+)/)?.[1] ?? ""}`.trim();
+  if (ua.includes("Edg/")) return `Edge ${ua.match(/Edg\/([\d.]+)/)?.[1] ?? ""}`.trim();
+  if (ua.includes("Chrome/") && !ua.includes("Edg/")) return `Chrome ${ua.match(/Chrome\/([\d.]+)/)?.[1] ?? ""}`.trim();
+  if (ua.includes("Safari/") && ua.includes("Version/")) return `Safari ${ua.match(/Version\/([\d.]+)/)?.[1] ?? ""}`.trim();
+  return "Unbekannt";
 }
-
-document.getElementById("browser").textContent =
-  `Browser: ${getBrowser()}`;
-
-
-/* ============================= */
-/* OS + VERSION (BEST EFFORT)    */
-/* ============================= */
 
 function getOS() {
   const ua = navigator.userAgent;
-
   if (ua.includes("Windows NT 10.0")) return "Windows 10/11";
   if (ua.includes("Windows NT 6.3")) return "Windows 8.1";
   if (ua.includes("Windows NT 6.1")) return "Windows 7";
-
-  if (ua.includes("Mac OS X")) {
-    const match = ua.match(/Mac OS X ([\d_]+)/);
-    if (match) {
-      return "macOS " + match[1].replaceAll("_", ".");
-    }
-    return "macOS";
-  }
-
-  if (ua.includes("Android")) {
-    const match = ua.match(/Android ([\d.]+)/);
-    if (match) return "Android " + match[1];
-    return "Android";
-  }
-
-  if (ua.includes("iPhone OS")) {
-    const match = ua.match(/OS ([\d_]+)/);
-    if (match) return "iOS " + match[1].replaceAll("_", ".");
-    return "iOS";
-  }
-
+  if (ua.includes("Mac OS X")) return "macOS";
+  if (ua.includes("Android")) return "Android";
+  if (ua.includes("iPhone OS")) return "iOS";
   if (ua.includes("Linux")) return "Linux";
-
-  return navigator.platform;
+  return "Unbekannt";
 }
-
-document.getElementById("os").textContent =
-  `Betriebssystem: ${getOS()}`;
-
-
-/* ============================= */
-/* IPV4 (PUBLIC IP)              */
-/* ============================= */
-
-fetch("https://api.ipify.org?format=json")
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("ip").textContent =
-      `ipv4 Adresse: ${data.ip}`;
-  })
-  .catch(() => {
-    document.getElementById("ip").textContent =
-      `ipv4 Adresse: nicht verfügbar`;
-  });

@@ -2,27 +2,29 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Login – fynnhofmann.com</title>
-
-  <link rel="stylesheet" href="/assets/css/login.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — fynnhofmann.com</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
 </head>
+<body>
+  <main class="site-wrap login-wrap">
+    <section class="hero-panel">
+      <p class="eyebrow">Admin Zugang</p>
+      <h1>Secure <span>Login</span></h1>
+      <p class="lead">Bitte anmelden, um den geschützten Bereich zu öffnen.</p>
 
-<body class="login-bg">
+      <form id="login-form" class="login-form">
+        <input type="email" id="email" placeholder="E-Mail" required>
+        <input type="password" id="password" placeholder="Passwort" required>
+        <button type="submit">Anmelden</button>
+      </form>
+      <p id="status" class="form-status"></p>
+    </section>
+  </main>
 
-  <div class="login-container">
-    <div class="site-name">fynnhofmann.com</div>
-
-    <h1>Anmeldung</h1>
-    <p>Geschützter Bereich</p>
-
-    <form id="login-form">
-      <input type="email" id="email" placeholder="E-Mail" required>
-      <input type="password" id="password" placeholder="Passwort" required>
-      <button type="submit">Anmelden</button>
-    </form>
-
-    <p id="status"></p>
-  </div>
+  <aside class="meta-box">
+    <a href="/">Zur Startseite</a>
+  </aside>
 
   <script type="module" src="/assets/js/login.js"></script>
 </body>

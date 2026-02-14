@@ -1,315 +1,266 @@
-/* ============================= */
-/* RESET                         */
-/* ============================= */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* ============================= */
-/* BASIS                         */
-/* ============================= */
 html, body {
-  height: 100%;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f6f7f9;
-  color: #111827;
-  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #101216;
+  background: radial-gradient(circle at 15% 10%, #f9f4e7 0%, #e8e2d2 55%, #dedac8 100%);
 }
 
-/* ============================= */
-/* PAGE SYSTEM                   */
-/* ============================= */
-.page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 96px 24px;
+a {
+  color: inherit;
 }
 
-.page-content {
-  max-width: 760px;
-  text-align: center;
+.site-wrap {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  padding: 54px 0 90px;
 }
 
-/* ============================= */
-/* BRAND                         */
-/* ============================= */
-.brand {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 0.18em;
+.hero-panel {
+  border: 2px solid #111;
+  background: linear-gradient(145deg, #d7ea20 0%, #f4b400 45%, #f04e23 100%);
+  box-shadow: 12px 12px 0 #111;
+  padding: 24px;
+}
+
+.eyebrow {
   text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 32px;
-}
-
-/* ============================= */
-/* TYPO – LANDING                */
-/* ============================= */
-.page-landing h1 {
-  font-size: 52px;
-  font-weight: 300;
-  letter-spacing: -0.035em;
-  margin-bottom: 20px;
-}
-
-.page-landing p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #6b7280;
-  margin-bottom: 40px;
-}
-
-/* ============================= */
-/* BUTTONS                       */
-/* ============================= */
-.btn {
-  display: inline-block;
-  padding: 14px 32px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-primary {
-  background: #111827;
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  background: #000000;
-}
-
-/* ============================= */
-/* SYSTEM META                   */
-/* ============================= */
-.system-meta {
-  margin-top: 48px;
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  list-style: none;
-}
-
-.system-meta li {
-  font-size: 12px;
-  color: #9ca3af;
-  padding: 6px 14px;
-  background: #f3f4f6;
-  border-radius: 999px;
-}
-
-/* ============================= */
-/* LOGIN LINK (GLOBAL)           */
-/* ============================= */
-.login-link {
-  position: fixed;
-  bottom: 28px;
-  left: 28px;
+  letter-spacing: 0.16em;
   font-size: 13px;
-  color: #9ca3af;
+  font-weight: 700;
+}
+
+.hero-panel h1 {
+  margin-top: 10px;
+  font-size: clamp(2.8rem, 9vw, 7.2rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.hero-panel h1 span {
+  color: #6a0059;
+}
+
+.lead {
+  margin-top: 14px;
+  max-width: 780px;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  font-weight: 500;
+}
+
+.pill-row,
+.link-row,
+.button-row {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill-row span {
+  border: 2px solid #111;
+  border-radius: 999px;
+  padding: 7px 14px;
+  background: #f4f4f4;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.card-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel {
+  border: 2px solid #111;
+  padding: 22px;
+}
+
+.panel h2 {
+  font-size: clamp(1.2rem, 3.2vw, 2.7rem);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.panel p,
+.panel li {
+  line-height: 1.55;
+  font-size: 1.03rem;
+}
+
+.panel ul {
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+.panel-dark {
+  grid-column: span 7;
+  background: #1b1b23;
+  color: #f4f6f9;
+}
+
+.panel-magenta {
+  grid-column: span 5;
+  background: #6a0059;
+  color: #fff;
+}
+
+.panel-light {
+  grid-column: span 4;
+  background: #f9f2df;
+}
+
+.panel-cyan {
+  grid-column: span 8;
+  background: #00c5e2;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.link-row a {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 800;
+  border-bottom: 2px solid #111;
+}
+
+.footer-panel {
+  margin-top: 18px;
+  border: 2px solid #111;
+  background: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.footer-panel img {
+  width: 80px;
+  border: 1px solid #111;
+}
+
+.meta-box {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 20;
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.meta-box a,
+.meta-box span {
   text-decoration: none;
 }
 
-.login-link:hover {
-  color: #111827;
+.stack-meta {
+  display: grid;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92rem;
 }
 
-
-/* ============================= */
-/* LOGIN CONTAINER               */
-/* ============================= */
-.container {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 18px;
-  padding: 48px 42px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-  backdrop-filter: blur(10px);
+.status-hero h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
 }
 
-.container h1 {
-  font-size: 30px;
-  font-weight: 400;
-  margin-bottom: 10px;
+.login-wrap {
+  max-width: 760px;
 }
 
-.container p {
-  font-size: 15px;
-  color: #6b7280;
-}
-
-/* ============================= */
-/* FORMS                         */
-/* ============================= */
-form {
-  margin-top: 32px;
-}
-
-input {
-  width: 100%;
-  padding: 16px 18px;
-  margin-bottom: 14px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  font-size: 15px;
-}
-
-input::placeholder {
-  color: #9ca3af;
-}
-
-input:focus {
-  outline: none;
-  border-color: #111827;
-}
-
-button {
-  width: 100%;
-  margin-top: 8px;
-  padding: 16px;
-  border-radius: 12px;
-  border: none;
-  font-size: 15px;
-  font-weight: 500;
-  background: #111827;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #000000;
-}
-
-/* ============================= */
-/* MAINTENANCE PAGE              */
-/* ============================= */
-
-.page-maintenance {
-  align-items: center;
-  justify-content: flex-start; /* NICHT mehr zentriert */
-  padding-left: 120px; /* schöner linker Offset */
-}
-
-.page-maintenance .page-content {
-  text-align: left; /* Text links statt Mitte */
-  max-width: 520px;
-}
-
-/* Logo oben */
-.maintenance-logo {
-  width: 42px;
-  height: auto;
-  margin-bottom: 26px;
-  opacity: 0.9;
-}
-
-/* Typo etwas ruhiger für Wartungsseite */
-.page-maintenance h1 {
-  font-size: 46px;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-}
-
-.page-maintenance p {
-  max-width: 420px;
-}
-
-/* System Meta links statt Mitte */
-.page-maintenance .system-meta {
-  justify-content: flex-start;
-}
-
-/* ============================= */
-/* MAINTENANCE – CLEAN STYLE     */
-/* ============================= */
-
-/* Layout LINKS statt Center */
-.page-maintenance {
-  justify-content: flex-start;
-  padding-left: 140px;
-}
-
-.page-maintenance .page-content {
-  text-align: left;
+.login-form {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
   max-width: 480px;
 }
 
-/* Logo */
-.maintenance-logo {
-  width: 64px;
-  margin-bottom: 22px;
-  opacity: 0.85;
+.login-form input,
+.wish-form input,
+.wish-form textarea,
+.wish-form select {
+  width: 100%;
+  border: 2px solid #111;
+  background: #fff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 1rem;
 }
 
-/* Brand NICHT grau */
-.page-maintenance .brand {
-  color: #111827;
-  letter-spacing: 0.12em;
-  font-weight: 500;
+.wish-form textarea {
+  min-height: 110px;
+  resize: vertical;
 }
 
-/* Schmälere Typografie */
-.page-maintenance h1 {
-  font-size: 44px;
-  font-weight: 200; /* dünner */
+button {
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.page-maintenance p {
-  font-size: 17px;
-  color: #4b5563;
-  max-width: 420px;
+.form-status {
+  margin-top: 10px;
+  font-weight: 600;
 }
 
-/* BUTTON weniger "Landingpage" */
-.page-maintenance .btn-primary {
-  background: transparent;
-  color: #111827;
-  padding: 0;
+.url-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
 }
 
-.page-maintenance .btn-primary:hover {
-  background: transparent;
-  text-decoration: underline;
+.url-list li {
+  border-bottom: 1px solid #111;
+  padding-bottom: 4px;
 }
 
-/* SYSTEM META OHNE KACHELN */
-.page-maintenance .system-meta {
-  justify-content: flex-start;
+.wish-form {
+  display: grid;
   gap: 10px;
-  margin-top: 36px;
 }
 
-.page-maintenance .system-meta li {
-  background: none;      /* <- killt die Pills */
-  padding: 0;
-  border-radius: 0;
-  font-size: 12px;
-  color: #9ca3af;
+.wish-list {
+  display: grid;
+  gap: 10px;
 }
 
-/* ============================= */
-/* MAINTENANCE SYSTEM META CLEAN */
-/* ============================= */
-
-.page-maintenance .system-meta {
-  margin-top: 36px;
-  display: block;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 13px;
-  color: #6b7280;
-  line-height: 1.9;
+.wish-item {
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 12px;
+  border-radius: 8px;
 }
 
-.page-maintenance .system-meta div {
-  background: none;
-  padding: 0;
-  border-radius: 0;
+.login-link { display: none; }
+.page, .page-content, .brand, .container { all: unset; display: block; }
+
+@media (max-width: 920px) {
+  .panel-dark,
+  .panel-magenta,
+  .panel-light,
+  .panel-cyan {
+    grid-column: 1 / -1;
+  }
+
+  .meta-box {
+    position: static;
+    width: min(1120px, 92vw);
+    margin: 0 auto 24px;
+  }
 }
