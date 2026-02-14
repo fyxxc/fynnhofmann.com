@@ -2,9 +2,8 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — fynnhofmann.com</title>
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <title>Login – fynnhofmann.com</title>
+  <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
   <main class="site-wrap login-wrap">
@@ -13,18 +12,31 @@
       <h1>Secure <span>Login</span></h1>
       <p class="lead">Bitte anmelden, um den geschützten Bereich zu öffnen.</p>
 
-      <form id="login-form" class="login-form">
-        <input type="email" id="email" placeholder="E-Mail" required>
-        <input type="password" id="password" placeholder="Passwort" required>
+<body class="login-bg">
+  <main class="login-shell">
+    <aside class="login-side-note">
+      <span class="site-name">fynnhofmann.com</span>
+      <h1>Anmeldung</h1>
+      <p>
+        Interner Bereich für Administration und Service-Aufgaben.
+        Bitte mit gültigem Konto anmelden.
+      </p>
+    </aside>
+
+    <section class="login-container">
+      <form id="login-form">
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" placeholder="name@firma.ch" required>
+
+        <label for="password">Passwort</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+
         <button type="submit">Anmelden</button>
       </form>
-      <p id="status" class="form-status"></p>
+
+      <p id="status"></p>
     </section>
   </main>
-
-  <aside class="meta-box">
-    <a href="/">Zur Startseite</a>
-  </aside>
 
   <script type="module" src="/assets/js/login.js"></script>
 </body>

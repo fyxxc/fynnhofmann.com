@@ -8,21 +8,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-  <main class="site-wrap">
-    <section class="hero-panel">
-      <p class="eyebrow">Admin Bereich</p>
-      <h1>Wishlist <span>Manager</span></h1>
-      <p class="lead" id="wishlist-text">Session wird geprüft …</p>
-    </section>
 
-    <section class="card-grid" id="wishlist-content"></section>
-  </main>
+<main class="page page-maintenance">
+  <section class="page-content">
 
-  <aside class="meta-box">
-    <a href="/app/">Dashboard</a>
-    <a href="/login.html">Login</a>
-  </aside>
+    <img src="/assets/images/account_circle_off_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
+         class="maintenance-logo">
 
-  <script type="module" src="/assets/js/wishlist.js"></script>
+    <span class="brand">fynnhofmann.com</span>
+
+    <h1 id="wishlist-title">Authentifizierung erforderlich.</h1>
+
+    <p id="wishlist-text">
+      Dieser Bereich ist geschützt.<br>
+      Bitte melde dich an, um Zugriff zu erhalten.
+    </p>
+
+  </section>
+</main>
+
+<a href="/login.html" class="login-link">Login</a>
+
+<script type="module" src="/assets/js/wishlist.js"></script>
+<script src="/assets/js/maintenance.js"></script>
+
 </body>
 </html>

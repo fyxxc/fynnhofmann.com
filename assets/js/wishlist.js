@@ -16,7 +16,9 @@ const categories = [
   "Camping", "Random Dopamin"
 ];
 
-const session = await waitForSession();
+/* ===== Session prüfen ===== */
+const session = await getStableSession();
+
 if (!session) {
   window.location.replace("/login.html");
 } else {
@@ -31,28 +33,49 @@ supabase.auth.onAuthStateChange((_event, changedSession) => {
   renderWishlist(changedSession);
 });
 
-function renderWishlist(session) {
-  if (!wishlistContent) return;
+async function getStableSession() {
+  for (let i = 0; i < 5; i += 1) {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) return data.session;
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+  return null;
+}
 
-  wishlistText.textContent = `Angemeldet als ${session.user.email}`;
-  wishlistContent.innerHTML = `
-    <article class="panel panel-light">
-      <h2>Neuer Wunsch</h2>
-      <div class="wish-form">
-        <input id="title" placeholder="Titel">
-        <input id="link" placeholder="Link">
-        <textarea id="description" placeholder="Beschreibung"></textarea>
-        <select id="category">
-          ${categories.map((c) => `<option value="${c}">${c}</option>`).join("")}
-        </select>
-        <button id="addWish">Wunsch hinzufügen</button>
-      </div>
-    </article>
+/* ===== Wishlist UI ===== */
+function renderWishlist(session){
 
-    <article class="panel panel-dark full-width">
-      <h2>Wünsche</h2>
-      <div id="wishList" class="wish-list"></div>
-    </article>
+  if (rendered) return;
+  rendered = true;
+
+  container.innerHTML = `
+    <div class="site-name">fynnhofmann.com</div>
+
+    <h1>
+      <span class="material-symbols-outlined">shopping_cart</span>
+      Wishlist
+    </h1>
+
+    <div class="card">
+
+      <span class="material-symbols-outlined">add_shopping_cart</span>
+
+      <input id="title" placeholder="Titel">
+      <input id="link" placeholder="Link">
+      <textarea id="description" placeholder="Beschreibung"></textarea>
+
+      <select id="category">
+        ${categories.map(c => `<option value="${c}">${c}</option>`).join("")}
+      </select>
+
+      <button id="addWish">
+        <span class="material-symbols-outlined">add</span>
+        Wunsch hinzufügen
+      </button>
+
+    </div>
+
+    <div id="wishList"></div>
   `;
 
   document.getElementById("addWish")?.addEventListener("click", addWish);
