@@ -2,72 +2,77 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>fynnhofmann.com</title>
-  <link rel="stylesheet" href="assets/css/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fynn Hofmann — Portfolio</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
 </head>
-
-<script type="module">
-async function checkMaintenance() {
-  try {
-    const res = await fetch("/config.json?cache=" + Date.now());
-    const cfg = await res.json();
-    if (cfg.maintenance === true) {
-      window.location.href = "/maintenance/";
-    }
-  } catch (e) {}
-}
-checkMaintenance();
-</script>
-
 <body>
-
-<main class="page page-landing">
-  <section class="page-content">
-
-    <span class="brand">fynnhofmann.com</span>
-
-    <h1>Willkommen</h1>
-
-    <p>
-      Auf dieser Seite findest du meine Kontaktmöglichkeiten.
-    </p>
-
-    <!-- 🔗 Kontaktbereich -->
-    <div style="margin-top:36px;">
-
-      <!-- Mail + LinkedIn als ruhige Textlinks -->
-      <p style="font-size:18px; line-height:2;">
-        <a href="mailto:mail@fynnhofmann.com" style="text-decoration:none;color:#111827;">Mail</a>
-        &nbsp;·&nbsp;
-        <a href="https://linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" style="text-decoration:none;color:#111827;">LinkedIn</a>
-      </p>
-
-      <!-- Threema integriert -->
-      <div style="margin-top:28px;">
-        <img 
-          src="assets/images/threema_id.png"
-          alt="Threema QR"
-          style="width:150px; opacity:0.92;">
-        <p style="margin-top:10px; font-size:14px; color:#9ca3af;">
-          Threema ID: S2MJ8VFN
-        </p>
+  <main class="site-wrap">
+    <section class="hero-panel">
+      <p class="eyebrow">Persönliches Portfolio</p>
+      <h1>Fynn <span>Hofmann</span></h1>
+      <p class="lead">Kreative Web-Lösungen, klare Struktur und starke visuelle Sprache.</p>
+      <div class="pill-row">
+        <span>Frontend</span>
+        <span>Design</span>
+        <span>IT</span>
+        <span>Recruiting</span>
       </div>
+    </section>
 
-    </div>
+    <section class="card-grid">
+      <article class="panel panel-dark">
+        <h2>Über mich</h2>
+        <p>Ich verbinde Technik und Gestaltung. Mein Fokus liegt auf digitalen Produkten, die klar, schnell und persönlich sind.</p>
+      </article>
+      <article class="panel panel-magenta">
+        <h2>Skills</h2>
+        <ul>
+          <li>HTML, CSS, JavaScript</li>
+          <li>UX-nahe Informationsstruktur</li>
+          <li>Operatives Dashboard-Setup</li>
+        </ul>
+      </article>
+      <article class="panel panel-light">
+        <h2>Projekte</h2>
+        <p>Landingpages, Admin-Bereiche, interne Tools und automatisierte Workflows.</p>
+      </article>
+      <article class="panel panel-cyan">
+        <h2>Kontakt</h2>
+        <p>Gerne direkt schreiben:</p>
+        <div class="link-row">
+          <a href="mailto:mail@fynnhofmann.com">Mail</a>
+          <a href="https://linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </article>
+    </section>
 
-  </section>
-</main>
+    <footer class="footer-panel">
+      <div><strong>Threema ID:</strong> S2MJ8VFN</div>
+      <img src="/assets/images/threema_id.png" alt="Threema QR">
+    </footer>
+  </main>
 
-<!-- 🔐 Footer links unten -->
-<div style="position:fixed; bottom:28px; left:28px; font-size:13px; color:#9ca3af; line-height:1.6;">
-  <a href="/login" style="color:#9ca3af; text-decoration:none;">Admin Login</a><br>
-  <a href="/recruiter/login" style="color:#9ca3af; text-decoration:none;">Recruiter Login</a><br>
-  <span id="browser"></span><br>
-  <span id="os"></span><br>
-  <span id="time"></span>
-</div>
+  <aside class="meta-box">
+    <a href="/login.html">Admin Login</a>
+    <a href="/recruiter/login.html">Recruiter Login</a>
+    <span id="browser"></span>
+    <span id="os"></span>
+    <span id="time"></span>
+  </aside>
 
-
-<script src="assets/js/maintenance.js"></script>
+  <script type="module">
+    async function checkMaintenance() {
+      try {
+        const res = await fetch('/config.json?cache=' + Date.now());
+        const cfg = await res.json();
+        if (cfg.maintenance === true) {
+          window.location.replace('/maintenance/');
+        }
+      } catch (_) {}
+    }
+    checkMaintenance();
+  </script>
+  <script src="/assets/js/maintenance.js"></script>
 </body>
 </html>
