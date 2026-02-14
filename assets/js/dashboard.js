@@ -21,13 +21,22 @@ if (!content) {
 const { data: { session } } = await supabase.auth.getSession();
 if (session) {
   renderDashboard(session);
+
+  supabase.auth.onAuthStateChange((_event, changedSession) => {
+    if (!changedSession) {
+      window.location.replace("/login.html");
+      return;
+    }
+    renderDashboard(changedSession);
+  });
 }
 
 supabase.auth.onAuthStateChange((_event, nextSession) => {
   if (nextSession) {
     renderDashboard(nextSession);
   }
-});
+  return null;
+}
 
 function isRecruiterEnabled() {
   const current = localStorage.getItem(RECRUITER_KEY);
@@ -95,7 +104,7 @@ function renderDashboard(activeSession) {
 
   document.getElementById("logout")?.addEventListener("click", async () => {
     await supabase.auth.signOut();
-    window.location.href = "/login";
+    window.location.replace("/login.html");
   });
 
   document.getElementById("toggleMaintenance")?.addEventListener("click", toggleMaintenance);
@@ -123,9 +132,9 @@ async function toggleMaintenance() {
     .eq("id", 1)
     .single();
 
-  const newValue = !data.maintenance;
+  const newValue = !data?.maintenance;
 
-  await supabase
+  const { error } = await supabase
     .from("site_config")
     .update({ maintenance: newValue })
     .eq("id", 1);

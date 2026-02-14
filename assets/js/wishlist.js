@@ -53,17 +53,30 @@ const categories = [
 ];
 
 /* ===== Session prüfen ===== */
-const { data: { session } } = await supabase.auth.getSession();
+const session = await getStableSession();
 
-if (session) {
+if (!session) {
+  window.location.replace("/login.html");
+} else {
   renderWishlist(session);
 }
 
-supabase.auth.onAuthStateChange((_event, session) => {
-  if (session) {
-    renderWishlist(session);
+supabase.auth.onAuthStateChange((_event, changedSession) => {
+  if (!changedSession) {
+    window.location.replace("/login.html");
+    return;
   }
+  renderWishlist(changedSession);
 });
+
+async function getStableSession() {
+  for (let i = 0; i < 5; i += 1) {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) return data.session;
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+  return null;
+}
 
 /* ===== Wishlist UI ===== */
 function renderWishlist(session){

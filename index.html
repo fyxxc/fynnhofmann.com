@@ -2,17 +2,18 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>fynnhofmann.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fynn Hofmann — Portfolio</title>
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <script type="module">
 async function checkMaintenance() {
   try {
-    const res = await fetch("/config.json?cache=" + Date.now());
+    const res = await fetch('/config.json?cache=' + Date.now());
     const cfg = await res.json();
     if (cfg.maintenance === true) {
-      window.location.href = "/maintenance/";
+      window.location.href = '/maintenance/';
     }
   } catch (e) {}
 }
@@ -31,6 +32,13 @@ checkMaintenance();
         Klar, ruhig und direkt erreichbar. Hier findest du meine wichtigsten
         Kontaktkanäle sowie einen schnellen Überblick über meinen Fokus.
       </p>
+      <div class="hero-tags">
+        <span>Web</span>
+        <span>Branding</span>
+        <span>IT</span>
+        <span>Recruiting</span>
+      </div>
+    </header>
 
       <div class="info-grid">
         <article class="info-card">
