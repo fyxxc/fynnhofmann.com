@@ -313,3 +313,250 @@ button:hover {
   padding: 0;
   border-radius: 0;
 }
+
+/* ============================= */
+/* PORTFOLIO HOMEPAGE            */
+/* ============================= */
+body {
+  background: radial-gradient(circle at 20% 20%, #f8f6ef 0%, #ece8da 45%, #e5e2d2 100%);
+}
+
+.portfolio-page {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  padding: 60px 0 100px;
+}
+
+.hero {
+  padding: 24px;
+  border: 2px solid #111;
+  background: linear-gradient(145deg, #d8e81f 0%, #f6be00 45%, #f14e24 100%);
+  box-shadow: 12px 12px 0 #111;
+}
+
+.kicker {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #111;
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 11vw, 8rem);
+  line-height: 0.9;
+  margin: 18px 0;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 span {
+  display: block;
+  color: #690058;
+}
+
+.hero-text {
+  max-width: 760px;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: #111;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-tags span {
+  border: 2px solid #111;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-weight: 700;
+  background: #f3f4f6;
+}
+
+.grid-portfolio {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.card {
+  border: 2px solid #111;
+  padding: 24px;
+}
+
+.card h2 {
+  font-size: clamp(1.4rem, 3.4vw, 3rem);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.card p,
+.card li {
+  font-size: 1.06rem;
+  line-height: 1.6;
+}
+
+.card ul {
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.card-accent {
+  grid-column: span 7;
+  background: #1b1b23;
+  color: #f4f4f4;
+}
+
+.card-dark {
+  grid-column: span 5;
+  background: #690058;
+  color: #fff;
+}
+
+.card-light {
+  grid-column: span 4;
+  background: #f9f2df;
+}
+
+.card-highlight {
+  grid-column: span 8;
+  background: #03c2e1;
+}
+
+.contact-links {
+  margin-top: 14px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 800;
+  border-bottom: 2px solid #111;
+}
+
+.portfolio-footer {
+  margin-top: 20px;
+  border: 2px solid #111;
+  padding: 18px 22px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.portfolio-footer img {
+  width: 80px;
+  border: 1px solid #111;
+}
+
+.site-meta {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 20;
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.site-meta a,
+.site-meta span {
+  color: #111;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .card-accent,
+  .card-dark,
+  .card-light,
+  .card-highlight {
+    grid-column: 1 / -1;
+  }
+
+  .site-meta {
+    position: static;
+    width: min(1120px, 92vw);
+    margin: 20px auto 30px;
+  }
+}
+
+/* ============================= */
+/* STATUS + ADMIN EXTENSIONS     */
+/* ============================= */
+.status-page,
+.page-dashboard {
+  padding-top: 40px;
+}
+
+.status-hero h1,
+.dashboard-hero h1 {
+  font-size: clamp(2.8rem, 9vw, 6.5rem);
+}
+
+.status-grid .card,
+.page-dashboard .dashboard-card {
+  min-height: 180px;
+}
+
+.status-meta-card .system-meta {
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9rem;
+}
+
+.page-dashboard .grid-portfolio {
+  align-items: stretch;
+}
+
+.page-dashboard .dashboard-card:nth-child(1) {
+  grid-column: span 6;
+}
+
+.page-dashboard .dashboard-card:nth-child(2) {
+  grid-column: span 6;
+}
+
+.page-dashboard .dashboard-card:nth-child(3) {
+  grid-column: span 12;
+}
+
+.page-dashboard button {
+  width: auto;
+  margin-top: 12px;
+  margin-right: 10px;
+  padding: 10px 16px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+}
+
+.url-index-card ul {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.url-index-card li {
+  border-bottom: 1px solid #111;
+  padding-bottom: 4px;
+}
+
+.url-index-card a {
+  color: #111;
+  font-weight: 600;
+  text-decoration: none;
+}

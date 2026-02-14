@@ -1,11 +1,9 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-/* ===== Maintenance Check ===== */
 async function checkMaintenance() {
   try {
     const res = await fetch("/config.json?cache=" + Date.now());
     const cfg = await res.json();
-
     if (cfg.maintenance === true) {
       window.location.href = "/maintenance/";
       return true;
@@ -17,15 +15,7 @@ async function checkMaintenance() {
 }
 
 const maintenanceActive = await checkMaintenance();
-if (maintenanceActive) {
-  throw new Error("Maintenance active");
-}
-
-console.log("login.js geladen");
-
-/* ============================= */
-/* SUPABASE CLIENT               */
-/* ============================= */
+if (maintenanceActive) throw new Error("Maintenance active");
 
 const supabase = createClient(
   "https://zjpmumucjrltpcykmdti.supabase.co",
@@ -35,9 +25,10 @@ const supabase = createClient(
 const form = document.getElementById("login-form");
 const status = document.getElementById("status");
 
-/* ============================= */
-/* LOGIN HANDLER                 */
-/* ============================= */
+const { data: existing } = await supabase.auth.getSession();
+if (existing.session) {
+  window.location.replace("/app/");
+}
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -47,23 +38,23 @@ form.addEventListener("submit", async (event) => {
 
   status.textContent = "Prüfe Anmeldung ...";
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
-
-  /* ===== ERROR HANDLING ===== */
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    console.log("Supabase Fehler:", error.message);
-
-    /* Security: keine Details leaken */
     status.textContent = "Ungültige Anmeldung.";
     return;
   }
 
-  /* ===== SUCCESS ===== */
+  for (let i = 0; i < 5; i += 1) {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+      status.textContent = "Weiterleitung ...";
+      window.location.replace("/app/");
+      return;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 200));
+  }
 
-  status.textContent = "Weiterleitung ...";
-  window.location.href = "/app/";
+  status.textContent = "Anmeldung erfolgreich, lade Dashboard ...";
+  window.location.replace("/app/");
 });
