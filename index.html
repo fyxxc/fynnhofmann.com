@@ -3,61 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio – Fynn Hofmann</title>
+    <title>Fynn Hofmann – Persönliches Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="noise"></div>
-    <header class="hero">
-      <p class="tag">Portfolio · persönlich · kreativ</p>
-      <h1>
-        Hallo, ich bin <span>Fynn</span><br />
-        Designer & Web-Enthusiast
-      </h1>
-      <p class="intro">
-        Ich gestalte starke Markenauftritte mit mutiger Typografie, klaren Farben
-        und einem Fokus auf Persönlichkeit.
-      </p>
-      <a href="#projekte" class="cta">Projekte entdecken</a>
-    </header>
+    <main class="page-wrap">
+      <section class="hero-card box">
+        <p class="mini-label">Persönliches Portfolio</p>
+        <h1>FYNN <span>HOFMANN</span></h1>
+        <p class="hero-text">
+          Kreative Web-Lösungen, klare Struktur und starke visuelle Sprache.
+        </p>
+        <div class="chip-row">
+          <span>Frontend</span>
+          <span>Design</span>
+          <span>IT</span>
+          <span>Recruiting</span>
+        </div>
+      </section>
 
-    <main>
-      <section id="projekte" class="panel-grid">
-        <article class="panel lime">
-          <p class="kicker">Projekt 01</p>
-          <h2>Urban Poster Serie</h2>
-          <p>Experimentelle Plakatreihe mit großer Schrift und Kontrastfarben.</p>
+      <section class="grid-two">
+        <article class="box panel panel-dark">
+          <h2>Über mich</h2>
+          <p>
+            Ich verbinde Technik und Gestaltung. Mein Fokus liegt auf digitalen
+            Produkten, die klar, schnell und persönlich sind.
+          </p>
         </article>
-        <article class="panel magenta">
-          <p class="kicker">Projekt 02</p>
-          <h2>Digitales Magazin</h2>
-          <p>Editorial Design für ein Kulturmagazin mit lebendigem Layout-System.</p>
-        </article>
-        <article class="panel cyan">
-          <p class="kicker">Projekt 03</p>
-          <h2>Personal Brand Kit</h2>
-          <p>Logo, Farbwelt und Webkonzept für eine persönliche Marke.</p>
+
+        <article class="box panel panel-purple">
+          <h2>Skills</h2>
+          <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>UX-nahe Informationsstruktur</li>
+            <li>Operatives Dashboard-Setup</li>
+          </ul>
         </article>
       </section>
 
-      <section class="about">
-        <h3>Über mich</h3>
-        <p>
-          Ich liebe visuelle Systeme, die mutig, laut und trotzdem präzise sind.
-          Meine Arbeit verbindet Grafikdesign, Webdesign und Storytelling.
-        </p>
-        <ul>
-          <li>Branding</li>
-          <li>Webdesign</li>
-          <li>UI/UX</li>
-          <li>Art Direction</li>
-        </ul>
+      <section class="grid-two lower-grid">
+        <article class="box panel panel-light">
+          <h2>Projekte</h2>
+          <p>
+            Landingpages, Admin-Bereiche, interne Tools und automatisierte
+            Workflows.
+          </p>
+        </article>
+
+        <article class="box panel panel-cyan">
+          <h2>Kontakt</h2>
+          <p>Gerne direkt schreiben:</p>
+          <p class="links">
+            <a href="mailto:fynn@example.com">Mail</a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="beruf.html">Berufserfahrung</a>
+          </p>
+        </article>
+      </section>
+
+      <section class="box footer-strip">
+        <p><strong>Threema ID:</strong> S2MJ8VFN</p>
+        <div class="qr-fake" aria-label="Dekoratives QR-Element"></div>
       </section>
     </main>
   </body>
