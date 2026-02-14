@@ -1,39 +1,28 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>Wishlist – fynnhofmann.com</title>
-
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!-- Google Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist — fynnhofmann.com</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
-
 <body>
+  <main class="site-wrap">
+    <section class="hero-panel">
+      <p class="eyebrow">Admin Bereich</p>
+      <h1>Wishlist <span>Manager</span></h1>
+      <p class="lead" id="wishlist-text">Session wird geprüft …</p>
+    </section>
 
-<main class="page page-maintenance">
-  <section class="page-content">
+    <section class="card-grid" id="wishlist-content"></section>
+  </main>
 
-    <img src="/assets/images/account_circle_off_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
-         class="maintenance-logo">
+  <aside class="meta-box">
+    <a href="/app/">Dashboard</a>
+    <a href="/login.html">Login</a>
+  </aside>
 
-    <span class="brand">fynnhofmann.com</span>
-
-    <h1 id="wishlist-title">Authentifizierung erforderlich.</h1>
-
-    <p id="wishlist-text">
-      Dieser Bereich ist geschützt.<br>
-      Bitte melde dich an, um Zugriff zu erhalten.
-    </p>
-
-  </section>
-</main>
-
-<a href="/login" class="login-link">Login</a>
-
-<script type="module" src="/assets/js/wishlist.js"></script>
-<script src="/assets/js/maintenance.js"></script>
-
+  <script type="module" src="/assets/js/wishlist.js"></script>
 </body>
 </html>
