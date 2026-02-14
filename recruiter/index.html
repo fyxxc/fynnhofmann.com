@@ -2,38 +2,60 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recruiter Bereich – fynnhofmann.com</title>
-
-  <!-- Cloudflare Pages: absoluter Pfad -->
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
 <body>
+  <main class="app-shell">
+    <section class="app-header">
+      <span class="brand">fynnhofmann.com</span>
+      <h1 id="welcome">Authentifizierung erforderlich.</h1>
+      <p id="dashboard-text">Bitte melde dich an, um Recruiting-Unterlagen zu sehen.</p>
+    </section>
 
-<main class="page page-maintenance">
-  <section class="page-content">
+    <section class="notice-panel" id="access-notice">
+      <h2>Status</h2>
+      <p>Authentifizierung erforderlich.</p>
+    </section>
 
-    <!-- Logo -->
-    <img src="/assets/images/account_circle_off_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
-         class="maintenance-logo"
-         alt="Recruiter">
+    <section class="app-grid" id="dashboard-content" hidden>
+      <article class="app-card">
+        <h3>Profil & Erfahrung</h3>
+        <p>Übersicht über Berufserfahrung, Ausbildung und Zertifikate.</p>
+        <a href="/profil.html">Profil öffnen</a>
+      </article>
 
-    <span class="brand">fynnhofmann.com</span>
+      <article class="app-card">
+        <h3>Bewerbungsunterlagen</h3>
+        <p>Zentrale Unterlagen und Nachweise auf einen Blick.</p>
+        <a href="/bewerbung/bewerbung.html">Bewerbungsseite öffnen</a>
+      </article>
 
-    <!-- 🔒 Default Zustand (wird von recruiter-auth.js überschrieben) -->
-    <h1 id="welcome">Authentifizierung erforderlich.</h1>
+      <article class="app-card">
+        <h3>Zertifikate</h3>
+        <p>Direkte PDF-Links für Verifikation.</p>
+        <ul class="link-list">
+          <li><a href="/assets/images/Zertifikat_Login_Ambassador_Fynn_Hofmann.pdf" target="_blank" rel="noreferrer">login Ambassador</a></li>
+          <li><a href="/assets/images/Zertifikat-Basisausbildung-Fynn-Hofmann-2024.pdf" target="_blank" rel="noreferrer">Basisausbildung ICT</a></li>
+          <li><a href="/assets/images/Teilnahmebestätigung_Memory_Forensik.pdf" target="_blank" rel="noreferrer">ServiceNow Training</a></li>
+        </ul>
+      </article>
 
-    <p>
-      Angemeldet als: <span id="user-email">–</span><br>
-      Session Status: <span id="session-status">–</span><br>
-      Letzter Login: <span id="last-login">–</span><br>
-      Umgebung: <span id="environment">–</span>
-    </p>
+      <article class="app-card app-card-meta">
+        <h3>Session</h3>
+        <p>Angemeldet als: <span id="user-email">–</span></p>
+        <p>Status: <span id="session-status">–</span></p>
+        <p>Letzter Login: <span id="last-login">–</span></p>
+        <p>Umgebung: <span id="environment">–</span></p>
+      </article>
+    </section>
 
-    <!-- 👉 Hier kannst du später Lebenslauf / Zertifikate einbauen -->
-    <div id="dashboard-content"></div>
-
-    <button id="logout">Abmelden</button>
+    <div class="app-actions">
+      <button id="logout">Abmelden</button>
+      <a href="/recruiter/login.html" class="inline-link">Zum Recruiter Login</a>
+    </div>
 
     <div class="system-meta">
       <div id="time"></div>
@@ -41,18 +63,9 @@
       <div id="browser"></div>
       <div id="os"></div>
     </div>
+  </main>
 
-  </section>
-</main>
-
-<!-- Recruiter Login Link (falls Session verloren geht) -->
-<a href="/recruiter/login.html" class="login-link">Recruiter Login</a>
-
-<!-- 🔐 Recruiter Auth Schutz -->
-<script type="module" src="/assets/js/recruiter-auth.js"></script>
-
-<!-- Optional Systeminfos -->
-<script src="/assets/js/maintenance.js"></script>
-
+  <script type="module" src="/assets/js/recruiter-auth.js"></script>
+  <script src="/assets/js/maintenance.js"></script>
 </body>
 </html>
