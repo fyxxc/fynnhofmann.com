@@ -2,51 +2,33 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard – fynnhofmann.com</title>
-
-  <!-- Cloudflare Pages: absoluter Pfad -->
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
 <body>
-
-<main class="page page-maintenance">
-  <section class="page-content">
-
-    <!-- Logo -->
-    <img src="/assets/images/account_circle_off_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
-         class="maintenance-logo"
-         alt="System">
-
-    <span class="brand">fynnhofmann.com</span>
-
-    <!-- 🔒 Standardzustand (wird von dashboard.js ersetzt) -->
-    <h1 id="dashboard-title">Authentifizierung erforderlich.</h1>
-
-    <p id="dashboard-text">
-      Dieser Bereich ist geschützt.<br>
-      Bitte melde dich an, um Zugriff zu erhalten.
+<main class="portfolio-page page-dashboard">
+  <section class="hero dashboard-hero">
+    <p class="kicker">Admin Bereich</p>
+    <h1><span>Control</span> Center</h1>
+    <p class="hero-text" id="dashboard-text">
+      Authentifizierung wird geprüft ...
     </p>
-
-    <div id="dashboard-content"></div>
-
-    <div class="system-meta">
-      <div id="time"></div>
-      <div id="ip"></div>
-      <div id="browser"></div>
-      <div id="os"></div>
-    </div>
-
   </section>
+
+  <section class="grid-portfolio" id="dashboard-content"></section>
 </main>
 
-<a href="/login" class="login-link">Login</a>
+<aside class="site-meta">
+  <a href="/login.html">Login</a>
+  <a href="/recruiter/login.html">Recruiter Login</a>
+  <span id="browser"></span>
+  <span id="os"></span>
+  <span id="time"></span>
+</aside>
 
-<!-- Dashboard Logik -->
 <script type="module" src="/assets/js/dashboard.js"></script>
-
-<!-- Optional: gleiche Systeminfos wie Maintenance -->
 <script src="/assets/js/maintenance.js"></script>
-
 </body>
 </html>

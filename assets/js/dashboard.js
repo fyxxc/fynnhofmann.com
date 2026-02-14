@@ -7,110 +7,117 @@ const supabase = createClient(
   "sb_publishable_2RFiY1Lw7Lucgt9fXhYRJQ_k37Ggs4N"
 );
 
-const container = document.querySelector(".page-content");
+const content = document.getElementById("dashboard-content");
+const dashboardText = document.getElementById("dashboard-text");
 
-if (!container) {
-  console.error("page-content nicht gefunden");
-}
+const quickLinks = [
+  { label: "Startseite", url: "/" },
+  { label: "Login", url: "/login.html" },
+  { label: "Maintenance", url: "/maintenance/" },
+  { label: "Wishlist", url: "/app/wishlist.html" },
+  { label: "404", url: "/404.html" },
+  { label: "401", url: "/401.html" },
+  { label: "403", url: "/403.html" },
+  { label: "500", url: "/500.html" },
+  { label: "502", url: "/502.html" },
+  { label: "503", url: "/503.html" }
+];
 
-/* ===== Session prüfen ===== */
-const { data: { session } } = await supabase.auth.getSession();
+init();
 
-if (session) {
-  renderDashboard(session);
-}
+async function init() {
+  const session = await getStableSession();
 
-/* ===== Auth Listener ===== */
-supabase.auth.onAuthStateChange((_event, session) => {
-  if (session) {
-    renderDashboard(session);
+  if (!session) {
+    window.location.replace("/login.html");
+    return;
   }
-});
 
-/* ===== Dashboard ===== */
+  renderDashboard(session);
+
+  supabase.auth.onAuthStateChange((_event, changedSession) => {
+    if (!changedSession) {
+      window.location.replace("/login.html");
+      return;
+    }
+    renderDashboard(changedSession);
+  });
+}
+
+async function getStableSession() {
+  for (let i = 0; i < 5; i += 1) {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) return data.session;
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+  return null;
+}
+
 function renderDashboard(session) {
-
-  if (rendered) return;
+  if (!content || rendered) return;
   rendered = true;
 
-  container.innerHTML = `
-    <div class="site-name">fynnhofmann.com</div>
+  dashboardText.textContent = `Angemeldet als ${session.user.email}`;
 
-    <h1>Dashboard</h1>
-    <p>Angemeldet als <strong>${session.user.email}</strong></p>
+  const urlRows = quickLinks
+    .map((link) => `<li><strong>${link.label}</strong> <a href="${link.url}" target="_blank" rel="noreferrer">${link.url}</a></li>`)
+    .join("");
 
-    <div class="dashboard-grid">
-
-      <div class="card">
-        <h3>Wishlist</h3>
-        <a href="/app/wishlist">Öffnen</a>
+  content.innerHTML = `
+    <article class="card card-accent dashboard-card">
+      <h2>Schnellzugriff</h2>
+      <div class="contact-links">
+        <a href="/app/wishlist.html">Wishlist</a>
+        <a href="https://dash.cloudflare.com" target="_blank" rel="noreferrer">Cloudflare</a>
+        <a href="https://supabase.com/dashboard" target="_blank" rel="noreferrer">Supabase</a>
+        <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
       </div>
+    </article>
 
-      <div class="card">
-        <h3>Cloudflare</h3>
-        <a href="https://dash.cloudflare.com" target="_blank">Öffnen</a>
-      </div>
+    <article class="card card-dark dashboard-card">
+      <h2>System</h2>
+      <p>Letzter Login: ${new Date(session.user.last_sign_in_at).toLocaleString("de-DE")}</p>
+      <p>Browser: ${getBrowser()}</p>
+      <button id="toggleMaintenance">Wartungsmodus umschalten</button>
+      <button id="logout">Abmelden</button>
+    </article>
 
-      <div class="card">
-        <h3>GitHub</h3>
-        <a href="https://github.com" target="_blank">Öffnen</a>
-      </div>
-
-      <div class="card">
-        <h3>Supabase</h3>
-        <a href="https://supabase.com/dashboard" target="_blank">Console</a>
-      </div>
-
-      <div class="card">
-        <h3>Maintenance Mode</h3>
-        <button id="toggleMaintenance">Toggle Wartung</button>
-      </div>
-
-      <div class="card">
-        <h3>Letzter Login</h3>
-        <p>${new Date(session.user.last_sign_in_at).toLocaleString()}</p>
-      </div>
-
-      <div class="card">
-        <h3>Browser</h3>
-        <p>${getBrowser()}</p>
-      </div>
-
-    </div>
-
-    <button id="logout">Abmelden</button>
+    <article class="card card-light dashboard-card url-index-card">
+      <h2>Inhaltsverzeichnis (URLs)</h2>
+      <ul>${urlRows}</ul>
+    </article>
   `;
 
-  document.getElementById("logout").addEventListener("click", async () => {
+  document.getElementById("logout")?.addEventListener("click", async () => {
     await supabase.auth.signOut();
-    window.location.href = "/login";
+    window.location.replace("/login.html");
   });
 
-  document
-    .getElementById("toggleMaintenance")
-    ?.addEventListener("click", toggleMaintenance);
+  document.getElementById("toggleMaintenance")?.addEventListener("click", toggleMaintenance);
 }
 
-/* ===== Maintenance ===== */
 async function toggleMaintenance() {
-
   const { data } = await supabase
     .from("site_config")
     .select("maintenance")
     .eq("id", 1)
     .single();
 
-  const newValue = !data.maintenance;
+  const newValue = !data?.maintenance;
 
-  await supabase
+  const { error } = await supabase
     .from("site_config")
     .update({ maintenance: newValue })
     .eq("id", 1);
 
-  alert("Maintenance ist jetzt: " + newValue);
+  if (error) {
+    alert("Wartungsmodus konnte nicht geändert werden.");
+    return;
+  }
+
+  alert(`Maintenance ist jetzt: ${newValue}`);
 }
 
-/* ===== Helper ===== */
 function getBrowser() {
   const ua = navigator.userAgent;
   if (ua.includes("Firefox")) return "Firefox";

@@ -489,3 +489,74 @@ body {
     margin: 20px auto 30px;
   }
 }
+
+/* ============================= */
+/* STATUS + ADMIN EXTENSIONS     */
+/* ============================= */
+.status-page,
+.page-dashboard {
+  padding-top: 40px;
+}
+
+.status-hero h1,
+.dashboard-hero h1 {
+  font-size: clamp(2.8rem, 9vw, 6.5rem);
+}
+
+.status-grid .card,
+.page-dashboard .dashboard-card {
+  min-height: 180px;
+}
+
+.status-meta-card .system-meta {
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9rem;
+}
+
+.page-dashboard .grid-portfolio {
+  align-items: stretch;
+}
+
+.page-dashboard .dashboard-card:nth-child(1) {
+  grid-column: span 6;
+}
+
+.page-dashboard .dashboard-card:nth-child(2) {
+  grid-column: span 6;
+}
+
+.page-dashboard .dashboard-card:nth-child(3) {
+  grid-column: span 12;
+}
+
+.page-dashboard button {
+  width: auto;
+  margin-top: 12px;
+  margin-right: 10px;
+  padding: 10px 16px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+}
+
+.url-index-card ul {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.url-index-card li {
+  border-bottom: 1px solid #111;
+  padding-bottom: 4px;
+}
+
+.url-index-card a {
+  color: #111;
+  font-weight: 600;
+  text-decoration: none;
+}
