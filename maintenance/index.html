@@ -2,44 +2,52 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>fynnhofmann.com – Wartung</title>
-
-  <!-- WICHTIG: absoluter Pfad für Cloudflare Pages -->
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
 <body>
-
-<main class="page page-maintenance">
-  <section class="page-content">
-
-    <!-- Logo -->
-    <img src="/assets/images/service_toolbox_700dp_434343_FILL0_wght400_GRAD0_opsz48.png"
-         class="maintenance-logo"
-         alt="Maintenance">
-
-    <span class="brand">fynnhofmann.com</span>
-
-    <h1>Wir sind gleich zurück.</h1>
-
-    <p>
-      Die Website wird aktuell gewartet.<br>
-      Einige Funktionen stehen temporär nicht zur Verfügung.
+<main class="portfolio-page status-page">
+  <section class="hero status-hero">
+    <p class="kicker">System Status</p>
+    <h1><span>Wartung</span> Aktiv</h1>
+    <p class="hero-text">
+      Die Seite erhält gerade ein Update. Ich bin gleich wieder online.
     </p>
+  </section>
 
-    <div class="system-meta">
-      <div id="time"></div>
-      <div id="ip"></div>
-      <div id="browser"></div>
-      <div id="os"></div>
-    </div>
+  <section class="grid-portfolio status-grid">
+    <article class="card card-accent">
+      <h2>Was passiert?</h2>
+      <p>Inhalte und Funktionen werden verbessert. Währenddessen können einzelne Bereiche nicht erreichbar sein.</p>
+    </article>
 
+    <article class="card card-light">
+      <h2>Kontakt</h2>
+      <p>Dringend? Schreib mir gerne direkt per Mail.</p>
+      <div class="contact-links">
+        <a href="mailto:mail@fynnhofmann.com">mail@fynnhofmann.com</a>
+      </div>
+    </article>
+
+    <article class="card card-highlight status-meta-card">
+      <h2>Live Infos</h2>
+      <div class="system-meta">
+        <div id="time"></div>
+        <div id="ip"></div>
+        <div id="browser"></div>
+        <div id="os"></div>
+      </div>
+    </article>
   </section>
 </main>
 
-<a href="/login" class="login-link">Login</a>
+<aside class="site-meta">
+  <a href="/login.html">Login</a>
+  <a href="/">Zur Startseite</a>
+</aside>
 
-<!-- Ebenfalls absoluter Pfad -->
 <script src="/assets/js/maintenance.js"></script>
 </body>
 </html>
