@@ -886,37 +886,36 @@ strong {
 }
 
 /* =========================================================
-   BERUF.HTML specific
+   PAGE HERO (sub-pages)
    ========================================================= */
-.beruf-header {
+.page-hero {
   background: var(--bg-dark);
-  color: #f5f5f7;
-  padding: 136px 0 72px;
+  padding: 130px 0 72px;
 }
 
-.beruf-eyebrow {
+.page-hero-eyebrow {
+  display: block;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #6e6e73;
-  display: block;
   margin-bottom: 12px;
 }
 
-.beruf-title {
-  font-size: clamp(40px, 7vw, 80px);
+.page-hero-title {
+  font-size: clamp(48px, 8vw, 96px);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 1;
+  line-height: 0.95;
   color: #f5f5f7;
   margin-bottom: 16px;
 }
 
-.beruf-meta {
-  font-size: 16px;
+.page-hero-sub {
+  font-size: 18px;
+  font-weight: 300;
   color: #8e8e93;
-  margin-bottom: 32px;
 }
 
 .back-link {
@@ -927,62 +926,386 @@ strong {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  margin-bottom: 24px;
   transition: gap 0.2s;
 }
 .back-link:hover { gap: 10px; }
 
-.beruf-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 20px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 980px;
-  font-size: 17px;
-  font-weight: 600;
-  color: #f5f5f7;
-  margin-bottom: 32px;
-  letter-spacing: -0.01em;
-}
-
-.beruf-columns {
+/* =========================================================
+   TEASER CARDS (index.html)
+   ========================================================= */
+.teaser-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.beruf-column {
+.teaser-card {
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.teaser-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+}
+
+.teaser-icon {
+  font-size: 36px;
+  margin-bottom: 18px;
+  display: block;
+}
+.teaser-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.teaser-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 20px;
+}
+.teaser-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* =========================================================
+   EXPERIENCE TIMELINE (erfahrung.html)
+   ========================================================= */
+.exp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 28px;
+}
+
+.exp-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.exp-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--border);
+  flex-shrink: 0;
+}
+.exp-dot-active {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
+}
+
+.exp-line {
+  flex: 1;
+  width: 2px;
+  background: var(--border);
+  margin-top: 8px;
+  min-height: 32px;
+}
+.exp-line-last { min-height: 0; }
+
+.exp-card {
   background: var(--bg-light);
   border-radius: var(--radius);
   padding: 36px;
+  margin-bottom: 24px;
 }
-.beruf-column h2 {
+
+.exp-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.exp-org-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  background: var(--text);
+  color: var(--white);
+  border-radius: 980px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.exp-org-secondary {
+  background: #3a3a3c;
+}
+.exp-org-tertiary {
+  background: #636366;
+}
+
+.exp-date-pill {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: rgba(0, 113, 227, 0.07);
+  padding: 5px 12px;
+  border-radius: 980px;
+  white-space: nowrap;
+}
+.exp-date-done {
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.exp-title {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 20px;
   color: var(--text);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
-.beruf-column ul {
+
+.exp-role-tag {
+  display: inline-block;
+  padding: 3px 11px;
+  background: rgba(0, 113, 227, 0.07);
+  color: var(--accent);
+  border-radius: 980px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.exp-meta {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+.exp-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.exp-col-heading {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.exp-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
-.beruf-column li {
-  font-size: 15px;
+.exp-list li {
+  font-size: 14px;
   color: var(--text-secondary);
-  padding-left: 16px;
+  padding-left: 14px;
   position: relative;
   line-height: 1.6;
 }
-.beruf-column li::before {
+.exp-list li::before {
   content: '·';
   position: absolute;
   left: 0;
   color: var(--accent);
   font-weight: 700;
+}
+
+.exp-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.exp-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* Skill pill (used in experience + projects) */
+.skill-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-secondary);
+  border-radius: 980px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   PROJECTS PAGE (projekte.html)
+   ========================================================= */
+
+/* Featured project */
+.proj-featured {
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 56px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.proj-featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.proj-featured-meta .project-tag {
+  background: rgba(255,255,255,0.1);
+  color: #f5f5f7;
+}
+
+.proj-company {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8e8e93;
+}
+
+.proj-featured-title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #f5f5f7;
+  margin-bottom: 20px;
+}
+
+.proj-featured-desc {
+  font-size: 16px;
+  color: #8e8e93;
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 24px;
+}
+
+.proj-featured-icon {
+  font-size: 80px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.proj-featured .skill-pill {
+  background: rgba(255,255,255,0.08);
+  color: #aeaeb2;
+}
+
+/* Projects grid */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.proj-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.proj-card:hover {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.09);
+  transform: translateY(-3px);
+}
+
+.proj-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.proj-emoji {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.proj-company-sm {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.proj-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.proj-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Projects CTA section */
+.proj-cta-section {
+  text-align: center;
+}
+.proj-cta-text {
+  font-size: 17px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  margin-top: -28px;
+}
+.proj-cta-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* =========================================================
@@ -1011,9 +1334,19 @@ strong {
   .footer-right { text-align: center; }
   .footer-nav { justify-content: center; }
 
-  .beruf-columns { grid-template-columns: 1fr; }
+  /* Teaser */
+  .teaser-grid { grid-template-columns: 1fr; }
 
-  .timeline-columns { grid-template-columns: 1fr; }
+  /* Experience */
+  .exp-columns { grid-template-columns: 1fr; }
+
+  /* Projects */
+  .proj-featured {
+    flex-direction: column-reverse;
+    padding: 36px;
+  }
+  .proj-featured-icon { font-size: 56px; }
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
@@ -1021,8 +1354,10 @@ strong {
 
   .about-stats { gap: 0; }
 
-  .timeline-item { grid-template-columns: 1fr; }
-  .timeline-left { display: none; }
+  .exp-item { grid-template-columns: 1fr; }
+  .exp-side { display: none; }
+
+  .proj-grid { grid-template-columns: 1fr; }
 
   .hero-title { font-size: clamp(58px, 18vw, 100px); }
 }
