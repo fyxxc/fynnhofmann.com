@@ -39,7 +39,6 @@ if (navBurger && navMobile) {
     navBurger.setAttribute('aria-expanded', navMobile.classList.contains('open'));
   });
 
-  // Close mobile nav on link click
   navMobile.querySelectorAll('.nav-mobile-link').forEach((link) => {
     link.addEventListener('click', () => {
       navMobile.classList.remove('open');
@@ -48,7 +47,6 @@ if (navBurger && navMobile) {
 }
 
 // ===== EASTER EGG =====
-// Click the "FH" logo 5 times within 3 seconds to trigger
 let clickCount  = 0;
 let clickTimer  = null;
 
@@ -82,24 +80,65 @@ function closeEasterEgg() {
   document.body.style.overflow = '';
 }
 
-// Close button
 if (easterClose) {
   easterClose.addEventListener('click', closeEasterEgg);
 }
 
-// Close on backdrop click
 if (easterEgg) {
   easterEgg.addEventListener('click', (e) => {
     if (e.target === easterEgg) closeEasterEgg();
   });
 }
 
-// Close on Escape key
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && easterEgg && easterEgg.classList.contains('active')) {
-    closeEasterEgg();
+  if (e.key === 'Escape') {
+    if (easterEgg  && easterEgg.classList.contains('active'))  closeEasterEgg();
+    if (easterEgg2 && easterEgg2.classList.contains('active')) closeEasterEgg2();
   }
 });
+
+// ===== EASTER EGG 2 – Konami Code =====
+const KONAMI_SEQ = [
+  'ArrowUp','ArrowUp','ArrowDown','ArrowDown',
+  'ArrowLeft','ArrowRight','ArrowLeft','ArrowRight',
+  'b','a'
+];
+let konamiIdx  = 0;
+const easterEgg2     = document.getElementById('easterEgg2');
+const easterClose2   = document.getElementById('easterEgg2Close');
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === KONAMI_SEQ[konamiIdx]) {
+    konamiIdx++;
+    if (konamiIdx === KONAMI_SEQ.length) {
+      konamiIdx = 0;
+      openEasterEgg2();
+    }
+  } else {
+    konamiIdx = e.key === KONAMI_SEQ[0] ? 1 : 0;
+  }
+});
+
+function openEasterEgg2() {
+  if (!easterEgg2) return;
+  easterEgg2.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEasterEgg2() {
+  if (!easterEgg2) return;
+  easterEgg2.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+if (easterClose2) {
+  easterClose2.addEventListener('click', closeEasterEgg2);
+}
+if (easterEgg2) {
+  easterEgg2.addEventListener('click', (e) => {
+    if (e.target === easterEgg2) closeEasterEgg2();
+  });
+}
 
 // ===== CONFETTI =====
 function launchConfetti() {
