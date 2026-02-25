@@ -811,6 +811,28 @@ strong {
 }
 .easter-egg-close:hover { background: var(--accent-hover); }
 
+/* =========================================================
+   EASTER EGG 2 – Pixel-Männlein
+   ========================================================= */
+.pixel-man {
+  color: #1d1d1f;
+  display: block;
+  margin: 0 auto 24px;
+}
+
+.pixel-wave-arm {
+  transform-origin: 34px 20px;
+  animation: none;
+}
+.easter-egg.active .pixel-wave-arm {
+  animation: pixelWave 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes pixelWave {
+  from { transform: rotate(-18deg); }
+  to   { transform: rotate(22deg);  }
+}
+
 /* Confetti particle */
 @keyframes confettiFall {
   0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
