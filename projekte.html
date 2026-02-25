@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projekte – Fynn Hofmann</title>
-    <meta name="description" content="Projekte von Fynn Hofmann – Windows 11 Rollout, ServiceNow-Migration, PowerShell-Skripte und mehr." />
+    <meta name="description" content="Projekte von Fynn Hofmann – Windows 11 Rollout, ServiceNow, PowerShell und mehr." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -12,14 +12,13 @@
   </head>
   <body>
 
-    <!-- ===== HEADER ===== -->
     <header class="header" id="header">
       <nav class="nav">
         <a href="index.html" class="nav-logo">FH</a>
         <ul class="nav-links">
           <li><a href="index.html#about">Über mich</a></li>
           <li><a href="erfahrung.html">Erfahrung</a></li>
-          <li><a href="projekte.html" style="opacity:1;font-weight:600;">Projekte</a></li>
+          <li><a href="projekte.html" class="nav-active">Projekte</a></li>
           <li><a href="index.html#contact" class="nav-cta">Kontakt</a></li>
         </ul>
         <button class="nav-burger" id="navBurger" aria-label="Menü öffnen">
@@ -34,7 +33,7 @@
       </div>
     </header>
 
-    <!-- ===== PAGE HERO ===== -->
+    <!-- PAGE HERO -->
     <section class="page-hero">
       <div class="container">
         <a href="index.html" class="back-link fade-in">← Zurück</a>
@@ -44,11 +43,10 @@
       </div>
     </section>
 
-    <!-- ===== PROJECTS ===== -->
+    <!-- FEATURED -->
     <section class="section">
       <div class="container">
 
-        <!-- Featured: Windows 11 Rollout -->
         <div class="proj-featured reveal">
           <div class="proj-featured-content">
             <div class="proj-featured-meta">
@@ -58,33 +56,30 @@
             <h2 class="proj-featured-title">Windows 11<br>Unternehmensrollout</h2>
             <p class="proj-featured-desc">
               Planung und Durchführung des unternehmensweiten Rollouts von Windows 11 auf
-              Hunderten von Unternehmensgeräten. Das Projekt umfasste die Konfiguration
-              von Deployment-Profilen in Microsoft Intune, App-Packaging, die Erstellung
-              von Konfigurationsrichtlinien sowie das Onboarding und die Begleitung der
-              Endanwender – alles im laufenden Betrieb eines grossen Bahnunternehmens.
+              Hunderten von Geräten. Intune-Konfiguration, App-Packaging,
+              Konfigurationsrichtlinien, Nutzer-Onboarding – alles im laufenden Betrieb.
             </p>
             <div class="proj-tags">
               <span class="skill-pill">Microsoft Intune</span>
               <span class="skill-pill">Windows 11</span>
               <span class="skill-pill">App-Packaging</span>
               <span class="skill-pill">MDM</span>
-              <span class="skill-pill">Rollout-Management</span>
             </div>
           </div>
-          <div class="proj-featured-icon">🚀</div>
         </div>
 
-        <!-- Grid projects -->
-        <div class="proj-grid">
+        <!-- Project list -->
+        <div class="proj-list">
 
-          <div class="proj-card reveal">
-            <div class="proj-card-top">
-              <div class="proj-emoji">🔄</div>
+          <div class="proj-list-item reveal">
+            <div class="proj-list-header">
+              <div>
+                <span class="proj-list-company">BLS AG</span>
+                <h3>TopDesk → ServiceNow Migration</h3>
+              </div>
               <span class="project-tag">Migration</span>
             </div>
-            <div class="proj-company-sm">BLS AG</div>
-            <h3>TopDesk → ServiceNow Migration</h3>
-            <p>Mitarbeit bei der unternehmensweiten ITSM-Migration von TopDesk auf ServiceNow. Aufgaben: Migration von Knowledge-Base-Artikeln, Tests im Service Operations Workspace und Validierung von Workflows vor Go-Live.</p>
+            <p>Mitarbeit bei der unternehmensweiten ITSM-Migration von TopDesk auf ServiceNow. Migration von Knowledge-Base-Artikeln, Tests im Service Operations Workspace, Validierung von Workflows vor Go-Live.</p>
             <div class="proj-tags">
               <span class="skill-pill">ServiceNow</span>
               <span class="skill-pill">Knowledge Base</span>
@@ -93,14 +88,15 @@
             </div>
           </div>
 
-          <div class="proj-card reveal reveal-delay-1">
-            <div class="proj-card-top">
-              <div class="proj-emoji">⚙️</div>
-              <span class="project-tag">ServiceNow-Entwicklung</span>
+          <div class="proj-list-item reveal">
+            <div class="proj-list-header">
+              <div>
+                <span class="proj-list-company">BLS AG</span>
+                <h3>Service Catalog Items (ServiceNow)</h3>
+              </div>
+              <span class="project-tag">Entwicklung</span>
             </div>
-            <div class="proj-company-sm">BLS AG</div>
-            <h3>Service Catalog Items</h3>
-            <p>Entwicklung und Pflege von Service Catalog Items in ServiceNow (Classic UI / sc_cat_item) – inklusive Variablen-Design, RITM/SCTASK-Prozesse, Genehmigungsworkflows und zugehöriger Automatisierungen mit dem Flow Designer.</p>
+            <p>Entwicklung und Pflege von Service Catalog Items in ServiceNow – inklusive Variablen-Design, RITM/SCTASK-Prozesse, Genehmigungsworkflows und Automatisierungen mit dem Flow Designer.</p>
             <div class="proj-tags">
               <span class="skill-pill">ServiceNow</span>
               <span class="skill-pill">Flow Designer</span>
@@ -109,79 +105,65 @@
             </div>
           </div>
 
-          <div class="proj-card reveal">
-            <div class="proj-card-top">
-              <div class="proj-emoji">🔐</div>
-              <span class="project-tag">PowerShell · Active Directory</span>
+          <div class="proj-list-item reveal">
+            <div class="proj-list-header">
+              <div>
+                <span class="proj-list-company">BLS AG</span>
+                <h3>Benutzerrechte-Audit (PowerShell)</h3>
+              </div>
+              <span class="project-tag">Automatisierung</span>
             </div>
-            <div class="proj-company-sm">BLS AG</div>
-            <h3>Benutzerrechte-Audit</h3>
-            <p>Entwicklung von PowerShell-Skripten zur automatisierten Auditierung von Benutzerrechten und Rollenzuweisungen in Active Directory und Azure AD. Ergebnisse wurden strukturiert für die IT-Verantwortlichen aufbereitet.</p>
+            <p>PowerShell-Skripte zur automatisierten Auditierung von Benutzerrechten und Rollenzuweisungen in Active Directory und Azure AD. Ergebnisse strukturiert für die IT-Verantwortlichen aufbereitet.</p>
             <div class="proj-tags">
               <span class="skill-pill">PowerShell</span>
               <span class="skill-pill">Active Directory</span>
               <span class="skill-pill">Azure AD</span>
-              <span class="skill-pill">Reporting</span>
             </div>
           </div>
 
-          <div class="proj-card reveal reveal-delay-1">
-            <div class="proj-card-top">
-              <div class="proj-emoji">📊</div>
-              <span class="project-tag">Analyse · PowerShell</span>
+          <div class="proj-list-item reveal">
+            <div class="proj-list-header">
+              <div>
+                <span class="proj-list-company">BLS AG</span>
+                <h3>Büroauslastungsanalyse</h3>
+              </div>
+              <span class="project-tag">Analyse</span>
             </div>
-            <div class="proj-company-sm">BLS AG</div>
-            <h3>Büroauslastungsanalyse</h3>
-            <p>Auswertung der Büroauslastung mittels PowerShell-Skripten zur Unterstützung der Raumplanung und Ressourcenoptimierung. Die Skripte aggregierten Nutzungsdaten und generierten übersichtliche Auswertungen.</p>
+            <p>Auswertung der Büroauslastung mittels PowerShell-Skripten zur Unterstützung der Raumplanung. Aggregierung von Nutzungsdaten und automatisierte Erstellung übersichtlicher Auswertungen.</p>
             <div class="proj-tags">
               <span class="skill-pill">PowerShell</span>
               <span class="skill-pill">Datenauswertung</span>
-              <span class="skill-pill">Automatisierung</span>
             </div>
           </div>
 
-          <div class="proj-card reveal">
-            <div class="proj-card-top">
-              <div class="proj-emoji">🖨️</div>
-              <span class="project-tag">Hardware · Operations</span>
+          <div class="proj-list-item reveal">
+            <div class="proj-list-header">
+              <div>
+                <span class="proj-list-company">BLS AG</span>
+                <h3>Zebra-Drucker Management</h3>
+              </div>
+              <span class="project-tag">Operations</span>
             </div>
-            <div class="proj-company-sm">BLS AG</div>
-            <h3>Zebra-Drucker Management</h3>
-            <p>Stellvertretende Verantwortung für den gesamten Betrieb der Zebra-Etikettendrucker und Plotter: Konfiguration, Fehlerdiagnose, Treiberverwaltung und Koordination bei Geräteproblemen im laufenden Betrieb.</p>
+            <p>Stellvertretende Verantwortung für den Betrieb der Zebra-Etikettendrucker und Plotter: Konfiguration, Fehlerdiagnose, Treiberverwaltung, Koordination bei Geräteproblemen.</p>
             <div class="proj-tags">
-              <span class="skill-pill">Zebra Drucker</span>
               <span class="skill-pill">Hardware</span>
+              <span class="skill-pill">Zebra Drucker</span>
               <span class="skill-pill">Troubleshooting</span>
             </div>
           </div>
 
-          <div class="proj-card reveal reveal-delay-1">
-            <div class="proj-card-top">
-              <div class="proj-emoji">📋</div>
-              <span class="project-tag">ServiceNow · Content</span>
-            </div>
-            <div class="proj-company-sm">BLS AG</div>
-            <h3>Knowledge-Base-Aufbau</h3>
-            <p>Erstellung und Pflege von Knowledge-Base-Artikeln in ServiceNow – sowohl für die interne Benutzerunterstützung als auch zur Qualitätssicherung im IT-Support. Artikel wurden strukturiert, versioniert und gepflegt.</p>
-            <div class="proj-tags">
-              <span class="skill-pill">ServiceNow</span>
-              <span class="skill-pill">Knowledge Management</span>
-              <span class="skill-pill">Technisches Schreiben</span>
-            </div>
-          </div>
-
-          <div class="proj-card reveal">
-            <div class="proj-card-top">
-              <div class="proj-emoji">🌐</div>
+          <div class="proj-list-item reveal">
+            <div class="proj-list-header">
+              <div>
+                <span class="proj-list-company">ICT Berufsbildungscenter AG</span>
+                <h3>IoT-Projektarbeit Basislehrjahr</h3>
+              </div>
               <span class="project-tag">IoT · Hardware</span>
             </div>
-            <div class="proj-company-sm">ICT Berufsbildungscenter AG</div>
-            <h3>IoT-Projektarbeit Basislehrjahr</h3>
-            <p>Praktische IoT-Projekte im Rahmen des Basislehrjahrs – Aufbau und Programmierung von vernetzten Geräten, Sensorintegration und Grundlagen der eingebetteten Systeme.</p>
+            <p>Praktische IoT-Projekte im Basislehrjahr – Aufbau und Programmierung vernetzter Geräte, Sensorintegration und Grundlagen eingebetteter Systeme.</p>
             <div class="proj-tags">
               <span class="skill-pill">IoT</span>
               <span class="skill-pill">Hardware</span>
-              <span class="skill-pill">Sensoren</span>
               <span class="skill-pill">Netzwerke</span>
             </div>
           </div>
@@ -190,26 +172,13 @@
       </div>
     </section>
 
-    <!-- ===== CTA ===== -->
-    <section class="section section-gray">
-      <div class="container proj-cta-section reveal">
-        <p class="section-label">Mehr erfahren</p>
-        <h2 class="section-title" style="margin-bottom: 24px;">Interesse geweckt?</h2>
-        <p class="proj-cta-text">Schau dir meinen vollständigen Werdegang an oder nimm direkt Kontakt auf.</p>
-        <div class="proj-cta-buttons">
-          <a href="erfahrung.html" class="btn-primary">Zur Erfahrung</a>
-          <a href="index.html#contact" class="btn-secondary">Kontakt aufnehmen</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
           <div class="footer-left">
             <span class="footer-logo">Fynn Hofmann</span>
-            <p>ICT-Fachmann EFZ · BLS AG · Bern, Schweiz</p>
+            <p>ICT-Fachmann EFZ · BLS AG · Bern</p>
           </div>
           <nav class="footer-nav">
             <a href="index.html">Home</a>
