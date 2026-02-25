@@ -3,74 +3,325 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fynn Hofmann</title>
+    <title>Fynn Hofmann – ICT &amp; ServiceNow</title>
+    <meta name="description" content="Fynn Hofmann – ICT-Fachmann EFZ bei der BLS AG. Spezialisiert auf IT-Support, ServiceNow und moderne Unternehmens-IT." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Bebas+Neue&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page-wrap">
-      <section class="hero-card box">
-        <p class="mini-label">Persönliches Portfolio</p>
-        <h1>FYNN <span>HOFMANN</span></h1>
-        <p class="hero-text">
-          Ich löse IT-Probleme, entwickle ServiceNow-Lösungen und halte die IT am Laufen.
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+      <nav class="nav">
+        <a href="#" class="nav-logo" id="logo-trigger" title="Klick mich 5x ;)">FH</a>
+        <ul class="nav-links">
+          <li><a href="#about">Über mich</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projekte</a></li>
+          <li><a href="#experience">Erfahrung</a></li>
+          <li><a href="#contact" class="nav-cta">Kontakt</a></li>
+        </ul>
+        <button class="nav-burger" id="navBurger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      <div class="nav-mobile" id="navMobile">
+        <a href="#about" class="nav-mobile-link">Über mich</a>
+        <a href="#skills" class="nav-mobile-link">Skills</a>
+        <a href="#projects" class="nav-mobile-link">Projekte</a>
+        <a href="#experience" class="nav-mobile-link">Erfahrung</a>
+        <a href="#contact" class="nav-mobile-link">Kontakt</a>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow fade-in">ICT-Fachmann EFZ · BLS AG · Bern</p>
+        <h1 class="hero-title fade-in delay-1">Fynn<br>Hofmann.</h1>
+        <p class="hero-subtitle fade-in delay-2">
+          Ich löse IT-Probleme, entwickle<br>ServiceNow-Lösungen und halte<br>die IT am Laufen.
         </p>
-        <div class="chip-row">
-          <span>ICT-Support</span>
-          <span>ServiceNow </span>
-          <span>Zebra-Drucker</span>
-          <span>Ambassador für Login org</span>
+        <div class="hero-cta fade-in delay-3">
+          <a href="#projects" class="btn-primary">Meine Projekte</a>
+          <a href="#contact" class="btn-secondary">Kontakt aufnehmen</a>
         </div>
-      </section>
+      </div>
+      <div class="hero-scroll-indicator">
+        <div class="scroll-line"></div>
+      </div>
+    </section>
 
-      <section class="grid-two">
-        <article class="box panel panel-dark">
-          <h2>Über mich</h2>
-          <p>
-            Ich verbinde Technik und Gestaltung. Mein Fokus liegt auf digitalen
-            Produkten, die klar, schnell und persönlich sind.
-          </p>
-        </article>
+    <!-- ===== ABOUT ===== -->
+    <section class="section section-gray" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p class="section-label">Über mich</p>
+            <h2 class="section-title">Technik ist nicht nur mein Beruf –<br>sie ist meine Leidenschaft.</h2>
+            <p class="about-body">
+              Mein Name ist Fynn Hofmann. Ich bin 19 Jahre alt und absolviere meine Ausbildung zum
+              ICT-Fachmann EFZ bei der <strong>BLS AG</strong> in Bern – einem der grössten
+              Transportunternehmen der Schweiz. Dort unterstütze ich täglich das IT-Team,
+              entwickle Lösungen in ServiceNow und sorge dafür, dass die digitale Infrastruktur
+              reibungslos läuft.
+            </p>
+            <p class="about-body">
+              Seit ich das erste Mal einen Computer aufgemacht habe, fasziniert mich, was hinter der
+              Oberfläche steckt. Diese Neugier bringe ich in jeden Arbeitsauftrag mit – ob ein
+              kniffliges Incident-Ticket, eine neue Catalog-Item-Konfiguration in ServiceNow
+              oder der unternehmensweite Rollout von Windows 11.
+            </p>
+            <p class="about-body">
+              Neben der Arbeit interessiere ich mich für Open-Source-Software, Datenschutz und
+              IT-Sicherheit. Ich glaube daran, dass gute Technologie das Leben einfacher machen
+              sollte – nicht komplizierter.
+            </p>
+            <div class="about-tags">
+              <span class="tag">ICT-Support</span>
+              <span class="tag">ServiceNow</span>
+              <span class="tag">Bern, Schweiz</span>
+              <span class="tag">Lehrjahr 3</span>
+              <span class="tag">Login Ambassador</span>
+            </div>
+          </div>
 
-        <article class="box panel panel-purple">
-          <h2>Skills</h2>
-          <ul>
-            <li>Bearbeitung von Bestellungen und Störungsmeldungen</li>
-            <li>Verwaltung von Benutzerrechten und Rollen </li>
-            <li>Entwicklung und Pflege von Service Catalog Items (Classic UI / sc_cat_item)</li>
-            <a href="beruf.html">Mehr zu meiner Berufserfahrung</a>
-          </ul>
-        </article>
-      </section>
+          <div class="about-visual reveal reveal-delay-1">
+            <div class="about-card">
+              <div class="about-avatar">FH</div>
+              <div class="about-card-name">Fynn Hofmann</div>
+              <div class="about-card-role">ICT-Fachmann EFZ</div>
+              <div class="about-divider"></div>
+              <div class="about-stats">
+                <div class="stat">
+                  <span class="stat-number">3+</span>
+                  <span class="stat-label">Jahre Erfahrung</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat">
+                  <span class="stat-number">500+</span>
+                  <span class="stat-label">Tickets gelöst</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat">
+                  <span class="stat-number">BLS</span>
+                  <span class="stat-label">AG · Bern</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <section class="grid-two lower-grid">
-        <article class="box panel panel-light">
-          <h2>Projekte</h2>
-          <p>
-            Windows 11 rollout, ServiceNow testing, Zebra-Drucker, Intune, Auswertung der Auslastung des Büros mithilfe PowerShell
-          </p>
-        </article>
+    <!-- ===== SKILLS ===== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <p class="section-label reveal">Kompetenzen</p>
+        <h2 class="section-title reveal">Was ich mitbringe.</h2>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <div class="skill-icon">🔧</div>
+            <h3>IT-Support</h3>
+            <p>1st-Level-Support, Fehleranalyse und Incident-Management. Nutzerverwaltung in Active Directory, Azure AD und Omada IAM.</p>
+          </div>
+          <div class="skill-card reveal reveal-delay-1">
+            <div class="skill-icon">⚙️</div>
+            <h3>ServiceNow</h3>
+            <p>Entwicklung von Service-Catalog-Items, Incident- und Task-Erstellung, Workflow-Konfiguration und Knowledge-Base-Management.</p>
+          </div>
+          <div class="skill-card reveal reveal-delay-2">
+            <div class="skill-icon">🖨️</div>
+            <h3>Zebra & Drucker</h3>
+            <p>Verwaltung, Einrichtung und Fehlerbehebung von Zebra-Etiketten­druckern und Plottern im Unternehmensumfeld.</p>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-icon">🛡️</div>
+            <h3>Microsoft Intune</h3>
+            <p>Geräteverwaltung, App-Deployment und Richtlinienkonfiguration für moderne, skalierbare Unternehmensinfrastrukturen.</p>
+          </div>
+          <div class="skill-card reveal reveal-delay-1">
+            <div class="skill-icon">💻</div>
+            <h3>PowerShell</h3>
+            <p>Scripting für Audits, Automatisierung von Routineaufgaben und Systemanalysen im Windows-Umfeld.</p>
+          </div>
+          <div class="skill-card reveal reveal-delay-2">
+            <div class="skill-icon">🤝</div>
+            <h3>Login Ambassador</h3>
+            <p>Interner Botschafter der Login-Organisation. Förderung von digitaler Zusammenarbeit und Wissenstransfer im Unternehmen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <article class="box panel panel-cyan">
-          <h2>Kontakt</h2>
-          <p>Schreib mir gerne direkt:</p>
-          <p class="links">
-            <a href="mailto:mail@fynnhofmann.com">Mail</a>
-            <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="beruf.html">Berufserfahrung</a>
-          </p>
-        </article>
-      </section>
+    <!-- ===== PROJECTS ===== -->
+    <section class="section section-gray" id="projects">
+      <div class="container">
+        <p class="section-label reveal">Projekte</p>
+        <h2 class="section-title reveal">Highlights aus meiner Arbeit.</h2>
+        <div class="projects-grid">
 
-      <section class="box footer-strip">
-        <a href="https://threema.id/S2MJ8VFN">Meine Threema ID: S2MJ8VFN</a>
-        <img src="Threema_QR-Code.jpeg" alt="Threema QR-Code" width="150">
-      </section>
-    </main>
+          <div class="project-card project-large reveal">
+            <div class="project-content">
+              <span class="project-tag">Rollout</span>
+              <h3>Windows 11 Unternehmensrollout</h3>
+              <p>Planung und Durchführung des unternehmensweiten Windows-11-Rollouts auf Hunderten von Geräten – inklusive Intune-Konfiguration, App-Packaging und Nutzer-Onboarding für einen reibungslosen Übergang im laufenden Betrieb.</p>
+            </div>
+            <div class="project-emoji">🚀</div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-content">
+              <span class="project-tag">Migration</span>
+              <h3>TopDesk → ServiceNow</h3>
+              <p>Aktive Mitarbeit bei der unternehmensweiten Migration von TopDesk zu ServiceNow als neue zentrale ITSM-Plattform.</p>
+            </div>
+            <div class="project-emoji">🔄</div>
+          </div>
+
+          <div class="project-card reveal reveal-delay-1">
+            <div class="project-content">
+              <span class="project-tag">Testing</span>
+              <h3>ServiceNow QA & Testing</h3>
+              <p>Systematische Qualitätssicherung für ServiceNow-Module und Workflows vor Produktivsetzungen.</p>
+            </div>
+            <div class="project-emoji">✅</div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-content">
+              <span class="project-tag">Automatisierung</span>
+              <h3>PowerShell Audit-Skripte</h3>
+              <p>Entwicklung von Skripten zur automatisierten Auditierung von Benutzerrechten und Systemkonfigurationen.</p>
+            </div>
+            <div class="project-emoji">⚡</div>
+          </div>
+
+          <div class="project-card reveal reveal-delay-1">
+            <div class="project-content">
+              <span class="project-tag">Analyse</span>
+              <h3>Büroauslastung mit PowerShell</h3>
+              <p>Auswertung der Büroauslastung mittels PowerShell-Scripten zur Optimierung der Raumplanung.</p>
+            </div>
+            <div class="project-emoji">📊</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="section" id="experience">
+      <div class="container">
+        <p class="section-label reveal">Berufserfahrung</p>
+        <h2 class="section-title reveal">Mein Werdegang.</h2>
+        <div class="timeline reveal">
+          <div class="timeline-item">
+            <div class="timeline-left">
+              <div class="timeline-marker"></div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h3>ICT-Fachmann EFZ <span class="timeline-tag">Lernender</span></h3>
+                  <p class="timeline-company">BLS AG · Bern, Schweiz</p>
+                </div>
+                <span class="timeline-date">Aug 2023 – Juli 2026</span>
+              </div>
+              <div class="timeline-columns">
+                <div>
+                  <h4>IT-Support</h4>
+                  <ul class="timeline-list">
+                    <li>Bearbeitung von Orders und Incidents</li>
+                    <li>Fehleranalyse &amp; 1st-Level-Support</li>
+                    <li>Dokumentation in ServiceNow</li>
+                    <li>Verwaltung von Zebra-Druckern &amp; Plottern</li>
+                    <li>Nutzerverwaltung in AD, Azure &amp; Omada</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>ServiceNow</h4>
+                  <ul class="timeline-list">
+                    <li>Service-Catalog-Items (Classic UI)</li>
+                    <li>Incidents, SCTASKs &amp; RITMs</li>
+                    <li>Knowledge-Base-Artikel</li>
+                    <li>Workflow &amp; Flow Designer</li>
+                    <li>Migration von TopDesk → ServiceNow</li>
+                  </ul>
+                </div>
+              </div>
+              <a href="beruf.html" class="link-arrow">Vollständige Details ansehen →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section section-dark" id="contact">
+      <div class="container">
+        <p class="section-label reveal" style="color: #6e6e73;">Kontakt</p>
+        <h2 class="section-title reveal" style="color: #f5f5f7;">Lass uns in Kontakt treten.</h2>
+        <p class="contact-subtitle reveal">Ob Fragen, Projekte oder einfach ein Hallo – ich freue mich von dir zu hören.</p>
+        <div class="contact-options">
+          <a href="mailto:mail@fynnhofmann.com" class="contact-card reveal">
+            <div class="contact-icon">✉️</div>
+            <h3>E-Mail</h3>
+            <p>mail@fynnhofmann.com</p>
+          </a>
+          <a href="https://www.linkedin.com/in/fynn-hofmann-aa7387283" target="_blank" rel="noreferrer" class="contact-card reveal reveal-delay-1">
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <p>Fynn Hofmann</p>
+          </a>
+          <a href="https://threema.id/S2MJ8VFN" target="_blank" rel="noreferrer" class="contact-card reveal reveal-delay-2">
+            <div class="contact-icon">🔒</div>
+            <h3>Threema</h3>
+            <p>ID: S2MJ8VFN</p>
+            <img src="Threema_QR-Code.jpeg" alt="Threema QR-Code" class="threema-qr" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span class="footer-logo">Fynn Hofmann</span>
+            <p>ICT-Fachmann EFZ · BLS AG · Bern, Schweiz</p>
+          </div>
+          <nav class="footer-nav">
+            <a href="#about">Über mich</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projekte</a>
+            <a href="#experience">Erfahrung</a>
+            <a href="#contact">Kontakt</a>
+          </nav>
+          <div class="footer-right">
+            <p>© 2026 Fynn Hofmann</p>
+            <p class="footer-hint">Made with ♥ in Bern</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== EASTER EGG ===== -->
+    <div class="easter-egg" id="easterEgg" role="dialog" aria-modal="true" aria-label="Easter Egg">
+      <div class="easter-egg-content">
+        <div class="easter-egg-emoji" id="easterEggEmoji">🎉</div>
+        <h2>Du hast mich gefunden!</h2>
+        <p>Nicht schlecht – du weisst, wie man genau hinschaut.<br>Das ist genau die Art Auge, die ich in der IT brauche.</p>
+        <code class="easter-egg-code">console.log("Hallo, Neugieriger! 👋");</code>
+        <p class="easter-egg-hint">5× auf das Logo klicken – wer macht sowas? Du offenbar.</p>
+        <button class="easter-egg-close" id="easterEggClose">Schliessen</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
