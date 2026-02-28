@@ -40,7 +40,7 @@
           '<span class="footer-logo">Fynn Hofmann</span>' +
         '</div>' +
         '<nav class="footer-nav">' +
-          '<a href="' + base + 'qr.html">QR-Generator</a>' +
+          '<a href="' + base + 'qr/">QR-Generator</a>' +
           '<a href="' + base + 'spiel/index.html">Spiel</a>' +
         '</nav>' +
         '<div class="footer-right">' +
