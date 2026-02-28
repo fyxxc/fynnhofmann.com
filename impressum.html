@@ -9,6 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .domain-rows .contact-row {
+        grid-template-columns: auto 1fr 24px;
+      }
+      .domain-rows .contact-row-title {
+        font-size: 14px;
+        font-weight: 600;
+        font-family: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
+        white-space: nowrap;
+      }
+    </style>
   </head>
   <body>
 
@@ -88,7 +99,7 @@
 
         <!-- fynnhofmann.com -->
         <p class="section-label reveal" style="font-size:0.7rem;margin-top:0;margin-bottom:1rem;letter-spacing:0.12em;">fynnhofmann.com</p>
-        <div class="contact-rows reveal" style="margin-bottom:2.5rem;">
+        <div class="contact-rows domain-rows reveal" style="margin-bottom:2.5rem;">
           <a href="https://fynnhofmann.com" target="_blank" rel="noreferrer" class="contact-row">
             <span class="contact-row-title">fynnhofmann.com</span>
             <span class="contact-row-value">Persönliche Website – Startseite</span>
@@ -123,7 +134,7 @@
 
         <!-- Subdomains -->
         <p class="section-label reveal" style="font-size:0.7rem;margin-top:0;margin-bottom:1rem;letter-spacing:0.12em;">Subdomains</p>
-        <div class="contact-rows reveal" style="margin-bottom:2.5rem;">
+        <div class="contact-rows domain-rows reveal" style="margin-bottom:2.5rem;">
           <a href="https://hcm.fynnhofmann.com" target="_blank" rel="noreferrer" class="contact-row">
             <span class="contact-row-title">hcm.fynnhofmann.com</span>
             <span class="contact-row-value">HCM-Projekt</span>
@@ -156,7 +167,7 @@
 
         <!-- Weitere Domains -->
         <p class="section-label reveal" style="font-size:0.7rem;margin-top:0;margin-bottom:1rem;letter-spacing:0.12em;">Weitere Domains</p>
-        <div class="contact-rows reveal">
+        <div class="contact-rows domain-rows reveal">
           <a href="https://fynnlabs.ch" target="_blank" rel="noreferrer" class="contact-row">
             <span class="contact-row-title">fynnlabs.ch</span>
             <span class="contact-row-value">Fynn Labs</span>
