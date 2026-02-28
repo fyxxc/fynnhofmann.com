@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="de" data-base="../">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tipp-Test | Fynn Hofmann</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .page-wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+  .section    { padding: 48px 0 80px; }
+
+  /* ── Top bar ─────────────────────────────────────────── */
+  .tt-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .tt-modes {
+    display: flex;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--bg-light);
+  }
+  .tt-mode {
+    padding: 9px 18px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-right: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .tt-mode:last-child { border-right: none; }
+  .tt-mode.active { background: var(--white); color: var(--text); }
+
+  .tt-stats {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+  }
+  .tt-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-light);
+    border-radius: 12px;
+    padding: 8px 18px;
+    min-width: 68px;
+  }
+  .tt-chip-val {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+  .tt-chip-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+  }
+  .tt-chip.is-timer .tt-chip-val { color: var(--accent); }
+  .tt-chip.is-timer.warning .tt-chip-val { color: #ff3b30; }
+
+  /* ── Progress bar ────────────────────────────────────── */
+  .tt-progress {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .tt-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+  }
+
+  /* ── Display ─────────────────────────────────────────── */
+  .tt-display-wrap {
+    position: relative;
+    background: var(--bg-light);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin-bottom: 20px;
+    cursor: text;
+    transition: box-shadow 0.2s;
+  }
+  .tt-display-wrap:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+  }
+
+  .tt-text {
+    font-size: 22px;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    font-family: var(--font);
+    word-break: break-word;
+    user-select: none;
+    -webkit-user-select: none;
+    color: var(--text-tertiary);
+  }
+
+  /* Transparent textarea sits on top of the display */
+  .tt-ghost {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    resize: none;
+    border: none;
+    background: transparent;
+    font-size: 16px; /* prevents iOS auto-zoom */
+    cursor: text;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  /* Character states */
+  .tt-text .c  { color: var(--text); }
+  .tt-text .w  { color: #ff3b30; background: rgba(255,59,48,0.09); border-radius: 2px; }
+  .tt-text .p  { color: var(--text-tertiary); }
+  .tt-text .cur::before {
+    content: '';
+    display: inline-block;
+    width: 2.5px;
+    height: 1.1em;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-right: -1px;
+    vertical-align: text-bottom;
+    animation: blink 0.9s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* Idle hint overlay */
+  .tt-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: var(--radius);
+    background: rgba(245,245,247,0.88);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .tt-hint.gone { opacity: 0; }
+  .tt-hint-inner {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  /* ── Actions ─────────────────────────────────────────── */
+  .tt-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .tt-footnote {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Results overlay ─────────────────────────────────── */
+  .tt-results {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .tt-results.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .tt-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 48px 56px;
+    max-width: 460px;
+    width: 92%;
+    text-align: center;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.22);
+    animation: popIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @keyframes popIn {
+    from { transform: scale(0.82); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+
+  .res-wpm       { font-size: 86px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; }
+  .res-wpm-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-tertiary); margin: 4px 0 32px; }
+
+  .res-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .res-item {
+    background: var(--bg-light);
+    border-radius: 14px;
+    padding: 16px 12px;
+  }
+  .res-item-val   { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .res-item-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary); margin-top: 2px; }
+
+  .res-best { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; min-height: 20px; }
+  .res-best strong { color: var(--accent); }
+
+  .res-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .tt-bar    { flex-wrap: wrap; }
+    .tt-stats  { margin-left: 0; width: 100%; justify-content: space-between; }
+    .tt-display-wrap { padding: 24px 20px; }
+    .tt-text   { font-size: 19px; }
+    .tt-card   { padding: 36px 24px; }
+    .res-wpm   { font-size: 68px; }
+    .tt-footnote { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="page-wrap">
+    <span class="page-hero-eyebrow">Tool</span>
+    <h1 class="page-hero-title">Tipp-Test.</h1>
+    <p class="page-hero-sub">Wie schnell tippst du? Miss deine WPM und Genauigkeit.</p>
+  </div>
+</section>
+
+<main class="section">
+  <div class="page-wrap">
+
+    <!-- Bar -->
+    <div class="tt-bar">
+      <div class="tt-modes">
+        <button class="tt-mode"        onclick="setMode(30,this)">30 s</button>
+        <button class="tt-mode active" onclick="setMode(60,this)">60 s</button>
+        <button class="tt-mode"        onclick="setMode(90,this)">90 s</button>
+      </div>
+      <div class="tt-stats">
+        <div class="tt-chip is-timer" id="chipTimer">
+          <span class="tt-chip-val" id="valTimer">60</span>
+          <span class="tt-chip-label">Sek.</span>
+        </div>
+        <div class="tt-chip">
+          <span class="tt-chip-val" id="valWpm">–</span>
+          <span class="tt-chip-label">WPM</span>
+        </div>
+        <div class="tt-chip">
+          <span class="tt-chip-val" id="valAcc">–</span>
+          <span class="tt-chip-label">Genau.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="tt-progress">
+      <div class="tt-progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Text display -->
+    <div class="tt-display-wrap" id="displayWrap">
+      <div class="tt-text" id="ttText" aria-hidden="true"></div>
+      <textarea
+        id="ghost"
+        class="tt-ghost"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-label="Tippfeld – hier schreiben"
+      ></textarea>
+      <div class="tt-hint" id="hint">
+        <span class="tt-hint-inner">Hier klicken und mit dem Tippen beginnen</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="tt-actions">
+      <button class="btn-secondary" onclick="newText()">Neuer Text</button>
+      <button class="btn-secondary" onclick="reset()">Zurücksetzen</button>
+      <span class="tt-footnote">Kein Text wird übertragen · Highscore lokal gespeichert</span>
+    </div>
+
+  </div>
+</main>
+
+<!-- Results overlay -->
+<div class="tt-results" id="resultsOverlay" onclick="onOverlayClick(event)">
+  <div class="tt-card">
+    <div class="res-wpm" id="resWpm">0</div>
+    <div class="res-wpm-label">WPM</div>
+    <div class="res-grid">
+      <div class="res-item">
+        <div class="res-item-val" id="resAcc">–</div>
+        <div class="res-item-label">Genauigkeit</div>
+      </div>
+      <div class="res-item">
+        <div class="res-item-val" id="resErrors">–</div>
+        <div class="res-item-label">Fehler</div>
+      </div>
+      <div class="res-item">
+        <div class="res-item-val" id="resChars">–</div>
+        <div class="res-item-label">Zeichen</div>
+      </div>
+      <div class="res-item">
+        <div class="res-item-val" id="resTime">–</div>
+        <div class="res-item-label">Zeit</div>
+      </div>
+    </div>
+    <p class="res-best" id="resBest"></p>
+    <div class="res-btns">
+      <button class="btn-primary"   onclick="playAgain()">Nochmal</button>
+      <button class="btn-secondary" onclick="newTextAndClose()">Neuer Text</button>
+    </div>
+  </div>
+</div>
+
+<script src="../components.js"></script>
+<script>
+/* =========================================================
+   Tipp-Test – Live typing speed test
+   ========================================================= */
+
+const TEXTS = [
+  "Die Sonne geht im Osten auf und im Westen unter. Jeder neue Tag bringt frische Chancen und neue Möglichkeiten für alle.",
+  "Wer aufhört besser zu werden, hat aufgehört gut zu sein. Fortschritt und Ausdauer sind die Grundlagen des Erfolgs.",
+  "Im Herzen der Stadt liegt ein kleiner Park, wo die Menschen spazieren gehen und die Natur in Ruhe genießen können.",
+  "Technologie verbindet Menschen auf der ganzen Welt und verändert grundlegend, wie wir leben, arbeiten und kommunizieren.",
+  "Kreativität ist Intelligenz, die Spaß hat. Jede große Idee beginnt als kleiner Funken im Geist eines neugierigen Menschen.",
+  "Programmieren ist die Kunst, komplexe Probleme in einfache und elegante Lösungen zu verwandeln. Übung macht den Meister.",
+  "Gute Dinge brauchen Zeit. Qualität entsteht nicht über Nacht, sondern durch Geduld, Ausdauer und konsequente Arbeit.",
+  "Das Universum ist groß und voller Geheimnisse. Jeder Stern erzählt eine Geschichte von Millionen Jahren Entstehung.",
+  "Die Berge rufen, und ich muss gehen. Nichts erfrischt die Seele so sehr wie die frische Luft auf einem hohen Gipfel.",
+  "Lesen erweitert den Horizont und öffnet neue Welten. Wer viel liest, denkt tiefer und versteht die Welt um sich besser.",
+  "Musik hat die Kraft, Gefühle zu wecken und Erinnerungen lebendig zu machen, die man längst vergessen zu haben glaubte.",
+  "Der frühe Vogel fängt den Wurm, aber die zweite Maus bekommt den Käse. Manchmal lohnt es sich abzuwarten und zu beobachten.",
+  "Freundlichkeit kostet nichts, aber sie kann das Leben eines anderen Menschen komplett verändern. Sei nett zu jedem.",
+  "Wasser ist das einzige Element, das gleichzeitig als Feststoff, Flüssigkeit und Gas in der Natur vorkommt.",
+  "Jede Reise beginnt mit dem ersten Schritt. Es ist nie zu spät, etwas Neues zu lernen und sich weiterzuentwickeln.",
+];
+
+/* ── State ────────────────────────────────────────────── */
+let source   = '';
+let mode     = 60;
+let timeLeft = 60;
+let started  = false;
+let finished = false;
+let startTs  = 0;
+let ticker   = null;
+
+const ghost    = document.getElementById('ghost');
+const ttText   = document.getElementById('ttText');
+const hint     = document.getElementById('hint');
+const chipTimer = document.getElementById('chipTimer');
+const valTimer  = document.getElementById('valTimer');
+const valWpm    = document.getElementById('valWpm');
+const valAcc    = document.getElementById('valAcc');
+const progFill  = document.getElementById('progressFill');
+const overlay   = document.getElementById('resultsOverlay');
+
+/* ── Helpers ──────────────────────────────────────────── */
+function esc(ch) {
+  if (ch === ' ') return '&nbsp;';
+  if (ch === '<') return '&lt;';
+  if (ch === '>') return '&gt;';
+  if (ch === '&') return '&amp;';
+  return ch;
+}
+
+function calcWpm(typed, elapsedSec) {
+  if (elapsedSec < 0.5) return 0;
+  let correct = 0;
+  for (let i = 0; i < typed.length && i < source.length; i++) {
+    if (typed[i] === source[i]) correct++;
+  }
+  return Math.round((correct / 5) / (elapsedSec / 60));
+}
+
+function calcAcc(typed) {
+  if (!typed.length) return 100;
+  let correct = 0;
+  for (let i = 0; i < typed.length && i < source.length; i++) {
+    if (typed[i] === source[i]) correct++;
+  }
+  return Math.round((correct / typed.length) * 100);
+}
+
+function countErrors(typed) {
+  let err = 0;
+  for (let i = 0; i < typed.length && i < source.length; i++) {
+    if (typed[i] !== source[i]) err++;
+  }
+  return err;
+}
+
+/* ── Render ───────────────────────────────────────────── */
+function render(typed) {
+  let html = '';
+  const cur = typed.length;
+
+  for (let i = 0; i < source.length; i++) {
+    const ch = source[i];
+    let cls  = 'p'; // pending
+    if (i < typed.length) cls = typed[i] === ch ? 'c' : 'w';
+    const cursorClass = i === cur ? ' cur' : '';
+    html += `<span class="${cls}${cursorClass}">${esc(ch)}</span>`;
+  }
+  // Trailing cursor if text complete
+  if (cur >= source.length) html += '<span class="p cur"> </span>';
+
+  ttText.innerHTML = html;
+
+  // Update live stats
+  if (started) {
+    const elapsed = (Date.now() - startTs) / 1000;
+    valWpm.textContent = calcWpm(typed, elapsed) || '–';
+    valAcc.textContent = typed.length ? calcAcc(typed) + '%' : '–';
+  }
+}
+
+/* ── Timer ────────────────────────────────────────────── */
+function startTimer() {
+  startTs = Date.now();
+  ticker = setInterval(() => {
+    const elapsed = (Date.now() - startTs) / 1000;
+    timeLeft = Math.max(0, mode - Math.round(elapsed));
+    valTimer.textContent = timeLeft;
+    chipTimer.classList.toggle('warning', timeLeft <= 10);
+    progFill.style.width = ((mode - timeLeft) / mode * 100) + '%';
+    const typed = ghost.value;
+    valWpm.textContent = calcWpm(typed, elapsed);
+    valAcc.textContent = typed.length ? calcAcc(typed) + '%' : '–';
+    if (timeLeft === 0) showResults();
+  }, 120);
+}
+
+/* ── Input handling ───────────────────────────────────── */
+ghost.addEventListener('keydown', e => {
+  if (e.key === 'Tab' || e.key === 'Enter') e.preventDefault();
+});
+
+ghost.addEventListener('paste', e => e.preventDefault());
+
+ghost.addEventListener('input', () => {
+  if (finished) { ghost.value = ''; return; }
+
+  // Clamp to source length
+  if (ghost.value.length > source.length) {
+    ghost.value = ghost.value.slice(0, source.length);
+  }
+
+  const typed = ghost.value;
+
+  if (!started && typed.length > 0) {
+    started = true;
+    hint.classList.add('gone');
+    startTimer();
+  }
+
+  render(typed);
+
+  // Finished typing all characters
+  if (typed.length === source.length) showResults();
+});
+
+/* ── Results ──────────────────────────────────────────── */
+function showResults() {
+  if (finished) return;
+  finished = true;
+  clearInterval(ticker);
+
+  const typed   = ghost.value;
+  const elapsed = (Date.now() - startTs) / 1000;
+  const wpm     = calcWpm(typed, elapsed);
+  const acc     = calcAcc(typed);
+  const errors  = countErrors(typed);
+
+  // Persist best
+  const key  = `tt_best_${mode}`;
+  const prev = parseInt(localStorage.getItem(key) || '0', 10);
+  const isNew = wpm > prev;
+  if (isNew) localStorage.setItem(key, wpm);
+
+  document.getElementById('resWpm').textContent    = wpm;
+  document.getElementById('resAcc').textContent    = acc + '%';
+  document.getElementById('resErrors').textContent = errors;
+  document.getElementById('resChars').textContent  = typed.length;
+  document.getElementById('resTime').textContent   = Math.round(elapsed) + ' s';
+  document.getElementById('resBest').innerHTML     = isNew && prev > 0
+    ? `Neuer Rekord! Vorher: ${prev} WPM`
+    : isNew && prev === 0
+    ? `Erster Versuch – gut gemacht!`
+    : `Persönlicher Rekord: <strong>${Math.max(prev, wpm)} WPM</strong>`;
+
+  setTimeout(() => overlay.classList.add('show'), 320);
+}
+
+/* ── Controls ─────────────────────────────────────────── */
+function setMode(s, btn) {
+  mode = s;
+  document.querySelectorAll('.tt-mode').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  reset();
+}
+
+function reset() {
+  clearInterval(ticker);
+  started  = false;
+  finished = false;
+  timeLeft = mode;
+  valTimer.textContent = mode;
+  valWpm.textContent   = '–';
+  valAcc.textContent   = '–';
+  progFill.style.width = '0%';
+  chipTimer.classList.remove('warning');
+  ghost.value = '';
+  hint.classList.remove('gone');
+  if (!source) source = pickText();
+  render('');
+}
+
+function newText() {
+  source = pickText();
+  reset();
+}
+
+function playAgain() {
+  overlay.classList.remove('show');
+  reset();
+  setTimeout(() => ghost.focus(), 80);
+}
+
+function newTextAndClose() {
+  overlay.classList.remove('show');
+  newText();
+  setTimeout(() => ghost.focus(), 80);
+}
+
+function onOverlayClick(e) {
+  if (e.target === overlay) playAgain();
+}
+
+function pickText() {
+  return TEXTS[Math.floor(Math.random() * TEXTS.length)];
+}
+
+/* ── Init ─────────────────────────────────────────────── */
+source = pickText();
+reset();
+</script>
+</body>
+</html>

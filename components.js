@@ -43,6 +43,7 @@
           '<a href="' + base + 'qr/">QR-Generator</a>' +
           '<a href="' + base + 'spiel/index.html">Spiel</a>' +
           '<a href="' + base + 'orbit/">Gravity</a>' +
+          '<a href="' + base + 'tipper/">Tipp-Test</a>' +
           '<a href="' + base + 'impressum.html">Impressum</a>' +
         '</nav>' +
         '<div class="footer-right">' +
