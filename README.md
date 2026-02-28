@@ -1,6 +1,6 @@
 # fynnhofmann.com
 
-Persönliche Website von Fynn Hofmann – ICT-Fachmann EFZ bei der BLS AG in Bern.
+Persönliche Website von Fynn Hofmann.
 
 ## Tech-Stack
 
