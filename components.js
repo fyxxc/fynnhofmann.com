@@ -16,7 +16,7 @@
       '<ul class="nav-links">' +
         '<li><a href="' + base + 'erfahrung.html">Erfahrung</a></li>' +
         '<li><a href="' + base + 'projekte.html">Projekte</a></li>' +
-        '<li><a href="' + base + 'index.html#contact" class="nav-cta">Kontakt</a></li>' +
+        '<li><a href="' + base + 'kontakt.html" class="nav-cta">Kontakt</a></li>' +
       '</ul>' +
       '<button class="nav-burger" id="navBurger" aria-label="Menü öffnen">' +
         '<span></span><span></span><span></span>' +
@@ -25,7 +25,7 @@
     '<div class="nav-mobile" id="navMobile">' +
       '<a href="' + base + 'erfahrung.html" class="nav-mobile-link">Erfahrung</a>' +
       '<a href="' + base + 'projekte.html" class="nav-mobile-link">Projekte</a>' +
-      '<a href="' + base + 'index.html#contact" class="nav-mobile-link">Kontakt</a>' +
+      '<a href="' + base + 'kontakt.html" class="nav-mobile-link">Kontakt</a>' +
     '</div>';
 
   document.body.insertBefore(header, document.body.firstChild);
