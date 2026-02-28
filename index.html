@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-base="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,27 +12,7 @@
   </head>
   <body>
 
-    <!-- ===================== NAVIGATION ===================== -->
-    <header class="header" id="header">
-      <nav class="nav">
-        <a href="index.html" class="nav-logo" id="logo-trigger">FH</a>
-        <ul class="nav-links">
-          <li><a href="erfahrung.html">Erfahrung</a></li>
-          <li><a href="projekte.html">Projekte</a></li>
-          <li><a href="#contact" class="nav-cta">Kontakt</a></li>
-        </ul>
-        <button class="nav-burger" id="navBurger" aria-label="Menü öffnen">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-      <div class="nav-mobile" id="navMobile">
-        <a href="erfahrung.html" class="nav-mobile-link">Erfahrung</a>
-        <a href="projekte.html"  class="nav-mobile-link">Projekte</a>
-        <a href="#contact"       class="nav-mobile-link">Kontakt</a>
-      </div>
-    </header>
-
-    <!-- ===================== HERO ===================== -->
+<!-- ===================== HERO ===================== -->
     <section class="hero" id="hero">
       <div class="hero-content">
         <p class="hero-eyebrow fade-in">ICT-Fachmann EFZ</p>
@@ -101,25 +81,7 @@
       </div>
     </section>
 
-    <!-- ===================== FOOTER ===================== -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <span class="footer-logo">Fynn Hofmann</span>
-          </div>
-          <nav class="footer-nav">
-            <a href="qr.html">QR-Generator</a>
-            <a href="spiel/index.html">Spiel</a>
-          </nav>
-          <div class="footer-right">
-            <p>2026 Fynn Hofmann</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- ===================== EASTER EGG: Konami Code ===================== -->
+<!-- ===================== EASTER EGG: Konami Code ===================== -->
     <div class="easter-egg" id="easterEgg2" role="dialog" aria-modal="true">
       <div class="easter-egg-content">
         <svg class="pixel-man" viewBox="0 0 36 52" width="90" height="130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -154,6 +116,7 @@
       </div>
     </div>
 
+    <script src="components.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

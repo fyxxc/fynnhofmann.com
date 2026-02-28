@@ -1,295 +1,81 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-base="">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fynn Hofmann | QR Generator</title>
+<title>QR Generator | Fynn Hofmann</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ===== QR Generator – page-specific styles ===== */
+  .page-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .page-hero  { margin-bottom: 0; }
+  .section    { padding: 80px 0; }
 
-  :root {
-    --white:          #ffffff;
-    --text:           #1d1d1f;
-    --text-secondary: #6e6e73;
-    --text-tertiary:  #a1a1a6;
-    --bg-light:       #f5f5f7;
-    --bg-dark:        #1d1d1f;
-    --border:         #d2d2d7;
-    --accent:         #0071e3;
-    --accent-hover:   #0077ed;
-    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
-    --radius:    18px;
-    --radius-sm: 10px;
-    --ease:      cubic-bezier(0.4, 0, 0.2, 1);
-    --transition: 0.3s var(--ease);
-  }
-
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font);
-    color: var(--text);
-    background: var(--white);
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
-  /* ===== HEADER ===== */
-  .header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    background: rgba(255,255,255,0.78);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-  .nav {
-    max-width: 1080px; margin: 0 auto; padding: 0 24px;
-    height: 52px; display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-logo {
-    font-size: 17px; font-weight: 700; color: var(--text);
-    text-decoration: none; letter-spacing: -0.01em;
-  }
-  .nav-badge {
-    display: inline-flex; align-items: center;
-    padding: 5px 13px;
-    background: rgba(0,113,227,0.07);
-    color: var(--accent);
-    border-radius: 980px;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 0.05em; text-transform: uppercase;
-  }
-
-  /* ===== MAIN LAYOUT ===== */
-  .page-wrap {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* ===== PAGE HERO ===== */
-  .page-hero {
-    background: var(--bg-dark);
-    padding: 130px 0 72px;
-    margin-bottom: 0;
-  }
-  .page-hero-eyebrow {
-    display: block;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: #6e6e73; margin-bottom: 12px;
-  }
-  .page-hero-title {
-    font-size: clamp(48px, 8vw, 96px);
-    font-weight: 700; letter-spacing: -0.04em; line-height: 0.95;
-    color: #f5f5f7; margin-bottom: 16px;
-  }
-  .page-hero-sub {
-    font-size: 18px; font-weight: 300; color: #8e8e93;
-  }
-
-  /* ===== SECTION ===== */
-  .section { padding: 80px 0; }
-
-  /* ===== QR TOOL ===== */
-  .qr-tool {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-  }
-
-  .section-label {
-    display: block;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 14px;
-  }
-
+  /* QR Tool layout */
+  .qr-tool { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   .qr-left { display: flex; flex-direction: column; gap: 24px; }
 
   /* Tabs */
-  .qr-tabs {
-    display: flex; gap: 0;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    background: var(--bg-light);
-  }
-  .qr-tab {
-    flex: 1; padding: 11px 8px;
-    font-family: var(--font);
-    font-size: 13px; font-weight: 500;
-    color: var(--text-secondary);
-    background: transparent;
-    border: none; cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    border-right: 1.5px solid var(--border);
-  }
+  .qr-tabs { display: flex; gap: 0; border: 1.5px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-light); }
+  .qr-tab { flex: 1; padding: 11px 8px; font-family: var(--font); font-size: 13px; font-weight: 500; color: var(--text-secondary); background: transparent; border: none; cursor: pointer; transition: background 0.2s, color 0.2s; border-right: 1.5px solid var(--border); }
   .qr-tab:last-child { border-right: none; }
-  .qr-tab.active {
-    background: var(--white);
-    color: var(--text);
-    font-weight: 600;
-  }
+  .qr-tab.active { background: var(--white); color: var(--text); font-weight: 600; }
   .qr-tab:hover:not(.active) { color: var(--text); }
 
   /* Input */
-  .qr-input {
-    width: 100%;
-    padding: 15px 18px;
-    font-size: 16px; font-family: var(--font);
-    color: var(--text);
-    background: var(--bg-light);
-    border: 1.5px solid transparent;
-    border-radius: var(--radius-sm);
-    outline: none; resize: vertical;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-    line-height: 1.5;
-  }
-  .qr-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0,113,227,0.12);
-    background: var(--white);
-  }
+  .qr-input { width: 100%; padding: 15px 18px; font-size: 16px; font-family: var(--font); color: var(--text); background: var(--bg-light); border: 1.5px solid transparent; border-radius: var(--radius-sm); outline: none; resize: vertical; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; line-height: 1.5; }
+  .qr-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,113,227,0.12); background: var(--white); }
   .qr-input::placeholder { color: var(--text-tertiary); }
 
   /* Contact grid */
-  .qr-contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
+  .qr-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .qr-contact-grid .full { grid-column: span 2; }
-  .qr-field-label {
-    display: block;
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--text-tertiary); margin-bottom: 6px;
-  }
+  .qr-field-label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 6px; }
 
   /* Options card */
-  .qr-options-card {
-    background: var(--bg-light);
-    border-radius: var(--radius);
-    padding: 24px;
-    display: flex; flex-direction: column; gap: 0;
-  }
+  .qr-options-card { background: var(--bg-light); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 0; }
   .qr-option-divider { height: 1px; background: var(--border); margin: 18px 0; }
   .qr-option-row { display: flex; flex-direction: column; gap: 12px; }
   .qr-option-header { display: flex; justify-content: space-between; align-items: center; }
   .qr-option-label { font-size: 13px; font-weight: 600; color: var(--text); }
   .qr-option-value { font-size: 13px; font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; }
 
-  .qr-range {
-    -webkit-appearance: none; appearance: none;
-    width: 100%; height: 4px;
-    background: var(--border); border-radius: 2px;
-    outline: none; cursor: pointer;
-  }
-  .qr-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 22px; height: 22px; border-radius: 50%;
-    background: var(--accent); cursor: pointer;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    transition: transform 0.15s;
-  }
+  .qr-range { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: var(--border); border-radius: 2px; outline: none; cursor: pointer; }
+  .qr-range::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform 0.15s; }
   .qr-range::-webkit-slider-thumb:hover { transform: scale(1.1); }
 
   .qr-color-row { display: flex; gap: 24px; }
   .qr-color-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
   .qr-color-item input[type="color"] { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
-  .qr-color-swatch {
-    display: block; width: 32px; height: 32px; border-radius: 50%;
-    border: 2px solid rgba(0,0,0,0.12); cursor: pointer; flex-shrink: 0;
-    transition: transform 0.15s, box-shadow 0.15s;
-  }
+  .qr-color-swatch { display: block; width: 32px; height: 32px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.12); cursor: pointer; flex-shrink: 0; transition: transform 0.15s, box-shadow 0.15s; }
   .qr-color-swatch:hover { transform: scale(1.1); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
   .qr-color-name { font-size: 13px; color: var(--text-secondary); }
 
   .qr-ecl { display: flex; gap: 8px; }
-  .qr-ecl-btn {
-    flex: 1; padding: 9px 6px;
-    background: var(--white);
-    border: 1.5px solid var(--border); border-radius: 8px;
-    font-family: var(--font); font-size: 13px; font-weight: 600;
-    color: var(--text-secondary); cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
+  .qr-ecl-btn { flex: 1; padding: 9px 6px; background: var(--white); border: 1.5px solid var(--border); border-radius: 8px; font-family: var(--font); font-size: 13px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
   .qr-ecl-btn:hover { border-color: var(--accent); color: var(--accent); }
   .qr-ecl-active { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
 
   /* Actions */
   .qr-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-flex; align-items: center;
-    padding: 14px 28px; background: var(--accent); color: #fff;
-    border-radius: 980px; font-size: 15px; font-weight: 500;
-    text-decoration: none; border: none; cursor: pointer; font-family: var(--font);
-    transition: var(--transition);
-  }
-  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-  .btn-primary:disabled, .btn-secondary:disabled { opacity: 0.38; cursor: not-allowed; pointer-events: none; }
-
-  .btn-secondary {
-    display: inline-flex; align-items: center;
-    padding: 14px 28px; background: rgba(0,0,0,0.06); color: var(--text);
-    border-radius: 980px; font-size: 15px; font-weight: 500;
-    text-decoration: none; border: none; cursor: pointer; font-family: var(--font);
-    transition: var(--transition);
-  }
-  .btn-secondary:hover { background: rgba(0,0,0,0.10); transform: translateY(-1px); }
-
   .qr-privacy { font-size: 12px; color: var(--text-tertiary); line-height: 1.5; }
 
   /* Right – preview */
   .qr-right { position: sticky; top: 72px; }
-
-  .qr-preview {
-    background: var(--bg-light); border-radius: var(--radius);
-    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
-    min-height: 260px; overflow: hidden; margin-bottom: 20px;
-  }
-  #qrOutput {
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px; width: 100%; height: 100%;
-  }
+  .qr-preview { background: var(--bg-light); border-radius: var(--radius); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; min-height: 260px; overflow: hidden; margin-bottom: 20px; }
+  #qrOutput { display: flex; align-items: center; justify-content: center; padding: 20px; width: 100%; height: 100%; }
   #qrOutput canvas { border-radius: 8px; }
-
-  .qr-placeholder {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 16px; color: var(--text-tertiary); text-align: center; padding: 32px;
-  }
+  .qr-placeholder { display: flex; flex-direction: column; align-items: center; gap: 16px; color: var(--text-tertiary); text-align: center; padding: 32px; }
   .qr-placeholder svg { opacity: 0.35; }
   .qr-placeholder p { font-size: 14px; line-height: 1.6; }
 
   /* Data preview */
-  .qr-data-preview {
-    background: var(--bg-light); border-radius: var(--radius-sm);
-    padding: 16px 18px;
-  }
-  .qr-data-label {
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--text-tertiary); margin-bottom: 6px;
-  }
-  .qr-data-value {
-    font-size: 13px; color: var(--text-secondary);
-    word-break: break-all; line-height: 1.5;
-    max-height: 72px; overflow: hidden;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-  }
-
-  /* Footer */
-  .footer {
-    background: var(--bg-light);
-    padding: 40px 0;
-    border-top: 1px solid var(--border);
-    margin-top: 0;
-  }
-  .footer-inner {
-    max-width: 1080px; margin: 0 auto; padding: 0 24px;
-    display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    flex-wrap: wrap;
-  }
-  .footer-inner p { font-size: 12px; color: var(--text-secondary); }
+  .qr-data-preview { background: var(--bg-light); border-radius: var(--radius-sm); padding: 16px 18px; }
+  .qr-data-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 6px; }
+  .qr-data-value { font-size: 13px; color: var(--text-secondary); word-break: break-all; line-height: 1.5; max-height: 72px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 
   /* Responsive */
   @media (max-width: 860px) {
@@ -304,14 +90,6 @@
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<header class="header">
-  <nav class="nav">
-    <a class="nav-logo" href="https://fynnhofmann.com">fynnhofmann</a>
-    <span class="nav-badge">QR Generator</span>
-  </nav>
-</header>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -485,14 +263,7 @@
   </div>
 </main>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <p>© 2025 fynnhofmann.com</p>
-    <p>Codes werden lokal generiert · Keine Daten gespeichert · Kostenlos</p>
-  </div>
-</footer>
-
+<script src="components.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <script>
   let activeTab = 'url';
