@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!-- Auth guard MUST be first – blocks body before it paints -->
+  <script src="auth.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netzwerk-Topologie</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg:       #0f0f0f;
+  --surface:  #161616;
+  --surface2: #1e1e1e;
+  --border:   #2a2a2a;
+  --border2:  #333;
+  --text:     #f0ede8;
+  --text2:    #888;
+  --text3:    #555;
+  --sl:       #2b6fff;
+  --sl-dim:   rgba(43,111,255,.12);
+  --sl-glow:  rgba(43,111,255,.25);
+  --wg:       #e05a00;
+  --wg-dim:   rgba(224,90,0,.10);
+  --wg-glow:  rgba(224,90,0,.2);
+  --dep:      #444;
+  --dep-dim:  rgba(80,80,80,.08);
+  --green:    #2ea04e;
+  --font:     'Sora', sans-serif;
+  --mono:     'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 0 0 80px;
+  line-height: 1.5;
+}
+
+/* ── HEADER ── */
+.hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky; top: 0; z-index: 50;
+}
+.hdr-logo {
+  font-size: 13px; font-weight: 600; letter-spacing: .04em;
+  color: var(--text2);
+}
+.hdr-logo span { color: var(--text); }
+.hdr-badge {
+  font-family: var(--mono);
+  font-size: 11px; color: var(--sl);
+  background: var(--sl-dim);
+  border: 1px solid rgba(43,111,255,.25);
+  padding: 4px 12px; border-radius: 4px;
+  display: flex; align-items: center; gap: 6px;
+}
+.hdr-badge::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background: var(--sl); animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── TITLE SECTION ── */
+.title-section {
+  padding: 56px 48px 40px;
+  border-bottom: 1px solid var(--border);
+}
+.title-eyebrow {
+  font-family: var(--mono); font-size: 11px; color: var(--text3);
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px;
+}
+.title-h1 {
+  font-size: clamp(32px, 4vw, 52px); font-weight: 700;
+  letter-spacing: -.03em; line-height: .95;
+  margin-bottom: 16px;
+}
+.title-sub {
+  font-size: 14px; color: var(--text2); font-weight: 300;
+  max-width: 560px; line-height: 1.7;
+}
+
+/* ── DIAGRAM SECTION ── */
+.diag-section {
+  padding: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.diag-section + .diag-section {
+  border-top: none;
+}
+
+.diag-label {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.diag-label-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.diag-label-text {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+}
+.diag-label-line { flex: 1; height: 1px; background: var(--border); }
+
+/* ── TOPOLOGY CARD ── */
+.topo-card {
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border2);
+  overflow: hidden;
+}
+
+/* ── SVG OVERRIDES ── */
+.topo-card svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 680px;
+}
+
+/* ── SPEC GRID ── */
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.spec-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.spec-card-hdr {
+  padding: 10px 16px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.spec-card-hdr.sl { color: var(--sl); background: var(--sl-dim); }
+.spec-card-hdr.wg { color: var(--wg); background: var(--wg-dim); }
+.spec-card-hdr.dep { color: var(--text3); background: var(--dep-dim); }
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table td { padding: 8px 16px; border-bottom: 1px solid var(--border); font-size: 12px; }
+.spec-table tr:last-child td { border-bottom: none; }
+.spec-k { font-family: var(--mono); color: var(--text3); width: 38%; }
+.spec-v { font-family: var(--mono); font-weight: 500; color: var(--text); }
+.cv-sl { color: var(--sl); }
+.cv-wg { color: var(--wg); }
+.cv-dep { color: var(--dep); text-decoration: line-through; }
+.cv-green { color: var(--green); }
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-logo"><span>fynn hofmann</span> · network</div>
+  <div class="hdr-badge">Dual-WAN v2.0</div>
+</header>
+
+<div class="title-section">
+  <div class="title-eyebrow">// network_topology.md</div>
+  <h1 class="title-h1">Netzwerk<br>Aufbauplan</h1>
+  <p class="title-sub">Starlink als primäres Netz (192.168.2.x) — Wingo/Swisscom Glasfaser als Legacy & Fallback (192.168.1.x). Zwei vollständig isolierte Segmente.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     STARLINK DIAGRAM
+══════════════════════════════════════════ -->
+<div class="diag-section">
+  <div class="diag-label">
+    <div class="diag-label-dot" style="background:var(--sl);box-shadow:0 0 8px var(--sl-glow)"></div>
+    <span class="diag-label-text" style="color:var(--sl)">Starlink · Primäres Netz · 192.168.2.0/24</span>
+    <div class="diag-label-line"></div>
+  </div>
+
+  <div class="topo-card">
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-sl">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="sl-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a"/>
+      <stop offset="100%" style="stop-color:#111"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="420" fill="#141414"/>
+
+  <!-- Zone: WAN -->
+  <rect x="16" y="14" width="868" height="80" rx="8" fill="#161616" stroke="#222" stroke-width="1"/>
+  <text x="32" y="31" font-family="JetBrains Mono" font-size="9" fill="#333" letter-spacing="2" font-weight="500">WAN / INTERNET</text>
+
+  <!-- Zone: Router -->
+  <rect x="16" y="106" width="868" height="82" rx="8" fill="#161616" stroke="#222" stroke-width="1"/>
+  <text x="32" y="123" font-family="JetBrains Mono" font-size="9" fill="#333" letter-spacing="2" font-weight="500">ROUTER / GATEWAY</text>
+
+  <!-- Zone: My Devices -->
+  <rect x="16" y="200" width="420" height="190" rx="8" fill="#12192b" stroke="#1e3a6a" stroke-width="1.5"/>
+  <text x="32" y="218" font-family="JetBrains Mono" font-size="9" fill="#2b6fff" letter-spacing="2" font-weight="500">MEINE GERÄTE · 192.168.2.x</text>
+
+  <!-- Zone: Dev VLAN -->
+  <rect x="452" y="200" width="432" height="190" rx="8" fill="#111b1a" stroke="#1a3a30" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="468" y="218" font-family="JetBrains Mono" font-size="9" fill="#2ea04e" letter-spacing="2" font-weight="500">DEV VLAN · 192.168.3.x · GEPLANT</text>
+
+  <!-- ── Starlink dish image ── -->
+  <image href="data:image/png;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAB9KADAAQAAAABAAAB9AAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgB9AH0AwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAQEBAQEBAgEBAgMCAgIDBAMDAwMEBgQEBAQEBgcGBgYGBgYHBwcHBwcHBwgICAgICAkJCQkJCwsLCwsLCwsLC//bAEMBAgICAwMDBQMDBQsIBggLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLC//dAAQAIP/aAAwDAQACEQMRAD8A/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9D/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//0f8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//S/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9P/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoor174E/AL4z/tOfFLSvgp+z/4bvvFnirW5PKs9O0+IyyyHux/hRFHLu5CIuSxABNAHkNdV4S8C+NvH+pf2L4E0e+1u86+RYW8lzLz/sxqx/Sv9AT/AIJrf8Gj/wAGPhzpen/E3/gpbqbeMfEciLKfBui3Jh0m1LqD5d3eRETXEi5IZbdo41YcSSDmv64/g18Evgv+zj4Sh8B/s/8AhDRfBOj2wUR2ei2MVmvyjALGNQzt6s7MxPJJNA7H+Nz4S/4J1ft8+O22eEPgv41vzkj91od51HJHMQ5AI49xX0D4b/4Ii/8ABW3xZLHHo/7PvjMeYAwa405rZAD0y02xR16Eiv8AYnfXNaP3rub3w7D+tUpb28lG2WZ3A7MxP480BY/yZ/C3/Btj/wAFqPFcSXFt8Eb+zjdd2b6+sbUj2KyXCsD9R79Oa9w0T/g1M/4LG6tOIr7wloGlpz895r9mgB7fKju/PrtxX+o9tLc0oAz/AJNAWP8ANi8Lf8Gef/BTPVhE/iXxP4C0hXAZ86rLOUyRkYS35IGTxxxjNe6+Hv8AgzB/awvGX/hJ/jP4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f8Fc4WuNZ0CTGGk0fTycDGMwJkdjx74ORzzxX4p6QpaRSxyCff3P4/1r9wf+CtUKPd+F5AAT/YenHAIIGLdOmOOBjkDB9sYr8StORvOAbnB/GvTp7I5Z7n73f8EeBt+McRJVB5MvLruUYQ43DByB1I5+lfxMeIv+Q/ff9fEv/oRr+2X/AII/zNH8YYpowCVt5eoDDiNsZyMEcdOfpX8TXiH/AJD99/18S/8AoRrlxPxG9PYx6KKK5iwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/X/gHoqMyen+f0phJPWgCUuophcmmUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFKOtJQKAP7Xf8AgrMnmx+FHHz7tC07aSAOPs0fYZA+g/LjNfh1YIBcADsT1r92/wDgrFCfI8LGXJb+w9O3F+HJ+zR8kZJz61+FdgCLgA8juOlepT+FHLPc/dv/AIJDFR8XE5JxbTdPeMjoP8B/h/E74i/5D99/18S/+hGv7Yv+CQ52fFxM9TbTD0/5Zn6dPr/9f+J3xD/yH77/AK+Jf/QjXJifiN6exj0UUVzFhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/9D/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApR1pKKAP7gP+CrEaNo/hPyCdv9iabgngkC1j7ZOD1Pp7nivwmtFxMR37/jX70/8FVQX0Twq7v5mNE00liT8xNrHkjOOo9ifXtj8GrcEXB9M16lL4Uc09z9zP8AgkM4X4vDZx/o82Scd0b8ef0J6V/FB4h/5D99/wBfEv8A6Ea/tf8A+CRMn/F4VJ/ht5h9cxsP5+5/Ov4nde2/25ebc48+TGc5+8euefzrkxPxGtPYyqKKK5jQKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/0f8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK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AP/S/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPtr9h34XeE/HvjzWvFPjCWFYPCemNqdvFdIJLaW78xI4VmXqybnztUMzEAYxmv06+AmiafrvxN1DxH4svZtV1VBNeG6YlvMPmIHfLgs7yh2yWAKjJ4Yhk/Dn4a/F3xp8KG1NfCcsaxazbpa3kUqb0liSRZVB5BGHRTwR0r0ib9q/4si0ubXS3ttP+1xGGV7eNt5jLBiMu7YztAPqOOhNawmkrEtXP6C/jF+1F8OfgP4bN74nuVF1zFFp8EoaY7VRlDggsozwSRnByFIBYfzv/tE/tHeP/wBpDxmfFPjKYrBFlbWzRmMMCkANsBJwWwCx7nk5OSfEdX1rVtevW1HWriS6nfq8jFj6456D26VmVMp3GlYKKKKgYUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/9P/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//1P8AP/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//V/wA/+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9b/AD/6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//2Q==" x="28" y="24" width="54" height="54" style="mix-blend-mode:screen"/>
+
+  <!-- Starlink wordmark -->
+  <rect x="90" y="32" width="106" height="36" rx="4" fill="#0a0a14"/>
+  <text x="143" y="46" text-anchor="middle" font-family="Sora, sans-serif" font-size="11" font-weight="700" fill="#f0f0ff" letter-spacing="3">STARLINK</text>
+  <text x="143" y="59" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#2b6fff" letter-spacing="1">SATELLITE</text>
+
+  <!-- Internet circle -->
+  <circle cx="540" cy="54" r="26" fill="#161616" stroke="#2b6fff" stroke-width="1.5"/>
+  <ellipse cx="540" cy="54" rx="14" ry="26" fill="none" stroke="#2b6fff" stroke-width=".8" opacity=".4"/>
+  <line x1="514" y1="54" x2="566" y2="54" stroke="#2b6fff" stroke-width=".8" opacity=".4"/>
+  <line x1="516" y1="43" x2="564" y2="43" stroke="#2b6fff" stroke-width=".6" opacity=".3"/>
+  <line x1="516" y1="65" x2="564" y2="65" stroke="#2b6fff" stroke-width=".6" opacity=".3"/>
+  <text x="540" y="92" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#2b6fff" letter-spacing="1">INTERNET</text>
+
+  <!-- Signal line: Dish → Internet -->
+  <line x1="205" y1="54" x2="514" y2="54" stroke="#2b6fff" stroke-width="1.5" opacity=".6"/>
+  <polygon points="511,50 521,54 511,58" fill="#2b6fff" opacity=".8"/>
+
+  <!-- Internet → Router -->
+  <line x1="540" y1="80" x2="450" y2="106" stroke="#2b6fff" stroke-width="1.5" opacity=".6"/>
+  <polygon points="448,103 452,113 456,103" fill="#2b6fff" opacity=".8"/>
+
+  <!-- Router box -->
+  <rect x="352" y="114" width="196" height="64" rx="6" fill="#161616" stroke="#2b6fff" stroke-width="1.5"/>
+  <rect x="352" y="114" width="196" height="20" rx="6" fill="#0d1f47"/>
+  <rect x="352" y="126" width="196" height="8" fill="#0d1f47"/>
+  <text x="450" y="127" text-anchor="middle" font-family="Sora, sans-serif" font-size="10" font-weight="700" fill="#5a90ff" letter-spacing="2">STARLINK ROUTER</text>
+  <text x="364" y="145" font-family="JetBrains Mono" font-size="9" fill="#555">SSID</text>
+  <text x="396" y="145" font-family="JetBrains Mono" font-size="9" fill="#2b6fff" font-weight="500">Starlink_418</text>
+  <text x="364" y="157" font-family="JetBrains Mono" font-size="9" fill="#555">GW</text>
+  <text x="396" y="157" font-family="JetBrains Mono" font-size="9" fill="#8aafff" font-weight="500">192.168.2.1</text>
+  <text x="364" y="169" font-family="JetBrains Mono" font-size="9" fill="#555">SEC</text>
+  <text x="396" y="169" font-family="JetBrains Mono" font-size="9" fill="#2ea04e" font-weight="500">WPA3</text>
+
+  <!-- Router → device zones (distribute lines) -->
+  <!-- To my devices zone center: x=226 -->
+  <line x1="410" y1="178" x2="226" y2="200" stroke="#2b6fff" stroke-width="1.5" opacity=".5"/>
+  <!-- To dev zone center: x=668 -->
+  <line x1="490" y1="178" x2="668" y2="200" stroke="#2ea04e" stroke-width="1.2" opacity=".4" stroke-dasharray="5,3"/>
+
+  <!-- ── My Device boxes ── -->
+  <!-- Laptop -->
+  <rect x="32" y="228" width="112" height="66" rx="6" fill="#161a26" stroke="#1e3a6a" stroke-width="1.2"/>
+  <rect x="32" y="228" width="112" height="20" rx="6" fill="#0d1f47"/>
+  <rect x="32" y="238" width="112" height="10" fill="#0d1f47"/>
+  <text x="88" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#5a90ff" letter-spacing="1">LAPTOP / PC</text>
+  <text x="88" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8aafff">192.168.2.101</text>
+  <text x="88" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">Static rec.</text>
+  <rect x="56" y="278" width="64" height="12" rx="3" fill="rgba(43,111,255,.15)"/>
+  <text x="88" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#2b6fff">PRIMARY</text>
+
+  <!-- Smartphone -->
+  <rect x="162" y="228" width="112" height="66" rx="6" fill="#161a26" stroke="#1e3a6a" stroke-width="1.2"/>
+  <rect x="162" y="228" width="112" height="20" rx="6" fill="#0d1f47"/>
+  <rect x="162" y="238" width="112" height="10" fill="#0d1f47"/>
+  <text x="218" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#5a90ff" letter-spacing="1">SMARTPHONE</text>
+  <text x="218" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8aafff">192.168.2.x</text>
+  <text x="218" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">DHCP</text>
+  <rect x="188" y="278" width="60" height="12" rx="3" fill="rgba(43,111,255,.12)"/>
+  <text x="218" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#2b6fff">FYNN</text>
+
+  <!-- Gaming -->
+  <rect x="292" y="228" width="112" height="66" rx="6" fill="#161a26" stroke="#1e3a6a" stroke-width="1.2"/>
+  <rect x="292" y="228" width="112" height="20" rx="6" fill="#0d1f47"/>
+  <rect x="292" y="238" width="112" height="10" fill="#0d1f47"/>
+  <text x="348" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#5a90ff" letter-spacing="1">GAMING</text>
+  <text x="348" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8aafff">192.168.2.x</text>
+  <text x="348" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">DHCP</text>
+  <rect x="310" y="278" width="76" height="12" rx="3" fill="rgba(43,111,255,.12)"/>
+  <text x="348" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#2b6fff">LOW LATENCY</text>
+
+  <!-- T-junction + lines to devices -->
+  <circle cx="226" cy="210" r="3.5" fill="#2b6fff"/>
+  <line x1="88" y1="210" x2="348" y2="210" stroke="#2b6fff" stroke-width="1" opacity=".5"/>
+  <line x1="88" y1="210" x2="88" y2="228" stroke="#2b6fff" stroke-width="1" opacity=".5"/>
+  <line x1="218" y1="210" x2="218" y2="228" stroke="#2b6fff" stroke-width="1" opacity=".5"/>
+  <line x1="348" y1="210" x2="348" y2="228" stroke="#2b6fff" stroke-width="1" opacity=".5"/>
+
+  <!-- ── Dev VLAN boxes ── -->
+  <!-- Dev 1 -->
+  <rect x="468" y="228" width="124" height="66" rx="6" fill="#131e1a" stroke="#1a3a30" stroke-width="1.2" stroke-dasharray="5,2"/>
+  <rect x="468" y="228" width="124" height="20" rx="6" fill="#0d2218"/>
+  <rect x="468" y="238" width="124" height="10" fill="#0d2218"/>
+  <text x="530" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#2ea04e" letter-spacing="1">DEV GERÄT 1</text>
+  <text x="530" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#4caf70">192.168.3.x</text>
+  <text x="530" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">DHCP</text>
+  <rect x="498" y="278" width="64" height="12" rx="3" fill="rgba(46,160,78,.12)"/>
+  <text x="530" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#2ea04e">DEV VLAN</text>
+
+  <!-- Dev 2 -->
+  <rect x="614" y="228" width="124" height="66" rx="6" fill="#131e1a" stroke="#1a3a30" stroke-width="1.2" stroke-dasharray="5,2"/>
+  <rect x="614" y="228" width="124" height="20" rx="6" fill="#0d2218"/>
+  <rect x="614" y="238" width="124" height="10" fill="#0d2218"/>
+  <text x="676" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#2ea04e" letter-spacing="1">DEV GERÄT 2</text>
+  <text x="676" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#4caf70">192.168.3.x</text>
+  <text x="676" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">DHCP</text>
+  <rect x="644" y="278" width="64" height="12" rx="3" fill="rgba(46,160,78,.12)"/>
+  <text x="676" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#2ea04e">DEV VLAN</text>
+
+  <!-- T-junction dev -->
+  <circle cx="668" cy="210" r="3.5" fill="#2ea04e" opacity=".7"/>
+  <line x1="530" y1="210" x2="676" y2="210" stroke="#2ea04e" stroke-width="1" opacity=".4" stroke-dasharray="4,2"/>
+  <line x1="530" y1="210" x2="530" y2="228" stroke="#2ea04e" stroke-width="1" opacity=".4" stroke-dasharray="4,2"/>
+  <line x1="676" y1="210" x2="676" y2="228" stroke="#2ea04e" stroke-width="1" opacity=".4" stroke-dasharray="4,2"/>
+
+  <!-- Legend bar -->
+  <rect x="16" y="404" width="868" height="1" fill="#1e1e1e"/>
+  <line x1="32" y1="412" x2="52" y2="412" stroke="#2b6fff" stroke-width="1.5"/>
+  <text x="58" y="416" font-family="JetBrains Mono" font-size="9" fill="#444">Starlink_418 — aktiv</text>
+  <line x1="200" y1="412" x2="212" y2="412" stroke="#2ea04e" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="216" y1="412" x2="220" y2="412" stroke="#2ea04e" stroke-width="1.5" stroke-dasharray="4,2" opacity=".3"/>
+  <text x="228" y="416" font-family="JetBrains Mono" font-size="9" fill="#444">Starlink_Dev — geplant (gestrichelt)</text>
+  <text x="836" y="416" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#2b2b2b">seg.01</text>
+
+</svg>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-card-hdr sl">Starlink_418 — Hauptnetz</div>
+      <table class="spec-table">
+        <tr><td class="spec-k">SSID</td><td class="spec-v cv-sl">Starlink_418</td></tr>
+        <tr><td class="spec-k">SUBNET</td><td class="spec-v">192.168.2.0/24</td></tr>
+        <tr><td class="spec-k">GATEWAY</td><td class="spec-v">192.168.2.1</td></tr>
+        <tr><td class="spec-k">DHCP</td><td class="spec-v">.100 – .200</td></tr>
+        <tr><td class="spec-k">MASK</td><td class="spec-v">255.255.255.0</td></tr>
+        <tr><td class="spec-k">DNS</td><td class="spec-v">1.1.1.1 · 8.8.8.8</td></tr>
+        <tr><td class="spec-k">SECURITY</td><td class="spec-v cv-green">WPA3</td></tr>
+      </table>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-hdr" style="color:var(--green);background:rgba(46,160,78,.1)">Starlink_Dev — Dev VLAN (geplant)</div>
+      <table class="spec-table">
+        <tr><td class="spec-k">SSID</td><td class="spec-v cv-green">Starlink_Dev</td></tr>
+        <tr><td class="spec-k">SUBNET</td><td class="spec-v">192.168.3.0/24</td></tr>
+        <tr><td class="spec-k">GATEWAY</td><td class="spec-v">192.168.3.1</td></tr>
+        <tr><td class="spec-k">DHCP</td><td class="spec-v">.100 – .150</td></tr>
+        <tr><td class="spec-k">ISOLATION</td><td class="spec-v cv-green">Client ON</td></tr>
+        <tr><td class="spec-k">ABLÖSUNG</td><td class="spec-v">Fynn_Dev_2.4G</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     WINGO / SWISSCOM DIAGRAM
+══════════════════════════════════════════ -->
+<div class="diag-section">
+  <div class="diag-label">
+    <div class="diag-label-dot" style="background:var(--wg);box-shadow:0 0 8px var(--wg-glow)"></div>
+    <span class="diag-label-text" style="color:var(--wg)">Swisscom / Wingo · Legacy Netz · 192.168.1.0/24</span>
+    <div class="diag-label-line"></div>
+  </div>
+
+  <div class="topo-card">
+<svg viewBox="0 0 900 410" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <rect width="900" height="410" fill="#141210"/>
+
+  <!-- Zone: WAN -->
+  <rect x="16" y="14" width="868" height="80" rx="8" fill="#181410" stroke="#201810" stroke-width="1"/>
+  <text x="32" y="31" font-family="JetBrains Mono" font-size="9" fill="#2e1e08" letter-spacing="2" font-weight="500">WAN / GLASFASER (FTTH)</text>
+
+  <!-- Zone: Router -->
+  <rect x="16" y="106" width="868" height="82" rx="8" fill="#181410" stroke="#201810" stroke-width="1"/>
+  <text x="32" y="123" font-family="JetBrains Mono" font-size="9" fill="#2e1e08" letter-spacing="2" font-weight="500">ROUTER / GATEWAY</text>
+
+  <!-- Zone: Mutter devices -->
+  <rect x="16" y="200" width="530" height="180" rx="8" fill="#1a1410" stroke="#3a2010" stroke-width="1.5"/>
+  <text x="32" y="218" font-family="JetBrains Mono" font-size="9" fill="#e05a00" letter-spacing="2" font-weight="500">MUTTER · hofman5G · 192.168.1.x</text>
+
+  <!-- Zone: Deprecated -->
+  <rect x="562" y="200" width="322" height="180" rx="8" fill="#161414" stroke="#2a1a1a" stroke-width="1.2" stroke-dasharray="6,3" opacity=".9"/>
+  <text x="578" y="218" font-family="JetBrains Mono" font-size="9" fill="#442020" letter-spacing="2" font-weight="500">WIRD ABGESCHAFFT</text>
+
+  <!-- Wingo logo image -->
+  <image href="data:image/png;base64,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" x="28" y="22" width="50" height="50"/>
+
+  <!-- Wingo wordmark -->
+  <rect x="90" y="30" width="110" height="36" rx="4" fill="#1a0a00"/>
+  <text x="145" y="45" text-anchor="middle" font-family="Sora, sans-serif" font-size="11" font-weight="700" fill="#ff8040" letter-spacing="3">WINGO</text>
+  <text x="145" y="58" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#e05a00" letter-spacing="1">SWISSCOM FTTH</text>
+
+  <!-- Internet globe -->
+  <circle cx="540" cy="54" r="26" fill="#161412" stroke="#e05a00" stroke-width="1.5"/>
+  <ellipse cx="540" cy="54" rx="14" ry="26" fill="none" stroke="#e05a00" stroke-width=".8" opacity=".4"/>
+  <line x1="514" y1="54" x2="566" y2="54" stroke="#e05a00" stroke-width=".8" opacity=".4"/>
+  <line x1="516" y1="43" x2="564" y2="43" stroke="#e05a00" stroke-width=".6" opacity=".3"/>
+  <line x1="516" y1="65" x2="564" y2="65" stroke="#e05a00" stroke-width=".6" opacity=".3"/>
+  <text x="540" y="92" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#e05a00" letter-spacing="1">INTERNET</text>
+
+  <!-- Glasfaser box -->
+  <rect x="732" y="26" width="130" height="42" rx="5" fill="#1a0a00" stroke="#3a2010" stroke-width="1"/>
+  <text x="797" y="42" text-anchor="middle" font-family="Sora, sans-serif" font-size="10" font-weight="600" fill="#ff8040">GLASFASER</text>
+  <text x="797" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#e05a00">OTO-Box / MFH</text>
+
+  <!-- Lines WAN -->
+  <line x1="215" y1="54" x2="514" y2="54" stroke="#e05a00" stroke-width="1.5" opacity=".6"/>
+  <polygon points="511,50 521,54 511,58" fill="#e05a00" opacity=".8"/>
+  <line x1="732" y1="47" x2="566" y2="47" stroke="#e05a00" stroke-width="1.5" opacity=".6"/>
+  <polygon points="569,43 559,47 569,51" fill="#e05a00" opacity=".8"/>
+
+  <!-- Internet → Router -->
+  <line x1="540" y1="80" x2="450" y2="106" stroke="#e05a00" stroke-width="1.5" opacity=".6"/>
+  <polygon points="448,103 452,113 456,103" fill="#e05a00" opacity=".8"/>
+
+  <!-- Router box -->
+  <rect x="352" y="114" width="196" height="64" rx="6" fill="#181412" stroke="#e05a00" stroke-width="1.5"/>
+  <rect x="352" y="114" width="196" height="20" rx="6" fill="#2a1000"/>
+  <rect x="352" y="126" width="196" height="8" fill="#2a1000"/>
+  <text x="450" y="127" text-anchor="middle" font-family="Sora, sans-serif" font-size="10" font-weight="700" fill="#e05a00" letter-spacing="2">WINGO ROUTER</text>
+  <text x="364" y="145" font-family="JetBrains Mono" font-size="9" fill="#555">SSID</text>
+  <text x="396" y="145" font-family="JetBrains Mono" font-size="9" fill="#e05a00" font-weight="500">hofman5G</text>
+  <text x="364" y="157" font-family="JetBrains Mono" font-size="9" fill="#555">GW</text>
+  <text x="396" y="157" font-family="JetBrains Mono" font-size="9" fill="#ff8040" font-weight="500">192.168.1.1</text>
+  <text x="364" y="169" font-family="JetBrains Mono" font-size="9" fill="#555">SEC</text>
+  <text x="396" y="169" font-family="JetBrains Mono" font-size="9" fill="#888" font-weight="500">WPA2</text>
+
+  <!-- Router → zones -->
+  <line x1="410" y1="178" x2="281" y2="200" stroke="#e05a00" stroke-width="1.5" opacity=".5"/>
+  <line x1="490" y1="178" x2="723" y2="200" stroke="#553333" stroke-width="1.2" opacity=".4" stroke-dasharray="5,3"/>
+
+  <!-- ── Mutter devices ── -->
+  <!-- TV -->
+  <rect x="32" y="228" width="112" height="66" rx="6" fill="#1a1410" stroke="#3a2010" stroke-width="1.2"/>
+  <rect x="32" y="228" width="112" height="20" rx="6" fill="#2a1000"/>
+  <rect x="32" y="238" width="112" height="10" fill="#2a1000"/>
+  <text x="88" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#e05a00" letter-spacing="1">SMART TV</text>
+  <text x="88" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ff8040">192.168.1.x</text>
+  <text x="88" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">DHCP</text>
+  <rect x="58" y="278" width="60" height="12" rx="3" fill="rgba(224,90,0,.12)"/>
+  <text x="88" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#e05a00">MUTTER</text>
+
+  <!-- Drucker -->
+  <rect x="162" y="228" width="112" height="66" rx="6" fill="#1a1410" stroke="#3a2010" stroke-width="1.2"/>
+  <rect x="162" y="228" width="112" height="20" rx="6" fill="#2a1000"/>
+  <rect x="162" y="238" width="112" height="10" fill="#2a1000"/>
+  <text x="218" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#e05a00" letter-spacing="1">DRUCKER</text>
+  <text x="218" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ff8040">192.168.1.102</text>
+  <text x="218" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">Static rec.</text>
+  <rect x="188" y="278" width="60" height="12" rx="3" fill="rgba(224,90,0,.12)"/>
+  <text x="218" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#e05a00">MUTTER</text>
+
+  <!-- Smart Home -->
+  <rect x="292" y="228" width="112" height="66" rx="6" fill="#1a1410" stroke="#3a2010" stroke-width="1.2"/>
+  <rect x="292" y="228" width="112" height="20" rx="6" fill="#2a1000"/>
+  <rect x="292" y="238" width="112" height="10" fill="#2a1000"/>
+  <text x="348" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#e05a00" letter-spacing="1">SMART HOME</text>
+  <text x="348" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ff8040">192.168.1.x</text>
+  <text x="348" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">IoT</text>
+  <rect x="314" y="278" width="68" height="12" rx="3" fill="rgba(224,90,0,.12)"/>
+  <text x="348" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#e05a00">MUTTER</text>
+
+  <!-- Handy Mutter -->
+  <rect x="422" y="228" width="112" height="66" rx="6" fill="#1a1410" stroke="#3a2010" stroke-width="1.2"/>
+  <rect x="422" y="228" width="112" height="20" rx="6" fill="#2a1000"/>
+  <rect x="422" y="238" width="112" height="10" fill="#2a1000"/>
+  <text x="478" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#e05a00" letter-spacing="1">HANDY</text>
+  <text x="478" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#ff8040">192.168.1.x</text>
+  <text x="478" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#444">DHCP</text>
+  <rect x="448" y="278" width="60" height="12" rx="3" fill="rgba(224,90,0,.12)"/>
+  <text x="478" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#e05a00">MUTTER</text>
+
+  <!-- T-junction + lines mutter -->
+  <circle cx="281" cy="210" r="3.5" fill="#e05a00"/>
+  <line x1="88" y1="210" x2="478" y2="210" stroke="#e05a00" stroke-width="1" opacity=".5"/>
+  <line x1="88" y1="210" x2="88" y2="228" stroke="#e05a00" stroke-width="1" opacity=".5"/>
+  <line x1="218" y1="210" x2="218" y2="228" stroke="#e05a00" stroke-width="1" opacity=".5"/>
+  <line x1="348" y1="210" x2="348" y2="228" stroke="#e05a00" stroke-width="1" opacity=".5"/>
+  <line x1="478" y1="210" x2="478" y2="228" stroke="#e05a00" stroke-width="1" opacity=".5"/>
+
+  <!-- ── Deprecated devices ── -->
+  <!-- wlan-1009 -->
+  <rect x="578" y="228" width="120" height="66" rx="6" fill="#161212" stroke="#2a1818" stroke-width="1" stroke-dasharray="4,2" opacity=".8"/>
+  <rect x="578" y="228" width="120" height="20" rx="6" fill="#1e1010"/>
+  <rect x="578" y="238" width="120" height="10" fill="#1e1010"/>
+  <text x="638" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#553" letter-spacing="1">wlan-1009</text>
+  <text x="638" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#444">Gast-WLAN</text>
+  <text x="638" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#383838">Swisscom</text>
+  <rect x="600" y="278" width="76" height="12" rx="3" fill="rgba(180,30,30,.15)"/>
+  <text x="638" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#aa3333">DEAKTIVIERT</text>
+  <!-- X -->
+  <line x1="578" y1="228" x2="698" y2="294" stroke="#550000" stroke-width="1.5" opacity=".25"/>
+  <line x1="698" y1="228" x2="578" y2="294" stroke="#550000" stroke-width="1.5" opacity=".25"/>
+
+  <!-- Fynn_Dev_2.4G -->
+  <rect x="720" y="228" width="140" height="66" rx="6" fill="#161212" stroke="#2a1818" stroke-width="1" stroke-dasharray="4,2" opacity=".8"/>
+  <rect x="720" y="228" width="140" height="20" rx="6" fill="#1e1010"/>
+  <rect x="720" y="238" width="140" height="10" fill="#1e1010"/>
+  <text x="790" y="241" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#553" letter-spacing="1">Fynn_Dev_2.4G</text>
+  <text x="790" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#444">Wingo-Netz</text>
+  <text x="790" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#2ea04e">→ Starlink_Dev</text>
+  <rect x="740" y="278" width="100" height="12" rx="3" fill="rgba(180,30,30,.15)"/>
+  <text x="790" y="288" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#aa3333">ABSCHAFFEN</text>
+  <!-- X -->
+  <line x1="720" y1="228" x2="860" y2="294" stroke="#550000" stroke-width="1.5" opacity=".25"/>
+  <line x1="860" y1="228" x2="720" y2="294" stroke="#550000" stroke-width="1.5" opacity=".25"/>
+
+  <!-- Legend -->
+  <rect x="16" y="394" width="868" height="1" fill="#1e1a18"/>
+  <line x1="32" y1="403" x2="52" y2="403" stroke="#e05a00" stroke-width="1.5"/>
+  <text x="58" y="407" font-family="JetBrains Mono" font-size="9" fill="#444">hofman5G — aktiv</text>
+  <line x1="190" y1="403" x2="204" y2="403" stroke="#553" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="210" y="407" font-family="JetBrains Mono" font-size="9" fill="#444">Deaktiviert / wird abgeschafft</text>
+  <text x="868" y="407" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#2a2420">seg.02</text>
+
+</svg>
+  </div>
+
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-card-hdr wg">hofman5G — Mutter-Netz (aktiv)</div>
+      <table class="spec-table">
+        <tr><td class="spec-k">SSID</td><td class="spec-v cv-wg">hofman5G</td></tr>
+        <tr><td class="spec-k">SUBNET</td><td class="spec-v">192.168.1.0/24</td></tr>
+        <tr><td class="spec-k">GATEWAY</td><td class="spec-v">192.168.1.1</td></tr>
+        <tr><td class="spec-k">MASK</td><td class="spec-v">255.255.255.0</td></tr>
+        <tr><td class="spec-k">DNS</td><td class="spec-v">192.168.1.1</td></tr>
+        <tr><td class="spec-k">SECURITY</td><td class="spec-v">WPA2</td></tr>
+      </table>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-hdr dep">Deaktivieren / Abschaffen</div>
+      <table class="spec-table">
+        <tr><td class="spec-k">wlan-1009</td><td class="spec-v cv-dep">Gast-WLAN</td></tr>
+        <tr><td class="spec-k">Fynn_Dev_2.4G</td><td class="spec-v cv-dep">Dev (alt)</td></tr>
+        <tr><td class="spec-k">MIGRATION</td><td class="spec-v cv-green">→ Starlink_Dev</td></tr>
+        <tr><td class="spec-k">AKTION</td><td class="spec-v" style="color:#cc3333">Im Router ausschalten</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
