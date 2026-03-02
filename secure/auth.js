@@ -60,11 +60,12 @@
     var css = document.createElement('style');
     css.textContent =
       '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");' +
+      '@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=admin_panel_settings");' +
       'html,body{margin:0;background:#fff;color:#1d1d1f;' +
         'font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}' +
       'body{display:block!important}' +
       '.fh-wall{max-width:640px;margin:18vh auto;padding:0 28px}' +
-      '.fh-wall-icon{font-size:1.6rem;margin-bottom:18px;color:#6e6e73}' +
+      '.fh-wall-icon{font-family:"Material Symbols Outlined";font-size:28px;margin-bottom:18px;color:#6e6e73;display:block}' +
       '.fh-wall h1{font-size:1.7rem;font-weight:500;letter-spacing:-0.01em;margin:0 0 12px}' +
       '.fh-wall p{color:#6e6e73;line-height:1.6;margin:0 0 34px;max-width:480px}' +
       '.fh-wall a{color:#06c;text-decoration:none}' +
@@ -75,7 +76,7 @@
 
     document.body.innerHTML =
       '<div class="fh-wall">' +
-        '<div class="fh-wall-icon">⛔</div>' +
+        '<span class="fh-wall-icon">admin_panel_settings</span>' +
         '<h1>Zugriff verweigert.</h1>' +
         '<p>Diese Seite ist nicht öffentlich zugänglich. ' +
           'Sie ist Teil der <a href="../index.html">fynnhofmann.com</a>-Infrastruktur.</p>' +
