@@ -35,39 +35,73 @@
 
   /* ── Not authenticated → inject wall at DOMContentLoaded */
   document.addEventListener('DOMContentLoaded', function () {
-    /* Self-contained wall styles – no external CSS needed */
+    var ua = navigator.userAgent;
+
+    function detectBrowser(ua) {
+      if (ua.indexOf('Firefox') !== -1)  return 'Firefox';
+      if (ua.indexOf('Edg') !== -1)      return 'Edge';
+      if (ua.indexOf('Chrome') !== -1)   return 'Chrome';
+      if (ua.indexOf('Safari') !== -1)   return 'Safari';
+      return 'Unknown';
+    }
+    function detectOS(ua) {
+      if (ua.indexOf('Windows') !== -1)                          return 'Windows';
+      if (ua.indexOf('Mac OS') !== -1)                           return 'macOS';
+      if (ua.indexOf('Android') !== -1)                          return 'Android';
+      if (ua.indexOf('iPhone') !== -1 || ua.indexOf('iPad') !== -1) return 'iOS';
+      if (ua.indexOf('Linux') !== -1)                            return 'Linux';
+      return 'Unknown';
+    }
+
+    var browser = detectBrowser(ua);
+    var os      = detectOS(ua);
+    var time    = new Date().toISOString();
+
     var css = document.createElement('style');
     css.textContent =
-      'html,body{height:100%;margin:0}' +
-      'body{display:flex!important;min-height:100vh;' +
-        'background:#f5f5f7;' +
-        'font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;' +
-        'align-items:center;justify-content:center;flex-direction:column}' +
-      '.fh-wall{text-align:center;padding:40px 24px;max-width:400px}' +
-      '.fh-wall-icon{font-size:52px;display:block;margin-bottom:24px}' +
-      '.fh-wall-title{font-size:28px;font-weight:700;letter-spacing:-.03em;' +
-        'color:#1d1d1f;margin:0 0 12px;line-height:1.1}' +
-      '.fh-wall-text{font-size:15px;color:#6e6e73;line-height:1.65;' +
-        'margin:0 0 32px;max-width:300px;margin-left:auto;margin-right:auto}' +
-      '.fh-wall-btn{display:inline-flex;align-items:center;gap:6px;' +
-        'padding:14px 28px;background:#0071e3;color:#fff;border-radius:980px;' +
-        'font-size:15px;font-weight:500;text-decoration:none;' +
-        'transition:background .2s,transform .2s}' +
-      '.fh-wall-btn:hover{background:#0077ed;transform:translateY(-1px)}' +
-      '.fh-wall-back{display:block;margin-top:20px;font-size:13px;' +
-        'color:#6e6e73;text-decoration:none;transition:color .2s}' +
-      '.fh-wall-back:hover{color:#1d1d1f}';
+      '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");' +
+      'html,body{margin:0;background:#fff;color:#1d1d1f;' +
+        'font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}' +
+      'body{display:block!important}' +
+      '.fh-wall{max-width:640px;margin:18vh auto;padding:0 28px}' +
+      '.fh-wall-icon{font-size:1.6rem;margin-bottom:18px;color:#6e6e73}' +
+      '.fh-wall h1{font-size:1.7rem;font-weight:500;letter-spacing:-0.01em;margin:0 0 12px}' +
+      '.fh-wall p{color:#6e6e73;line-height:1.6;margin:0 0 34px;max-width:480px}' +
+      '.fh-wall a{color:#06c;text-decoration:none}' +
+      '.fh-wall a:hover{text-decoration:underline}' +
+      '.fh-debug{font-size:.85rem;color:#6e6e73;line-height:1.9}' +
+      '.fh-footer{margin-top:40px;font-size:.8rem;color:#8e8e93}';
     document.head.appendChild(css);
 
     document.body.innerHTML =
       '<div class="fh-wall">' +
-        '<span class="fh-wall-icon">🔒</span>' +
-        '<h1 class="fh-wall-title">Zugriff gesperrt</h1>' +
-        '<p class="fh-wall-text">Diese Seite ist passwortgeschützt. ' +
-          'Bitte melde dich an, um fortzufahren.</p>' +
-        '<a href="../login.html" class="fh-wall-btn">Zum Login →</a>' +
-        '<a href="../index.html" class="fh-wall-back">← Zurück zur Website</a>' +
+        '<div class="fh-wall-icon">⛔</div>' +
+        '<h1>Zugriff verweigert.</h1>' +
+        '<p>Diese Seite ist nicht öffentlich zugänglich. ' +
+          'Sie ist Teil der <a href="../index.html">fynnhofmann.com</a>-Infrastruktur.</p>' +
+        '<div class="fh-debug">' +
+          '<div>IP: <span id="_fh_ip">wird geladen…</span></div>' +
+          '<div>Browser: ' + browser + '</div>' +
+          '<div>OS: ' + os + '</div>' +
+          '<div>Zeit: ' + time + '</div>' +
+        '</div>' +
+        '<div class="fh-footer">Zugriff protokolliert · ' +
+          '<a href="../login.html">Anmelden</a>' +
+        '</div>' +
       '</div>';
+
+    /* IP via Cloudflare CDN trace (only works on Cloudflare Pages) */
+    fetch('/cdn-cgi/trace')
+      .then(function (r) { return r.text(); })
+      .then(function (txt) {
+        var match = txt.match(/^ip=(.+)$/m);
+        var el = document.getElementById('_fh_ip');
+        if (el) el.textContent = match ? match[1] : 'n/a';
+      })
+      .catch(function () {
+        var el = document.getElementById('_fh_ip');
+        if (el) el.textContent = 'n/a';
+      });
 
     unblock();
   });
