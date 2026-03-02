@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – Fynn Hofmann</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Auth guard MUST be first – blocks body before it paints -->
+  <script src="auth.js"></script>
+
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <div class="db-layout">
+
+    <!-- ── Top Bar ──────────────────────────────────────── -->
+    <header class="db-topbar">
+      <div class="db-topbar-logo">
+        <span class="db-topbar-fh">FH</span>
+        <div class="db-topbar-divider"></div>
+        <span class="db-topbar-label">Dashboard</span>
+      </div>
+      <div class="db-topbar-right">
+        <div class="db-user-badge">
+          <div class="db-user-avatar">FH</div>
+          <span class="db-user-name">fynnhofmann</span>
+        </div>
+        <button class="db-logout-btn" onclick="fhLogout()">
+          Abmelden
+        </button>
+      </div>
+    </header>
+
+    <!-- ── Main Content ──────────────────────────────────── -->
+    <main class="db-main">
+
+      <!-- Greeting -->
+      <div class="db-greeting">
+        <h1 class="db-greeting-hello" id="greeting">Hallo, Fynn. 👋</h1>
+        <p class="db-greeting-date" id="greetingDate"></p>
+      </div>
+
+      <!-- Quick navigation cards -->
+      <p class="db-section-heading">Seiten &amp; Tools</p>
+      <div class="db-cards">
+
+        <a href="../index.html" class="db-card">
+          <span class="db-card-icon">🏠</span>
+          <span class="db-card-title">Startseite</span>
+          <span class="db-card-sub">Deine Portfolio-Homepage mit Hero, About und Projekten.</span>
+          <span class="db-card-arrow">Öffnen →</span>
+        </a>
+
+        <a href="../erfahrung.html" class="db-card">
+          <span class="db-card-icon">💼</span>
+          <span class="db-card-title">Erfahrung</span>
+          <span class="db-card-sub">Berufliche und schulische Stationen im Timeline-Format.</span>
+          <span class="db-card-arrow">Öffnen →</span>
+        </a>
+
+        <a href="../projekte.html" class="db-card">
+          <span class="db-card-icon">🚀</span>
+          <span class="db-card-title">Projekte</span>
+          <span class="db-card-sub">Alle öffentlichen Projekte und Referenzen.</span>
+          <span class="db-card-arrow">Öffnen →</span>
+        </a>
+
+        <a href="../kontakt.html" class="db-card">
+          <span class="db-card-icon">📬</span>
+          <span class="db-card-title">Kontakt</span>
+          <span class="db-card-sub">Kontaktmöglichkeiten, Threema-ID und Links.</span>
+          <span class="db-card-arrow">Öffnen →</span>
+        </a>
+
+        <a href="../qr/" class="db-card">
+          <span class="db-card-icon">🔳</span>
+          <span class="db-card-title">QR-Generator</span>
+          <span class="db-card-sub">QR-Codes erstellen und herunterladen.</span>
+          <span class="db-card-arrow">Öffnen →</span>
+        </a>
+
+        <a href="../spiel/" class="db-card">
+          <span class="db-card-icon">🎮</span>
+          <span class="db-card-title">Soccer Slime</span>
+          <span class="db-card-sub">Das eingebettete Browser-Minispiel.</span>
+          <span class="db-card-arrow">Öffnen →</span>
+        </a>
+
+      </div>
+
+      <!-- External quick links -->
+      <p class="db-section-heading">Externe Links</p>
+      <div class="db-links">
+        <a href="https://github.com/fyxxc/fynnhofmann.com" target="_blank"
+           rel="noopener" class="db-link-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39
+                     .6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61
+                     -.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73
+                     1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1
+                     .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93
+                     0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18
+                     0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4
+                     c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23
+                     .66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22
+                     0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22
+                     v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12
+                     c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub Repo
+        </a>
+
+        <a href="https://vercel.com/dashboard" target="_blank"
+           rel="noopener" class="db-link-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L24 22H0L12 1z"/>
+          </svg>
+          Vercel Dashboard
+        </a>
+
+        <a href="https://github.com/fyxxc" target="_blank"
+           rel="noopener" class="db-link-pill">
+          👤 GitHub Profil
+        </a>
+      </div>
+
+      <!-- System info -->
+      <p class="db-section-heading">System</p>
+      <div class="db-info-box">
+        <div class="db-info-row">
+          <span class="db-info-key">Eingeloggt als</span>
+          <span class="db-info-val">fynnhofmann</span>
+        </div>
+        <div class="db-info-row">
+          <span class="db-info-key">Authentifizierung</span>
+          <span class="db-info-val db-info-ok">✓ Session aktiv</span>
+        </div>
+        <div class="db-info-row">
+          <span class="db-info-key">Session-Typ</span>
+          <span class="db-info-val">Lokal · läuft bis Tab-Schließen</span>
+        </div>
+        <div class="db-info-row">
+          <span class="db-info-key">Passwort-Hashing</span>
+          <span class="db-info-val">SHA-256 (Web Crypto API)</span>
+        </div>
+        <div class="db-info-row">
+          <span class="db-info-key">Aktuelles Datum</span>
+          <span class="db-info-val" id="sysDate"></span>
+        </div>
+        <div class="db-info-row">
+          <span class="db-info-key">Uhrzeit</span>
+          <span class="db-info-val" id="sysClock"></span>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- /db-layout -->
+
+  <script>
+    /* ── Time-based greeting ─────────────────────────────── */
+    var hour  = new Date().getHours();
+    var greet = hour < 5  ? 'Gute Nacht'
+              : hour < 12 ? 'Guten Morgen'
+              : hour < 18 ? 'Guten Tag'
+              :              'Guten Abend';
+
+    document.getElementById('greeting').textContent = greet + ', Fynn. 👋';
+
+    /* ── Date & clock ───────────────────────────────────── */
+    var now    = new Date();
+    var dateOp = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+    var timeOp = { hour:'2-digit', minute:'2-digit', second:'2-digit' };
+
+    document.getElementById('greetingDate').textContent =
+      now.toLocaleDateString('de-DE', dateOp);
+
+    document.getElementById('sysDate').textContent =
+      now.toLocaleDateString('de-DE', dateOp);
+
+    function tick() {
+      document.getElementById('sysClock').textContent =
+        new Date().toLocaleTimeString('de-DE', timeOp);
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+
+</body>
+</html>
