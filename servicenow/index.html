@@ -13,103 +13,68 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════
-     ANNOUNCEMENT BAR
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Announcement Bar ─────────────────────────────────── -->
 <div class="now-announce">
-  <span>Three days can change everything. Join us at <strong>Knowledge 2026</strong> and discover the future of AI-powered work.</span>
+  <span>Three days can change everything. Join us at <strong>Knowledge 2026</strong> and put AI to work for you.</span>
   <a href="#">Register Now</a>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════
-     NAVIGATION
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Navigation ───────────────────────────────────────── -->
 <nav class="now-nav">
   <div class="now-nav-inner">
 
-    <!-- Logo -->
     <a href="index.html" class="now-logo">
       <div class="now-logo-icon">
-        <!-- NOW-style logo: wordmark with green bubble "o" -->
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="32" height="32" rx="8" fill="#62d84e"/>
+          <rect width="32" height="32" rx="7" fill="#62d84e"/>
           <text x="16" y="22" text-anchor="middle"
                 font-family="-apple-system,BlinkMacSystemFont,sans-serif"
-                font-size="14" font-weight="800" fill="#07192a">N</text>
+                font-size="15" font-weight="800" fill="#07192a">N</text>
         </svg>
       </div>
       <div class="now-logo-wordmark">Nova<span>Tech</span></div>
     </a>
 
-    <!-- Nav links -->
     <div class="now-nav-links">
-      <button class="now-nav-link">
+      <a href="index.html#services" class="now-nav-link">
         Services
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
              stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
-      </button>
-      <button class="now-nav-link">
-        Industries
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </button>
-      <button class="now-nav-link">
-        Expertise
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </button>
-      <button class="now-nav-link">
-        Partners
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </button>
-      <button class="now-nav-link">
-        Company
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </button>
+      </a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
     </div>
 
-    <!-- Actions -->
     <div class="now-nav-actions">
       <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
-      <button class="now-btn-primary">Contact Us</button>
+      <a href="#contact" class="now-btn-primary">Contact Us</a>
     </div>
 
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════
-     HERO
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Hero ─────────────────────────────────────────────── -->
 <section class="now-hero">
 
-  <!-- Sub-navigation / capability tabs -->
+  <!-- Sub-navigation tabs -->
   <div class="now-subnav">
     <div class="now-subnav-inner">
-      <button class="now-subnav-tab is-active">AI Platform Solutions</button>
-      <button class="now-subnav-tab">IT Service Management</button>
-      <button class="now-subnav-tab">HR Service Delivery</button>
-      <button class="now-subnav-tab">Security Operations</button>
-      <button class="now-subnav-tab">Customer Service</button>
-      <button class="now-subnav-tab">Platform Engineering</button>
+      <a href="ai.html"       class="now-subnav-tab">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab">Platform Engineering</a>
     </div>
   </div>
 
-  <!-- Hero content -->
   <div class="now-hero-content">
 
-    <!-- Left: text -->
+    <!-- Text -->
     <div class="now-hero-text">
       <span class="now-hero-label">ServiceNow Elite Partner</span>
       <h1 class="now-hero-h1">
@@ -122,28 +87,28 @@
         consultants with over 500 successful implementations worldwide.
       </p>
       <div class="now-hero-ctas">
-        <button class="now-cta-primary">Schedule a Demo</button>
+        <a href="#contact" class="now-cta-primary">Schedule a Demo</a>
         <a href="#services" class="now-cta-secondary">
           Explore Services &nbsp;&rarr;
         </a>
       </div>
     </div>
 
-    <!-- Right: dashboard card visual -->
+    <!-- Dashboard card visual -->
     <div class="now-hero-visual">
       <div class="now-hero-card">
         <div class="now-hero-card-header">
           <div class="now-hero-card-dot"></div>
-          <div class="now-hero-card-title">Platform Health · Live</div>
+          <div class="now-hero-card-title">Platform Health &middot; Live</div>
         </div>
 
         <div class="now-hero-metric">
           <div>
-            <div class="now-metric-value">98.7<small style="font-size:1.2rem;font-weight:500;color:rgba(255,255,255,0.5)">%</small></div>
+            <div class="now-metric-value">98.7<small style="font-size:1.1rem;font-weight:500;color:rgba(255,255,255,0.45)">%</small></div>
             <div class="now-metric-label">Avg. customer satisfaction</div>
           </div>
           <div class="now-metric-change">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="18 15 12 9 6 15"/>
             </svg>
@@ -154,61 +119,50 @@
         <div class="now-hero-bar-row">
           <div class="now-bar-item">
             <div class="now-bar-label">ITSM Automation</div>
-            <div class="now-bar-track">
-              <div class="now-bar-fill" style="width:91%"></div>
-            </div>
+            <div class="now-bar-track"><div class="now-bar-fill" style="width:91%"></div></div>
             <div class="now-bar-pct">91%</div>
           </div>
           <div class="now-bar-item">
             <div class="now-bar-label">HR Self-Service</div>
-            <div class="now-bar-track">
-              <div class="now-bar-fill" style="width:84%"></div>
-            </div>
+            <div class="now-bar-track"><div class="now-bar-fill" style="width:84%"></div></div>
             <div class="now-bar-pct">84%</div>
           </div>
           <div class="now-bar-item">
             <div class="now-bar-label">AI Resolution Rate</div>
-            <div class="now-bar-track">
-              <div class="now-bar-fill" style="width:76%"></div>
-            </div>
+            <div class="now-bar-track"><div class="now-bar-fill" style="width:76%"></div></div>
             <div class="now-bar-pct">76%</div>
           </div>
           <div class="now-bar-item">
             <div class="now-bar-label">SecOps Response</div>
-            <div class="now-bar-track">
-              <div class="now-bar-fill" style="width:94%"></div>
-            </div>
+            <div class="now-bar-track"><div class="now-bar-fill" style="width:94%"></div></div>
             <div class="now-bar-pct">94%</div>
           </div>
         </div>
       </div>
 
-      <!-- Floating badges -->
-      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
-        <div style="background:rgba(98,216,78,0.1);border:1px solid rgba(98,216,78,0.25);
-                    border-radius:8px;padding:10px 16px;font-size:0.78rem;">
-          <div style="font-weight:700;color:#62d84e;font-size:1.1rem;letter-spacing:-0.03em;">500+</div>
-          <div style="color:rgba(255,255,255,0.55);margin-top:2px;">Implementations</div>
+      <!-- Metric badges -->
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
+        <div style="background:rgba(98,216,78,0.1);border:1px solid rgba(98,216,78,0.22);
+                    border-radius:8px;padding:10px 16px;">
+          <div style="font-weight:900;color:#62d84e;font-size:1.15rem;letter-spacing:-0.04em;">500+</div>
+          <div style="color:rgba(255,255,255,0.45);font-size:0.73rem;margin-top:2px;">Implementations</div>
         </div>
-        <div style="background:rgba(98,216,78,0.1);border:1px solid rgba(98,216,78,0.25);
-                    border-radius:8px;padding:10px 16px;font-size:0.78rem;">
-          <div style="font-weight:700;color:#62d84e;font-size:1.1rem;letter-spacing:-0.03em;">200+</div>
-          <div style="color:rgba(255,255,255,0.55);margin-top:2px;">Certified Engineers</div>
+        <div style="background:rgba(98,216,78,0.1);border:1px solid rgba(98,216,78,0.22);
+                    border-radius:8px;padding:10px 16px;">
+          <div style="font-weight:900;color:#62d84e;font-size:1.15rem;letter-spacing:-0.04em;">200+</div>
+          <div style="color:rgba(255,255,255,0.45);font-size:0.73rem;margin-top:2px;">Certified Engineers</div>
         </div>
-        <div style="background:rgba(98,216,78,0.1);border:1px solid rgba(98,216,78,0.25);
-                    border-radius:8px;padding:10px 16px;font-size:0.78rem;">
-          <div style="font-weight:700;color:#62d84e;font-size:1.1rem;letter-spacing:-0.03em;">50+</div>
-          <div style="color:rgba(255,255,255,0.55);margin-top:2px;">Countries Served</div>
+        <div style="background:rgba(98,216,78,0.1);border:1px solid rgba(98,216,78,0.22);
+                    border-radius:8px;padding:10px 16px;">
+          <div style="font-weight:900;color:#62d84e;font-size:1.15rem;letter-spacing:-0.04em;">50+</div>
+          <div style="color:rgba(255,255,255,0.45);font-size:0.73rem;margin-top:2px;">Countries Served</div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     STATS BANNER
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Stats Banner ──────────────────────────────────────── -->
 <div class="now-stats">
   <div class="now-stats-inner">
     <div class="now-stat">
@@ -234,9 +188,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════
-     SERVICES
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Services ──────────────────────────────────────────── -->
 <section class="now-section" id="services">
   <div class="now-section-inner">
     <div class="now-section-label">What We Deliver</div>
@@ -248,19 +200,19 @@
 
     <div class="now-cards">
 
-      <div class="now-card">
+      <a href="platform.html" class="now-card" style="text-decoration:none;">
         <div class="now-card-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
         </div>
         <div class="now-card-title">NOW Platform Implementation</div>
         <div class="now-card-desc">
           Full lifecycle implementation of ServiceNow modules &mdash; from discovery
-          and architecture to go-live and hypercare. Tailored to your business processes.
+          and architecture to go-live and hypercare. Tailored to your processes.
         </div>
         <div class="now-card-link">Learn more &rarr;</div>
-      </div>
+      </a>
 
-      <div class="now-card">
+      <a href="itsm.html" class="now-card" style="text-decoration:none;">
         <div class="now-card-icon">
           <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         </div>
@@ -270,21 +222,21 @@
           with AI-assisted routing, predictive alerts, and automated workflows.
         </div>
         <div class="now-card-link">Learn more &rarr;</div>
-      </div>
+      </a>
 
-      <div class="now-card">
+      <a href="hr.html" class="now-card" style="text-decoration:none;">
         <div class="now-card-icon">
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <div class="now-card-title">HR Service Delivery</div>
+        <div class="now-card-title">HR Service Delivery (HRSD)</div>
         <div class="now-card-desc">
           Transform the employee experience with a unified HR portal, intelligent case
           management, and onboarding automation built on the NOW Platform.
         </div>
         <div class="now-card-link">Learn more &rarr;</div>
-      </div>
+      </a>
 
-      <div class="now-card">
+      <a href="secops.html" class="now-card" style="text-decoration:none;">
         <div class="now-card-icon">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
@@ -294,68 +246,69 @@
           visibility. Reduce security incident response time by up to 60%.
         </div>
         <div class="now-card-link">Learn more &rarr;</div>
-      </div>
+      </a>
 
-      <div class="now-card">
+      <a href="ai.html" class="now-card" style="text-decoration:none;">
         <div class="now-card-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
         </div>
         <div class="now-card-title">AI &amp; Intelligent Automation</div>
         <div class="now-card-desc">
-          Leverage NOW AI, GenAI capabilities, and NovaTech's proprietary accelerators
-          to automate repetitive tasks and surface actionable insights at scale.
+          Leverage Now AI, GenAI capabilities, and NovaTech accelerators to automate
+          repetitive tasks and surface actionable insights at scale.
         </div>
         <div class="now-card-link">Learn more &rarr;</div>
-      </div>
+      </a>
 
-      <div class="now-card">
+      <a href="ams.html" class="now-card" style="text-decoration:none;">
         <div class="now-card-icon">
           <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <div class="now-card-title">Managed Services &amp; AMS</div>
         <div class="now-card-desc">
-          Keep your NOW Platform running at peak performance with our Application
-          Management Services &mdash; monitoring, patching, enhancements, and 24/7 support.
+          Keep your NOW Platform running at peak performance with Application Management
+          Services &mdash; monitoring, patching, enhancements, and 24/7 support.
         </div>
         <div class="now-card-link">Learn more &rarr;</div>
-      </div>
+      </a>
 
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     PARTNERS / TRUST LOGOS
-     ══════════════════════════════════════════════════════════ -->
-<section class="now-section now-section-dark" style="padding:52px 28px;">
+<!-- ── Partner Badge: Powered by ServiceNow ─────────────── -->
+<section class="now-section now-section-dark" style="padding:48px 28px;" id="partners">
   <div class="now-section-inner">
-    <p style="text-align:center;font-size:0.76rem;font-weight:700;letter-spacing:0.12em;
-              text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:36px;">
-      Trusted by leading organizations worldwide
+    <p style="text-align:center;font-size:0.73rem;font-weight:700;letter-spacing:0.12em;
+              text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:32px;">
+      Trusted partner of
     </p>
-    <div class="now-logos">
-      <div class="now-logo-pill">ACME Corp</div>
-      <div class="now-logo-pill">GlobalBank AG</div>
-      <div class="now-logo-pill">MedCore Health</div>
-      <div class="now-logo-pill">TechVision Ltd.</div>
-      <div class="now-logo-pill">Nexus Energy</div>
-      <div class="now-logo-pill">SwiftRetail</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;">
+      <!-- Real ServiceNow logo from Wikimedia Commons -->
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/5/57/ServiceNow_logo.svg"
+        alt="ServiceNow"
+        width="180"
+        style="filter:brightness(0) invert(1);opacity:0.7;"
+      >
     </div>
+    <p style="text-align:center;margin-top:24px;font-size:0.8rem;
+              color:rgba(255,255,255,0.35);">
+      NovaTech Solutions is a certified ServiceNow Elite Partner with specializations
+      across ITSM, HRSD, SecOps, CSM, and AI Platform.
+    </p>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     INDUSTRIES
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Industries ───────────────────────────────────────── -->
 <section class="now-section" id="industries">
   <div class="now-section-inner">
     <div class="now-section-label">Industries</div>
     <h2 class="now-section-title">Sector expertise across the enterprise.</h2>
     <p class="now-section-desc">
-      Our consultants bring deep domain knowledge across regulated industries,
-      ensuring NOW Platform deployments align with compliance and operational requirements.
+      Deep domain knowledge across regulated industries ensures deployments align
+      with compliance requirements and operational realities.
     </p>
-
     <div class="now-industry-grid">
       <div class="now-industry-item">
         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -371,7 +324,7 @@
       </div>
       <div class="now-industry-item">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        Public Sector &amp; Government
+        Public Sector
       </div>
       <div class="now-industry-item">
         <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
@@ -382,151 +335,90 @@
         Technology &amp; Telco
       </div>
       <div class="now-industry-item">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.19 12 19.79 19.79 0 0 1 1.12 3.38 2 2 0 0 1 3.1 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>
         Utilities &amp; Energy
       </div>
       <div class="now-industry-item">
-        <svg viewBox="0 0 24 24"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         Education &amp; Research
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     EXPERTISE / ABOUT
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Expertise / About ─────────────────────────────────── -->
 <section class="now-section now-section-dark" id="expertise">
   <div class="now-section-inner">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-
       <div>
         <div class="now-section-label">Why NovaTech</div>
-        <h2 class="now-section-title">
-          Certified expertise.<br>Proven results.
-        </h2>
+        <h2 class="now-section-title">Certified expertise. Proven results.</h2>
         <p style="font-size:0.94rem;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px;">
-          As a ServiceNow Elite Partner, NovaTech Solutions brings unmatched
-          depth across the entire NOW Platform portfolio. Our team of over 200
-          certified professionals ensures every engagement delivers measurable
-          business outcomes &mdash; on time and on budget.
+          As a ServiceNow Elite Partner, NovaTech Solutions brings unmatched depth across
+          the entire NOW Platform portfolio. Our team of over 200 certified professionals
+          ensures every engagement delivers measurable business outcomes.
         </p>
-
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:32px;height:32px;background:rgba(98,216,78,0.12);
-                        border:1px solid rgba(98,216,78,0.2);border-radius:8px;
-                        display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#62d84e"
-                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </div>
-            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">
-              ServiceNow Elite Partner &amp; Global Partner of the Year finalist
-            </span>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#62d84e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.87rem;color:rgba(255,255,255,0.7);">ServiceNow Elite Partner &amp; Global Partner of the Year finalist</span>
           </div>
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:32px;height:32px;background:rgba(98,216,78,0.12);
-                        border:1px solid rgba(98,216,78,0.2);border-radius:8px;
-                        display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#62d84e"
-                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </div>
-            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">
-              Certified in ITSM, HRSD, SecOps, CSM, FSM, GRC and more
-            </span>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#62d84e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.87rem;color:rgba(255,255,255,0.7);">Certified in ITSM, HRSD, SecOps, CSM, FSM, GRC and more</span>
           </div>
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:32px;height:32px;background:rgba(98,216,78,0.12);
-                        border:1px solid rgba(98,216,78,0.2);border-radius:8px;
-                        display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#62d84e"
-                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </div>
-            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">
-              Dedicated Centers of Excellence in DACH, UK, and North America
-            </span>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#62d84e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.87rem;color:rgba(255,255,255,0.7);">Centers of Excellence in DACH, UK, and North America</span>
           </div>
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:32px;height:32px;background:rgba(98,216,78,0.12);
-                        border:1px solid rgba(98,216,78,0.2);border-radius:8px;
-                        display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#62d84e"
-                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </div>
-            <span style="font-size:0.88rem;color:rgba(255,255,255,0.75);">
-              Average 4.9/5 CSAT across all managed service customers
-            </span>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#62d84e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.87rem;color:rgba(255,255,255,0.7);">Average 4.9/5 CSAT across all managed service customers</span>
           </div>
         </div>
       </div>
 
-      <!-- Certifications panel -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
-                    border-radius:12px;padding:22px;text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">CIS</div>
-          <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:6px;">
-            Certified Implementation<br>Specialist
-          </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:22px;text-align:center;">
+          <div style="font-size:1.8rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">CIS</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:6px;">Certified Implementation<br>Specialist</div>
         </div>
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
-                    border-radius:12px;padding:22px;text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">CSA</div>
-          <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:6px;">
-            Certified System<br>Administrator
-          </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:22px;text-align:center;">
+          <div style="font-size:1.8rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">CSA</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:6px;">Certified System<br>Administrator</div>
         </div>
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
-                    border-radius:12px;padding:22px;text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">CAD</div>
-          <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:6px;">
-            Certified Application<br>Developer
-          </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:22px;text-align:center;">
+          <div style="font-size:1.8rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">CAD</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:6px;">Certified Application<br>Developer</div>
         </div>
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
-                    border-radius:12px;padding:22px;text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">Elite</div>
-          <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:6px;">
-            NOW Platform<br>Elite Partner
-          </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:22px;text-align:center;">
+          <div style="font-size:1.8rem;font-weight:900;color:#62d84e;letter-spacing:-0.04em;">Elite</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:6px;">NOW Platform<br>Elite Partner</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     CTA SECTION
-     ══════════════════════════════════════════════════════════ -->
-<section class="now-cta-section">
+<!-- ── CTA ───────────────────────────────────────────────── -->
+<section class="now-cta-section" id="contact">
   <div class="now-section-inner">
     <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Get Started</div>
     <h2 class="now-section-title" style="text-align:center;max-width:680px;margin:0 auto 20px;">
       Ready to transform your business with the NOW Platform?
     </h2>
     <p class="now-section-desc" style="text-align:center;margin:0 auto 44px;">
-      Talk to one of our certified NOW Platform architects and discover how
-      NovaTech Solutions can accelerate your digital transformation.
+      Talk to one of our certified NOW Platform architects and discover how NovaTech
+      Solutions can accelerate your digital transformation journey.
     </p>
-    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
-      <button class="now-cta-primary">Schedule a Free Consultation</button>
-      <button class="now-btn-ghost">View Case Studies &rarr;</button>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="mailto:contact@novatech-solutions.com" class="now-cta-primary">Schedule a Free Consultation</a>
+      <a href="itsm.html" class="now-btn-ghost">View Services &rarr;</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     FOOTER
-     ══════════════════════════════════════════════════════════ -->
+<!-- ── Footer ───────────────────────────────────────────── -->
 <footer class="now-footer">
   <div class="now-footer-top">
     <div>
@@ -550,18 +442,6 @@
     <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
   </div>
 </footer>
-
-<!-- ── Sub-nav tab interaction ────────────────────────────── -->
-<script>
-  document.querySelectorAll('.now-subnav-tab').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.now-subnav-tab').forEach(function (b) {
-        b.classList.remove('is-active');
-      });
-      btn.classList.add('is-active');
-    });
-  });
-</script>
 
 </body>
 </html>

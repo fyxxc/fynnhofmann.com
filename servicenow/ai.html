@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI &amp; Intelligent Automation – NovaTech Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="auth.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .now-nav-link.is-active { color:#fff; }
+    .now-feature-list { display:flex;flex-direction:column;gap:14px; }
+    .now-feature-item { display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s; }
+    .now-feature-item:hover { border-color:rgba(98,216,78,.25); }
+    .now-feature-item svg { width:20px;height:20px;stroke:#62d84e;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px; }
+    .now-feature-item-title { font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px; }
+    .now-feature-item-desc  { font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6; }
+    .now-breadcrumb { font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px; }
+    .now-breadcrumb a { color:rgba(255,255,255,.4);text-decoration:none; }
+    .now-breadcrumb a:hover { color:rgba(255,255,255,.7); }
+    .ai-chat-bubble { border-radius:10px;padding:10px 14px;font-size:.8rem;line-height:1.5;max-width:85%; }
+    .ai-chat-user { background:rgba(98,216,78,.1);border:1px solid rgba(98,216,78,.2);color:rgba(255,255,255,.8);margin-left:auto; }
+    .ai-chat-bot  { background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.75); }
+  </style>
+</head>
+<body>
+
+<div class="now-announce">
+  <span>Join us at <strong>Knowledge 2026</strong> – the premier event for NOW Platform practitioners.</span>
+  <a href="#">Register Now</a>
+</div>
+
+<nav class="now-nav">
+  <div class="now-nav-inner">
+    <a href="index.html" class="now-logo">
+      <div class="now-logo-icon"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#62d84e"/><text x="16" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="800" fill="#07192a">N</text></svg></div>
+      <div class="now-logo-wordmark">Nova<span>Tech</span></div>
+    </a>
+    <div class="now-nav-links">
+      <a href="index.html#services" class="now-nav-link is-active">Services</a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
+    </div>
+    <div class="now-nav-actions">
+      <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
+      <a href="index.html#contact" class="now-btn-primary">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<section class="now-hero" style="background-image:radial-gradient(ellipse 70% 50% at 80% 25%,rgba(98,216,78,.1) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 10% 70%,rgba(26,127,212,.1) 0%,transparent 60%);">
+  <div class="now-subnav">
+    <div class="now-subnav-inner">
+      <a href="ai.html"       class="now-subnav-tab is-active">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab">Platform Engineering</a>
+    </div>
+  </div>
+
+  <div class="now-container" style="padding-top:60px;padding-bottom:80px;">
+    <div class="now-breadcrumb">
+      <a href="index.html">NovaTech</a> &rsaquo; <a href="index.html#services">Services</a> &rsaquo; AI &amp; Intelligent Automation
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <span class="now-hero-label">Now AI &amp; GenAI</span>
+        <h1 class="now-hero-h1" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
+          AI-powered automation<br>for the<br><em>modern enterprise</em>
+        </h1>
+        <p class="now-hero-sub">
+          Unlock the full potential of the NOW AI Platform. NovaTech implements Now Assist,
+          Predictive Intelligence, Virtual Agent, and custom GenAI use cases that automate
+          work, surface insights, and accelerate every workflow — across every department.
+        </p>
+        <div class="now-hero-ctas">
+          <a href="index.html#contact" class="now-cta-primary">Get an AI Readiness Assessment</a>
+          <a href="index.html#services" class="now-cta-secondary">All Services &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Virtual Agent / Now Assist mockup -->
+      <div class="now-hero-card">
+        <div class="now-hero-card-header">
+          <div class="now-hero-card-dot"></div>
+          <div class="now-hero-card-title">Now Assist &middot; Virtual Agent</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+          <div class="ai-chat-bubble ai-chat-bot">Hi there! I'm Now Assist. How can I help you today?</div>
+          <div class="ai-chat-bubble ai-chat-user">My laptop won't connect to VPN after the update</div>
+          <div class="ai-chat-bubble ai-chat-bot">
+            I can help with that. This looks like a known issue with VPN client v4.2.1 on Windows 11.
+            Here's the fix:
+            <ol style="margin:6px 0 0 16px;font-size:.78rem;line-height:1.7;">
+              <li>Open Settings &rarr; Network &rarr; VPN</li>
+              <li>Remove and re-add the VPN connection</li>
+              <li>Restart the VPN service</li>
+            </ol>
+          </div>
+          <div class="ai-chat-bubble ai-chat-user">That worked, thanks!</div>
+          <div class="ai-chat-bubble ai-chat-bot">
+            <span style="color:#62d84e;font-weight:700;">Resolved ✓</span> &mdash; No ticket needed. Resolving case automatically.
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.73rem;color:rgba(255,255,255,.35);border-top:1px solid rgba(255,255,255,.07);padding-top:10px;">
+          <span>Ticket deflected</span>
+          <span style="color:#62d84e;">Saved ~45 min agent time</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="now-stats">
+  <div class="now-stats-inner">
+    <div class="now-stat"><div class="now-stat-value"><span>50</span>%</div><div class="now-stat-label">Ticket Deflection Rate</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>30</span>%</div><div class="now-stat-label">Productivity Boost</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>70</span>%</div><div class="now-stat-label">Automation Coverage</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>3x</span></div><div class="now-stat-label">Faster Issue Resolution</div></div>
+  </div>
+</div>
+
+<section class="now-section">
+  <div class="now-section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="now-section-label">AI Capabilities</div>
+        <h2 class="now-section-title">Every NOW Platform AI capability, implemented right.</h2>
+        <p class="now-section-desc" style="margin-bottom:0;">
+          NovaTech's AI practice spans the full NOW AI stack — from out-of-the-box
+          capabilities to custom GenAI use cases built with the NOW Platform AI SDK.
+        </p>
+      </div>
+      <div class="now-feature-list">
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Now Assist (GenAI)</div>
+            <div class="now-feature-item-desc">Generative AI built into the flow of work. Auto-summarize incidents, generate resolution notes, draft change descriptions, and surface context — all within the NOW Platform UI.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          <div>
+            <div class="now-feature-item-title">Predictive Intelligence</div>
+            <div class="now-feature-item-desc">ML-powered classification, field prediction, and similarity scoring. Route tickets to the right team automatically with 95%+ accuracy — no rules maintenance needed.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div>
+            <div class="now-feature-item-title">Virtual Agent &amp; Conversational AI</div>
+            <div class="now-feature-item-desc">Deploy AI-powered chatbots across your intranet, customer portal, Teams, and Slack. Resolve up to 50% of requests without human intervention, around the clock.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <div>
+            <div class="now-feature-item-title">Document Intelligence</div>
+            <div class="now-feature-item-desc">Extract structured data from unstructured documents — invoices, contracts, forms — automatically. Feed extracted data directly into workflows without manual entry.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <div>
+            <div class="now-feature-item-title">Process Mining &amp; RPA</div>
+            <div class="now-feature-item-desc">Discover inefficiencies in your processes with NOW Process Mining, then automate them with RPA bots and Flow Designer — all without leaving the platform.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-section now-section-dark">
+  <div class="now-section-inner">
+    <div class="now-section-label">Key Benefits</div>
+    <h2 class="now-section-title">What AI delivers for our customers.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;">
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="now-card-title">Immediate Productivity Gains</div>
+        <div class="now-card-desc">Now Assist puts AI directly in the hands of agents and employees. Summarization, auto-fill, and resolution suggestions save hours per person per day.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="now-card-title">Platform-Native AI</div>
+        <div class="now-card-desc">All AI runs on the same data, workflows, and governance as your NOW Platform — no separate AI tools to integrate, secure, or maintain.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="now-card-title">Enterprise-Grade Security</div>
+        <div class="now-card-desc">Your data stays within the ServiceNow trust boundary. Role-based AI access, audit logging, and configurable data handling meet the strictest enterprise requirements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-cta-section">
+  <div class="now-section-inner">
+    <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Start Your AI Journey</div>
+    <h2 class="now-section-title" style="text-align:center;max-width:620px;margin:0 auto 18px;">
+      Ready to put AI to work across your enterprise?
+    </h2>
+    <p class="now-section-desc" style="text-align:center;margin:0 auto 40px;">
+      Our AI specialists will identify your highest-value automation opportunities and
+      build a roadmap to deploy Now AI across your organization — fast.
+    </p>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="index.html#contact" class="now-cta-primary">Book a Free AI Readiness Workshop</a>
+      <a href="index.html#services" class="now-btn-ghost">&larr; All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="now-footer">
+  <div class="now-footer-top">
+    <div>
+      <div class="now-footer-brand">Nova<span>Tech</span> Solutions</div>
+      <div class="now-footer-tagline">The world works with NovaTech&trade;</div>
+    </div>
+    <div class="now-footer-links">
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Statement</a><a href="#">Cookie Policy</a><a href="#">Sitemap</a><a href="#">Accessibility</a><a href="#">Careers</a>
+    </div>
+  </div>
+  <div class="now-footer-bottom">
+    <div class="now-footer-copy">&copy; 2026 NovaTech Solutions GmbH. All rights reserved. &mdash; ServiceNow&reg; is a registered trademark of ServiceNow, Inc.</div>
+    <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
+  </div>
+</footer>
+
+</body>
+</html>

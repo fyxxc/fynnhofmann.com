@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Managed Services &amp; AMS – NovaTech Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="auth.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .now-nav-link.is-active { color:#fff; }
+    .now-feature-list { display:flex;flex-direction:column;gap:14px; }
+    .now-feature-item { display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s; }
+    .now-feature-item:hover { border-color:rgba(98,216,78,.25); }
+    .now-feature-item svg { width:20px;height:20px;stroke:#62d84e;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px; }
+    .now-feature-item-title { font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px; }
+    .now-feature-item-desc  { font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6; }
+    .now-breadcrumb { font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px; }
+    .now-breadcrumb a { color:rgba(255,255,255,.4);text-decoration:none; }
+    .now-breadcrumb a:hover { color:rgba(255,255,255,.7); }
+    .ams-tier { border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:28px;flex:1;display:flex;flex-direction:column;gap:14px;transition:border-color .2s; }
+    .ams-tier:hover { border-color:rgba(98,216,78,.3); }
+    .ams-tier.is-featured { border-color:rgba(98,216,78,.4);background:rgba(98,216,78,.04); }
+    .ams-tier-name { font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5); }
+    .ams-tier-price { font-size:1.6rem;font-weight:900;letter-spacing:-.04em;color:#fff; }
+    .ams-tier-price span { font-size:.85rem;font-weight:400;color:rgba(255,255,255,.4); }
+    .ams-tier-desc { font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6; }
+    .ams-feature-line { display:flex;align-items:center;gap:10px;font-size:.82rem;color:rgba(255,255,255,.65); }
+    .ams-feature-line svg { width:15px;height:15px;stroke:#62d84e;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0; }
+    .ams-feature-line.disabled { opacity:.35; }
+    .ams-feature-line.disabled svg { stroke:rgba(255,255,255,.3); }
+  </style>
+</head>
+<body>
+
+<div class="now-announce">
+  <span>Join us at <strong>Knowledge 2026</strong> – the premier event for NOW Platform practitioners.</span>
+  <a href="#">Register Now</a>
+</div>
+
+<nav class="now-nav">
+  <div class="now-nav-inner">
+    <a href="index.html" class="now-logo">
+      <div class="now-logo-icon"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#62d84e"/><text x="16" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="800" fill="#07192a">N</text></svg></div>
+      <div class="now-logo-wordmark">Nova<span>Tech</span></div>
+    </a>
+    <div class="now-nav-links">
+      <a href="index.html#services" class="now-nav-link is-active">Services</a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
+    </div>
+    <div class="now-nav-actions">
+      <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
+      <a href="index.html#contact" class="now-btn-primary">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<section class="now-hero" style="background-image:radial-gradient(ellipse 60% 50% at 80% 30%,rgba(0,199,177,.09) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 10% 75%,rgba(98,216,78,.07) 0%,transparent 60%);">
+  <div class="now-subnav">
+    <div class="now-subnav-inner">
+      <a href="ai.html"       class="now-subnav-tab">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab">Platform Engineering</a>
+    </div>
+  </div>
+
+  <div class="now-container" style="padding-top:60px;padding-bottom:80px;">
+    <div class="now-breadcrumb">
+      <a href="index.html">NovaTech</a> &rsaquo; <a href="index.html#services">Services</a> &rsaquo; Managed Services &amp; AMS
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <span class="now-hero-label">Application Management Services</span>
+        <h1 class="now-hero-h1" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
+          Keep your NOW Platform<br>running at its<br><em>absolute best</em>
+        </h1>
+        <p class="now-hero-sub">
+          Your ServiceNow instance is live — now keep it performing, evolving, and
+          secure. NovaTech AMS provides a dedicated team of certified engineers who
+          own your platform health: monitoring, patching, enhancements, and 24/7 support
+          — so your internal team can focus on business outcomes.
+        </p>
+        <div class="now-hero-ctas">
+          <a href="index.html#contact" class="now-cta-primary">Get an AMS Quote</a>
+          <a href="index.html#services" class="now-cta-secondary">All Services &rarr;</a>
+        </div>
+      </div>
+
+      <!-- AMS Health Dashboard mockup -->
+      <div class="now-hero-card">
+        <div class="now-hero-card-header">
+          <div class="now-hero-card-dot"></div>
+          <div class="now-hero-card-title">NovaTech AMS &middot; Platform Health</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+          <div style="background:rgba(98,216,78,.08);border:1px solid rgba(98,216,78,.2);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:.72rem;font-weight:700;color:#62d84e;text-transform:uppercase;letter-spacing:.05em;">Instance Health</div>
+            <div style="font-size:1.8rem;font-weight:900;color:#62d84e;letter-spacing:-.04em;margin-top:4px;">99.9%</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Uptime this month</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em;">Open Tickets</div>
+            <div style="font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-.04em;margin-top:4px;">4</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">2 in progress</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em;">Next Upgrade</div>
+            <div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.02em;margin-top:4px;">Yokohama</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Scheduled 15 Apr 2026</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em;">SLA Compliance</div>
+            <div style="font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-.04em;margin-top:4px;">100%</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Last 30 days</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;justify-content:space-between;font-size:.75rem;">
+            <span style="color:rgba(255,255,255,.5);">Active Enhancement Requests</span>
+            <span style="color:#62d84e;font-weight:700;">7 in backlog</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.75rem;">
+            <span style="color:rgba(255,255,255,.5);">Monitoring Alerts (24h)</span>
+            <span style="color:#fff;font-weight:700;">0 critical</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="now-stats">
+  <div class="now-stats-inner">
+    <div class="now-stat"><div class="now-stat-value"><span>99.9</span>%</div><div class="now-stat-label">Platform Availability SLA</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>100</span>%</div><div class="now-stat-label">Upgrade Success Rate</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>4.9</span>/5</div><div class="now-stat-label">AMS Customer CSAT</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>24/7</span></div><div class="now-stat-label">Monitoring &amp; Support</div></div>
+  </div>
+</div>
+
+<section class="now-section">
+  <div class="now-section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="now-section-label">AMS Capabilities</div>
+        <h2 class="now-section-title">Your platform. Our responsibility.</h2>
+        <p class="now-section-desc" style="margin-bottom:0;">
+          NovaTech AMS gives you a fully dedicated, certified team that owns your
+          ServiceNow instance — proactively and reactively — so your IT team can stay focused on strategy.
+        </p>
+      </div>
+      <div class="now-feature-list">
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div>
+            <div class="now-feature-item-title">24/7 Monitoring &amp; Alerting</div>
+            <div class="now-feature-item-desc">Continuous monitoring of instance health, performance metrics, scheduler jobs, and integration flows. Proactive alerting before issues impact users.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <div>
+            <div class="now-feature-item-title">Upgrade Management</div>
+            <div class="now-feature-item-desc">End-to-end upgrade planning, execution, and post-upgrade validation for every ServiceNow release. Zero surprises, full rollback plan, and regression testing included.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Continuous Enhancements</div>
+            <div class="now-feature-item-desc">Monthly enhancement sprints to extend and improve your instance. New modules, workflow improvements, UI updates — prioritized from your business backlog.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Break/Fix &amp; Incident Resolution</div>
+            <div class="now-feature-item-desc">Guaranteed SLAs for break/fix resolution. P1 critical issues resolved within 2 hours. Dedicated AMS team knows your instance inside out — no ticket queues, no ramp-up time.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          <div>
+            <div class="now-feature-item-title">Governance &amp; Reporting</div>
+            <div class="now-feature-item-desc">Monthly service reviews with executive dashboards, SLA reports, enhancement velocity metrics, and platform health scorecards. Full transparency at every level.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMS Tiers -->
+<section class="now-section now-section-dark">
+  <div class="now-section-inner">
+    <div class="now-section-label">Service Tiers</div>
+    <h2 class="now-section-title">Choose the right level of support for your instance.</h2>
+    <div style="display:flex;gap:20px;margin-top:44px;flex-wrap:wrap;">
+
+      <div class="ams-tier">
+        <div class="ams-tier-name">Foundation</div>
+        <div class="ams-tier-price">On request <span>/ month</span></div>
+        <div class="ams-tier-desc">Core support and monitoring for stable instances with infrequent change.</div>
+        <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:14px;display:flex;flex-direction:column;gap:10px;">
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>24/5 monitoring</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Upgrade management (2x/year)</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Break/fix support (P1–P3)</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Monthly health report</div>
+          <div class="ams-feature-line disabled"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Enhancement sprints</div>
+          <div class="ams-feature-line disabled"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Dedicated team pod</div>
+        </div>
+        <a href="index.html#contact" class="now-btn-ghost" style="text-align:center;margin-top:auto;">Get a Quote</a>
+      </div>
+
+      <div class="ams-tier is-featured">
+        <div class="ams-tier-name" style="color:#62d84e;">Professional &nbsp;★ Most Popular</div>
+        <div class="ams-tier-price">On request <span>/ month</span></div>
+        <div class="ams-tier-desc">Full AMS with continuous enhancements for actively evolving instances.</div>
+        <div style="border-top:1px solid rgba(98,216,78,.15);padding-top:14px;display:flex;flex-direction:column;gap:10px;">
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>24/7 monitoring &amp; alerting</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Upgrade management (all releases)</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Break/fix support (P1–P4)</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Monthly service review</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Monthly enhancement sprints</div>
+          <div class="ams-feature-line disabled"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Dedicated team pod</div>
+        </div>
+        <a href="index.html#contact" class="now-cta-primary" style="text-align:center;margin-top:auto;">Get a Quote</a>
+      </div>
+
+      <div class="ams-tier">
+        <div class="ams-tier-name">Enterprise</div>
+        <div class="ams-tier-price">On request <span>/ month</span></div>
+        <div class="ams-tier-desc">Fully dedicated team pod for large, complex, or multi-instance environments.</div>
+        <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:14px;display:flex;flex-direction:column;gap:10px;">
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>24/7 monitoring &amp; alerting</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Upgrade management (all releases)</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Break/fix + P1 &lt;2h SLA guaranteed</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Weekly service review</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Bi-weekly enhancement sprints</div>
+          <div class="ams-feature-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Dedicated team pod (named engineers)</div>
+        </div>
+        <a href="index.html#contact" class="now-btn-ghost" style="text-align:center;margin-top:auto;">Get a Quote</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="now-cta-section">
+  <div class="now-section-inner">
+    <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Get Started with AMS</div>
+    <h2 class="now-section-title" style="text-align:center;max-width:620px;margin:0 auto 18px;">
+      Let NovaTech own your platform health.
+    </h2>
+    <p class="now-section-desc" style="text-align:center;margin:0 auto 40px;">
+      We'll assess your current instance and propose an AMS engagement that fits your
+      size, complexity, and budget — with a clear SLA commitment from day one.
+    </p>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="index.html#contact" class="now-cta-primary">Request an AMS Proposal</a>
+      <a href="index.html#services" class="now-btn-ghost">&larr; All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="now-footer">
+  <div class="now-footer-top">
+    <div>
+      <div class="now-footer-brand">Nova<span>Tech</span> Solutions</div>
+      <div class="now-footer-tagline">The world works with NovaTech&trade;</div>
+    </div>
+    <div class="now-footer-links">
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Statement</a><a href="#">Cookie Policy</a><a href="#">Sitemap</a><a href="#">Accessibility</a><a href="#">Careers</a>
+    </div>
+  </div>
+  <div class="now-footer-bottom">
+    <div class="now-footer-copy">&copy; 2026 NovaTech Solutions GmbH. All rights reserved. &mdash; ServiceNow&reg; is a registered trademark of ServiceNow, Inc.</div>
+    <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
+  </div>
+</footer>
+
+</body>
+</html>

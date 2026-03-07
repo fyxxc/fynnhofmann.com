@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Operations – NovaTech Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="auth.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .now-nav-link.is-active { color:#fff; }
+    .now-feature-list { display:flex; flex-direction:column; gap:14px; }
+    .now-feature-item { display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s; }
+    .now-feature-item:hover { border-color:rgba(98,216,78,.25); }
+    .now-feature-item svg { width:20px;height:20px;stroke:#62d84e;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px; }
+    .now-feature-item-title { font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px; }
+    .now-feature-item-desc  { font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6; }
+    .now-breadcrumb { font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px; }
+    .now-breadcrumb a { color:rgba(255,255,255,.4);text-decoration:none; }
+    .now-breadcrumb a:hover { color:rgba(255,255,255,.7); }
+    .threat-badge { display:inline-flex;align-items:center;gap:6px;font-size:.73rem;font-weight:700;border-radius:6px;padding:4px 10px; }
+    .threat-crit { background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171; }
+    .threat-high { background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);color:#fb923c; }
+    .threat-med  { background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.2);color:#fbbf24; }
+    .threat-ok   { background:rgba(98,216,78,.1);border:1px solid rgba(98,216,78,.2);color:#62d84e; }
+  </style>
+</head>
+<body>
+
+<div class="now-announce">
+  <span>Join us at <strong>Knowledge 2026</strong> – the premier event for NOW Platform practitioners.</span>
+  <a href="#">Register Now</a>
+</div>
+
+<nav class="now-nav">
+  <div class="now-nav-inner">
+    <a href="index.html" class="now-logo">
+      <div class="now-logo-icon"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#62d84e"/><text x="16" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="800" fill="#07192a">N</text></svg></div>
+      <div class="now-logo-wordmark">Nova<span>Tech</span></div>
+    </a>
+    <div class="now-nav-links">
+      <a href="index.html#services" class="now-nav-link is-active">Services</a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
+    </div>
+    <div class="now-nav-actions">
+      <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
+      <a href="index.html#contact" class="now-btn-primary">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<section class="now-hero" style="background-image:radial-gradient(ellipse 50% 50% at 85% 30%,rgba(239,68,68,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 60% at 10% 70%,rgba(98,216,78,.08) 0%,transparent 60%);">
+  <div class="now-subnav">
+    <div class="now-subnav-inner">
+      <a href="ai.html"       class="now-subnav-tab">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab is-active">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab">Platform Engineering</a>
+    </div>
+  </div>
+
+  <div class="now-container" style="padding-top:60px;padding-bottom:80px;">
+    <div class="now-breadcrumb">
+      <a href="index.html">NovaTech</a> &rsaquo; <a href="index.html#services">Services</a> &rsaquo; Security Operations
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <span class="now-hero-label">ServiceNow SecOps</span>
+        <h1 class="now-hero-h1" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
+          Accelerate threat<br>response with<br><em>connected security</em>
+        </h1>
+        <p class="now-hero-sub">
+          Unite your security and IT operations teams on a single platform. NovaTech's
+          SecOps practice automates threat detection, vulnerability management, and
+          compliance — reducing response time by up to 60%.
+        </p>
+        <div class="now-hero-ctas">
+          <a href="index.html#contact" class="now-cta-primary">Get a Security Assessment</a>
+          <a href="index.html#services" class="now-cta-secondary">All Services &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Security dashboard mockup -->
+      <div class="now-hero-card">
+        <div class="now-hero-card-header">
+          <div class="now-hero-card-dot" style="background:#f87171;box-shadow:0 0 10px rgba(239,68,68,.5);"></div>
+          <div class="now-hero-card-title">Security Operations Center &middot; Live</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:1.4rem;font-weight:900;color:#f87171;letter-spacing:-.04em;">3</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px;">Critical Incidents</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:1.4rem;font-weight:900;color:#fbbf24;letter-spacing:-.04em;">17</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px;">High Vulnerabilities</div>
+          </div>
+          <div style="background:rgba(98,216,78,.08);border:1px solid rgba(98,216,78,.2);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:1.4rem;font-weight:900;color:#62d84e;letter-spacing:-.04em;">94%</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px;">Automated Response</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:1.4rem;font-weight:900;color:#fff;letter-spacing:-.04em;">8.2m</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px;">Avg Response Time</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:6px;font-size:.76rem;">
+            <span style="color:rgba(255,255,255,.65);">SIR-2026-0481 &middot; Phishing Campaign</span>
+            <span class="threat-badge threat-crit">Critical</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:6px;font-size:.76rem;">
+            <span style="color:rgba(255,255,255,.65);">VUL-2026-1204 &middot; Unpatched RCE</span>
+            <span class="threat-badge threat-high">High</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:6px;font-size:.76rem;">
+            <span style="color:rgba(255,255,255,.65);">SIR-2026-0479 &middot; Brute Force Attempt</span>
+            <span class="threat-badge threat-ok">Resolved</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="now-stats">
+  <div class="now-stats-inner">
+    <div class="now-stat"><div class="now-stat-value"><span>60</span>%</div><div class="now-stat-label">Faster Threat Response</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>80</span>%</div><div class="now-stat-label">Automated Remediation</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>94</span>%</div><div class="now-stat-label">Avg. Automation Rate</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>45</span>%</div><div class="now-stat-label">Reduction in MTTR</div></div>
+  </div>
+</div>
+
+<section class="now-section">
+  <div class="now-section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="now-section-label">Core Modules</div>
+        <h2 class="now-section-title">Security and IT — finally working as one.</h2>
+        <p class="now-section-desc" style="margin-bottom:0;">
+          ServiceNow Security Operations bridges the gap between security teams and IT,
+          enabling faster response, less manual work, and complete audit trails.
+        </p>
+      </div>
+      <div class="now-feature-list">
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Security Incident Response (SIR)</div>
+            <div class="now-feature-item-desc">Ingest alerts from SIEM tools, enrich with threat intelligence, and auto-prioritize. Orchestrate cross-team response with built-in playbooks and one-click remediation.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <div>
+            <div class="now-feature-item-title">Vulnerability Response</div>
+            <div class="now-feature-item-desc">Connect scanner data (Tenable, Qualys, Rapid7) to CMDB and auto-create remediation tasks. Prioritize by business risk, not just CVSS score.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+          <div>
+            <div class="now-feature-item-title">Threat Intelligence</div>
+            <div class="now-feature-item-desc">Aggregate threat feeds (STIX/TAXII, ISACs, commercial feeds) and enrich incidents automatically. Understand attacker TTPs before they reach your environment.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <div>
+            <div class="now-feature-item-title">Governance, Risk &amp; Compliance (GRC)</div>
+            <div class="now-feature-item-desc">Map controls to frameworks (ISO 27001, SOC 2, NIST, NIS2). Automate evidence collection, track exceptions, and generate audit reports on demand.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div>
+            <div class="now-feature-item-title">SOAR &amp; Automated Playbooks</div>
+            <div class="now-feature-item-desc">Build no-code playbooks with Flow Designer. Automate containment, notification, enrichment, and closure steps — reducing analyst workload by up to 70%.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-section now-section-dark">
+  <div class="now-section-inner">
+    <div class="now-section-label">Key Benefits</div>
+    <h2 class="now-section-title">What our SecOps customers achieve.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;">
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="now-card-title">Radically Faster Response</div>
+        <div class="now-card-desc">From alert to containment in minutes, not hours. Automated playbooks handle tier-1 response and enrichment without human intervention.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+        <div class="now-card-title">Full Audit &amp; Compliance Trail</div>
+        <div class="now-card-desc">Every action, every decision, fully logged. Pass audits with automated evidence collection mapped directly to your compliance frameworks.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="now-card-title">Unified Security &amp; IT Teams</div>
+        <div class="now-card-desc">Break down silos. Security incident data flows directly into ITSM change and problem records — giving IT full context for every remediation task.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-cta-section">
+  <div class="now-section-inner">
+    <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Start Your SecOps Journey</div>
+    <h2 class="now-section-title" style="text-align:center;max-width:620px;margin:0 auto 18px;">
+      Ready to accelerate your security operations?
+    </h2>
+    <p class="now-section-desc" style="text-align:center;margin:0 auto 40px;">
+      Our certified SecOps architects will review your current security tooling and
+      show you how ServiceNow SecOps can connect, automate, and accelerate your response.
+    </p>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="index.html#contact" class="now-cta-primary">Book a Free SecOps Assessment</a>
+      <a href="index.html#services" class="now-btn-ghost">&larr; All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="now-footer">
+  <div class="now-footer-top">
+    <div>
+      <div class="now-footer-brand">Nova<span>Tech</span> Solutions</div>
+      <div class="now-footer-tagline">The world works with NovaTech&trade;</div>
+    </div>
+    <div class="now-footer-links">
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Statement</a><a href="#">Cookie Policy</a><a href="#">Sitemap</a><a href="#">Accessibility</a><a href="#">Careers</a>
+    </div>
+  </div>
+  <div class="now-footer-bottom">
+    <div class="now-footer-copy">&copy; 2026 NovaTech Solutions GmbH. All rights reserved. &mdash; ServiceNow&reg; is a registered trademark of ServiceNow, Inc.</div>
+    <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
+  </div>
+</footer>
+
+</body>
+</html>

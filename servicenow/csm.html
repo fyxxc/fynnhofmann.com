@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Service Management – NovaTech Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="auth.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .now-nav-link.is-active { color:#fff; }
+    .now-feature-list { display:flex;flex-direction:column;gap:14px; }
+    .now-feature-item { display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s; }
+    .now-feature-item:hover { border-color:rgba(98,216,78,.25); }
+    .now-feature-item svg { width:20px;height:20px;stroke:#62d84e;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px; }
+    .now-feature-item-title { font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px; }
+    .now-feature-item-desc  { font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6; }
+    .now-breadcrumb { font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px; }
+    .now-breadcrumb a { color:rgba(255,255,255,.4);text-decoration:none; }
+    .now-breadcrumb a:hover { color:rgba(255,255,255,.7); }
+  </style>
+</head>
+<body>
+
+<div class="now-announce">
+  <span>Join us at <strong>Knowledge 2026</strong> – the premier event for NOW Platform practitioners.</span>
+  <a href="#">Register Now</a>
+</div>
+
+<nav class="now-nav">
+  <div class="now-nav-inner">
+    <a href="index.html" class="now-logo">
+      <div class="now-logo-icon"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#62d84e"/><text x="16" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="800" fill="#07192a">N</text></svg></div>
+      <div class="now-logo-wordmark">Nova<span>Tech</span></div>
+    </a>
+    <div class="now-nav-links">
+      <a href="index.html#services" class="now-nav-link is-active">Services</a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
+    </div>
+    <div class="now-nav-actions">
+      <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
+      <a href="index.html#contact" class="now-btn-primary">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<section class="now-hero" style="background-image:radial-gradient(ellipse 60% 50% at 75% 25%,rgba(0,199,177,.09) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 15% 75%,rgba(98,216,78,.07) 0%,transparent 60%);">
+  <div class="now-subnav">
+    <div class="now-subnav-inner">
+      <a href="ai.html"       class="now-subnav-tab">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab is-active">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab">Platform Engineering</a>
+    </div>
+  </div>
+
+  <div class="now-container" style="padding-top:60px;padding-bottom:80px;">
+    <div class="now-breadcrumb">
+      <a href="index.html">NovaTech</a> &rsaquo; <a href="index.html#services">Services</a> &rsaquo; Customer Service Management
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <span class="now-hero-label">ServiceNow CSM</span>
+        <h1 class="now-hero-h1" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
+          Deliver seamless<br>customer experiences<br><em>across every channel</em>
+        </h1>
+        <p class="now-hero-sub">
+          Give customers a single place to interact with your business — and give
+          agents the context they need to resolve issues on the first contact.
+          NovaTech's CSM practice helps companies increase CSAT by 25% and deflect
+          40% of cases through intelligent self-service.
+        </p>
+        <div class="now-hero-ctas">
+          <a href="index.html#contact" class="now-cta-primary">Get a Free Assessment</a>
+          <a href="index.html#services" class="now-cta-secondary">All Services &rarr;</a>
+        </div>
+      </div>
+
+      <!-- CSM Agent Workspace mockup -->
+      <div class="now-hero-card">
+        <div class="now-hero-card-header">
+          <div class="now-hero-card-dot"></div>
+          <div class="now-hero-card-title">Agent Workspace &middot; Case Overview</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:10px;">
+            <div>
+              <div style="font-size:.83rem;font-weight:700;color:#fff;">CS-2026-0841</div>
+              <div style="font-size:.73rem;color:rgba(255,255,255,.45);margin-top:2px;">Product not working after update</div>
+            </div>
+            <div style="background:rgba(98,216,78,.1);border:1px solid rgba(98,216,78,.2);border-radius:5px;padding:3px 10px;font-size:.72rem;font-weight:700;color:#62d84e;">In Progress</div>
+          </div>
+          <div style="display:flex;gap:16px;font-size:.73rem;color:rgba(255,255,255,.4);">
+            <span>Customer: Acme Corp</span>
+            <span>Priority: High</span>
+            <span>SLA: 2h left</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:-.04em;">148</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Open Cases</div>
+          </div>
+          <div style="background:rgba(98,216,78,.08);border:1px solid rgba(98,216,78,.18);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;font-weight:900;color:#62d84e;letter-spacing:-.04em;">92%</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">CSAT Score</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:-.04em;">1.8h</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Avg. Resolution</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;">
+          <div class="now-bar-item"><div class="now-bar-label">First Contact Res.</div><div class="now-bar-track"><div class="now-bar-fill" style="width:78%"></div></div><div class="now-bar-pct">78%</div></div>
+          <div style="margin-top:8px;" class="now-bar-item"><div class="now-bar-label">Self-Service Rate</div><div class="now-bar-track"><div class="now-bar-fill" style="width:42%"></div></div><div class="now-bar-pct">42%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="now-stats">
+  <div class="now-stats-inner">
+    <div class="now-stat"><div class="now-stat-value"><span>40</span>%</div><div class="now-stat-label">Case Deflection via AI</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>25</span>%</div><div class="now-stat-label">Increase in CSAT</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>78</span>%</div><div class="now-stat-label">First Contact Resolution</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>30</span>%</div><div class="now-stat-label">Lower Handling Time</div></div>
+  </div>
+</div>
+
+<section class="now-section">
+  <div class="now-section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="now-section-label">Core Modules</div>
+        <h2 class="now-section-title">Omnichannel. Proactive. Intelligent.</h2>
+        <p class="now-section-desc" style="margin-bottom:0;">
+          ServiceNow CSM connects front-office and back-office operations so your
+          agents always have context, and your customers always get answers.
+        </p>
+      </div>
+      <div class="now-feature-list">
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Case Management</div>
+            <div class="now-feature-item-desc">Unify all customer interactions — email, chat, phone, portal, social — in a single case. Agents see the full customer history and context at a glance.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+          <div>
+            <div class="now-feature-item-title">Agent Workspace</div>
+            <div class="now-feature-item-desc">A purpose-built agent UI with AI-generated response suggestions, guided decisions, and real-time SLA tracking. Agents handle more cases with less effort.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          <div>
+            <div class="now-feature-item-title">Proactive Customer Service</div>
+            <div class="now-feature-item-desc">Detect issues before customers call — monitor connected products, trigger proactive outreach, and resolve problems automatically before they escalate.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+          <div>
+            <div class="now-feature-item-title">Virtual Agent &amp; AI Self-Service</div>
+            <div class="now-feature-item-desc">Let customers resolve their own issues with an intelligent chatbot. Now Assist handles FAQs, order status, account changes, and troubleshooting 24/7.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div>
+            <div class="now-feature-item-title">Field Service Management</div>
+            <div class="now-feature-item-desc">Dispatch the right technician, with the right parts, at the right time. Optimize schedules with AI and give customers real-time visibility into on-site visits.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-section now-section-dark">
+  <div class="now-section-inner">
+    <div class="now-section-label">Key Benefits</div>
+    <h2 class="now-section-title">The impact our CSM customers see.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;">
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="now-card-title">Higher Customer Satisfaction</div>
+        <div class="now-card-desc">Customers get faster answers, proactive updates, and consistent experiences across every channel — driving CSAT scores up by an average of 25 points.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="now-card-title">Faster Resolution Times</div>
+        <div class="now-card-desc">AI-assisted routing and context-rich agent workspaces reduce average handling time by 30% and get customers to a resolution in record time.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="now-card-title">Lower Support Costs</div>
+        <div class="now-card-desc">Deflect up to 40% of inbound cases to self-service. Proactive service prevents issues from becoming contacts at all — significantly reducing cost per interaction.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-cta-section">
+  <div class="now-section-inner">
+    <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Start Your CSM Journey</div>
+    <h2 class="now-section-title" style="text-align:center;max-width:620px;margin:0 auto 18px;">
+      Ready to deliver exceptional customer experiences?
+    </h2>
+    <p class="now-section-desc" style="text-align:center;margin:0 auto 40px;">
+      Our CSM architects will map your customer service processes and show you
+      exactly how ServiceNow CSM can transform them — fast.
+    </p>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="index.html#contact" class="now-cta-primary">Book a Free CSM Assessment</a>
+      <a href="index.html#services" class="now-btn-ghost">&larr; All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="now-footer">
+  <div class="now-footer-top">
+    <div>
+      <div class="now-footer-brand">Nova<span>Tech</span> Solutions</div>
+      <div class="now-footer-tagline">The world works with NovaTech&trade;</div>
+    </div>
+    <div class="now-footer-links">
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Statement</a><a href="#">Cookie Policy</a><a href="#">Sitemap</a><a href="#">Accessibility</a><a href="#">Careers</a>
+    </div>
+  </div>
+  <div class="now-footer-bottom">
+    <div class="now-footer-copy">&copy; 2026 NovaTech Solutions GmbH. All rights reserved. &mdash; ServiceNow&reg; is a registered trademark of ServiceNow, Inc.</div>
+    <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
+  </div>
+</footer>
+
+</body>
+</html>

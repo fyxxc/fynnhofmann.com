@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Service Management – NovaTech Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="auth.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .now-nav-link.is-active { color:#fff; }
+    .detail-hero-bg {
+      background: var(--now-dark);
+      background-image:
+        radial-gradient(ellipse 60% 50% at 15% 60%, rgba(0,168,150,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 85% 20%, rgba(98,216,78,0.07) 0%, transparent 60%);
+    }
+    .now-feature-list { display:flex; flex-direction:column; gap:14px; }
+    .now-feature-item {
+      display:flex; align-items:flex-start; gap:14px;
+      padding:18px 20px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:10px;
+      transition:border-color .2s;
+    }
+    .now-feature-item:hover { border-color:rgba(98,216,78,0.25); }
+    .now-feature-item svg { width:20px;height:20px;stroke:#62d84e;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px; }
+    .now-feature-item-title { font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px; }
+    .now-feature-item-desc  { font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6; }
+    .now-breadcrumb { font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px; }
+    .now-breadcrumb a { color:rgba(255,255,255,.4); text-decoration:none; }
+    .now-breadcrumb a:hover { color:rgba(255,255,255,.7); }
+    .metric-row { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:52px; }
+    .metric-box { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:22px 20px;text-align:center; }
+    .metric-box .val { font-size:2rem;font-weight:900;color:#62d84e;letter-spacing:-.04em; }
+    .metric-box .lbl { font-size:.76rem;color:rgba(255,255,255,.45);margin-top:6px; }
+  </style>
+</head>
+<body>
+
+<div class="now-announce">
+  <span>Join us at <strong>Knowledge 2026</strong> – the premier event for NOW Platform practitioners.</span>
+  <a href="#">Register Now</a>
+</div>
+
+<nav class="now-nav">
+  <div class="now-nav-inner">
+    <a href="index.html" class="now-logo">
+      <div class="now-logo-icon">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#62d84e"/><text x="16" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="800" fill="#07192a">N</text></svg>
+      </div>
+      <div class="now-logo-wordmark">Nova<span>Tech</span></div>
+    </a>
+    <div class="now-nav-links">
+      <a href="index.html#services" class="now-nav-link is-active">Services</a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
+    </div>
+    <div class="now-nav-actions">
+      <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
+      <a href="index.html#contact" class="now-btn-primary">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<section class="now-hero detail-hero-bg">
+  <div class="now-subnav">
+    <div class="now-subnav-inner">
+      <a href="ai.html"       class="now-subnav-tab">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab is-active">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab">Platform Engineering</a>
+    </div>
+  </div>
+
+  <div class="now-container" style="padding-top:60px;padding-bottom:80px;">
+    <div class="now-breadcrumb">
+      <a href="index.html">NovaTech</a> &rsaquo; <a href="index.html#services">Services</a> &rsaquo; IT Service Management
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <span class="now-hero-label">ServiceNow ITSM</span>
+        <h1 class="now-hero-h1" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
+          Modernize IT<br>operations with<br><em>AI-powered workflows</em>
+        </h1>
+        <p class="now-hero-sub">
+          Deliver faster, smarter IT services. NovaTech's ITSM practice transforms
+          incident, problem, and change management into a fully automated, AI-driven
+          experience — reducing MTTR by up to 40% and cutting costs significantly.
+        </p>
+        <div class="now-hero-ctas">
+          <a href="index.html#contact" class="now-cta-primary">Get a Free Assessment</a>
+          <a href="index.html#services" class="now-cta-secondary">All Services &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Live mockup: Incident dashboard -->
+      <div class="now-hero-card">
+        <div class="now-hero-card-header">
+          <div class="now-hero-card-dot"></div>
+          <div class="now-hero-card-title">ServiceNow ITSM &middot; Incident Overview</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+          <div style="background:rgba(98,216,78,0.08);border:1px solid rgba(98,216,78,0.2);border-radius:8px;padding:14px 16px;">
+            <div style="font-size:1.6rem;font-weight:900;color:#62d84e;letter-spacing:-.04em;">47</div>
+            <div style="font-size:.73rem;color:rgba(255,255,255,.45);margin-top:3px;">Open Incidents</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px 16px;">
+            <div style="font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-.04em;">2.4h</div>
+            <div style="font-size:.73rem;color:rgba(255,255,255,.45);margin-top:3px;">Avg. MTTR</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px 16px;">
+            <div style="font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-.04em;">91%</div>
+            <div style="font-size:.73rem;color:rgba(255,255,255,.45);margin-top:3px;">First Call Resolution</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px 16px;">
+            <div style="font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-.04em;">312</div>
+            <div style="font-size:.73rem;color:rgba(255,255,255,.45);margin-top:3px;">Resolved Today</div>
+          </div>
+        </div>
+        <div class="now-hero-bar-row">
+          <div class="now-bar-item">
+            <div class="now-bar-label">P1 – Critical</div>
+            <div class="now-bar-track"><div class="now-bar-fill" style="width:12%"></div></div>
+            <div class="now-bar-pct" style="color:#fff;">12%</div>
+          </div>
+          <div class="now-bar-item">
+            <div class="now-bar-label">P2 – High</div>
+            <div class="now-bar-track"><div class="now-bar-fill" style="width:28%"></div></div>
+            <div class="now-bar-pct" style="color:#fff;">28%</div>
+          </div>
+          <div class="now-bar-item">
+            <div class="now-bar-label">P3 – Medium</div>
+            <div class="now-bar-track"><div class="now-bar-fill" style="width:60%"></div></div>
+            <div class="now-bar-pct" style="color:#fff;">60%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="now-stats">
+  <div class="now-stats-inner">
+    <div class="now-stat"><div class="now-stat-value"><span>40</span>%</div><div class="now-stat-label">Avg. MTTR Reduction</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>60</span>%</div><div class="now-stat-label">Ticket Deflection via AI</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>91</span>%</div><div class="now-stat-label">First-Call Resolution</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>35</span>%</div><div class="now-stat-label">IT Cost Reduction</div></div>
+  </div>
+</div>
+
+<section class="now-section">
+  <div class="now-section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="now-section-label">Core Modules</div>
+        <h2 class="now-section-title">Everything IT needs, on one platform.</h2>
+        <p class="now-section-desc" style="margin-bottom:0;">
+          ServiceNow ITSM consolidates all IT service management workflows into a
+          single, connected platform — eliminating tool sprawl and improving visibility.
+        </p>
+      </div>
+      <div class="now-feature-list">
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div>
+            <div class="now-feature-item-title">Incident Management</div>
+            <div class="now-feature-item-desc">AI-driven triage, intelligent routing, and automated escalations restore services faster and reduce manual effort.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div>
+            <div class="now-feature-item-title">Problem Management</div>
+            <div class="now-feature-item-desc">Identify and eliminate root causes proactively. Link related incidents and track known errors to prevent recurrence.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <div>
+            <div class="now-feature-item-title">Change &amp; Release Management</div>
+            <div class="now-feature-item-desc">Reduce risk with intelligent change advisory boards, automated approvals, and full-cycle release planning in one view.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <div>
+            <div class="now-feature-item-title">Service Catalog &amp; Request Management</div>
+            <div class="now-feature-item-desc">Deliver a consumer-grade self-service experience. Users find and request services instantly; fulfillment is automated end-to-end.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          <div>
+            <div class="now-feature-item-title">CMDB &amp; Asset Management</div>
+            <div class="now-feature-item-desc">Maintain a trusted, auto-discovered configuration management database. Know every asset, dependency, and relationship across your IT estate.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-section now-section-dark">
+  <div class="now-section-inner">
+    <div class="now-section-label">Key Benefits</div>
+    <h2 class="now-section-title">What our customers achieve with ITSM.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;">
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="now-card-title">Faster Incident Resolution</div>
+        <div class="now-card-desc">AI-powered routing and automated workflows reduce mean time to resolution by 40% in the first 90 days post-implementation.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div>
+        <div class="now-card-title">AI-Driven Deflection</div>
+        <div class="now-card-desc">Virtual Agent and Now Assist deflect up to 60% of tickets before they reach a human agent — freeing your team for complex issues.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="now-card-title">Compliance &amp; Audit Ready</div>
+        <div class="now-card-desc">Built-in audit trails, change approvals, and reporting ensure you stay compliant with ITIL, ISO 20000, and internal policies at all times.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-cta-section">
+  <div class="now-section-inner">
+    <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Start Your ITSM Journey</div>
+    <h2 class="now-section-title" style="text-align:center;max-width:620px;margin:0 auto 18px;">
+      Ready to modernize your IT service management?
+    </h2>
+    <p class="now-section-desc" style="text-align:center;margin:0 auto 40px;">
+      Our ITSM architects will assess your current state, define a roadmap, and deliver
+      a solution that delivers measurable ROI within weeks — not months.
+    </p>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="index.html#contact" class="now-cta-primary">Book a Free ITSM Assessment</a>
+      <a href="index.html#services" class="now-btn-ghost">&larr; All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="now-footer">
+  <div class="now-footer-top">
+    <div>
+      <div class="now-footer-brand">Nova<span>Tech</span> Solutions</div>
+      <div class="now-footer-tagline">The world works with NovaTech&trade;</div>
+    </div>
+    <div class="now-footer-links">
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Privacy Statement</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Sitemap</a>
+      <a href="#">Accessibility</a>
+      <a href="#">Careers</a>
+    </div>
+  </div>
+  <div class="now-footer-bottom">
+    <div class="now-footer-copy">&copy; 2026 NovaTech Solutions GmbH. All rights reserved. &mdash; ServiceNow&reg; is a registered trademark of ServiceNow, Inc.</div>
+    <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
+  </div>
+</footer>
+
+</body>
+</html>

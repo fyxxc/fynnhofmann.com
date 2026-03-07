@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform Engineering – NovaTech Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="auth.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .now-nav-link.is-active { color:#fff; }
+    .now-feature-list { display:flex;flex-direction:column;gap:14px; }
+    .now-feature-item { display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s; }
+    .now-feature-item:hover { border-color:rgba(98,216,78,.25); }
+    .now-feature-item svg { width:20px;height:20px;stroke:#62d84e;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px; }
+    .now-feature-item-title { font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px; }
+    .now-feature-item-desc  { font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6; }
+    .now-breadcrumb { font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px; }
+    .now-breadcrumb a { color:rgba(255,255,255,.4);text-decoration:none; }
+    .now-breadcrumb a:hover { color:rgba(255,255,255,.7); }
+  </style>
+</head>
+<body>
+
+<div class="now-announce">
+  <span>Join us at <strong>Knowledge 2026</strong> – the premier event for NOW Platform practitioners.</span>
+  <a href="#">Register Now</a>
+</div>
+
+<nav class="now-nav">
+  <div class="now-nav-inner">
+    <a href="index.html" class="now-logo">
+      <div class="now-logo-icon"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#62d84e"/><text x="16" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="800" fill="#07192a">N</text></svg></div>
+      <div class="now-logo-wordmark">Nova<span>Tech</span></div>
+    </a>
+    <div class="now-nav-links">
+      <a href="index.html#services" class="now-nav-link is-active">Services</a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
+    </div>
+    <div class="now-nav-actions">
+      <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
+      <a href="index.html#contact" class="now-btn-primary">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<section class="now-hero" style="background-image:radial-gradient(ellipse 60% 50% at 80% 30%,rgba(26,127,212,.1) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 10% 75%,rgba(98,216,78,.08) 0%,transparent 60%);">
+  <div class="now-subnav">
+    <div class="now-subnav-inner">
+      <a href="ai.html"       class="now-subnav-tab">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab is-active">Platform Engineering</a>
+    </div>
+  </div>
+
+  <div class="now-container" style="padding-top:60px;padding-bottom:80px;">
+    <div class="now-breadcrumb">
+      <a href="index.html">NovaTech</a> &rsaquo; <a href="index.html#services">Services</a> &rsaquo; Platform Engineering
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <span class="now-hero-label">NOW Platform Implementation &amp; Development</span>
+        <h1 class="now-hero-h1" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
+          Build, extend, and<br>operate the NOW<br><em>Platform at scale</em>
+        </h1>
+        <p class="now-hero-sub">
+          From greenfield implementations to complex integrations and custom app development,
+          NovaTech's platform engineers build production-grade ServiceNow solutions that scale
+          with your enterprise — following NOW Platform best practices at every step.
+        </p>
+        <div class="now-hero-ctas">
+          <a href="index.html#contact" class="now-cta-primary">Get a Platform Assessment</a>
+          <a href="index.html#services" class="now-cta-secondary">All Services &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Platform architecture visual -->
+      <div class="now-hero-card">
+        <div class="now-hero-card-header">
+          <div class="now-hero-card-dot"></div>
+          <div class="now-hero-card-title">NOW Platform &middot; Architecture Overview</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="background:rgba(98,216,78,.07);border:1px solid rgba(98,216,78,.18);border-radius:8px;padding:10px 14px;">
+            <div style="font-size:.72rem;font-weight:700;color:#62d84e;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">Application Layer</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">ITSM</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">HRSD</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">SecOps</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">CSM</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">Custom Apps</span>
+            </div>
+          </div>
+          <div style="background:rgba(26,127,212,.07);border:1px solid rgba(26,127,212,.18);border-radius:8px;padding:10px 14px;">
+            <div style="font-size:.72rem;font-weight:700;color:#4db3f6;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">Platform Services</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">Flow Designer</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">IntegrationHub</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">UI Builder</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">Now AI</span>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;">
+            <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">Data &amp; Integration Layer</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">CMDB</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">REST/SOAP APIs</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">MID Server</span>
+              <span style="background:rgba(255,255,255,.07);border-radius:5px;padding:3px 9px;font-size:.72rem;color:rgba(255,255,255,.65);">ETL Pipelines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="now-stats">
+  <div class="now-stats-inner">
+    <div class="now-stat"><div class="now-stat-value"><span>500</span>+</div><div class="now-stat-label">Platform Implementations</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>200</span>+</div><div class="now-stat-label">Certified Engineers</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>98</span>%</div><div class="now-stat-label">On-Time Delivery Rate</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>15</span>yr</div><div class="now-stat-label">Platform Expertise</div></div>
+  </div>
+</div>
+
+<section class="now-section">
+  <div class="now-section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="now-section-label">Engineering Services</div>
+        <h2 class="now-section-title">From architecture to production-ready solutions.</h2>
+        <p class="now-section-desc" style="margin-bottom:0;">
+          Our platform engineers bring deep technical expertise — from initial design to
+          complex custom development — always following ServiceNow's best practices and
+          upgrade-safe architecture patterns.
+        </p>
+      </div>
+      <div class="now-feature-list">
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div>
+            <div class="now-feature-item-title">Custom Application Development</div>
+            <div class="now-feature-item-desc">Build purpose-built applications on NOW Platform using App Engine. From simple workflow tools to complex enterprise apps — following Creator Workflows best practices.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          <div>
+            <div class="now-feature-item-title">Integration &amp; IntegrationHub</div>
+            <div class="now-feature-item-desc">Connect ServiceNow to your enterprise ecosystem — SAP, Workday, Azure AD, Salesforce, Jira, and hundreds more — with pre-built spokes and custom REST/SOAP integrations.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          <div>
+            <div class="now-feature-item-title">UI Builder &amp; Portal Development</div>
+            <div class="now-feature-item-desc">Design modern, branded employee and customer-facing portals using NOW's Next Experience UI framework. Fully responsive, accessible, and upgrade-safe.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41"/><path d="M4.93 4.93l1.41 1.41"/><path d="M19.07 19.07l-1.41-1.41"/><path d="M4.93 19.07l1.41-1.41"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
+          <div>
+            <div class="now-feature-item-title">Flow Designer &amp; Process Automation</div>
+            <div class="now-feature-item-desc">Automate complex cross-department workflows with Flow Designer. No-code for business users, full scripted actions for complex scenarios — all in one tool.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Instance Strategy &amp; Governance</div>
+            <div class="now-feature-item-desc">Define multi-instance architecture, dev/test/prod pipelines, SDLC governance, and upgrade strategies. Build a platform that scales without technical debt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-section now-section-dark">
+  <div class="now-section-inner">
+    <div class="now-section-label">Key Benefits</div>
+    <h2 class="now-section-title">Why enterprises choose NovaTech for platform engineering.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;">
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="now-card-title">Upgrade-Safe Architecture</div>
+        <div class="now-card-desc">Every solution is built to survive ServiceNow upgrades without breaking. We follow platform best practices so your investment grows with the platform, not against it.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="now-card-title">Fast, Predictable Delivery</div>
+        <div class="now-card-desc">Our proven implementation methodology — NovaTech NOW Accelerate — delivers production-ready solutions in weeks, with built-in testing and documentation from day one.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="now-card-title">Knowledge Transfer</div>
+        <div class="now-card-desc">We build internal capability alongside every engagement. Your team understands and owns what we build — reducing long-term dependency on external consultants.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-cta-section">
+  <div class="now-section-inner">
+    <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Start Building</div>
+    <h2 class="now-section-title" style="text-align:center;max-width:620px;margin:0 auto 18px;">
+      Ready to build something great on the NOW Platform?
+    </h2>
+    <p class="now-section-desc" style="text-align:center;margin:0 auto 40px;">
+      Whether you're starting fresh or extending an existing instance, our platform
+      engineers are ready to help you design, build, and deliver — the right way.
+    </p>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="index.html#contact" class="now-cta-primary">Talk to a Platform Engineer</a>
+      <a href="ams.html" class="now-btn-ghost">Learn About Managed Services &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer class="now-footer">
+  <div class="now-footer-top">
+    <div>
+      <div class="now-footer-brand">Nova<span>Tech</span> Solutions</div>
+      <div class="now-footer-tagline">The world works with NovaTech&trade;</div>
+    </div>
+    <div class="now-footer-links">
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Statement</a><a href="#">Cookie Policy</a><a href="#">Sitemap</a><a href="#">Accessibility</a><a href="#">Careers</a>
+    </div>
+  </div>
+  <div class="now-footer-bottom">
+    <div class="now-footer-copy">&copy; 2026 NovaTech Solutions GmbH. All rights reserved. &mdash; ServiceNow&reg; is a registered trademark of ServiceNow, Inc.</div>
+    <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
+  </div>
+</footer>
+
+</body>
+</html>

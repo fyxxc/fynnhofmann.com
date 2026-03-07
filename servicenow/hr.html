@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Service Delivery – NovaTech Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="auth.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .now-nav-link.is-active { color:#fff; }
+    .now-feature-list { display:flex; flex-direction:column; gap:14px; }
+    .now-feature-item { display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s; }
+    .now-feature-item:hover { border-color:rgba(98,216,78,.25); }
+    .now-feature-item svg { width:20px;height:20px;stroke:#62d84e;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px; }
+    .now-feature-item-title { font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px; }
+    .now-feature-item-desc  { font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6; }
+    .now-breadcrumb { font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px; }
+    .now-breadcrumb a { color:rgba(255,255,255,.4);text-decoration:none; }
+    .now-breadcrumb a:hover { color:rgba(255,255,255,.7); }
+  </style>
+</head>
+<body>
+
+<div class="now-announce">
+  <span>Join us at <strong>Knowledge 2026</strong> – the premier event for NOW Platform practitioners.</span>
+  <a href="#">Register Now</a>
+</div>
+
+<nav class="now-nav">
+  <div class="now-nav-inner">
+    <a href="index.html" class="now-logo">
+      <div class="now-logo-icon"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#62d84e"/><text x="16" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="800" fill="#07192a">N</text></svg></div>
+      <div class="now-logo-wordmark">Nova<span>Tech</span></div>
+    </a>
+    <div class="now-nav-links">
+      <a href="index.html#services" class="now-nav-link is-active">Services</a>
+      <a href="index.html#industries" class="now-nav-link">Industries</a>
+      <a href="index.html#expertise" class="now-nav-link">Expertise</a>
+      <a href="index.html#partners" class="now-nav-link">Partners</a>
+      <a href="index.html#contact" class="now-nav-link">Company</a>
+    </div>
+    <div class="now-nav-actions">
+      <button class="now-btn-ghost" onclick="fhLogout()">Sign Out</button>
+      <a href="index.html#contact" class="now-btn-primary">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<section class="now-hero" style="background-image:radial-gradient(ellipse 60% 50% at 80% 30%,rgba(98,216,78,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 10% 80%,rgba(0,168,150,.1) 0%,transparent 60%);">
+  <div class="now-subnav">
+    <div class="now-subnav-inner">
+      <a href="ai.html"       class="now-subnav-tab">AI Platform Solutions</a>
+      <a href="itsm.html"     class="now-subnav-tab">IT Service Management</a>
+      <a href="hr.html"       class="now-subnav-tab is-active">HR Service Delivery</a>
+      <a href="secops.html"   class="now-subnav-tab">Security Operations</a>
+      <a href="csm.html"      class="now-subnav-tab">Customer Service</a>
+      <a href="platform.html" class="now-subnav-tab">Platform Engineering</a>
+    </div>
+  </div>
+
+  <div class="now-container" style="padding-top:60px;padding-bottom:80px;">
+    <div class="now-breadcrumb">
+      <a href="index.html">NovaTech</a> &rsaquo; <a href="index.html#services">Services</a> &rsaquo; HR Service Delivery
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <span class="now-hero-label">ServiceNow HRSD</span>
+        <h1 class="now-hero-h1" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
+          Transform the<br>employee experience<br><em>from day one</em>
+        </h1>
+        <p class="now-hero-sub">
+          Deliver a connected, consumer-grade experience for every employee moment —
+          from onboarding to offboarding. NovaTech's HRSD practice turns fragmented HR
+          processes into seamless, automated journeys on the NOW Platform.
+        </p>
+        <div class="now-hero-ctas">
+          <a href="index.html#contact" class="now-cta-primary">Get a Free Assessment</a>
+          <a href="index.html#services" class="now-cta-secondary">All Services &rarr;</a>
+        </div>
+      </div>
+
+      <!-- HR Portal mockup -->
+      <div class="now-hero-card">
+        <div class="now-hero-card-header">
+          <div class="now-hero-card-dot"></div>
+          <div class="now-hero-card-title">Employee Center Pro &middot; Dashboard</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:.8rem;font-weight:600;color:#fff;">Welcome back, Sarah</div>
+              <div style="font-size:.73rem;color:rgba(255,255,255,.45);">Your onboarding is 85% complete</div>
+            </div>
+            <div style="background:rgba(98,216,78,.1);border:1px solid rgba(98,216,78,.2);border-radius:6px;padding:6px 12px;font-size:.73rem;font-weight:700;color:#62d84e;">85%</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:1.2rem;font-weight:900;color:#62d84e;">3</div>
+              <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Open Cases</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:1.2rem;font-weight:900;color:#fff;">12</div>
+              <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Tasks Due</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:1.2rem;font-weight:900;color:#fff;">24</div>
+              <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px;">Days Remaining</div>
+            </div>
+          </div>
+        </div>
+        <div class="now-hero-bar-row">
+          <div class="now-bar-item"><div class="now-bar-label">Self-Service Rate</div><div class="now-bar-track"><div class="now-bar-fill" style="width:70%"></div></div><div class="now-bar-pct">70%</div></div>
+          <div class="now-bar-item"><div class="now-bar-label">Case Deflection</div><div class="now-bar-track"><div class="now-bar-fill" style="width:55%"></div></div><div class="now-bar-pct">55%</div></div>
+          <div class="now-bar-item"><div class="now-bar-label">HRSD CSAT</div><div class="now-bar-track"><div class="now-bar-fill" style="width:97%"></div></div><div class="now-bar-pct">97%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="now-stats">
+  <div class="now-stats-inner">
+    <div class="now-stat"><div class="now-stat-value"><span>50</span>%</div><div class="now-stat-label">Reduction in HR Tickets</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>70</span>%</div><div class="now-stat-label">Self-Service Adoption</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>97</span>%</div><div class="now-stat-label">Employee Satisfaction</div></div>
+    <div class="now-stat"><div class="now-stat-value"><span>3x</span></div><div class="now-stat-label">Faster Case Resolution</div></div>
+  </div>
+</div>
+
+<section class="now-section">
+  <div class="now-section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="now-section-label">Core Modules</div>
+        <h2 class="now-section-title">Every employee moment, connected.</h2>
+        <p class="now-section-desc" style="margin-bottom:0;">
+          ServiceNow HRSD brings HR, IT, Legal, and Finance onto one platform —
+          creating a unified employee experience from hire to retire.
+        </p>
+      </div>
+      <div class="now-feature-list">
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <div>
+            <div class="now-feature-item-title">Employee Center Pro</div>
+            <div class="now-feature-item-desc">A single, personalized portal for all HR, IT, and facility requests. Role-based content, AI-powered search, and mobile-first design out of the box.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div>
+            <div class="now-feature-item-title">HR Case &amp; Knowledge Management</div>
+            <div class="now-feature-item-desc">Standardize and track every HR inquiry. Deflect repetitive questions with a self-service knowledge base and Virtual Agent chatbot.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <div>
+            <div class="now-feature-item-title">Onboarding &amp; Lifecycle Events</div>
+            <div class="now-feature-item-desc">Orchestrate complex multi-department journeys — onboarding, transfers, role changes, parental leave, offboarding — with zero manual coordination.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Virtual Agent for HR</div>
+            <div class="now-feature-item-desc">Resolve common HR questions — payslips, benefits, leave balances, policies — around the clock without HR agent involvement.</div>
+          </div>
+        </div>
+        <div class="now-feature-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div>
+            <div class="now-feature-item-title">Global HR &amp; Compliance</div>
+            <div class="now-feature-item-desc">Manage multi-country HR operations with locale-specific content, legal compliance workflows, and data residency controls built in.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-section now-section-dark">
+  <div class="now-section-inner">
+    <div class="now-section-label">Key Benefits</div>
+    <h2 class="now-section-title">The impact our customers see with HRSD.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;">
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="now-card-title">Better Employee Experience</div>
+        <div class="now-card-desc">A unified, consumer-grade HR portal increases employee satisfaction scores by an average of 35 points within 6 months of go-live.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="now-card-title">Significant Cost Savings</div>
+        <div class="now-card-desc">Automate 50% of tier-1 HR inquiries and reduce HR operational costs by up to 30% through AI-driven self-service and case automation.</div>
+      </div>
+      <div class="now-card">
+        <div class="now-card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="now-card-title">Compliance &amp; Data Privacy</div>
+        <div class="now-card-desc">Built-in GDPR controls, audit-ready HR data, and configurable data retention policies keep your HR operations compliant across all regions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="now-cta-section">
+  <div class="now-section-inner">
+    <div class="now-section-label" style="text-align:center;margin-bottom:14px;">Start Your HRSD Journey</div>
+    <h2 class="now-section-title" style="text-align:center;max-width:620px;margin:0 auto 18px;">
+      Ready to create a seamless employee experience?
+    </h2>
+    <p class="now-section-desc" style="text-align:center;margin:0 auto 40px;">
+      Our HRSD consultants will map your current HR processes and show you exactly
+      how ServiceNow HRSD can transform them — with a tailored demo and business case.
+    </p>
+    <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+      <a href="index.html#contact" class="now-cta-primary">Book a Free HRSD Assessment</a>
+      <a href="index.html#services" class="now-btn-ghost">&larr; All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="now-footer">
+  <div class="now-footer-top">
+    <div>
+      <div class="now-footer-brand">Nova<span>Tech</span> Solutions</div>
+      <div class="now-footer-tagline">The world works with NovaTech&trade;</div>
+    </div>
+    <div class="now-footer-links">
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Statement</a><a href="#">Cookie Policy</a><a href="#">Sitemap</a><a href="#">Accessibility</a><a href="#">Careers</a>
+    </div>
+  </div>
+  <div class="now-footer-bottom">
+    <div class="now-footer-copy">&copy; 2026 NovaTech Solutions GmbH. All rights reserved. &mdash; ServiceNow&reg; is a registered trademark of ServiceNow, Inc.</div>
+    <button class="now-footer-logout" onclick="fhLogout()">Sign Out</button>
+  </div>
+</footer>
+
+</body>
+</html>
