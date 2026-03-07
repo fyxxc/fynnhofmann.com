@@ -40,31 +40,10 @@
       color: #fff;
     }
 
-    .login-brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
-
-    .login-brand-mark {
-      width: 34px;
-      height: 34px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .login-brand-name {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.9);
+    .login-left-domain {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.03em;
     }
 
     .login-left-body {
@@ -76,51 +55,17 @@
     }
 
     .login-left-heading {
-      font-size: 1.75rem;
+      font-size: 1rem;
       font-weight: 600;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      color: #fff;
-      margin-bottom: 32px;
-      max-width: 340px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
     }
 
-    .login-left-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .login-left-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .login-left-item-icon {
-      width: 28px;
-      height: 28px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .login-left-item-icon svg {
-      width: 18px;
-      height: 18px;
-      stroke: rgba(255,255,255,0.55);
-      fill: none;
-      stroke-width: 1.75;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .login-left-item-text {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.4;
+    .login-left-desc {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+      max-width: 300px;
     }
 
     .login-left-footer {
@@ -305,36 +250,15 @@
   <!-- ── Left ────────────────────────────────────────── -->
   <div class="login-left">
 
-    <div class="login-brand">
-      <div class="login-brand-mark">FH</div>
-      <div class="login-brand-name">fynnhofmann.com</div>
-    </div>
+    <div class="login-left-domain">fynnhofmann.com</div>
 
     <div class="login-left-body">
-      <h1 class="login-left-heading">
-        Zugang zu deinen Projekten, Tools und dem Dashboard.
-      </h1>
-
-      <ul class="login-left-list">
-        <li class="login-left-item">
-          <div class="login-left-item-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <span class="login-left-item-text">Sicherer, session-basierter Zugang</span>
-        </li>
-        <li class="login-left-item">
-          <div class="login-left-item-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          </div>
-          <span class="login-left-item-text">Dashboard mit Übersicht aller Seiten und Domains</span>
-        </li>
-        <li class="login-left-item">
-          <div class="login-left-item-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <span class="login-left-item-text">Zugriff wird protokolliert und gesichert</span>
-        </li>
-      </ul>
+      <div class="login-left-heading">Geschützter Bereich</div>
+      <p class="login-left-desc">
+        Dieser Bereich ist nicht öffentlich zugänglich.<br>
+        Zugang ausschließlich für autorisierte Benutzer.<br><br>
+        Nicht autorisierte Zugriffsversuche werden protokolliert.
+      </p>
     </div>
 
     <div class="login-left-footer">
