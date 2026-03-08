@@ -2,6 +2,8 @@
    fynnhofmann.com – Apple-inspired Design System
    ========================================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 /* ===== RESET ===== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -147,18 +149,45 @@ strong {
 }
 
 .nav-logo {
-  font-size: 17px;
-  font-weight: 700;
-  color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--text);
+  border-radius: 8px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
   text-decoration: none;
-  letter-spacing: -0.01em;
-  display: inline-block;
-  width: 32px;
-  height: 32px;
+  flex-shrink: 0;
   cursor: pointer;
   user-select: none;
-  flex-shrink: 0;
+  transition: opacity 0.2s;
+  line-height: 1;
 }
+.nav-logo:hover { opacity: 0.75; }
+
+/* Reusable logo mark (footer etc.) */
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--text);
+  border-radius: 7px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  text-decoration: none;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+.logo-mark:hover { opacity: 0.75; }
 
 .nav-links {
   display: flex;
@@ -735,6 +764,12 @@ strong {
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .footer-nav {

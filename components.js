@@ -12,7 +12,7 @@
   header.id = 'header';
   header.innerHTML =
     '<nav class="nav">' +
-      '<a href="' + base + 'index.html" class="nav-logo" id="logo-trigger" aria-label="Startseite"></a>' +
+      '<a href="' + base + 'index.html" class="nav-logo" id="logo-trigger" aria-label="Startseite">f</a>' +
       '<ul class="nav-links">' +
         '<li><a href="' + base + 'erfahrung.html">Erfahrung</a></li>' +
         '<li><a href="' + base + 'projekte.html">Projekte</a></li>' +
@@ -36,13 +36,16 @@
   footer.innerHTML =
     '<div class="container">' +
       '<div class="footer-content">' +
-        '<nav class="footer-nav">' +
+        '<div class="footer-left">' +
+          '<a href="' + base + 'index.html" class="logo-mark" aria-label="Startseite">f</a>' +
+          '<nav class="footer-nav">' +
           '<a href="' + base + 'qr/">QR-Generator</a>' +
           '<a href="' + base + 'spiel/index.html">Spiel</a>' +
           '<a href="' + base + 'orbit/">Gravity</a>' +
           '<a href="' + base + 'tipper/">Tipp-Test</a>' +
           '<a href="' + base + 'impressum.html">Impressum</a>' +
         '</nav>' +
+        '</div>' +
         '<div class="footer-right">' +
           '<p>© 2026 Fynn Hofmann</p>' +
           '<a href="' + base + 'login.html" class="footer-login-link" title="Admin Login" aria-label="Admin Login">' +
