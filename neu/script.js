@@ -1,33 +1,116 @@
 /* ═══════════════════════════════════════════════════════════════
-   FYNN HOFMANN – script.js
+   FYNN HOFMANN – NEU – script.js
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Year ─────────────────────────────────────────────────────── */
-document.getElementById('year').textContent = new Date().getFullYear();
+var yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* ── Nav: add .scrolled class ─────────────────────────────────── */
+/* ── Reduce motion check ──────────────────────────────────────── */
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ── Hero words: fade in on load ──────────────────────────────── */
+(function () {
+  var words = document.querySelectorAll('.hero__word');
+  words.forEach(function (word, i) {
+    setTimeout(function () {
+      word.classList.add('is-visible');
+    }, 200 + i * 220);
+  });
+
+  var lines = document.querySelectorAll('.hero__eyebrow, .hero__sub');
+  lines.forEach(function (el) {
+    setTimeout(function () {
+      el.classList.add('is-visible');
+    }, 100);
+  });
+})();
+
+/* ── Scroll: hero split + section title parallax ──────────────── */
+(function () {
+  if (reduceMotion) return;
+
+  var heroFynn    = document.getElementById('heroFynn');
+  var heroHofmann = document.getElementById('heroHofmann');
+
+  /* Section titles with data-parallax attribute */
+  var parallaxTitles = Array.prototype.slice.call(
+    document.querySelectorAll('.section__title[data-parallax]')
+  );
+
+  function tick() {
+    var scrollY = window.scrollY;
+
+    /* ── Hero split ─────────────────────────────────────────────
+       FYNN drifts left, HOFMANN drifts right.
+       At 1× viewport height scrolled: ~±30% of viewport width apart.
+       Factor is kept in px-per-px scroll so it scales with speed. */
+    if (heroFynn && heroHofmann) {
+      heroFynn.style.transform    = 'translateX(' + (-scrollY * 0.38) + 'px)';
+      heroHofmann.style.transform = 'translateX(' + ( scrollY * 0.28) + 'px)';
+    }
+
+    /* ── Section title drift ────────────────────────────────────
+       Each title translates along X proportional to how far its
+       centre is from the viewport centre.  Titles tagged "left"
+       drift leftward as you scroll past; "right" drift rightward.
+       This gives every section title a sense of mass / momentum. */
+    parallaxTitles.forEach(function (el) {
+      var rect      = el.getBoundingClientRect();
+      var centerY   = rect.top + rect.height / 2;
+      var relPos    = (centerY - window.innerHeight * 0.5) / window.innerHeight;
+      /* relPos: +1 = one full viewport below centre, -1 = above */
+      var dir  = el.dataset.parallax === 'left' ? 1 : -1;
+      var xPx  = relPos * 80 * dir; /* max ±80 px drift */
+      el.style.transform = 'translateX(' + xPx + 'px)';
+    });
+  }
+
+  window.addEventListener('scroll', tick, { passive: true });
+  tick(); /* run once immediately */
+})();
+
+/* ── IntersectionObserver: reveal on scroll ───────────────────── */
+(function () {
+  var targets = document.querySelectorAll(
+    '.reveal-up, .reveal-line, .section__title'
+  );
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+  targets.forEach(function (el) { observer.observe(el); });
+})();
+
+/* ── Nav: .scrolled class ─────────────────────────────────────── */
 (function () {
   var nav = document.getElementById('nav');
-  function onScroll() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+  if (!nav) return;
+  function check() {
+    nav.classList.toggle('scrolled', window.scrollY > 48);
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // run once on load
+  window.addEventListener('scroll', check, { passive: true });
+  check();
 })();
 
 /* ── Mobile burger ────────────────────────────────────────────── */
 (function () {
   var burger = document.getElementById('navBurger');
   var menu   = document.getElementById('mobileMenu');
-  var links  = document.querySelectorAll('.mobile-link');
-  var open   = false;
+  if (!burger || !menu) return;
+  var open = false;
 
   function toggle() {
     open = !open;
     menu.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
 
-    // Animate burger → cross
     var spans = burger.querySelectorAll('span');
     if (open) {
       spans[0].style.transform = 'translateY(3.5px) rotate(45deg)';
@@ -39,89 +122,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
 
   burger.addEventListener('click', toggle);
-
-  links.forEach(function (link) {
-    link.addEventListener('click', function () {
-      if (open) toggle();
-    });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { if (open) toggle(); });
   });
 })();
 
-/* ── Scroll reveal (IntersectionObserver) ─────────────────────── */
-(function () {
-  var revealClasses = ['.reveal-up', '.reveal-line', '.split-title'];
-  var elements = document.querySelectorAll(revealClasses.join(','));
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); // fire once only
-      }
-    });
-  }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
-  });
-
-  elements.forEach(function (el) {
-    observer.observe(el);
-  });
-})();
-
-/* ── Hero words: animate in after a short delay on load ───────── */
-(function () {
-  var words = document.querySelectorAll('.hero__word');
-  // Stagger each word
-  words.forEach(function (word, i) {
-    setTimeout(function () {
-      word.classList.add('is-visible');
-    }, 180 + i * 160);
-  });
-
-  // eyebrow & sub also appear on load
-  var heroEyebrow = document.querySelector('.hero__eyebrow');
-  var heroSub     = document.querySelector('.hero__sub');
-
-  if (heroEyebrow) {
-    setTimeout(function () {
-      heroEyebrow.classList.add('is-visible');
-    }, 80);
-  }
-  if (heroSub) {
-    setTimeout(function () {
-      heroSub.classList.add('is-visible');
-    }, 600);
-  }
-})();
-
-/* ── Smooth parallax on section titles ────────────────────────── */
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  var titles = document.querySelectorAll('.section__title.split-title');
-
-  function applyParallax() {
-    var scrollY = window.scrollY;
-    titles.forEach(function (el) {
-      var rect   = el.getBoundingClientRect();
-      var center = rect.top + rect.height / 2;
-      var rel    = (window.innerHeight / 2 - center) * 0.06; // subtle factor
-
-      // Only shift if already visible (not still in enter-animation)
-      if (el.classList.contains('is-visible')) {
-        el.style.transform = 'translateX(' + rel + 'px)';
-      }
-    });
-  }
-
-  window.addEventListener('scroll', applyParallax, { passive: true });
-})();
-
-/* ── Band: duplicate track for seamless loop ──────────────────── */
+/* ── Band: duplicate for seamless loop ────────────────────────── */
 (function () {
   var track = document.querySelector('.band__track');
   if (!track) return;
-  // Clone the inner HTML and append so the marquee loops perfectly
-  track.innerHTML += track.innerHTML;
+  track.innerHTML += track.innerHTML; /* second copy fills the gap */
 })();

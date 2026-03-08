@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fynn Hofmann</title>
+  <meta name="description" content="Fynn Hofmann – ICT-Fachmann EFZ bei der BLS AG in Bern." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,11 +13,11 @@
        NAVIGATION
   ───────────────────────────────────────────── -->
   <nav class="nav" id="nav">
-    <a class="nav__name" href="#top">Fynn Hofmann</a>
+    <a class="nav__name" href="#top">FH.</a>
     <ul class="nav__links">
       <li><a href="#ueber-mich">Über mich</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-      <li><a href="#impressum">Impressum</a></li>
+      <li><a href="#arbeit">Arbeit</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
     </ul>
     <button class="nav__burger" id="navBurger" aria-label="Menü öffnen">
       <span></span><span></span>
@@ -27,8 +28,8 @@
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#ueber-mich" class="mobile-link">Über mich</a></li>
-      <li><a href="#kontakt"    class="mobile-link">Kontakt</a></li>
-      <li><a href="#impressum"  class="mobile-link">Impressum</a></li>
+      <li><a href="#arbeit"     class="mobile-link">Arbeit</a></li>
+      <li><a href="impressum.html" class="mobile-link">Impressum</a></li>
     </ul>
   </div>
 
@@ -36,58 +37,77 @@
        HERO
   ───────────────────────────────────────────── -->
   <section class="hero" id="top">
-    <div class="hero__eyebrow reveal-line">Willkommen</div>
 
-    <h1 class="hero__headline">
-      <span class="hero__word" data-dir="left">FYNN</span>
-      <span class="hero__word hero__word--accent" data-dir="right">HOF&shy;MANN</span>
+    <p class="hero__eyebrow reveal-line">ICT-Fachmann · Bern · Schweiz</p>
+
+    <h1 class="hero__headline" aria-label="Fynn Hofmann">
+      <span class="hero__word" id="heroFynn">FYNN</span>
+      <span class="hero__word hero__word--indent" id="heroHofmann">HOFMANN</span>
     </h1>
 
-    <p class="hero__sub reveal-up">
-      <!-- ✏️ Kurze Tagline – einfach hier ändern -->
-      Designer · Entwickler · Mensch
+    <p class="hero__sub reveal-line">
+      IT-Support &amp; ServiceNow-Entwicklung — BLS AG
     </p>
 
     <div class="hero__scroll-hint" aria-hidden="true">
       <span class="scroll-line"></span>
     </div>
+
   </section>
 
   <!-- ─────────────────────────────────────────────
        ÜBER MICH
   ───────────────────────────────────────────── -->
   <section class="section section--ueber" id="ueber-mich">
-    <div class="section__marker reveal-up">01</div>
-    <h2 class="section__title split-title" data-dir="left">ÜBER<br>MICH</h2>
+
+    <span class="section__num reveal-up">01</span>
+
+    <h2 class="section__title" data-parallax="left">
+      WER<br>ICH BIN
+    </h2>
 
     <div class="ueber__grid">
 
-      <!-- ✏️ LINKE SPALTE – großes Zitat / Motto -->
-      <div class="ueber__quote reveal-up">
-        <blockquote>
-          „Ich glaube daran, Dinge mit Sorgfalt
-          und Haltung zu gestalten."
-        </blockquote>
+      <div class="ueber__lead reveal-up">
+        <p>
+          Ich lerne gerne, wie Dinge funktionieren.
+          Nicht nur theoretisch — sondern so,
+          dass es in der Praxis auch läuft.
+        </p>
       </div>
 
-      <!-- ✏️ RECHTE SPALTE – Fließtext -->
-      <div class="ueber__text reveal-up" style="--delay: 0.15s">
+      <div class="ueber__body reveal-up" style="--delay: 0.12s">
         <p>
-          Hallo, ich bin Fynn. Hier stehst du – schreib einfach, was du
-          über dich sagen möchtest. Woher du kommst, was dich antreibt,
-          welche Themen dich beschäftigen.
+          Momentan absolviere ich meine Lehre als ICT-Fachmann EFZ
+          bei der <strong>BLS AG</strong> in Bern — einem der grössten
+          Bahnunternehmen der Schweiz. Mein Alltag: Störungen beheben,
+          bevor sie jemanden stören. Systeme konfigurieren, die einfach
+          laufen. ServiceNow so bauen, dass Menschen weniger tippen müssen.
         </p>
         <p>
-          Dieser Bereich lässt sich jederzeit anpassen: einfach den
-          Text zwischen den <code>&lt;p&gt;</code>-Tags ersetzen und du
-          bist fertig.
+          Ich mag Technik, die im Hintergrund verschwindet. Wenn alles
+          funktioniert, merkt es keiner — und das ist der Punkt.
         </p>
 
-        <!-- ✏️ FAKTEN – beliebig ergänzen oder löschen -->
         <ul class="ueber__facts">
-          <li><span class="fact__label">Wohnort</span> <span class="fact__value">München</span></li>
-          <li><span class="fact__label">Jahrgang</span> <span class="fact__value">2000</span></li>
-          <li><span class="fact__label">Fokus</span>    <span class="fact__value">Web &amp; Design</span></li>
+          <li>
+            <span class="fact__label">Wohnort</span>
+            <span class="fact__value">Bern, Schweiz</span>
+          </li>
+          <li>
+            <span class="fact__label">Ausbildung</span>
+            <span class="fact__value">ICT-Fachmann EFZ</span>
+          </li>
+          <li>
+            <span class="fact__label">Betrieb</span>
+            <span class="fact__value">BLS AG</span>
+          </li>
+          <li>
+            <span class="fact__label">Kontakt</span>
+            <span class="fact__value">
+              <a href="mailto:mail@fynnhofmann.com">mail@fynnhofmann.com</a>
+            </span>
+          </li>
         </ul>
       </div>
 
@@ -95,117 +115,117 @@
   </section>
 
   <!-- ─────────────────────────────────────────────
-       TRENNBAND
+       SKILLS BAND
   ───────────────────────────────────────────── -->
   <div class="band" aria-hidden="true">
     <div class="band__track">
-      <!-- ✏️ Schlagwörter im Band – beliebig ändern -->
-      <span>Gestalten</span><span>·</span>
-      <span>Denken</span><span>·</span>
-      <span>Machen</span><span>·</span>
-      <span>Lernen</span><span>·</span>
-      <span>Gestalten</span><span>·</span>
-      <span>Denken</span><span>·</span>
-      <span>Machen</span><span>·</span>
-      <span>Lernen</span><span>·</span>
+      <span>ServiceNow</span><span class="band__dot">·</span>
+      <span>IT-Support</span><span class="band__dot">·</span>
+      <span>Active Directory</span><span class="band__dot">·</span>
+      <span>Azure AD</span><span class="band__dot">·</span>
+      <span>Microsoft Intune</span><span class="band__dot">·</span>
+      <span>PowerShell</span><span class="band__dot">·</span>
+      <span>Netzwerke</span><span class="band__dot">·</span>
+      <span>Flow Designer</span><span class="band__dot">·</span>
+      <span>Linux</span><span class="band__dot">·</span>
+      <span>Omada IAM</span><span class="band__dot">·</span>
     </div>
   </div>
 
   <!-- ─────────────────────────────────────────────
-       KONTAKT
+       ARBEIT
   ───────────────────────────────────────────── -->
-  <section class="section section--kontakt" id="kontakt">
-    <div class="section__marker reveal-up">02</div>
-    <h2 class="section__title split-title" data-dir="right">KON&shy;TAKT</h2>
+  <section class="section section--arbeit" id="arbeit">
 
-    <div class="kontakt__grid">
+    <span class="section__num reveal-up">02</span>
 
-      <p class="kontakt__intro reveal-up">
-        <!-- ✏️ Einladungstext -->
-        Ich freue mich über Nachrichten – ob Projekte,
-        Fragen oder einfach ein Hallo.
-      </p>
+    <h2 class="section__title" data-parallax="right">ARBEIT</h2>
 
-      <!-- ✏️ KONTAKT-LINKS – href anpassen -->
-      <ul class="kontakt__list">
-        <li class="kontakt__item reveal-up" style="--delay: 0s">
-          <span class="kontakt__label">E-Mail</span>
-          <a class="kontakt__link" href="mailto:deine@email.de">
-            deine@email.de
-          </a>
-        </li>
-        <li class="kontakt__item reveal-up" style="--delay: 0.1s">
-          <span class="kontakt__label">LinkedIn</span>
-          <a class="kontakt__link" href="https://linkedin.com/in/deindname" target="_blank" rel="noopener">
-            linkedin.com/in/deindname
-          </a>
-        </li>
-        <li class="kontakt__item reveal-up" style="--delay: 0.2s">
-          <span class="kontakt__label">GitHub</span>
-          <a class="kontakt__link" href="https://github.com/deinname" target="_blank" rel="noopener">
-            github.com/deinname
-          </a>
-        </li>
-      </ul>
+    <ul class="work__list">
 
-    </div>
-  </section>
+      <!-- BLS AG -->
+      <li class="work__item reveal-up">
+        <div class="work__meta">
+          <span class="work__years">2024 — 2026</span>
+          <span class="work__status work__status--active">laufend</span>
+        </div>
+        <div class="work__detail">
+          <p class="work__company">BLS AG</p>
+          <p class="work__role">ICT-Fachmann EFZ · Azubi · Hybrid · Bern</p>
+          <p class="work__desc">
+            IT-Support im 1st Level — Störungsmeldungen, Benutzerrechte,
+            Hard- und Software. ServiceNow-Entwicklung: Service Catalog,
+            Flow Designer, Knowledge Base. IAM mit AD, Azure AD und Omada.
+            Mitarbeit bei der TopDesk-zu-ServiceNow-Migration.
+          </p>
+          <div class="work__tags">
+            <span>ServiceNow</span>
+            <span>IT-Support</span>
+            <span>Active Directory</span>
+            <span>Azure AD</span>
+            <span>Intune</span>
+            <span>PowerShell</span>
+            <span>Omada IAM</span>
+          </div>
+        </div>
+      </li>
 
-  <!-- ─────────────────────────────────────────────
-       IMPRESSUM
-  ───────────────────────────────────────────── -->
-  <section class="section section--impressum" id="impressum">
-    <div class="section__marker reveal-up">03</div>
-    <h2 class="section__title split-title" data-dir="left">IMP&shy;RES&shy;SUM</h2>
+      <!-- login Berufsbildung AG -->
+      <li class="work__item reveal-up" style="--delay: 0.1s">
+        <div class="work__meta">
+          <span class="work__years">2023 — 2026</span>
+          <span class="work__status work__status--active">laufend</span>
+        </div>
+        <div class="work__detail">
+          <p class="work__company">login Berufsbildung AG</p>
+          <p class="work__role">Ausbildungsorganisation</p>
+          <p class="work__desc">
+            login koordiniert meine Ausbildung zwischen Betrieb
+            und Berufsfachschule. Die eigentliche Arbeit findet bei der BLS AG statt.
+          </p>
+        </div>
+      </li>
 
-    <div class="impressum__body reveal-up">
+      <!-- ICT Berufsbildungscenter -->
+      <li class="work__item reveal-up" style="--delay: 0.2s">
+        <div class="work__meta">
+          <span class="work__years">2023 — 2024</span>
+          <span class="work__status">abgeschlossen</span>
+        </div>
+        <div class="work__detail">
+          <p class="work__company">ICT Berufsbildungscenter AG</p>
+          <p class="work__role">Basislehrjahr · Vor Ort · Bümpliz, Bern</p>
+          <p class="work__desc">
+            Fundament der Ausbildung: Netzwerke, TCP/IP, Hardware,
+            Linux, Windows-Administration, Virtualisierung, IoT — breit
+            aufgestellt und praxisnah.
+          </p>
+          <div class="work__tags">
+            <span>Netzwerke</span>
+            <span>Linux</span>
+            <span>Hardware</span>
+            <span>Virtualisierung</span>
+            <span>IoT</span>
+            <span>Active Directory</span>
+          </div>
+        </div>
+      </li>
 
-      <!-- ✏️ Alle Felder mit deinen echten Daten ersetzen -->
-      <div class="impressum__block">
-        <h3>Angaben gemäß § 5 TMG</h3>
-        <p>
-          Fynn Hofmann<br>
-          Musterstraße 1<br>
-          80331 München<br>
-          Deutschland
-        </p>
-      </div>
-
-      <div class="impressum__block">
-        <h3>Kontakt</h3>
-        <p>
-          E-Mail: <a href="mailto:deine@email.de">deine@email.de</a>
-        </p>
-      </div>
-
-      <div class="impressum__block">
-        <h3>Haftungsausschluss</h3>
-        <p>
-          Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt
-          erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität
-          der Inhalte kann jedoch keine Gewähr übernommen werden.
-        </p>
-      </div>
-
-      <div class="impressum__block">
-        <h3>Urheberrecht</h3>
-        <p>
-          Die auf dieser Website veröffentlichten Inhalte und Werke
-          unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
-          Bearbeitung oder Verbreitung außerhalb der Grenzen des
-          Urheberrechts bedarf der schriftlichen Zustimmung des Autors.
-        </p>
-      </div>
-
-    </div>
+    </ul>
   </section>
 
   <!-- ─────────────────────────────────────────────
        FOOTER
   ───────────────────────────────────────────── -->
   <footer class="footer">
-    <span>© <span id="year"></span> Fynn Hofmann</span>
-    <a href="#top" class="footer__top">↑ Nach oben</a>
+    <span class="footer__brand">Fynn Hofmann</span>
+    <div class="footer__right">
+      <a href="mailto:mail@fynnhofmann.com" class="footer__link">
+        mail@fynnhofmann.com
+      </a>
+      <a href="impressum.html" class="footer__link">Impressum</a>
+      <span class="footer__copy">© <span id="year"></span></span>
+    </div>
   </footer>
 
   <script src="script.js"></script>
