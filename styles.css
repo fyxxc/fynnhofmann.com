@@ -149,9 +149,12 @@ strong {
 .nav-logo {
   font-size: 17px;
   font-weight: 700;
-  color: var(--text);
+  color: transparent;
   text-decoration: none;
   letter-spacing: -0.01em;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   user-select: none;
   flex-shrink: 0;
@@ -235,7 +238,7 @@ strong {
   background-color: #1d1d1f;
   background-image: url('images/hero.jpeg');
   background-size: cover;
-  background-position: center top;
+  background-position: center 60%;
   background-repeat: no-repeat;
   position: relative;
 }
@@ -245,7 +248,7 @@ strong {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.42);
+  background: rgba(0, 0, 0, 0.35);
   z-index: 0;
 }
 

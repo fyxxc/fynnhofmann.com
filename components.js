@@ -12,7 +12,7 @@
   header.id = 'header';
   header.innerHTML =
     '<nav class="nav">' +
-      '<a href="' + base + 'index.html" class="nav-logo" id="logo-trigger">FH</a>' +
+      '<a href="' + base + 'index.html" class="nav-logo" id="logo-trigger" aria-label="Startseite"></a>' +
       '<ul class="nav-links">' +
         '<li><a href="' + base + 'erfahrung.html">Erfahrung</a></li>' +
         '<li><a href="' + base + 'projekte.html">Projekte</a></li>' +
