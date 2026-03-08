@@ -8,160 +8,93 @@
 </head>
 <body>
 
-  <!-- ─────────────────────────────────────────────
-       NAVIGATION
-  ───────────────────────────────────────────── -->
-  <nav class="nav" id="nav">
-    <a class="nav__name" href="#top">Fynn Hofmann</a>
-    <ul class="nav__links">
-      <li><a href="#ueber-mich">Über mich</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-      <li><a href="#impressum">Impressum</a></li>
-    </ul>
-    <button class="nav__burger" id="navBurger" aria-label="Menü öffnen">
-      <span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#ueber-mich" class="mobile-link">Über mich</a></li>
-      <li><a href="#kontakt"    class="mobile-link">Kontakt</a></li>
-      <li><a href="#impressum"  class="mobile-link">Impressum</a></li>
-    </ul>
-  </div>
-
-  <!-- ─────────────────────────────────────────────
+  <!-- ═══════════════════════════════════
        HERO
-  ───────────────────────────────────────────── -->
+  ═══════════════════════════════════ -->
   <section class="hero" id="top">
-    <div class="hero__eyebrow reveal-line">Willkommen</div>
-
-    <h1 class="hero__headline">
-      <span class="hero__word" data-dir="left">FYNN</span>
-      <span class="hero__word hero__word--accent" data-dir="right">HOF&shy;MANN</span>
+    <h1 class="hero__name">
+      <span class="hero__first">FYNN</span>
+      <span class="hero__last">HOFMANN</span>
     </h1>
 
-    <p class="hero__sub reveal-up">
-      <!-- ✏️ Kurze Tagline – einfach hier ändern -->
-      Designer · Entwickler · Mensch
-    </p>
-
-    <div class="hero__scroll-hint" aria-hidden="true">
-      <span class="scroll-line"></span>
-    </div>
+    <!-- ✏️ Tagline – oder komplett löschen -->
+    <p class="hero__tagline">Designer &amp; Entwickler</p>
   </section>
 
-  <!-- ─────────────────────────────────────────────
+  <!-- ═══════════════════════════════════
        ÜBER MICH
-  ───────────────────────────────────────────── -->
-  <section class="section section--ueber" id="ueber-mich">
-    <div class="section__marker reveal-up">01</div>
-    <h2 class="section__title split-title" data-dir="left">ÜBER<br>MICH</h2>
+  ═══════════════════════════════════ -->
+  <section class="block" id="ueber-mich">
+    <h2 class="block__title fade-in">Über mich</h2>
 
-    <div class="ueber__grid">
-
-      <!-- ✏️ LINKE SPALTE – großes Zitat / Motto -->
-      <div class="ueber__quote reveal-up">
-        <blockquote>
-          „Ich glaube daran, Dinge mit Sorgfalt
-          und Haltung zu gestalten."
-        </blockquote>
-      </div>
-
-      <!-- ✏️ RECHTE SPALTE – Fließtext -->
-      <div class="ueber__text reveal-up" style="--delay: 0.15s">
+    <div class="block__body">
+      <!-- ✏️ Dein Text -->
+      <div class="block__text fade-in">
         <p>
-          Hallo, ich bin Fynn. Hier stehst du – schreib einfach, was du
-          über dich sagen möchtest. Woher du kommst, was dich antreibt,
-          welche Themen dich beschäftigen.
+          Hallo, ich bin Fynn. Hier kannst du schreiben, was du
+          über dich sagen möchtest – woher du kommst, was dich
+          antreibt und welche Themen dich beschäftigen.
         </p>
         <p>
-          Dieser Bereich lässt sich jederzeit anpassen: einfach den
-          Text zwischen den <code>&lt;p&gt;</code>-Tags ersetzen und du
-          bist fertig.
+          Einfach den Text zwischen den &lt;p&gt;-Tags ersetzen,
+          fertig.
         </p>
-
-        <!-- ✏️ FAKTEN – beliebig ergänzen oder löschen -->
-        <ul class="ueber__facts">
-          <li><span class="fact__label">Wohnort</span> <span class="fact__value">München</span></li>
-          <li><span class="fact__label">Jahrgang</span> <span class="fact__value">2000</span></li>
-          <li><span class="fact__label">Fokus</span>    <span class="fact__value">Web &amp; Design</span></li>
-        </ul>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ─────────────────────────────────────────────
-       TRENNBAND
-  ───────────────────────────────────────────── -->
-  <div class="band" aria-hidden="true">
-    <div class="band__track">
-      <!-- ✏️ Schlagwörter im Band – beliebig ändern -->
-      <span>Gestalten</span><span>·</span>
-      <span>Denken</span><span>·</span>
-      <span>Machen</span><span>·</span>
-      <span>Lernen</span><span>·</span>
-      <span>Gestalten</span><span>·</span>
-      <span>Denken</span><span>·</span>
-      <span>Machen</span><span>·</span>
-      <span>Lernen</span><span>·</span>
-    </div>
-  </div>
-
-  <!-- ─────────────────────────────────────────────
-       KONTAKT
-  ───────────────────────────────────────────── -->
-  <section class="section section--kontakt" id="kontakt">
-    <div class="section__marker reveal-up">02</div>
-    <h2 class="section__title split-title" data-dir="right">KON&shy;TAKT</h2>
-
-    <div class="kontakt__grid">
-
-      <p class="kontakt__intro reveal-up">
-        <!-- ✏️ Einladungstext -->
-        Ich freue mich über Nachrichten – ob Projekte,
-        Fragen oder einfach ein Hallo.
-      </p>
-
-      <!-- ✏️ KONTAKT-LINKS – href anpassen -->
-      <ul class="kontakt__list">
-        <li class="kontakt__item reveal-up" style="--delay: 0s">
-          <span class="kontakt__label">E-Mail</span>
-          <a class="kontakt__link" href="mailto:deine@email.de">
-            deine@email.de
-          </a>
+      <!-- ✏️ Fakten – ergänzen oder löschen -->
+      <ul class="facts fade-in">
+        <li>
+          <span class="facts__label">Wohnort</span>
+          <span class="facts__value">München</span>
         </li>
-        <li class="kontakt__item reveal-up" style="--delay: 0.1s">
-          <span class="kontakt__label">LinkedIn</span>
-          <a class="kontakt__link" href="https://linkedin.com/in/deindname" target="_blank" rel="noopener">
-            linkedin.com/in/deindname
-          </a>
+        <li>
+          <span class="facts__label">Jahrgang</span>
+          <span class="facts__value">2000</span>
         </li>
-        <li class="kontakt__item reveal-up" style="--delay: 0.2s">
-          <span class="kontakt__label">GitHub</span>
-          <a class="kontakt__link" href="https://github.com/deinname" target="_blank" rel="noopener">
-            github.com/deinname
-          </a>
+        <li>
+          <span class="facts__label">Fokus</span>
+          <span class="facts__value">Web &amp; Design</span>
         </li>
       </ul>
-
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
+  <!-- ═══════════════════════════════════
+       KONTAKT
+  ═══════════════════════════════════ -->
+  <section class="block block--yellow" id="kontakt">
+    <h2 class="block__title fade-in">Kontakt</h2>
+
+    <!-- ✏️ Links anpassen -->
+    <ul class="links fade-in">
+      <li>
+        <span class="links__label">E-Mail</span>
+        <a href="mailto:deine@email.de">deine@email.de</a>
+      </li>
+      <li>
+        <span class="links__label">LinkedIn</span>
+        <a href="https://linkedin.com/in/deinname" target="_blank" rel="noopener">
+          linkedin.com/in/deinname
+        </a>
+      </li>
+      <li>
+        <span class="links__label">GitHub</span>
+        <a href="https://github.com/deinname" target="_blank" rel="noopener">
+          github.com/deinname
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════
        IMPRESSUM
-  ───────────────────────────────────────────── -->
-  <section class="section section--impressum" id="impressum">
-    <div class="section__marker reveal-up">03</div>
-    <h2 class="section__title split-title" data-dir="left">IMP&shy;RES&shy;SUM</h2>
+  ═══════════════════════════════════ -->
+  <section class="block" id="impressum">
+    <h2 class="block__title fade-in">Impressum</h2>
 
-    <div class="impressum__body reveal-up">
-
-      <!-- ✏️ Alle Felder mit deinen echten Daten ersetzen -->
-      <div class="impressum__block">
+    <!-- ✏️ Mit echten Daten ersetzen -->
+    <div class="impressum fade-in">
+      <div>
         <h3>Angaben gemäß § 5 TMG</h3>
         <p>
           Fynn Hofmann<br>
@@ -170,42 +103,38 @@
           Deutschland
         </p>
       </div>
-
-      <div class="impressum__block">
+      <div>
         <h3>Kontakt</h3>
+        <p><a href="mailto:deine@email.de">deine@email.de</a></p>
+      </div>
+      <div>
+        <h3>Haftung</h3>
         <p>
-          E-Mail: <a href="mailto:deine@email.de">deine@email.de</a>
+          Die Inhalte dieser Seite wurden mit Sorgfalt erstellt.
+          Für Richtigkeit und Vollständigkeit kann keine Gewähr
+          übernommen werden.
         </p>
       </div>
-
-      <div class="impressum__block">
-        <h3>Haftungsausschluss</h3>
-        <p>
-          Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt
-          erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität
-          der Inhalte kann jedoch keine Gewähr übernommen werden.
-        </p>
-      </div>
-
-      <div class="impressum__block">
+      <div>
         <h3>Urheberrecht</h3>
         <p>
-          Die auf dieser Website veröffentlichten Inhalte und Werke
-          unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
-          Bearbeitung oder Verbreitung außerhalb der Grenzen des
-          Urheberrechts bedarf der schriftlichen Zustimmung des Autors.
+          Alle Inhalte unterliegen dem deutschen Urheberrecht.
+          Vervielfältigung nur mit schriftlicher Zustimmung.
         </p>
       </div>
-
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
+  <!-- ═══════════════════════════════════
        FOOTER
-  ───────────────────────────────────────────── -->
+  ═══════════════════════════════════ -->
   <footer class="footer">
     <span>© <span id="year"></span> Fynn Hofmann</span>
-    <a href="#top" class="footer__top">↑ Nach oben</a>
+    <nav>
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#impressum">Impressum</a>
+    </nav>
   </footer>
 
   <script src="script.js"></script>
