@@ -1,7 +1,8 @@
 /* =========================================================
    fynnhofmann.com – Shared Header & Footer
    Reads data-base="" from <html> to resolve relative paths.
-   Root pages use data-base="", spiel/ uses data-base="../"
+   Root pages use data-base="", pages/ use data-base="../",
+   tools/[x]/ use data-base="../../"
    ========================================================= */
 (function () {
   var base = document.documentElement.dataset.base || '';
@@ -14,18 +15,18 @@
     '<nav class="nav">' +
       '<a href="' + base + 'index.html" class="nav-logo" id="logo-trigger" aria-label="Startseite">f</a>' +
       '<ul class="nav-links">' +
-        '<li><a href="' + base + 'erfahrung.html">Erfahrung</a></li>' +
-        '<li><a href="' + base + 'projekte.html">Projekte</a></li>' +
-        '<li><a href="' + base + 'kontakt.html" class="nav-cta">Kontakt</a></li>' +
+        '<li><a href="' + base + 'pages/erfahrung.html">Erfahrung</a></li>' +
+        '<li><a href="' + base + 'pages/projekte.html">Projekte</a></li>' +
+        '<li><a href="' + base + 'pages/kontakt.html" class="nav-cta">Kontakt</a></li>' +
       '</ul>' +
       '<button class="nav-burger" id="navBurger" aria-label="Menü öffnen">' +
         '<span></span><span></span><span></span>' +
       '</button>' +
     '</nav>' +
     '<div class="nav-mobile" id="navMobile">' +
-      '<a href="' + base + 'erfahrung.html" class="nav-mobile-link">Erfahrung</a>' +
-      '<a href="' + base + 'projekte.html" class="nav-mobile-link">Projekte</a>' +
-      '<a href="' + base + 'kontakt.html" class="nav-mobile-link">Kontakt</a>' +
+      '<a href="' + base + 'pages/erfahrung.html" class="nav-mobile-link">Erfahrung</a>' +
+      '<a href="' + base + 'pages/projekte.html" class="nav-mobile-link">Projekte</a>' +
+      '<a href="' + base + 'pages/kontakt.html" class="nav-mobile-link">Kontakt</a>' +
     '</div>';
 
   document.body.insertBefore(header, document.body.firstChild);
@@ -39,11 +40,11 @@
         '<div class="footer-left">' +
           '<a href="' + base + 'index.html" class="logo-mark" aria-label="Startseite">f</a>' +
           '<nav class="footer-nav">' +
-          '<a href="' + base + 'qr/">QR-Generator</a>' +
-          '<a href="' + base + 'spiel/index.html">Spiel</a>' +
-          '<a href="' + base + 'orbit/">Gravity</a>' +
-          '<a href="' + base + 'tipper/">Tipp-Test</a>' +
-          '<a href="' + base + 'impressum.html">Impressum</a>' +
+          '<a href="' + base + 'tools/qr/">QR-Generator</a>' +
+          '<a href="' + base + 'tools/spiel/index.html">Spiel</a>' +
+          '<a href="' + base + 'tools/orbit/">Gravity</a>' +
+          '<a href="' + base + 'tools/tipper/">Tipp-Test</a>' +
+          '<a href="' + base + 'pages/impressum.html">Impressum</a>' +
         '</nav>' +
         '</div>' +
         '<div class="footer-right">' +
