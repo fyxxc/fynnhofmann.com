@@ -15,48 +15,62 @@ Persönliche Website von Fynn Hofmann.
 ```
 /
 ├── index.html            – Startseite
-├── erfahrung.html        – Berufserfahrung
-├── projekte.html         – Projekte
-├── kontakt.html          – Kontakt
-├── impressum.html        – Impressum & Domains
-├── beruf.html            – Redirect → erfahrung.html
+├── login.html            – Admin-Login (SHA-256, sessionStorage)
 │
 ├── styles.css            – Globales Design-System (CSS-Variablen, Komponenten)
 ├── script.js             – Scroll-Reveal, Mobile-Nav, Easter Eggs
 ├── components.js         – Shared Header & Footer (JS-Injection)
 │
 ├── images/
+│   ├── favicon.svg
 │   ├── hero.jpeg
 │   └── Threema_QR-Code.jpeg
 │
-├── qr/
-│   └── index.html        – QR-Code-Generator (Tool)
-├── spiel/
-│   └── index.html        – Soccer Slime (Spiel)
-├── orbit/
-│   └── index.html        – Gravity Sandbox (Simulation)
-└── tipper/
-    └── index.html        – Tipp-Geschwindigkeitstest (Tool)
+├── pages/                – Öffentliche Unterseiten
+│   ├── erfahrung.html    – Berufserfahrung & Ausbildung
+│   ├── projekte.html     – Projekte
+│   ├── kontakt.html      – Kontakt & Threema
+│   ├── impressum.html    – Impressum & Domains
+│   └── beruf.html        – Redirect → erfahrung.html
+│
+├── tools/                – Browser-Tools & Spiele
+│   ├── qr/               – QR-Code-Generator
+│   ├── spiel/            – Soccer Slime (Spiel)
+│   ├── orbit/            – Gravity Sandbox (Simulation)
+│   └── tipper/           – Tipp-Geschwindigkeitstest
+│
+├── secure/               – Auth-geschützter Bereich
+│   ├── auth.js           – Auth-Guard (muss als erstes im <head> stehen)
+│   ├── index.html        – Dashboard
+│   └── network_v2.html   – Netzwerk-Topologie
+│
+└── servicenow/           – NovaTech ServiceNow Partner-Website
+    ├── styles.css
+    ├── auth.js
+    └── *.html
 ```
 
 ## Header & Footer
 
 Header und Footer werden von `components.js` per JavaScript in jede Seite injiziert.
-Jede `<html>`-Tag hat ein `data-base`-Attribut, das `components.js` nutzt, um Pfade korrekt aufzulösen:
+Jede `<html>`-Tag hat ein `data-base`-Attribut zur Pfadauflösung:
 
-- Root-Seiten: `data-base=""`
-- Unterordner-Seiten: `data-base="../"`
+| Ebene | `data-base` | Beispiel |
+|---|---|---|
+| Root (`/`) | `""` | `index.html` |
+| `pages/` | `"../"` | `pages/erfahrung.html` |
+| `tools/[x]/` | `"../../"` | `tools/qr/index.html` |
 
-**Ladereihenfolge:** `components.js` muss **vor** `script.js` geladen werden, damit die injizierten IDs (`navBurger`, `navMobile` etc.) beim Initialisieren von `script.js` bereits im DOM vorhanden sind.
+**Ladereihenfolge:** `components.js` muss **vor** `script.js` geladen werden, damit die injizierten IDs (`navBurger`, `navMobile` etc.) beim Initialisieren bereits im DOM vorhanden sind.
 
 ## Interaktive Seiten & Tools
 
 | Pfad | Beschreibung |
 |---|---|
-| `/qr/` | QR-Code-Generator – URLs, Text & vCard, lokal im Browser |
-| `/spiel/` | Soccer Slime – browserbasiertes Spiel |
-| `/orbit/` | Gravity Sandbox – N-Body-Gravitationssimulation auf Canvas |
-| `/tipper/` | Tipp-Test – Schreibgeschwindigkeit (WPM) messen |
+| `/tools/qr/` | QR-Code-Generator – URLs, Text & vCard, lokal im Browser |
+| `/tools/spiel/` | Soccer Slime – browserbasiertes Spiel |
+| `/tools/orbit/` | Gravity Sandbox – N-Body-Gravitationssimulation auf Canvas |
+| `/tools/tipper/` | Tipp-Test – Schreibgeschwindigkeit (WPM) messen |
 
 Alle Tools laufen vollständig **serverless** im Browser. Es werden keine Nutzerdaten übertragen oder gespeichert (ausgenommen lokale `localStorage`-Highscores im Tipp-Test).
 
