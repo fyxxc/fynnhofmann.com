@@ -40,12 +40,20 @@
         '<div class="footer-left">' +
           '<a href="' + base + 'index.html" class="logo-mark" aria-label="Startseite">f</a>' +
           '<nav class="footer-nav">' +
-          '<a href="' + base + 'tools/qr/">QR-Generator</a>' +
-          '<a href="' + base + 'tools/spiel/index.html">Spiel</a>' +
-          '<a href="' + base + 'tools/orbit/">Gravity</a>' +
-          '<a href="' + base + 'tools/tipper/">Tipp-Test</a>' +
-          '<a href="' + base + 'pages/impressum.html">Impressum</a>' +
-        '</nav>' +
+            '<span class="footer-tools-group">' +
+              '<button class="footer-tools-toggle" id="footerToolsToggle" aria-expanded="false">' +
+                'Tools <span class="footer-tools-arrow">▾</span>' +
+              '</button>' +
+              '<div class="footer-tools-drawer" id="footerToolsDrawer">' +
+                '<a href="' + base + 'tools/qr/">QR-Generator</a>' +
+                '<a href="' + base + 'tools/spiel/index.html">Spiel</a>' +
+                '<a href="' + base + 'tools/orbit/">Gravity</a>' +
+                '<a href="' + base + 'tools/tipper/">Tipp-Test</a>' +
+                '<a href="' + base + 'tools/inspector/">Inspector</a>' +
+              '</div>' +
+            '</span>' +
+            '<a href="' + base + 'pages/impressum.html">Impressum</a>' +
+          '</nav>' +
         '</div>' +
         '<div class="footer-right">' +
           '<p>© 2026 Fynn Hofmann</p>' +
@@ -60,4 +68,22 @@
     '</div>';
 
   document.body.appendChild(footer);
+
+  /* ── Footer Tools Toggle ──────────────────────────────── */
+  var toolsToggle = document.getElementById('footerToolsToggle');
+  var toolsDrawer = document.getElementById('footerToolsDrawer');
+  if (toolsToggle && toolsDrawer) {
+    toolsToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = toolsToggle.getAttribute('aria-expanded') === 'true';
+      toolsToggle.setAttribute('aria-expanded', String(!open));
+      toolsDrawer.classList.toggle('open', !open);
+    });
+    document.addEventListener('click', function (e) {
+      if (!toolsToggle.contains(e.target) && !toolsDrawer.contains(e.target)) {
+        toolsToggle.setAttribute('aria-expanded', 'false');
+        toolsDrawer.classList.remove('open');
+      }
+    });
+  }
 })();
