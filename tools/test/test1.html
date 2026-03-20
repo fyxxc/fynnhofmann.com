@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Device Inspector — fynnlabs</title>
+
+<!-- fynnhofmann.com Design System -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Google Fonts (Rubik, wie im Design System) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Page-specific styles (Device Inspector) ────────────────── */
+  :root {
+    --mono: "SF Mono", "Fira Code", "Fira Mono", ui-monospace, monospace;
+    --green:  #34c759;
+    --red:    #ff3b30;
+    --orange: #ff9f0a;
+  }
+
+  /* ── Page Hero ──────────────────────────────────────────────── */
+  .di-hero {
+    background: var(--bg-dark);
+    padding: 136px 0 72px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .di-hero-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .di-hero-eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 12px;
+  }
+
+  .di-hero-title {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: #f5f5f7;
+    margin-bottom: 16px;
+  }
+
+  .di-hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: #8e8e93;
+    line-height: 1.5;
+    max-width: 480px;
+  }
+
+  /* Scan-Button */
+  .di-scan-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    background: rgba(52,199,89,0.1);
+    border: 1px solid rgba(52,199,89,0.3);
+    border-radius: 980px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+    white-space: nowrap;
+    align-self: flex-end;
+    margin-bottom: 4px;
+    font-family: var(--font);
+  }
+  .di-scan-btn:hover {
+    background: rgba(52,199,89,0.18);
+    border-color: rgba(52,199,89,0.5);
+  }
+
+  .di-pulse-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    animation: diPulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes diPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: .4; transform: scale(.7); }
+  }
+
+  /* ── Main section ─────────────────────────────────────────── */
+  .di-main {
+    padding: 64px 0 100px;
+    background: var(--bg-light);
+  }
+
+  /* ── Card grid ────────────────────────────────────────────── */
+  .di-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .di-col-full { grid-column: 1 / -1; }
+
+  /* ── Card ─────────────────────────────────────────────────── */
+  .di-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.45s var(--ease), transform 0.45s var(--ease),
+                box-shadow 0.3s var(--ease);
+  }
+  .di-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .di-card:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  .di-card-header {
+    padding: 16px 22px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .di-card-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--bg-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+
+  .di-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .di-card-body { padding: 6px 22px 16px; }
+
+  /* ── Row ──────────────────────────────────────────────────── */
+  .di-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .di-row:last-child { border-bottom: none; }
+
+  .di-row-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  .di-row-value {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    text-align: right;
+    word-break: break-all;
+    font-weight: 500;
+  }
+
+  /* ── Badge ────────────────────────────────────────────────── */
+  .di-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 980px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-family: var(--font);
+  }
+  .di-badge-green  { background: rgba(52,199,89,.1);  color: #248a3d; }
+  .di-badge-red    { background: rgba(255,59,48,.1);  color: #d70015; }
+  .di-badge-blue   { background: rgba(0,113,227,.08); color: var(--accent); }
+  .di-badge-orange { background: rgba(255,159,10,.1); color: #b25000; }
+
+  /* ── Progress bar ─────────────────────────────────────────── */
+  .di-bar-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
+  .di-bar-label { font-size: 13px; color: var(--text-secondary); min-width: 80px; flex-shrink: 0; }
+  .di-bar-bg { flex: 1; height: 4px; background: var(--bg-light); border-radius: 2px; overflow: hidden; }
+  .di-bar-fill { height: 100%; border-radius: 2px; background: var(--accent); width: 0; transition: width 0.9s cubic-bezier(.4,0,.2,1) 0.2s; }
+  .di-bar-val { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); min-width: 32px; text-align: right; }
+
+  /* ── Fingerprint box ─────────────────────────────────────── */
+  .di-fp-box {
+    margin-top: 6px; padding: 14px 16px;
+    background: var(--bg-light); border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+    word-break: break-all; letter-spacing: 0.06em; line-height: 1.7;
+  }
+
+  /* ── Font pills ───────────────────────────────────────────── */
+  .di-font-wrap { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0 4px; }
+  .di-font-pill {
+    display: inline-block; padding: 3px 11px;
+    background: rgba(0,113,227,.06); color: var(--accent);
+    border-radius: 980px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Permission rows ──────────────────────────────────────── */
+  .di-perm-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .di-perm-row:last-child { border-bottom: none; }
+  .di-perm-label { color: var(--text-secondary); }
+
+  /* ── Privacy note ─────────────────────────────────────────── */
+  .di-privacy-note {
+    margin-top: 40px; padding: 20px 24px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); display: flex; align-items: flex-start; gap: 14px;
+  }
+  .di-privacy-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .di-privacy-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .di-privacy-text strong { color: var(--text); font-weight: 600; }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 760px) {
+    .di-grid { grid-template-columns: 1fr; }
+    .di-col-full { grid-column: 1; }
+    .di-hero-inner { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════════════════ -->
+<header class="header">
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">F</a>
+    <ul class="nav-links">
+      <li><a href="ueber-mich.html">Über mich</a></li>
+      <li><a href="erfahrung.html">Erfahrung</a></li>
+      <li><a href="projekte.html">Projekte</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="kontakt.html" class="nav-cta">Schreib mir</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav-mobile" id="mobileNav">
+    <a href="ueber-mich.html" class="nav-mobile-link">Über mich</a>
+    <a href="erfahrung.html"  class="nav-mobile-link">Erfahrung</a>
+    <a href="projekte.html"   class="nav-mobile-link">Projekte</a>
+    <a href="kontakt.html"    class="nav-mobile-link">Kontakt</a>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE HERO
+══════════════════════════════════════════════════════════════ -->
+<section class="di-hero">
+  <div class="container">
+    <div class="di-hero-inner">
+      <div>
+        <a href="projekte.html" class="back-link">← Projekte</a>
+        <span class="di-hero-eyebrow">fynnlabs · experiment</span>
+        <h1 class="di-hero-title">Device<br>Inspector</h1>
+        <p class="di-hero-sub">Was kann eine Webseite über dein Gerät herausfinden — ganz ohne App, ohne Login, ohne Tricks.</p>
+      </div>
+      <button class="di-scan-btn" onclick="runScan()" id="scanBtn">
+        <span class="di-pulse-dot"></span>
+        <span id="scanLabel">Erneut scannen</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════════ -->
+<section class="di-main">
+  <div class="container">
+
+    <div class="di-grid" id="diGrid">
+      <div class="di-card visible di-col-full" style="padding:40px;text-align:center;">
+        <p style="color:var(--text-secondary);font-size:14px;">Scan läuft…</p>
+      </div>
+    </div>
+
+    <div class="di-privacy-note" id="privacyNote" style="display:none">
+      <span class="di-privacy-icon">🔒</span>
+      <p class="di-privacy-text">
+        <strong>Alle Daten bleiben bei dir.</strong> Dieser Scanner sendet nichts an einen Server.
+        Alle Informationen werden ausschliesslich lokal in deinem Browser ausgelesen und angezeigt —
+        rein als technische Spielerei und Bewusstseinstraining für Web-Privacy.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-left">
+        <a href="index.html" class="logo-mark">F</a>
+        <nav class="footer-nav">
+          <a href="ueber-mich.html">Über mich</a>
+          <a href="erfahrung.html">Erfahrung</a>
+          <a href="projekte.html">Projekte</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="device-inspector.html" style="color:var(--accent)">Device Inspector</a>
+        </nav>
+      </div>
+      <div class="footer-right">
+        <p>© 2025 Fynn Hofmann</p>
+        <a href="login.html" class="footer-login-link" title="Login">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M2.5 13.5C2.5 11.015 5.015 9 8 9s5.5 2.015 5.5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════════ -->
+<script>
+/* ─── Mobile Nav ──────────────────────────────────────────── */
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.toggle('open');
+});
+
+/* ─── Helpers ─────────────────────────────────────────────── */
+function hashCode(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = Math.imul(31, h) + str.charCodeAt(i) | 0;
+  return (h >>> 0).toString(16).padStart(8,'0').toUpperCase();
+}
+
+/* ─── Builders ────────────────────────────────────────────── */
+function createCard(icon, title, bodyHTML, fullWidth = false) {
+  const card = document.createElement('div');
+  card.className = 'di-card' + (fullWidth ? ' di-col-full' : '');
+  card.innerHTML = `
+    <div class="di-card-header">
+      <div class="di-card-icon">${icon}</div>
+      <div class="di-card-title">${title}</div>
+    </div>
+    <div class="di-card-body">${bodyHTML}</div>`;
+  return card;
+}
+
+function row(label, valueHTML) {
+  return `<div class="di-row">
+    <span class="di-row-label">${label}</span>
+    <span class="di-row-value">${valueHTML}</span>
+  </div>`;
+}
+
+function badge(text, type = 'blue') {
+  return `<span class="di-badge di-badge-${type}">${text}</span>`;
+}
+
+function barRow(label, pct, color = 'var(--accent)') {
+  return `<div class="di-bar-row">
+    <span class="di-bar-label">${label}</span>
+    <div class="di-bar-bg"><div class="di-bar-fill" style="background:${color}" data-pct="${pct}"></div></div>
+    <span class="di-bar-val">${pct}%</span>
+  </div>`;
+}
+
+/* ─── Detektoren ──────────────────────────────────────────── */
+const getOS = () => { const u=navigator.userAgent; if(/iPhone|iPad|iPod/.test(u))return'iOS'; if(/Android/.test(u))return'Android'; if(/Mac OS X/.test(u)&&!/Mobile/.test(u))return'macOS'; if(/Windows NT/.test(u))return'Windows'; if(/Linux/.test(u))return'Linux'; return'Unbekannt'; };
+const getOSVer = () => { const u=navigator.userAgent; let m; if((m=u.match(/iPhone OS ([\d_]+)/)))return m[1].replace(/_/g,'.'); if((m=u.match(/Android ([\d.]+)/)))return m[1]; if((m=u.match(/Mac OS X ([\d_]+)/)))return m[1].replace(/_/g,'.'); if((m=u.match(/Windows NT ([\d.]+)/)))return({'10.0':'10/11','6.3':'8.1','6.2':'8','6.1':'7'}[m[1]]||m[1]); return'—'; };
+const getBrowser = () => { const u=navigator.userAgent; if(/Edg\//.test(u))return'Edge'; if(/OPR\//.test(u))return'Opera'; if(/Chrome\//.test(u))return'Chrome'; if(/Firefox\//.test(u))return'Firefox'; if(/Safari\//.test(u)&&!/Chrome/.test(u))return'Safari'; return'Unbekannt'; };
+const getBrowserVer = () => { const u=navigator.userAgent; let m; if((m=u.match(/Edg\/([\d.]+)/)))return m[1]; if((m=u.match(/OPR\/([\d.]+)/)))return m[1]; if((m=u.match(/Chrome\/([\d.]+)/)))return m[1]; if((m=u.match(/Firefox\/([\d.]+)/)))return m[1]; if((m=u.match(/Version\/([\d.]+).*Safari/)))return m[1]; return'—'; };
+const getDeviceType = () => { const u=navigator.userAgent; if(/iPad/.test(u))return'Tablet'; if(/iPhone|iPod|Android.*Mobile/.test(u))return'Smartphone'; if(/Android/.test(u))return'Tablet'; return'Desktop / Laptop'; };
+
+function getCanvasFP() {
+  try {
+    const c=document.createElement('canvas'); c.width=280; c.height=60;
+    const x=c.getContext('2d');
+    x.textBaseline='alphabetic'; x.fillStyle='#f60'; x.fillRect(125,1,62,20);
+    x.fillStyle='#069'; x.font='11pt serif'; x.fillText('Cwm fjordbank \uD83D\uDE00',2,15);
+    x.fillStyle='rgba(102,204,0,.7)'; x.font='18pt sans-serif'; x.fillText('fynnlabs',4,45);
+    return hashCode(c.toDataURL());
+  } catch(e) { return 'n/a'; }
+}
+
+function getAudioFP() {
+  try {
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const osc=ctx.createOscillator(),ana=ctx.createAnalyser(),g=ctx.createGain();
+    g.gain.value=0; osc.type='triangle';
+    osc.connect(ana); ana.connect(g); g.connect(ctx.destination); osc.start(0);
+    const d=new Float32Array(ana.frequencyBinCount); ana.getFloatFrequencyData(d);
+    osc.stop(); ctx.close();
+    return hashCode(d.slice(0,50).reduce((a,b)=>a+Math.abs(b),0).toString());
+  } catch(e) { return 'n/a'; }
+}
+
+function getWebGL() {
+  try {
+    const c=document.createElement('canvas');
+    const gl=c.getContext('webgl')||c.getContext('experimental-webgl');
+    if(!gl) return {vendor:'n/a',renderer:'n/a'};
+    const ext=gl.getExtension('WEBGL_debug_renderer_info');
+    return ext
+      ? {vendor:gl.getParameter(ext.UNMASKED_VENDOR_WEBGL),renderer:gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)}
+      : {vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER)};
+  } catch(e) { return {vendor:'n/a',renderer:'n/a'}; }
+}
+
+function getFonts() {
+  const list = ['Arial','Georgia','Times New Roman','Verdana','Helvetica','Courier New',
+                'Palatino','Tahoma','Trebuchet MS','Impact','Lucida Console',
+                'Segoe UI','Roboto','Menlo','Monaco','Consolas','SF Mono','Comic Sans MS','Futura'];
+  const c=document.createElement('canvas'), x=c.getContext('2d');
+  const ref=x.measureText('mmmmmmmmmmlli').width;
+  return list.filter(f => { x.font=`16px "${f}",monospace`; return x.measureText('mmmmmmmmmmlli').width!==ref; });
+}
+
+async function getPerm(name) {
+  try { const r=await navigator.permissions.query({name}); return r.state; } catch(e) { return 'n/a'; }
+}
+
+function permBadge(s) {
+  if(s==='granted') return badge('Erteilt','green');
+  if(s==='denied')  return badge('Verweigert','red');
+  if(s==='prompt')  return badge('Nicht gefragt','blue');
+  return badge(s,'orange');
+}
+
+/* ─── Main scan ───────────────────────────────────────────── */
+async function runScan() {
+  const grid = document.getElementById('diGrid');
+  const btn  = document.getElementById('scanBtn');
+  document.getElementById('scanLabel').textContent = 'Scannt…';
+  btn.style.opacity = '0.6';
+  btn.style.pointerEvents = 'none';
+
+  grid.innerHTML = `<div class="di-card visible di-col-full" style="padding:40px;text-align:center;">
+    <p style="color:var(--text-secondary);font-size:14px;">Gerät wird analysiert…</p>
+  </div>`;
+
+  await new Promise(r => setTimeout(r, 120));
+
+  const cards = [];
+  let delay = 0;
+  const add = card => { card.style.transitionDelay = delay + 'ms'; delay += 65; cards.push(card); };
+
+  /* 1 – Gerät & System */
+  add(createCard('🖥', 'Gerät & System', [
+    row('Gerätetyp',     getDeviceType()),
+    row('Betriebssystem',getOS() + ' ' + getOSVer()),
+    row('Browser',       getBrowser() + ' ' + getBrowserVer()),
+    row('Plattform',     navigator.platform || '—'),
+    row('Touchpoints',   navigator.maxTouchPoints > 0
+          ? badge(navigator.maxTouchPoints + ' · Touch aktiv', 'orange')
+          : badge('0 · Kein Touch', 'blue')),
+    row('Zeigegerät',    matchMedia('(pointer:coarse)').matches ? 'Finger / Touchscreen' : 'Maus / Trackpad'),
+  ].join('')));
+
+  /* 2 – Display */
+  const dpr = window.devicePixelRatio || 1;
+  add(createCard('📐', 'Display', [
+    row('Bildschirm',   screen.width + ' × ' + screen.height + ' px'),
+    row('Viewport',     window.innerWidth + ' × ' + window.innerHeight + ' px'),
+    row('Verfügbar',    screen.availWidth + ' × ' + screen.availHeight + ' px'),
+    row('Pixel Ratio',  dpr.toFixed(1) + 'x ' + (dpr >= 2 ? badge('Retina','blue') : '')),
+    row('Farbtiefe',    screen.colorDepth + '-bit'),
+    row('HDR',          matchMedia('(dynamic-range:high)').matches ? badge('HDR','green') : badge('SDR','blue')),
+    row('Farbschema',   matchMedia('(prefers-color-scheme:dark)').matches ? '🌙 Dark Mode' : '☀️ Light Mode'),
+    row('Ausrichtung',  screen.orientation?.type || (window.innerWidth>window.innerHeight?'landscape':'portrait')),
+  ].join('')));
+
+  /* 3 – Hardware */
+  const gl    = getWebGL();
+  const cores = navigator.hardwareConcurrency || 0;
+  const ram   = navigator.deviceMemory || 0;
+  add(createCard('⚙️', 'Hardware', [
+    barRow('CPU-Kerne', Math.min(100, Math.round((cores/16)*100))) +
+      `<div style="padding:0 0 8px;font-size:12px;color:var(--text-tertiary);font-family:var(--mono)">${cores} logische Kerne</div>`,
+    ram
+      ? barRow('RAM', Math.min(100,Math.round((ram/8)*100)), '#0071e3') +
+        `<div style="padding:0 0 8px;font-size:12px;color:var(--text-tertiary);font-family:var(--mono)">${ram} GB (Bucket-Wert)</div>`
+      : row('RAM','—'),
+    row('GPU Vendor',   gl.vendor.length>40   ? gl.vendor.substring(0,40)+'…'   : gl.vendor),
+    row('GPU Renderer', gl.renderer.length>45 ? gl.renderer.substring(0,45)+'…' : gl.renderer),
+  ].join('')));
+
+  /* 4 – Netzwerk */
+  const c = navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  add(createCard('📡', 'Netzwerk', [
+    row('Status', navigator.onLine ? badge('Online','green') : badge('Offline','red')),
+    c ? [
+      row('Verbindung', c.effectiveType || c.type || '—'),
+      row('Downlink',   c.downlink  ? c.downlink + ' Mbps' : '—'),
+      row('RTT',        c.rtt       ? c.rtt       + ' ms'  : '—'),
+      row('Data Saver', c.saveData  ? badge('Aktiv','orange') : badge('Aus','blue')),
+    ].join('') : row('Connection API', badge('Nicht unterstützt','orange')),
+    row('Cookies', navigator.cookieEnabled ? badge('Aktiviert','orange') : badge('Deaktiviert','green')),
+    row('DNT', (() => { const v=navigator.doNotTrack||window.doNotTrack; if(v==='1')return badge('An','green'); if(v==='0')return badge('Aus','orange'); return badge('Nicht gesetzt','blue'); })()),
+    row('WebRTC', (window.RTCPeerConnection||window.webkitRTCPeerConnection) ? badge('Verfügbar','orange') : badge('Blockiert','green')),
+  ].join('')));
+
+  /* 5 – Sprache & Zeit */
+  const tz  = (() => { try{return Intl.DateTimeFormat().resolvedOptions().timeZone;}catch(e){return'—';} })();
+  const now = new Date();
+  const off = now.getTimezoneOffset();
+  add(createCard('🌍', 'Sprache & Zeit', [
+    row('Sprache',    navigator.language || '—'),
+    row('Sprachen',   (navigator.languages||[]).join(', ') || '—'),
+    row('Zeitzone',   tz),
+    row('UTC Offset', 'UTC' + (off<=0 ? '+'+(-off/60) : '-'+(off/60))),
+    row('Locale',     (() => { try{return Intl.DateTimeFormat().resolvedOptions().locale||navigator.language;}catch(e){return navigator.language||'—';} })()),
+    row('Lokale Zeit',now.toLocaleTimeString('de-CH')),
+  ].join('')));
+
+  /* 6 – Browser APIs */
+  add(createCard('🧩', 'Browser-APIs', [
+    row('Service Worker', 'serviceWorker' in navigator       ? badge('Ja','green') : badge('Nein','red')),
+    row('WebAssembly',    typeof WebAssembly !== 'undefined' ? badge('Ja','green') : badge('Nein','red')),
+    row('WebGL',          !!document.createElement('canvas').getContext('webgl') ? badge('Ja','green') : badge('Nein','red')),
+    row('IndexedDB',      'indexedDB' in window              ? badge('Ja','green') : badge('Nein','red')),
+    row('Clipboard API',  'clipboard' in navigator           ? badge('Ja','blue')  : badge('Nein','red')),
+    row('Notifications',  'Notification' in window           ? badge('Unterstützt','blue')   : badge('Nein','red')),
+    row('Bluetooth',      'bluetooth' in navigator           ? badge('Unterstützt','orange') : badge('Nein','blue')),
+    row('Share API',      'share' in navigator               ? badge('Ja (mobil)','blue')    : badge('Nein','blue')),
+  ].join('')));
+
+  /* 7 – Fingerprints */
+  const cfp = getCanvasFP();
+  const afp = getAudioFP();
+  const combined = hashCode(cfp + afp + navigator.userAgent + tz + screen.width + screen.height + cores + navigator.language);
+  add(createCard('🔍', 'Fingerprints', `
+    ${row('Canvas Hash', cfp)}
+    ${row('Audio Hash',  afp)}
+    <div class="di-row" style="flex-direction:column;align-items:flex-start;gap:6px;border-bottom:none">
+      <span class="di-row-label">Kombinierter Fingerprint</span>
+      <div class="di-fp-box">${combined}</div>
+    </div>
+    <div style="padding:6px 0 2px;font-size:12px;color:var(--text-tertiary);line-height:1.5">
+      Canvas · Audio · User-Agent · Screen · Locale · Hardware
+    </div>`));
+
+  /* 8 – Schriften */
+  const fonts = getFonts();
+  add(createCard('🔤', 'Erkannte Schriften', `
+    <div class="di-font-wrap">
+      ${fonts.length > 0
+        ? fonts.map(f=>`<span class="di-font-pill">${f}</span>`).join('')
+        : `<span style="font-size:13px;color:var(--text-tertiary)">Keine erkannt</span>`}
+    </div>
+    <div style="padding:8px 0 2px;font-size:12px;color:var(--text-tertiary)">${fonts.length} von 19 getesteten Schriften gefunden</div>`));
+
+  /* 9 – Berechtigungen */
+  const pNames  = ['camera','microphone','notifications','geolocation','clipboard-read'];
+  const pLabels = ['Kamera','Mikrofon','Benachrichtigungen','Standort','Zwischenablage'];
+  const pResults = await Promise.all(pNames.map(p => getPerm(p)));
+  add(createCard('🔐', 'Berechtigungen',
+    pNames.map((p,i) => `<div class="di-perm-row"><span class="di-perm-label">${pLabels[i]}</span>${permBadge(pResults[i])}</div>`).join('')
+  ));
+
+  /* 10 – Speicher */
+  let usedPct=0, usedStr='—', quotaStr='—';
+  if (navigator.storage?.estimate) {
+    try {
+      const est = await navigator.storage.estimate();
+      if (est.quota > 0) {
+        usedPct  = Math.round((est.usage/est.quota)*100);
+        usedStr  = (est.usage/1024/1024).toFixed(1)+' MB';
+        quotaStr = (est.quota/1024/1024/1024).toFixed(1)+' GB';
+      }
+    } catch(e) {}
+  }
+  const lsOk = (() => { try{window.localStorage; return true;}catch(e){return false;} })();
+  const ssOk = (() => { try{window.sessionStorage; return true;}catch(e){return false;} })();
+  add(createCard('💾', 'Speicher', [
+    quotaStr !== '—'
+      ? barRow('Belegt', usedPct) + `<div style="padding:0 0 8px;font-size:12px;color:var(--text-tertiary);font-family:var(--mono)">${usedStr} von ${quotaStr}</div>`
+      : row('Storage API', badge('Nicht verfügbar','orange')),
+    row('localStorage',   lsOk ? badge('Verfügbar','green') : badge('Blockiert','red')),
+    row('sessionStorage', ssOk ? badge('Verfügbar','green') : badge('Blockiert','red')),
+    row('IndexedDB',      'indexedDB' in window ? badge('Verfügbar','green') : badge('Nein','red')),
+  ].join('')));
+
+  /* 11 – Standort */
+  add(createCard('📍', 'Standort (GPS)', `
+    <div id="geo-body">
+      <div style="padding:8px 0 12px;font-size:13px;color:var(--text-secondary)">
+        Standort-Zugriff benötigt deine explizite Erlaubnis im Browser.
+      </div>
+      <button onclick="requestGeo()" class="btn-secondary" style="font-size:13px;padding:10px 22px;">
+        Standort anfragen →
+      </button>
+    </div>`));
+
+  /* ── Render ───────────────────────────────────────────────── */
+  grid.innerHTML = '';
+  cards.forEach(c => grid.appendChild(c));
+
+  requestAnimationFrame(() => {
+    cards.forEach(c => setTimeout(() => c.classList.add('visible'), 10));
+  });
+
+  // Animate progress bars
+  setTimeout(() => {
+    grid.querySelectorAll('.di-bar-fill').forEach(el => {
+      el.style.width = el.dataset.pct + '%';
+    });
+  }, 250);
+
+  // Show privacy note
+  const note = document.getElementById('privacyNote');
+  note.style.display = 'flex';
+
+  btn.style.opacity = '1';
+  btn.style.pointerEvents = 'auto';
+  document.getElementById('scanLabel').textContent = 'Erneut scannen';
+}
+
+/* ─── Geolocation ─────────────────────────────────────────── */
+function requestGeo() {
+  const body = document.getElementById('geo-body');
+  body.innerHTML = `<p style="font-size:13px;color:var(--text-secondary);padding:8px 0">Warte auf Erlaubnis…</p>`;
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude:lat, longitude:lng, accuracy, altitude, speed } = pos.coords;
+    body.innerHTML = [
+      row('Breitengrad',  lat.toFixed(6)),
+      row('Längengrad',   lng.toFixed(6)),
+      row('Genauigkeit',  accuracy ? accuracy.toFixed(0)+' m' : '—'),
+      row('Höhe',         altitude ? altitude.toFixed(1)+' m ü.M.' : '—'),
+      row('Geschwindigkeit', speed ? speed.toFixed(1)+' m/s' : '—'),
+      `<div style="padding:10px 0 2px">
+        <a href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}&zoom=15"
+           target="_blank" class="link-arrow">In OpenStreetMap öffnen →</a>
+      </div>`
+    ].join('');
+  }, err => {
+    body.innerHTML = `<p style="font-size:13px;color:var(--red);padding:8px 0">${err.message}</p>`;
+  }, { enableHighAccuracy: true });
+}
+
+/* ─── Init ────────────────────────────────────────────────── */
+runScan();
+</script>
+</body>
+</html>
