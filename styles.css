@@ -775,6 +775,7 @@ strong {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  align-items: center;
 }
 .footer-nav a {
   font-size: 12px;
@@ -783,6 +784,64 @@ strong {
   transition: color 0.2s;
 }
 .footer-nav a:hover { color: var(--text); }
+
+/* ── Footer Tools Dropdown ── */
+.footer-tools-group {
+  position: relative;
+}
+.footer-tools-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.footer-tools-toggle:hover { color: var(--text); }
+.footer-tools-arrow {
+  font-size: 9px;
+  display: inline-block;
+  transition: transform 0.2s;
+  opacity: 0.6;
+}
+.footer-tools-toggle[aria-expanded="true"] .footer-tools-arrow {
+  transform: rotate(180deg);
+}
+.footer-tools-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px;
+  min-width: 150px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+  z-index: 100;
+}
+.footer-tools-drawer.open { display: flex; }
+.footer-tools-drawer a {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.footer-tools-drawer a:hover {
+  color: var(--text);
+  background: var(--bg-light);
+}
 
 .footer-right {
   display: flex;
